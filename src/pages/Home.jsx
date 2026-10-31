@@ -1,56 +1,42 @@
 import { Link } from 'react-router-dom';
 
+const collections = [
+  { number: '01', title: 'Arts', text: 'Discover the colors, materials, and makers shaping Filipino creativity.', icon: '🎨', color: '#f8e6d9', to: '/arts', prompt: 'See the artistry' },
+  { number: '02', title: 'Traditions', text: 'Explore the customs and everyday practices carried across generations.', icon: '🌿', color: '#e4eddf', to: '/traditions', prompt: 'Explore traditions' },
+  { number: '03', title: 'Festivals', text: 'Feel the rhythm of community in the Philippines’ vibrant celebrations.', icon: '🥁', color: '#f5e9cf', to: '/festivals', prompt: 'Celebrate with us' },
+];
+
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
-      <header className="bg-white shadow-sm py-12 text-center border-b border-gray-200">
-        {/* Changed from Pamana to Cultural Heritage */}
-        <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 mb-4">
-          Cultural Heritage
-        </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          A digital exhibition preserving our collective identity, shared stories, and vibrant traditions.
-        </p>
-      </header>
-
-      <main className="max-w-6xl mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-3 gap-8">
-          
-          {/* Art Card */}
-          <Link to="/arts" className="group block bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1">
-            <div className="h-48 bg-blue-600 group-hover:bg-blue-700 transition-colors flex items-center justify-center">
-              <span className="text-white text-5xl opacity-50">🎨</span>
-            </div>
-            <div className="p-6 text-center">
-              <h2 className="text-2xl font-bold mb-2">Visual Arts</h2>
-              <p className="text-gray-600 text-sm">Discover the strokes and colors that define our collective identity.</p>
-            </div>
-          </Link>
-
-          {/* Traditions Card */}
-          <Link to="/traditions" className="group block bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1">
-            <div className="h-48 bg-green-700 group-hover:bg-green-800 transition-colors flex items-center justify-center">
-              <span className="text-white text-5xl opacity-50">🏺</span>
-            </div>
-            <div className="p-6 text-center">
-              <h2 className="text-2xl font-bold mb-2">Traditions</h2>
-              <p className="text-gray-600 text-sm">Explore customs and daily practices passed down through generations.</p>
-            </div>
-          </Link>
-
-          {/* Festivals Card */}
-          <Link to="/festivals" className="group block bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1">
-            <div className="h-48 bg-red-600 group-hover:bg-red-700 transition-colors flex items-center justify-center">
-              <span className="text-white text-5xl opacity-50">🥁</span>
-            </div>
-            <div className="p-6 text-center">
-              <h2 className="text-2xl font-bold mb-2">Festivals</h2>
-              <p className="text-gray-600 text-sm">Celebrate shared heritage through music, dance, and community gatherings.</p>
-            </div>
-          </Link>
-
-        </div>
+      <main>
+        <section className="container welcome-section" id="explore">
+          <div className="welcome-heading">
+            <span className="eyebrow">Welcome to Pamana</span>
+            <h1>What would you like<br className="desktop-break" /> to explore?</h1>
+            <p>Choose a part of Filipino culture and start discovering.</p>
+          </div>
+          <div className="feature-grid">
+            {collections.map((item) => (
+              <Link className="feature-card" to={item.to} key={item.title}>
+                <div className="category-card-top"><span className="category-number">{item.number} / EXPLORE</span><span className="card-arrow" aria-hidden="true">↗</span></div>
+                {item.title === 'Festivals' ? (
+                  <span className="festival-card-art" aria-hidden="true">
+                    <span className="festival-card-sun" />
+                    <span className="festival-card-spark spark-a">✦</span>
+                    <span className="festival-card-spark spark-b">✧</span>
+                    <span className="festival-card-dancer"><span className="festival-card-head" /><span className="festival-card-arm arm-a" /><span className="festival-card-arm arm-b" /><span className="festival-card-dress" /></span>
+                  </span>
+                ) : item.title === 'Arts' ? (
+                  <span className="arts-card-art" aria-hidden="true"><span className="arts-card-canvas"><span className="arts-card-sun" /><span className="arts-card-hill hill-a" /><span className="arts-card-hill hill-b" /></span><span className="arts-card-brush" /></span>
+                ) : (
+                  <span className="traditions-card-art" aria-hidden="true"><span className="traditions-card-sun" /><span className="traditions-card-hut"><span className="hut-roof" /><span className="hut-body"><span className="hut-window" /><span className="hut-door" /></span><span className="hut-pole pole-a" /><span className="hut-pole pole-b" /></span><span className="traditions-card-leaf leaf-a" /><span className="traditions-card-leaf leaf-b" /></span>
+                )}
+                <div className="category-card-copy"><h2>{item.title}</h2><p>{item.text}</p><span className="category-prompt">{item.prompt} <span aria-hidden="true">→</span></span></div>
+              </Link>
+            ))}
+          </div>
+        </section>
+        <section className="container home-note"><div><strong>Start with a celebration.</strong><br /><span>Meet Sinulog, Cebu’s festival of faith, rhythm, and color.</span></div><Link to="/festivals" className="button-secondary">Discover Sinulog <span aria-hidden="true">→</span></Link></section>
       </main>
-    </div>
   );
 }
