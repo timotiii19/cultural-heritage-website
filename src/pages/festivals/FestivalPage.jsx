@@ -1,174 +1,83 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import sinulogImage from '../../assets/Sinulog-2026.jpg';
 
-const highlights = [
-  { label: 'The dance', icon: '💃', title: 'A rhythm that moves like water', body: 'The name Sinulog comes from the Cebuano word sulog, meaning “water current.” Dancers sway in a forward-and-back rhythm that echoes the flow of a river.' },
-  { label: 'The devotion', icon: '🕯️', title: 'A celebration of faith', body: 'At the heart of Sinulog is devotion to the Santo Niño, the Child Jesus. Novena prayers and religious processions bring worshippers together throughout the festival.' },
-  { label: 'The parade', icon: '🥁', title: 'Cebu comes alive', body: 'Colorful costumes, drumbeats, and community dance groups fill the streets, turning Cebu City into a joyful showcase of local identity and creativity.' },
+const storyBeats = [
+  { number: '01', title: 'The place', text: 'Name the community, location, and the people who make this gathering what it is.' },
+  { number: '02', title: 'The feeling', text: 'Describe the sounds, colors, movement, and moments visitors should notice.' },
+  { number: '03', title: 'The meaning', text: 'Share why the celebration matters, in the words of the people who carry it forward.' },
 ];
 
-const albumCaptions = [
-  'Lumad Basakanon dancers on Mango Avenue. · Juan Carlo de Vela',
-  'Kasambagan at Cebu City Sports Center. · Juan Carlo de Vela',
-  'Lumad Basakanon street dance. · Juan Carlo de Vela',
-  'Tribu Malipayon outside SunStar Cebu. · Logane Echavez',
-  'Bacolod MassKara dancers on Mango Avenue. · Juan Carlo de Vela',
-  'Kasambagan performs at the Sports Center. · Juan Carlo de Vela',
-  'MassKara dancers bring color to Sinulog. · Juan Carlo de Vela',
-  'MassKara dancers along Mango Avenue. · Juan Carlo de Vela',
-  'MassKara performers in the Sinulog parade. · Juan Carlo de Vela',
-];
-
-const additionalAlbumPhotos = Object.entries(
-  import.meta.glob('../../assets/sinulog-album/*.{jpg,jpeg,png,webp,avif}', { eager: true, import: 'default' }),
-)
-  .sort(([firstPath], [secondPath]) => firstPath.localeCompare(secondPath))
-  .map(([path, src], index) => {
-    const filename = path.split('/').pop().replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ');
-    const caption = albumCaptions[index] ?? `Sinulog Festival celebration in Cebu (${filename}).`;
-    return { src, alt: caption, caption };
-  });
-
-const albumPhotos = [
-  { src: sinulogImage, alt: 'Sinulog Festival dancers celebrating beneath falling confetti in Cebu', caption: 'Faith, color, and celebration.' },
-  ...additionalAlbumPhotos,
-];
+const markImageLoaded = (event) => {
+  event.currentTarget.parentElement?.classList.remove('is-loading');
+  event.currentTarget.parentElement?.classList.add('is-loaded');
+};
 
 export default function FestivalsPage() {
-  const [active, setActive] = useState(0);
-  const [albumIndex, setAlbumIndex] = useState(0);
-  const [carouselPosition, setCarouselPosition] = useState(0);
-  const [carouselStep, setCarouselStep] = useState(0);
-  const [carouselMax, setCarouselMax] = useState(0);
-  const albumWindowRef = useRef(null);
-  const carouselDirection = useRef(1);
-  const current = highlights[active];
-  const currentPhoto = albumPhotos[albumIndex];
+  const [previewPlaying, setPreviewPlaying] = useState(false);
+  const [videoDraft, setVideoDraft] = useState('');
+  const [videoUrl, setVideoUrl] = useState('');
+  const [videoError, setVideoError] = useState('');
 
-  useEffect(() => {
-    const measureCarousel = () => {
-      const viewport = albumWindowRef.current;
-      const firstCard = viewport?.querySelector('.album-card');
-      if (!viewport || !firstCard) return;
-      const gap = parseFloat(getComputedStyle(viewport.querySelector('.album-track')).columnGap) || 14;
-      const step = firstCard.getBoundingClientRect().width + gap;
-      const visibleCards = Math.max(1, Math.floor((viewport.clientWidth + gap) / step));
-      const max = Math.max(0, albumPhotos.length - visibleCards);
-      setCarouselStep(step);
-      setCarouselMax(max);
-      setCarouselPosition((position) => Math.min(position, max));
-    };
-
-    measureCarousel();
-    const observer = new ResizeObserver(measureCarousel);
-    if (albumWindowRef.current) observer.observe(albumWindowRef.current);
-    window.addEventListener('resize', measureCarousel);
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('resize', measureCarousel);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (carouselMax < 1) return undefined;
-    const timer = window.setInterval(() => {
-      setCarouselPosition((position) => {
-        let next = position + carouselDirection.current;
-        if (next >= carouselMax) {
-          next = carouselMax;
-          carouselDirection.current = -1;
-        } else if (next <= 0) {
-          next = 0;
-          carouselDirection.current = 1;
-        }
-        return next;
-      });
-    }, 3200);
-    return () => window.clearInterval(timer);
-  }, [carouselMax]);
-
-  const moveCarousel = (direction) => {
-    carouselDirection.current = direction;
-    setCarouselPosition((position) => Math.min(carouselMax, Math.max(0, position + direction)));
+  const previewVideo = (event) => {
+    event.preventDefault();
+    const url = videoDraft.trim();
+    if (!/^https?:\/\//i.test(url)) {
+      setVideoError('Enter an http or https link to a direct MP4 or WebM clip.');
+      return;
+    }
+    setVideoError('');
+    setPreviewPlaying(false);
+    setVideoUrl(url);
   };
 
   return (
-      <main className="festival-page">
-        <section className="festival-hero">
-          <div className="container festival-hero-content">
-            <span className="hero-tag">CEBU CITY · EVERY JANUARY</span>
-            <span className="eyebrow">A festival of faith, rhythm & color</span>
-            <h1>Sinulog Festival</h1>
-            <p>One beat. One city. A celebration honoring the Santo Niño and the spirit of Cebu.</p>
+    <main id="main-content" className="inner-page">
+      <section className="festival-template-hero">
+        <div className="festival-template-copy"><span className="eyebrow"><i /> A COLLECTION TEMPLATE · SAMPLE CONTENT</span><span className="festival-template-tag">FESTIVAL PROFILE / 01</span><h1>Bring the celebration<br /><em>into the frame.</em></h1><p>A starting point for the gathering you choose to feature. Add local voices, a little atmosphere, and the details that make this celebration belong to its community.</p><div className="template-pill"><span /> No festival selected yet · This profile is a replaceable sample</div></div>
+        <figure className="festival-template-photo is-loading"><img src={sinulogImage} alt="Sample festival photograph from a Sinulog celebration in Cebu" onLoad={markImageLoaded} onError={markImageLoaded} /><figcaption><span>PHOTO PLACEHOLDER</span><strong>Swap in a community-approved image, caption, and photographer credit.</strong><small>Sample image: Sinulog celebration · <a href="https://cebudailynews.inquirer.net/686481/sinulog-2026-officially-opens" target="_blank" rel="noreferrer">Cebu Daily News, 2026 ↗</a></small></figcaption><span className="festival-photo-stamp" aria-hidden="true">FESTIVAL<br />STORY <i>✳</i></span></figure>
+      </section>
+
+      <section className="sample-banner"><span className="sample-banner-icon">♫</span><p><strong>A celebration is more than a spectacle.</strong> Credit photographers and performers, ask permission before recording, and include the community’s context—not just the crowd’s colors.</p><span className="sample-banner-tag">SAMPLE PROFILE</span></section>
+
+      <section className="festival-details">
+        <div className="festival-detail-copy"><span className="eyebrow"><i /> SHAPE YOUR FESTIVAL STORY</span><h2>Start with what<br /><em>makes it meaningful.</em></h2><p>Replace these prompts with confirmed details from organizers and community members. Keep dates, access information, and cultural context current and properly sourced.</p><Link className="inline-link" to="/#team">See the project team <span aria-hidden="true">→</span></Link></div>
+        <div className="festival-fact-grid">
+          <div className="festival-fact"><span>WHERE</span><strong>Add place / community</strong><small>Confirm the preferred place name</small></div>
+          <div className="festival-fact"><span>WHEN</span><strong>Add date / season</strong><small>Check the latest schedule</small></div>
+          <div className="festival-fact"><span>WHO</span><strong>Name the organizers</strong><small>Ask how they want to be credited</small></div>
+          <div className="festival-fact"><span>WHY IT MATTERS</span><strong>Add a community voice</strong><small>Share meaning with permission</small></div>
+        </div>
+      </section>
+
+      <section className="festival-beats">
+        <div className="section-heading compact-heading"><div><span className="eyebrow"><i /> A STORY, IN THREE BEATS</span><h2>Make room for<br /><em>the full picture.</em></h2></div><p>Use a simple structure to help visitors feel the energy and understand the meaning behind a gathering.</p></div>
+        <div className="beats-grid">{storyBeats.map((beat) => <article className="beat-card" key={beat.number}><span>{beat.number}</span><h3>{beat.title}</h3><p>{beat.text}</p><i aria-hidden="true">✳</i></article>)}</div>
+      </section>
+
+      <section className="festival-media">
+        <div className="media-template-copy"><span className="eyebrow"><i /> VIDEO / CLIP SLOT</span><h2>A moment can<br /><em>say it all.</em></h2><p>Preview a direct MP4 or WebM clip, or use the animated sample until your community-approved video is ready. Add captions, a transcript, and creator credit before publishing.</p><span className="media-source-label">ADD VIDEO URL · CAPTIONS · CREATOR CREDIT</span>
+          <form className="video-url-form" onSubmit={previewVideo}>
+            <label htmlFor="festival-video-url">Direct video URL</label>
+            <div className="video-url-row"><input id="festival-video-url" type="url" inputMode="url" value={videoDraft} onChange={(event) => { setVideoDraft(event.target.value); setVideoError(''); }} placeholder="https://example.com/clip.mp4" /><button type="submit">Preview <span aria-hidden="true">→</span></button></div>
+            <small>Use a direct .mp4 or .webm link—not a video page.</small>
+            {videoError && <span className="video-url-error" role="alert">{videoError}</span>}
+          </form>
+        </div>
+        {videoUrl ? (
+          <div className="video-player-wrap">
+            <video className="festival-video-player" src={videoUrl} controls playsInline onError={() => setVideoError('This clip could not be loaded. Check the direct video URL and try again.')} aria-label="Festival video preview">Your browser does not support video playback.</video>
+            <span className="video-player-caption">VIDEO PREVIEW · ADD CAPTIONS & CREATOR CREDIT BEFORE PUBLISHING</span>
           </div>
-        </section>
-
-        <section className="container festival-content">
-          <figure className="sinulog-image-slot">
-            <img key={currentPhoto.src} src={currentPhoto.src} alt={currentPhoto.alt} />
-            <figcaption className="sinulog-image-caption">
-              <span>CEBU CITY · SINULOG FESTIVAL</span>
-              <strong>{currentPhoto.caption}</strong>
-            </figcaption>
-          </figure>
-          {albumIndex === 0 && (
-            <p className="sinulog-image-source">
-              Image source: Piquero, P. (2026, January 9). <a href="https://cebudailynews.inquirer.net/686481/sinulog-2026-officially-opens" target="_blank" rel="noreferrer">“Sinulog 2026 officially opens.”</a> Cebu Daily News.
-            </p>
-          )}
-          <section className="sinulog-album" aria-label="Sinulog photo album">
-            <div className="album-heading"><div><span className="eyebrow">Festival album</span><h2>More Sinulog moments</h2></div></div>
-            <div className="album-carousel">
-              <button className="album-arrow album-arrow-previous" type="button" aria-label="Previous album photos" onClick={() => moveCarousel(-1)} disabled={carouselPosition === 0}>‹</button>
-              <div className="album-window" ref={albumWindowRef}>
-                <div className="album-track" style={{ transform: `translateX(-${carouselPosition * carouselStep}px)` }}>
-                  {albumPhotos.map((photo, index) => (
-                    <button className={`album-card${albumIndex === index ? ' selected' : ''}`} type="button" key={photo.src} onClick={() => setAlbumIndex(index)} aria-label={`Show ${photo.alt}`} aria-pressed={albumIndex === index}>
-                      <img src={photo.src} alt="" />
-                      <span>{photo.caption}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <button className="album-arrow album-arrow-next" type="button" aria-label="Next album photos" onClick={() => moveCarousel(1)} disabled={carouselPosition >= carouselMax}>›</button>
-            </div>
-          </section>
-          <p className="album-source">
-            Album photo source: SunStar Cebu. (2025, January 19). <a href="https://www.sunstar.com.ph/cebu/in-photos-sinulog-festival-2025-a-vibrant-celebration-of-culture-and-color" target="_blank" rel="noreferrer">“IN PHOTOS: Sinulog Festival 2025, a vibrant celebration of culture and color.”</a> SunStar Publishing Inc.
-          </p>
-          <div className="festival-intro">
-            <div>
-              <span className="eyebrow">The story behind the celebration</span>
-              <h2>Follow the rhythm of the river.</h2>
-              <p>Sinulog is one of the Philippines’ best-known cultural and religious festivals. Held in Cebu City on the third Sunday of January, it honors the Santo Niño. Its signature dance moves forward and back, inspired by the flowing movement of water—and its name comes from <em>sulog</em>, the Cebuano word for current.</p>
-            </div>
-            <div className="fact-stack" aria-label="Sinulog quick facts">
-              <div className="fact"><span className="fact-label">Where</span><strong>Cebu City, Philippines</strong></div>
-              <div className="fact"><span className="fact-label">When</span><strong>Third Sunday of January</strong></div>
-              <div className="fact"><span className="fact-label">Honors</span><strong>The Santo Niño</strong></div>
-              <div className="fact"><span className="fact-label">Say it</span><strong>“Pit Senyor!”</strong></div>
-            </div>
+        ) : (
+          <div className={`motion-preview festival-motion${previewPlaying ? ' preview-playing' : ''}`}>
+            <span className="motion-preview-orbit" /><span className="preview-sun" /><span className="preview-dancer dancer-one">✦</span><span className="preview-dancer dancer-two">✦</span><span className="preview-dancer dancer-three">✦</span><span className="motion-caption">SAMPLE MOTION PREVIEW · NOT A VIDEO</span>
+            <button type="button" className="preview-play" aria-label={previewPlaying ? 'Pause animated preview' : 'Play animated preview'} aria-pressed={previewPlaying} onClick={() => setPreviewPlaying((playing) => !playing)}>{previewPlaying ? 'Ⅱ' : '▶'}</button>
           </div>
+        )}
+      </section>
 
-          <section className="experience" aria-labelledby="experience-title">
-            <div className="experience-header">
-              <div><span className="eyebrow">Choose a highlight</span><h2 id="experience-title">Feel the festival</h2></div>
-              <div className="tabs" role="tablist" aria-label="Sinulog festival highlights">
-                {highlights.map((item, index) => <button key={item.label} className="tab" type="button" role="tab" id={`tab-${index}`} aria-selected={active === index} aria-controls="festival-panel" onClick={() => setActive(index)}>{item.label}</button>)}
-              </div>
-            </div>
-            <div className="tab-panel" role="tabpanel" id="festival-panel" aria-labelledby={`tab-${active}`}>
-              <span className="tab-icon" aria-hidden="true">{current.icon}</span>
-              <div><h3>{current.title}</h3><p>{current.body}</p></div>
-            </div>
-          </section>
-
-          <aside className="pit-senyor">
-            <div><h3>A greeting full of devotion</h3><p>“Pit Senyor!” is a familiar Sinulog cheer—an invocation to the Santo Niño.</p></div>
-            <span className="shout" aria-label="Pit Senyor!">Pit Senyor! ✨</span>
-          </aside>
-          <p className="festival-source">Learn more from the <a href="https://tpb.gov.ph/events/sinulog-festival/" target="_blank" rel="noreferrer">Philippines Tourism Promotions Board</a> and the <a href="https://www.sinulogfoundationinc.com/about-us/" target="_blank" rel="noreferrer">Sinulog Foundation</a>.</p>
-        </section>
-      </main>
+      <section className="page-end-cta"><div><span className="eyebrow"><i /> MAKE IT YOURS</span><h2>Your story starts with a place.</h2><p>Choose the art, traditions, and festivals you want to bring forward.</p></div><Link className="button-primary" to="/arts">Back to the collection <span aria-hidden="true">→</span></Link></section>
+    </main>
   );
 }
