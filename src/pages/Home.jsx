@@ -3,12 +3,25 @@ import { Link, useLocation } from 'react-router-dom';
 import sinulogImage from '../assets/Sinulog-2026.jpg';
 import arabellaPhoto from '../assets/arabella.jpg';
 import juanMiguelPhoto from '../assets/juan-miguel.jpg';
+import timothyPhoto from '../assets/timothy.png';
 
 const developers = [
-  { name: 'Arabella Valerio', initials: 'AV', photo: arabellaPhoto, index: '01', color: 'rose' },
-  { name: 'JC Roeven Peji', initials: 'JP', index: '02', color: 'sage' },
-  { name: 'Timothy Talagtag', initials: 'TT', index: '03', color: 'gold' },
-  { name: 'Juan Miguel Campomanes', initials: 'JM', photo: juanMiguelPhoto, index: '04', color: 'blue' },
+  { 
+    name: 'Arabella Valerio', initials: 'AV', photo: arabellaPhoto, index: '01', color: 'rose',
+    socials: { instagram: 'https://www.instagram.com/alt_beyb/', facebook: 'https://www.facebook.com/beybellaaa', github: 'https://github.com/beybella', website: '#' }
+  },
+  { 
+    name: 'JC Roeven Peji', initials: 'JP', index: '02', color: 'sage',
+    socials: { instagram: 'https://www.instagram.com/roevennn/', facebook: 'https://www.facebook.com/roevenpeji', github: 'https://github.com/Roeven24', website: '#' }
+  },
+  { 
+    name: 'Timothy Talagtag', initials: 'TT', photo: timothyPhoto, index: '03', color: 'gold',
+    socials: { instagram: 'https://www.instagram.com/timxtiii_xx/', facebook: 'https://www.facebook.com/Timotiiiii19', github: 'https://github.com/timotiii19', website: '#' }
+  },
+  { 
+    name: 'Juan Miguel Campomanes', initials: 'JM', photo: juanMiguelPhoto, index: '04', color: 'blue',
+    socials: { instagram: 'https://www.instagram.com/wanmigzzzkie/', facebook: 'https://www.facebook.com/wannnmiguel', github: 'https://github.com/jmcampomanes', website: '#' }
+  },
 ];
 
 const collections = [
@@ -176,11 +189,34 @@ export default function Home() {
                   <h3>{activeDeveloper.name}</h3>
                   <p className="team-profile-bio">“Add a personal introduction in {activeDeveloper.name.split(' ')[0]}’s own words. Share what they contributed to Pamana, what they care about, and what Filipino heritage means to them.”</p>
                   <div className="team-feature-meta"><span>ON THIS PROJECT</span><strong>Add their design, research, writing, or development role</strong></div>
-                  <div className="team-feature-socials" aria-label={`${activeDeveloper.name} social link placeholders`}>
-                    <span><b>IG</b><small>Instagram link</small><i>↗</i></span>
-                    <span><b>FB</b><small>Facebook link</small><i>↗</i></span>
-                    <span><b>GH</b><small>GitHub link</small><i>↗</i></span>
-                    <span><b>IN</b><small>LinkedIn link</small><i>↗</i></span>
+                  
+                  {/* Updated Social Links Section */}
+                  <div className="team-feature-socials" aria-label={`${activeDeveloper.name} social links`}>
+                    {activeDeveloper.socials?.instagram && (
+                      <a href={activeDeveloper.socials.instagram} target="_blank" rel="noreferrer">
+                        <b>IG</b><small>Instagram</small><i>↗</i>
+                      </a>
+                    )}
+                    {activeDeveloper.socials?.facebook && (
+                      <a href={activeDeveloper.socials.facebook} target="_blank" rel="noreferrer">
+                        <b>FB</b><small>Facebook</small><i>↗</i>
+                      </a>
+                    )}
+                    {activeDeveloper.socials?.github && (
+                      <a href={activeDeveloper.socials.github} target="_blank" rel="noreferrer">
+                        <b>GH</b><small>GitHub</small><i>↗</i>
+                      </a>
+                    )}
+                    {activeDeveloper.socials?.linkedin && (
+                      <a href={activeDeveloper.socials.linkedin} target="_blank" rel="noreferrer">
+                        <b>IN</b><small>LinkedIn</small><i>↗</i>
+                      </a>
+                    )}
+                    {activeDeveloper.socials?.website && (
+                      <a href={activeDeveloper.socials.website} target="_blank" rel="noreferrer">
+                        <b>WEB</b><small>Website</small><i>↗</i>
+                      </a>
+                    )}
                   </div>
                 </>
               ) : (

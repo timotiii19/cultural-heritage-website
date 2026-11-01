@@ -1,10 +1,5 @@
 import { Link } from 'react-router-dom';
-
-const storyPrompts = [
-  { index: '01', title: 'The gathering', prompt: 'What brings people together? When does it happen, and who takes part?', motif: '⌂', tone: 'gathering' },
-  { index: '02', title: 'The knowledge', prompt: 'Who taught this practice? What is learned by watching, listening, and joining in?', motif: '❋', tone: 'knowledge' },
-  { index: '03', title: 'The next generation', prompt: 'How is the practice changing? What do younger community members want to carry forward?', motif: '↗', tone: 'future' },
-];
+import { traditionCategories } from './traditionData';
 
 export default function TraditionsPage() {
   return (
@@ -13,8 +8,9 @@ export default function TraditionsPage() {
         <div className="editorial-hero-copy">
           <span className="eyebrow"><i /> A COLLECTION TEMPLATE · SAMPLE CONTENT</span>
           <h1>Small rituals.<br /><em>Enduring connections.</em></h1>
-          <p>Traditions live in people, relationships, and the ways we gather. Use this framework to listen first, then share what a community wants remembered.</p>
-          <div className="template-pill"><span /> No traditions selected yet · Begin with a conversation</div>
+          <p>Explore traditions through the people who carry them. Choose a subcategory to open a focused story template.</p>
+          <div className="template-pill"><span /> Three subcategories · Community-led stories</div>
+          <a className="button-primary tradition-hero-cta" href="#collection">Explore tradition stories <span aria-hidden="true">↘</span></a>
         </div>
         <div className="editorial-art tradition-collage" aria-hidden="true">
           <span className="tradition-sun" /><span className="tradition-line line-one" /><span className="tradition-line line-two" /><span className="tradition-house"><i /><i /><i /></span><span className="tradition-leaf leaf-one">❋</span><span className="tradition-leaf leaf-two">✳</span>
@@ -25,23 +21,30 @@ export default function TraditionsPage() {
 
       <section className="sample-banner"><span className="sample-banner-icon">♡</span><p><strong>Listen before you publish.</strong> Traditions are not props or one-size-fits-all. Ask permission, name your sources, respect private knowledge, and let community members guide what is shared.</p><span className="sample-banner-tag">COMMUNITY FIRST</span></section>
 
-      <section className="sample-collection traditions-collection">
+      <section className="sample-collection traditions-collection" id="collection">
         <div className="section-heading compact-heading">
-          <div><span className="eyebrow"><i /> A GENTLE STORY FRAMEWORK</span><h2>Every tradition has<br /><em>more than one voice.</em></h2></div>
-          <p>These are prompts—not examples of real customs. Use them to shape a story with the people who carry it.</p>
+          <div><span className="eyebrow"><i /> THREE WAYS INTO A STORY</span><h2>Choose a subcategory.<br /><em>Open its story page.</em></h2></div>
+          <p>Each card opens a separate page with a specific story template. Replace sample prompts with verified details and community-approved voices.</p>
         </div>
-        <div className="prompt-grid">
-          {storyPrompts.map((item) => (
-            <article className={`prompt-card ${item.tone}`} key={item.index}>
-              <span className="prompt-number">{item.index}</span><span className="prompt-motif" aria-hidden="true">{item.motif}</span>
-              <span className="prompt-kicker">STORY PROMPT</span><h3>{item.title}</h3><p>{item.prompt}</p>
-              <span className="prompt-footer">A PLACE FOR YOUR COMMUNITY'S VOICE <i>↗</i></span>
-            </article>
-          ))}
+        <div className="tradition-category-grid">
+          {traditionCategories.map((category, index) => {
+            return (
+              <Link
+                className={`tradition-category-card ${category.id}`}
+                key={category.id}
+                to={`/traditions/${category.id}`}
+              >
+                <span className="tradition-category-number">0{index + 1} / TRADITION</span>
+                <span className="tradition-category-motif" aria-hidden="true">{category.motif}</span>
+                <h3>{category.title}</h3>
+                <p>Three topic cards with a blank content template. Research and add information before publishing.</p>
+                <span className="tradition-category-feature">TOPICS <strong>3 topic templates</strong></span>
+                <span className="tradition-category-action">Open subcategory <i aria-hidden="true">↗</i></span>
+              </Link>
+            );
+          })}
         </div>
       </section>
-
-      <section className="quote-template"><span className="quote-mark">“</span><div><span className="eyebrow"><i /> COMMUNITY VOICE · TEMPLATE</span><blockquote>“Add a short reflection in the speaker’s own words. Keep their meaning intact, and confirm how they want to be identified.”</blockquote><span className="quote-credit">NAME / COMMUNITY · USED WITH PERMISSION</span></div></section>
 
       <section className="page-end-cta"><div><span className="eyebrow"><i /> KEEP BUILDING</span><h2>Stories connect us.</h2><p>Bring together the art, people, and practices that make a place feel like home.</p></div><Link className="button-primary" to="/festivals">Explore festivals <span aria-hidden="true">→</span></Link></section>
     </main>

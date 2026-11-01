@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 
 const palettes = [
-  { id: 'island', name: 'Island green', colors: ['#146356', '#e85d45', '#f2bf4b', '#f4f3df', '#0d4038'] },
-  { id: 'sunset', name: 'Sunset clay', colors: ['#a33324', '#ed542e', '#ffc247', '#fff0dc', '#70221e'] },
-  { id: 'ocean', name: 'Ocean blue', colors: ['#075b8d', '#00a6a6', '#ffbd59', '#e7f4fb', '#093a65'] },
-  { id: 'orchid', name: 'Orchid dusk', colors: ['#6841a5', '#d83a86', '#e7c2ff', '#f4eafa', '#402466'] },
+  { id: 'green', name: 'Green', colors: ['#286d55', '#77a989', '#e7bd60', '#f4f5ea', '#173f35'] },
+  { id: 'blue', name: 'Blue', colors: ['#326b99', '#6fb6c1', '#e9bd64', '#edf5fa', '#1d4565'] },
+  { id: 'red', name: 'Red', colors: ['#b74646', '#df7968', '#e7bc68', '#fbf0eb', '#71373b'] },
+  { id: 'orange', name: 'Orange', colors: ['#b75d35', '#e49353', '#f0c967', '#fbf1e5', '#70412f'] },
+  { id: 'yellow', name: 'Yellow', colors: ['#927629', '#c4a84e', '#e6bf55', '#f8f5e6', '#594c2c'] },
+  { id: 'purple', name: 'Purple', colors: ['#72599d', '#ad8fc2', '#e5c16b', '#f4eff8', '#49385f'] },
 ];
 
 const navigation = [
@@ -41,7 +43,7 @@ export default function SiteLayout() {
     if (!motionEnabled || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
 
     const revealTargets = document.querySelectorAll(
-      '.page-transition main > section, .page-transition main > .heritage-marquee, .page-transition .collection-card, .page-transition .sample-card, .page-transition .prompt-card, .page-transition .beat-card, .page-transition .festival-fact, .page-transition .team-feature-panel, .page-transition .team-directory',
+      '.page-transition main > section, .page-transition main > .heritage-marquee, .page-transition .collection-card, .page-transition .sample-card, .page-transition .tradition-category-card, .page-transition .tradition-more-card, .page-transition .beat-card, .page-transition .festival-fact, .page-transition .team-feature-panel, .page-transition .team-directory',
     );
     if (!('IntersectionObserver' in window)) return undefined;
 
@@ -82,6 +84,22 @@ export default function SiteLayout() {
       onPointerMove={trackPointer}
       onPointerLeave={clearPointer}
     >
+      <div className="ambient-stage" aria-hidden="true">
+        <span className="ambient-orbit ambient-orbit-one"><i /></span>
+        <span className="ambient-orbit ambient-orbit-two"><i /></span>
+        <span className="ambient-orb ambient-orb-one" />
+        <span className="ambient-orb ambient-orb-two" />
+        <span className="ambient-orb ambient-orb-three" />
+        <span className="ambient-petal ambient-petal-one" />
+        <span className="ambient-petal ambient-petal-two" />
+        <span className="ambient-petal ambient-petal-three" />
+        <span className="ambient-spark ambient-spark-one">✳</span>
+        <span className="ambient-spark ambient-spark-two">✦</span>
+        <span className="ambient-spark ambient-spark-three">✳</span>
+        <span className="ambient-spark ambient-spark-four">✦</span>
+        <span className="ambient-thread ambient-thread-one" />
+        <span className="ambient-thread ambient-thread-two" />
+      </div>
       <a className="skip-link" href="#main-content">Skip to content</a>
       <header className="topbar">
         <div className="topbar-inner">
@@ -109,7 +127,7 @@ export default function SiteLayout() {
               {paletteOpen && (
                 <div className="palette-panel" id="palette-panel">
                   <div className="palette-panel-heading">
-                    <div><span className="panel-kicker">YOUR CANVAS</span><strong>Choose a palette</strong></div>
+                      <div><span className="panel-kicker">YOUR CANVAS</span><strong>Choose a palette</strong></div>
                     <button className="panel-close" type="button" aria-label="Close palette settings" onClick={() => setPaletteOpen(false)}>×</button>
                   </div>
                   <div className="palette-options" role="group" aria-label="Color palettes">
@@ -128,7 +146,7 @@ export default function SiteLayout() {
                     ))}
                   </div>
                   <button className="motion-toggle" type="button" aria-pressed={motionEnabled} onClick={toggleMotion}>
-                    <span><strong>Motion effects</strong><small>Subtle movement across the experience</small></span>
+                    <span><strong>Motion effects</strong><small>Ambient movement and scroll reveals</small></span>
                     <span className={`toggle-track${motionEnabled ? ' enabled' : ''}`} aria-hidden="true"><i /></span>
                   </button>
                 </div>
