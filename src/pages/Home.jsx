@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import sinulogImage from '../assets/Sinulog-2026.jpg';
 import arabellaPhoto from '../assets/arabella.jpg';
 import juanMiguelPhoto from '../assets/juan-miguel.jpg';
+import roevenPhoto from '../assets/roeven.png';
 import timothyPhoto from '../assets/timothy.png';
 
 const developers = [
@@ -11,7 +12,7 @@ const developers = [
     socials: { instagram: 'https://www.instagram.com/alt_beyb/', facebook: 'https://www.facebook.com/beybellaaa', github: 'https://github.com/beybella', website: '#' }
   },
   { 
-    name: 'JC Roeven Peji', initials: 'JP', index: '02', color: 'sage',
+    name: 'J.C. Roeven Peji', initials: 'JP',  photo: roevenPhoto, index: '02', color: 'sage',
     socials: { instagram: 'https://www.instagram.com/roevennn/', facebook: 'https://www.facebook.com/roevenpeji', github: 'https://github.com/Roeven24', website: '#' }
   },
   { 

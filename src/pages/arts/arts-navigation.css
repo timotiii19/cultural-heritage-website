@@ -1,0 +1,36 @@
+/* Navigation improvements for the original exhibition layout. */
+.arts-ux-page section[id], .arts-ux-page #arts-active-story { scroll-margin-top: calc(var(--header-height) - 78px); }
+.arts-ux-page a.arts-collection-card { display: block; }
+.arts-ux-page .arts-collection-card[aria-current="true"] { border-color: var(--forest); }
+.arts-ux-page .arts-collection-card:hover .arts-card-image > img { transform: scale(1.045); }
+.arts-ux-page .arts-story-link { min-height: 44px; }
+.arts-back-to-collection { min-height: 36px; display: inline-flex; align-items: center; color: var(--forest); font-size: 11px; line-height: 1.6; }
+.arts-back-to-collection:hover { text-decoration: underline; text-underline-offset: 4px; }
+.arts-story-select { display: none; }
+.arts-album-help { margin: 11px 0 0; color: var(--muted); font-size: 10px; line-height: 1.7; }
+.arts-story-pagination { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-top: 22px; margin-top: 22px; border-top: 1px solid var(--line); }
+.arts-story-pagination button { display: flex; align-items: center; gap: 13px; min-height: 50px; padding: 4px 0; border: 0; color: var(--forest); background: transparent; text-align: left; }
+.arts-story-pagination button:last-child { text-align: right; }
+.arts-story-pagination small { display: block; margin-bottom: 6px; color: var(--muted); font: 8px/1.5 var(--mono); }
+.arts-story-pagination strong { font-size: 12px; font-weight: 600; line-height: 1.6; }
+.arts-story-pagination button > span { font-size: 20px; }
+.arts-story-pagination button:disabled { opacity: .4; cursor: default; }
+.arts-story-pagination button:not(:disabled):hover strong { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 760px) {
+  .arts-ux-page .arts-story-directory { display: none; }
+  .arts-ux-page .arts-filters button { min-height: 44px; }
+  .arts-story-select { display: grid; gap: 8px; margin: 19px 0 22px; }
+  .arts-story-select > span { color: var(--muted); font-size: 11px; }
+  .arts-story-select select { width: 100%; min-height: 46px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); background: var(--paper); font: 13px 'DM Sans', sans-serif; cursor: pointer; }
+  .arts-back-to-collection { min-height: 44px; }
+}
+@media (max-width: 490px) {
+  .arts-story-pagination { gap: 14px; }
+  .arts-story-pagination button { gap: 8px; }
+  .arts-story-pagination strong { font-size: 10px; }
+  .arts-story-pagination small { font-size: 7px; }
+  .arts-back-to-collection { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .arts-ux-page .arts-collection-card:hover .arts-card-image > img { transform: none; }
+}

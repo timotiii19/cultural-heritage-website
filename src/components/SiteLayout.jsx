@@ -43,7 +43,7 @@ export default function SiteLayout() {
     if (!motionEnabled || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
 
     const revealTargets = document.querySelectorAll(
-      '.page-transition main > section, .page-transition main > .heritage-marquee, .page-transition .collection-card, .page-transition .sample-card, .page-transition .tradition-category-card, .page-transition .tradition-more-card, .page-transition .beat-card, .page-transition .festival-fact, .page-transition .team-feature-panel, .page-transition .team-directory',
+      '.page-transition main > section:not([data-reveal-skip]), .page-transition main > .heritage-marquee, .page-transition .collection-card, .page-transition .sample-card, .page-transition .tradition-category-card, .page-transition .tradition-more-card, .page-transition .beat-card, .page-transition .festival-fact, .page-transition .team-feature-panel, .page-transition .team-directory, .page-transition .arts-collection-card, .page-transition .arts-reference-group',
     );
     if (!('IntersectionObserver' in window)) return undefined;
 
@@ -165,6 +165,7 @@ export default function SiteLayout() {
           <nav className="footer-links" aria-label="Footer navigation">
             {navigation.slice(1).map((item) => <NavLink key={item.to} to={item.to}>{item.label}</NavLink>)}
             <Link to="/#team">The team</Link>
+            <Link to="/references">References</Link>
           </nav>
           <span className="footer-note">A student-made cultural heritage project · 2026</span>
         </div>
