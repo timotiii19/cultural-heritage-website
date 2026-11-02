@@ -1,5 +1,7 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { traditionCategories } from './traditionData';
+import { superstitionStories } from './superstition/superstitionData';
+import SuperstitionStoryPage from './superstition/SuperstitionStoryPage';
 
 const templateSections = [
   { title: 'Overview', description: 'Add a researched introduction to this topic.' },
@@ -12,8 +14,12 @@ export default function TraditionDetailPage() {
   const { categoryId, entryId } = useParams();
   const category = traditionCategories.find((item) => item.id === categoryId);
   const entry = category?.entries.find((item) => item.id === entryId);
+  const superstitionStory = categoryId === 'superstition'
+    ? superstitionStories.find((story) => story.id === entryId)
+    : undefined;
 
   if (!category || !entry) return <Navigate to="/traditions" replace />;
+  if (superstitionStory) return <SuperstitionStoryPage story={superstitionStory} />;
 
   return (
     <main id="main-content" className="inner-page">

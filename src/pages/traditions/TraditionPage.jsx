@@ -6,10 +6,10 @@ export default function TraditionsPage() {
     <main id="main-content" className="inner-page">
       <section className="editorial-hero tradition-hero">
         <div className="editorial-hero-copy">
-          <span className="eyebrow"><i /> A COLLECTION TEMPLATE · SAMPLE CONTENT</span>
+          <span className="eyebrow"><i /> FILIPINO TRADITIONS · STORIES & PRACTICES</span>
           <h1>Small rituals.<br /><em>Enduring connections.</em></h1>
-          <p>Explore traditions through the people who carry them. Choose a subcategory to open a focused story template.</p>
-          <div className="template-pill"><span /> Three subcategories · Community-led stories</div>
+          <p>Explore traditions through the people who carry them. Superstition opens a researched story collection; other subcategories are being prepared.</p>
+          <div className="template-pill"><span /> Three subcategories · One researched collection</div>
           <a className="button-primary tradition-hero-cta" href="#collection">Explore tradition stories <span aria-hidden="true">↘</span></a>
         </div>
         <div className="editorial-art tradition-collage" aria-hidden="true">
@@ -24,7 +24,7 @@ export default function TraditionsPage() {
       <section className="sample-collection traditions-collection" id="collection">
         <div className="section-heading compact-heading">
           <div><span className="eyebrow"><i /> THREE WAYS INTO A STORY</span><h2>Choose a subcategory.<br /><em>Open its story page.</em></h2></div>
-          <p>Each card opens a separate page with a specific story template. Replace sample prompts with verified details and community-approved voices.</p>
+          <p>Open a dedicated collection: Superstition shares researched stories, while other categories are ready for community-led research.</p>
         </div>
         <div className="tradition-category-grid">
           {traditionCategories.map((category, index) => {
@@ -37,9 +37,9 @@ export default function TraditionsPage() {
                 <span className="tradition-category-number">0{index + 1} / TRADITION</span>
                 <span className="tradition-category-motif" aria-hidden="true">{category.motif}</span>
                 <h3>{category.title}</h3>
-                <p>Three topic cards with a blank content template. Research and add information before publishing.</p>
-                <span className="tradition-category-feature">TOPICS <strong>3 topic templates</strong></span>
-                <span className="tradition-category-action">Open subcategory <i aria-hidden="true">↗</i></span>
+                <p>{category.id === 'superstition' ? 'Explore three Filipino folk beliefs through their rituals, meanings, family stories, and source notes.' : 'Three topic cards with a blank content template. Research and add information before publishing.'}</p>
+                <span className="tradition-category-feature">TOPICS <strong>{category.id === 'superstition' ? '3 researched stories' : '3 topic templates'}</strong></span>
+                <span className="tradition-category-action">{category.id === 'superstition' ? 'Explore the stories' : 'Open subcategory'} <i aria-hidden="true">↗</i></span>
               </Link>
             );
           })}
