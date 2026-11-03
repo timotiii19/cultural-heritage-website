@@ -23,6 +23,11 @@ const traditionAudioTracks = [
     source: '/assets/audio/Superstition.mp3',
     title: 'Superstition',
   },
+  {
+    path: '/cultural-heritage-pages/traditions/social-etiquette/',
+    source: '/assets/audio/Social%20Etiquette.mp3',
+    title: 'Social Etiquette',
+  },
 ];
 const traditionAudio = traditionAudioTracks.find(({ path }) => window.location.pathname.startsWith(path));
 const backgroundAudioSource = traditionAudio?.source || shell?.dataset.backgroundAudio;
