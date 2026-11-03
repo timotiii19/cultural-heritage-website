@@ -21,7 +21,7 @@ export default function SiteLayout() {
   const location = useLocation();
   const [palette, setPalette] = useState(() => {
     const saved = window.localStorage.getItem('pamana-palette');
-    return palettes.some((item) => item.id === saved) ? saved : 'island';
+    return palettes.some((item) => item.id === saved) ? saved : 'green';
   });
   const [motionEnabled, setMotionEnabled] = useState(() => window.localStorage.getItem('pamana-motion') !== 'off');
   const [paletteOpen, setPaletteOpen] = useState(false);
