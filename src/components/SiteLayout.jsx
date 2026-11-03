@@ -1,6 +1,6 @@
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useLayoutEffect, useRef } from 'react';
-import pamanaLogo from '../assets/pamana-logo1.jpg';
+import juanMiguelPhoto from '../assets/juan-miguel.jpg';
 
 export default function SiteLayout() {
   const location = useLocation();
@@ -38,7 +38,7 @@ export default function SiteLayout() {
     <div className="site-shell">
       <header className="topbar">
         <Link className="brand" to="/" aria-label="Pamana home">
-          <span className="brand-mark" aria-hidden="true"><img className="brand-logo-image" src={pamanaLogo} alt="" /></span>
+          <span className="brand-mark" aria-hidden="true"><img className="brand-logo-image" src={juanMiguelPhoto} alt="" /></span>
           <span>Pamana</span>
         </Link>
         <nav className="nav-links" aria-label="Main navigation" ref={navRef}>
@@ -47,7 +47,6 @@ export default function SiteLayout() {
           <NavLink to="/arts">Visual arts</NavLink>
           <NavLink to="/traditions">Traditions</NavLink>
           <NavLink to="/festivals">Festivals</NavLink>
-          <NavLink to="/developers">Meet the developers</NavLink>
         </nav>
       </header>
       <div className="page-transition" key={location.pathname}><Outlet /></div>
