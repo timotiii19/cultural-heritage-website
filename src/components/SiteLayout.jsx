@@ -40,6 +40,10 @@ export default function SiteLayout() {
   const activePalette = palettes.find((item) => item.id === palette) ?? palettes[0];
 
   useEffect(() => {
+    if (!location.hash) window.scrollTo(0, 0);
+  }, [location.pathname, location.hash]);
+
+  useEffect(() => {
     if (!motionEnabled || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
 
     const revealTargets = document.querySelectorAll(

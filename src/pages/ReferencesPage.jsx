@@ -3,13 +3,16 @@ import { Link, useLocation } from 'react-router-dom';
 import { artForms } from './arts/artData';
 import { superstitionStories, superstitionVisualReferences } from './traditions/superstition/superstitionData';
 import { christmasStories } from './traditions/christmas-festivities/traditionData';
+import socialEtiquette from './traditions/social-etiquette/traditionData';
 import './arts/arts.css';
 
 const superstitionReferences = [...new Map(superstitionStories.flatMap((story) => story.sources).map((source) => [source.url, source])).values()];
 const christmasReferences = christmasStories.flatMap((story) => story.sources);
 const christmasPhotos = christmasStories.flatMap((story) => story.photos);
-const totalResearch = artForms.reduce((total, art) => total + art.sources.length, 0) + superstitionReferences.length + christmasReferences.length;
-const totalImages = artForms.reduce((total, art) => total + art.photos.length, 0) + superstitionVisualReferences.length + christmasPhotos.length;
+const socialEtiquetteReferences = [...socialEtiquette.sources, ...socialEtiquette.entries.flatMap((entry) => entry.sources)];
+const socialEtiquettePhotos = socialEtiquette.entries.filter((entry) => entry.photo).length + Number(Boolean(socialEtiquette.heroPhoto));
+const totalResearch = artForms.reduce((total, art) => total + art.sources.length, 0) + superstitionReferences.length + christmasReferences.length + socialEtiquetteReferences.length;
+const totalImages = artForms.reduce((total, art) => total + art.photos.length, 0) + superstitionVisualReferences.length + christmasPhotos.length + socialEtiquettePhotos;
 const filters = ['All sources', 'Research', 'Images'];
 
 export default function ReferencesPage() {
@@ -17,7 +20,25 @@ export default function ReferencesPage() {
   const [filter, setFilter] = useState('All sources');
   const location = useLocation();
   const search = query.trim().toLocaleLowerCase();
-  const groups = [...artForms, ...superstitionStories.map((story) => ({
+  const groups = [...artForms, ...(socialEtiquette.heroPhoto ? [{
+    id: 'social-etiquette',
+    title: socialEtiquette.title,
+    category: 'Traditions · Social Etiquette & Values',
+    shortTitle: 'Shared customs, etiquette, and values',
+    photos: [{ ...socialEtiquette.heroPhoto, number: '01', source: socialEtiquette.heroPhoto.source }],
+    sources: socialEtiquette.sources,
+    storyPath: '/traditions/social-etiquette',
+    motif: socialEtiquette.motif,
+  }] : []), ...socialEtiquette.entries.map((entry) => ({
+    id: `social-${entry.id}`,
+    title: entry.title,
+    category: 'Traditions · Social Etiquette & Values',
+    shortTitle: entry.subtitle,
+    photos: entry.photo ? [{ ...entry.photo, number: '01', source: entry.photo.source }] : [],
+    sources: entry.sources,
+    storyPath: `/traditions/social-etiquette/${entry.id}`,
+    motif: socialEtiquette.motif,
+  })), ...superstitionStories.map((story) => ({
     id: story.id === 'pagpag' ? 'superstition-sources' : `superstition-${story.id}`,
     title: story.title,
     category: 'Traditions · Superstition',
@@ -58,7 +79,7 @@ export default function ReferencesPage() {
       <section className="arts-reference-hero">
         <Link className="button-text" to="/"><span aria-hidden="true">←</span> Back to Pamana</Link>
         <div className="arts-reference-heading"><div><span className="eyebrow"><i /> THE PAMANA REFERENCE LIBRARY</span><h1>Behind every story,<br /><em>a place to look further.</em></h1><p>Research and image links behind the arts and traditions collections, gathered in one place. Explore the sources for each subject and follow the details that interest you.</p></div><div className="arts-reference-seal"><span>ARTS + TRADITIONS</span><strong>{totalResearch + totalImages}</strong><span>SOURCES & IMAGE LINKS</span></div></div>
-        <div className="arts-reference-ledger"><span><b>01</b> ARTS & TRADITIONS</span><span>{totalResearch} research references</span><span>{totalImages} image sources</span><span>5 art forms · 2 traditions</span></div>
+        <div className="arts-reference-ledger"><span><b>01</b> ARTS & TRADITIONS</span><span>{totalResearch} research references</span><span>{totalImages} image sources</span><span>5 art forms · 3 traditions</span></div>
       </section>
 
       <section className="arts-reference-library" aria-label="Arts sources and image credits" data-reveal-skip>
@@ -73,7 +94,7 @@ export default function ReferencesPage() {
         </section>) : <div className="arts-reference-empty"><span aria-hidden="true">✳</span><h2>No sources found.</h2><p>Try a subject such as “Jeepney,” an author, or a website name.</p><button className="button-primary" type="button" onClick={() => { setQuery(''); setFilter('All sources'); }}>Clear search & filters</button></div>}
       </section>
 
-      <section className="arts-reference-endnote"><span aria-hidden="true">✳</span><div><h2>Good stories leave a trail.</h2><p>Superstition references are grouped by belief. Local photos and illustrations link back to the source pages you provided.</p></div><Link className="button-text" to="/arts">Return to the gallery <span aria-hidden="true">↗</span></Link></section>
+      <section className="arts-reference-endnote"><span aria-hidden="true">✳</span><div><h2>Good stories leave a trail.</h2><p>Arts and tradition references are grouped by subject. Follow a source link to read the original research and cultural education materials.</p></div><Link className="button-text" to="/arts">Return to the gallery <span aria-hidden="true">↗</span></Link></section>
     </main>
   );
 }

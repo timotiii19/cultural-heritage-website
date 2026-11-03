@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { traditionCategories } from './traditionData';
 
 const researchedCategories = {
+  'social-etiquette': { description: 'Explore po and opo, pagmamano, and bayanihan through sourced notes on respect, greetings, and community cooperation.', action: 'Explore the practices' },
   superstition: { description: 'Explore three Filipino folk beliefs through their rituals, meanings, family stories, and source notes.', action: 'Explore the stories' },
   'christmas-festivities': { description: 'Explore Simbang Gabi, Noche Buena, and Christmas delicacies through their origins, meanings, and sources.', action: 'Explore the stories' },
 };
@@ -13,8 +14,8 @@ export default function TraditionsPage() {
         <div className="editorial-hero-copy">
           <span className="eyebrow"><i /> FILIPINO TRADITIONS · STORIES & PRACTICES</span>
           <h1>Small rituals.<br /><em>Enduring connections.</em></h1>
-          <p>Explore traditions through the people who carry them. Superstition and Christmas Festivities open researched story collections; other subcategories are being prepared.</p>
-          <div className="template-pill"><span /> Three subcategories · Two researched collections</div>
+          <p>Explore traditions through the people who carry them. Social Etiquette, Superstition, and Christmas Festivities each open researched pages with sources.</p>
+          <div className="template-pill"><span /> Three subcategories · Three researched collections</div>
           <a className="button-primary tradition-hero-cta" href="#collection">Explore tradition stories <span aria-hidden="true">↘</span></a>
         </div>
         <div className="editorial-art tradition-collage" aria-hidden="true">
@@ -29,7 +30,7 @@ export default function TraditionsPage() {
       <section className="sample-collection traditions-collection" id="collection">
         <div className="section-heading compact-heading">
           <div><span className="eyebrow"><i /> THREE WAYS INTO A STORY</span><h2>Choose a subcategory.<br /><em>Open its story page.</em></h2></div>
-          <p>Open a dedicated collection: Superstition and Christmas Festivities share researched stories, while other categories are ready for community-led research.</p>
+          <p>Open a dedicated collection to explore researched practices, stories, and sources.</p>
         </div>
         <div className="tradition-category-grid">
           {traditionCategories.map((category, index) => {
@@ -44,7 +45,7 @@ export default function TraditionsPage() {
                 <span className="tradition-category-motif" aria-hidden="true">{category.motif}</span>
                 <h3>{category.title}</h3>
                 <p>{researched?.description ?? 'Three topic cards with a blank content template. Research and add information before publishing.'}</p>
-                <span className="tradition-category-feature">TOPICS <strong>{researched ? '3 researched stories' : '3 topic templates'}</strong></span>
+                <span className="tradition-category-feature">TOPICS <strong>{researched ? (category.id === 'social-etiquette' ? '3 researched practices' : '3 researched stories') : '3 topic templates'}</strong></span>
                 <span className="tradition-category-action">{researched?.action ?? 'Open subcategory'} <i aria-hidden="true">↗</i></span>
               </Link>
             );
