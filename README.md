@@ -14,6 +14,10 @@ Then open `http://localhost:5173`. Alternatively, open the folder with VS Code L
 
 You do not need npm or `node_modules` to edit or deploy the site. Node.js is only needed for the optional local preview server.
 
+## Deploy to Vercel
+
+The site is deployed as static files from the repository root; it has no Vite build step. `vercel.json` selects Vercel's **Other** framework preset, disables any dashboard-configured build command, and serves the repository root. Push this file to the connected Git branch to trigger a new deployment.
+
 ## Background music
 
 The Arts, Festivals, Christmas Festivities, and Superstition pages each have their own looping background track. Music starts at 25% of the player's full volume scale and can be adjusted with the floating player. Christmas and Superstition music continues from its saved position across pages within that tradition. If the browser blocks automatic playback, select **Play music**; it will then continue across that category's pages.
