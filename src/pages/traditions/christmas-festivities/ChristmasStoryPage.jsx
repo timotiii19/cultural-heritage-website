@@ -2,6 +2,7 @@ import { useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../superstition/superstition.css';
 import './christmas.css';
+import { ChristmasLights, Parol, ParolScene } from './ChristmasDecor';
 
 function StoryImages({ story }) {
   return (
@@ -31,6 +32,7 @@ export default function ChristmasStoryPage({ story }) {
 
   return (
     <main id="main-content" className="superstition-page christmas-page">
+      <ChristmasLights />
       <div className="superstition-shell">
         <section className="superstition-hero superstition-entry-hero">
           <div className="superstition-hero-copy">
@@ -41,14 +43,7 @@ export default function ChristmasStoryPage({ story }) {
             <a className="superstition-hero-link" href={`#${story.id}`}>Enter the story <span aria-hidden="true">↓</span></a>
             <div className="superstition-hero-index"><strong>{story.number}</strong><span>one of three<br />Christmas traditions</span></div>
           </div>
-          <div className="superstition-hero-art christmas-hero-art" aria-hidden="true">
-            {story.photos[0] && <img src={story.photos[0].src} alt="" fetchPriority="high" />}
-            <span className="superstition-orbit orbit-outer" /><span className="superstition-orbit orbit-inner" />
-            <span className="superstition-hero-mark">{story.motif}</span>
-            <span className="superstition-hero-caption">FROM DAWN MASS<br />TO MIDNIGHT TABLE</span>
-            <span className="superstition-hero-figure">CHRISTMAS / {story.number}</span>
-            <span className="superstition-dust dust-one" /><span className="superstition-dust dust-two" /><span className="superstition-dust dust-three" /><span className="superstition-dust dust-four" />
-          </div>
+          <ParolScene tone={story.tone} image={story.photos[0]?.src} caption={<>FROM DAWN MASS<br />TO MIDNIGHT TABLE</>} figure={`CHRISTMAS / ${story.number}`} />
         </section>
 
         <article className="superstition-story" id={story.id}>
@@ -101,6 +96,7 @@ export default function ChristmasStoryPage({ story }) {
         </article>
 
         <section className="superstition-close">
+          <span className="christmas-parol christmas-close-parol tone-gold" aria-hidden="true"><Parol /></span>
           <span className="superstition-eyebrow"><i /> KEEP EXPLORING</span>
           <h2>One season.<br /><em>Three traditions.</em></h2>
           <div className="superstition-story-navigation">
