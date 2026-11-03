@@ -1,16 +1,32 @@
-# React + Vite
+# Pamana
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Pamana is a static website made with HTML, CSS, and vanilla JavaScript. It has no npm packages or build step.
 
-Currently, two official plugins are available:
+## Run locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+If Node.js is already installed, start the included preview server:
 
-## React Compiler
+```sh
+node server.js
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Then open `http://localhost:5173`. Alternatively, open the folder with VS Code Live Server or host the files on any static web host.
 
-## Expanding the ESLint configuration
+You do not need npm or `node_modules` to edit or deploy the site. Node.js is only needed for the optional local preview server.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Background music
+
+The Arts, Festivals, Christmas Festivities, and Superstition pages each have their own looping background track. Music starts at 25% of the player's full volume scale and can be adjusted with the floating player. Christmas and Superstition music continues from its saved position across pages within that tradition. If the browser blocks automatic playback, select **Play music**; it will then continue across that category's pages.
+
+## Project structure
+
+- `index.html` — forwards to the site
+- `cultural-heritage-pages/` — all site pages, including the landing page, arts, festivals, references, traditions, and team redirect
+- `cultural-heritage-pages/arts/` — arts page, styles, and art images
+- `cultural-heritage-pages/festivals/` — festival page and images
+- `cultural-heritage-pages/traditions/` — traditions and their subcategories
+- `cultural-heritage-pages/references/` — source library page
+- `assets/css/` and `assets/js/` — shared site styles and interactions
+- `assets/images/` — shared images, team portraits, and favicon
+- `server.js` — optional, dependency-free local preview server
+- `design-backups/` — archived design files; not used by the live site
