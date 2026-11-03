@@ -42,7 +42,7 @@ export default function TraditionDetailPage() {
         <section className="social-etiquette-detail-hero">
           <div className="social-etiquette-detail-copy">
             <Link className="inline-link" to={`/traditions/${category.id}`}><span aria-hidden="true">←</span> {category.title}</Link>
-            <span className="eyebrow"><i /> FIELD NOTE / 0{practiceIndex + 1} · {practiceType}</span>
+            <span className="eyebrow"><i /> 0{practiceIndex + 1} · {practiceType}</span>
             <h1>{entry.title}</h1>
             <p>{entry.subtitle}. Explore its meaning, how people practice it, and the values it can express.</p>
             <a className="social-etiquette-detail-scroll" href="#overview">Enter the story <span aria-hidden="true">↓</span></a>

@@ -1553,3 +1553,175 @@ body { background: var(--paper); }
   .social-etiquette-practice-copy h3 { font-size: 44px; }
   .social-etiquette-practice-copy h3::after { margin-top: 7px; }
 }
+
+/* A warm, woven-fiber palette for Social Etiquette */
+.social-etiquette-page,
+.social-etiquette-detail-page {
+  --social-bg: #e7dccb;
+  --social-panel: #f4ecdf;
+  --social-panel-raised: #dfd0ba;
+  --social-gold: #8c593e;
+  --social-cream: #382d28;
+  --social-muted: #675a52;
+  color: var(--social-cream);
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+}
+.social-etiquette-page::before,
+.social-etiquette-detail-page::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0 auto 0 50%;
+  width: 100vw;
+  content: '';
+  transform: translateX(-50%);
+  background-color: var(--social-bg);
+  background-image:
+    radial-gradient(ellipse at 83% 5%, #b3855110, transparent 28%),
+    repeating-linear-gradient(0deg, #735c4110 0 1px, transparent 1px 23px),
+    repeating-linear-gradient(90deg, #735c4108 0 1px, transparent 1px 23px);
+  pointer-events: none;
+}
+.social-etiquette-detail-page { --practice-accent: var(--social-gold); --practice-wash: var(--social-panel); }
+.social-etiquette-detail-page[data-practice="pag-mamano"] { --practice-accent: #a65342; --practice-wash: #f0dfd4; }
+.social-etiquette-detail-page[data-practice="bayanihan"] { --practice-accent: #64704f; --practice-wash: #e4e7d8; }
+.social-etiquette-page .inline-link,
+.social-etiquette-detail-page .inline-link { color: var(--social-gold); }
+.social-etiquette-hero-copy > .eyebrow,
+.social-etiquette-detail-copy > .eyebrow { color: var(--social-gold); }
+.social-etiquette-hero-copy h1,
+.social-etiquette-detail-copy h1 { color: var(--social-cream); }
+.social-etiquette-hero-copy h1 em,
+.social-etiquette-detail-copy h1 em { color: var(--social-gold); }
+.social-etiquette-hero-copy > p,
+.social-etiquette-detail-copy > p { color: var(--social-muted); }
+.social-etiquette-hero-link,
+.social-etiquette-detail-scroll { color: var(--social-gold); }
+.social-etiquette-hero-link span,
+.social-etiquette-detail-scroll span { border-color: #b3855180; }
+.social-etiquette-hero-index { border-color: #b3855166; }
+.social-etiquette-hero-index span { border-color: #b385515c; color: var(--social-cream); background: #faf5ecdf; }
+.social-etiquette-hero-index b { color: var(--social-gold); }
+.social-etiquette-cover { border-color: #fff8f1b8; box-shadow: 0 28px 72px #57433324, 0 0 32px #b3855121; }
+.social-etiquette-cover-seal { border-color: #fff8f1c7; color: #fff8f1; background: #49372fc9; }
+.social-etiquette-cover-seal i { color: var(--social-gold); }
+.social-etiquette-hero-foot { border-color: #b3855170; color: var(--social-muted); }
+.social-etiquette-hero-foot span::before { background: var(--social-gold); box-shadow: 0 0 9px #b3855185; }
+.social-etiquette-practices { border-color: #b3855160; }
+.social-etiquette-section-head h2,
+.social-etiquette-values h2 { color: var(--social-cream); }
+.social-etiquette-section-head h2 em,
+.social-etiquette-values h2 em { color: var(--social-gold); }
+.social-etiquette-section-head > p { color: var(--social-muted); }
+.social-etiquette-section-head::after { background: linear-gradient(90deg, #b38551a8, transparent 82%); }
+.social-etiquette-practice-card {
+  color: var(--social-cream);
+  border-color: color-mix(in srgb, var(--story-wash) 43%, #ffffff44);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--story-wash) 9%, var(--social-panel-raised)), var(--social-panel) 68%);
+  box-shadow: 0 17px 38px #0004, 0 0 24px color-mix(in srgb, var(--story-wash) 10%, transparent);
+}
+.social-etiquette-practice-card[data-practice="po-and-opo"] { --story-wash: #966c36; }
+.social-etiquette-practice-card[data-practice="pag-mamano"] { --story-wash: #a65342; }
+.social-etiquette-practice-card[data-practice="bayanihan"] { --story-wash: #64704f; }
+.social-etiquette-practice-card:hover { border-color: var(--story-wash); box-shadow: 0 23px 48px #0006, 0 0 30px color-mix(in srgb, var(--story-wash) 18%, transparent); }
+.social-etiquette-practice-copy h3,
+.social-etiquette-practice-copy p { color: var(--social-cream); }
+.social-etiquette-practice-copy p { color: var(--social-muted); }
+.social-etiquette-practice-copy .social-etiquette-card-meta > span,
+.social-etiquette-card-meta small,
+.social-etiquette-practice-copy > b { color: var(--story-wash); }
+.social-etiquette-card-meta small { border-color: color-mix(in srgb, var(--story-wash) 55%, transparent); background: color-mix(in srgb, var(--story-wash) 11%, transparent); }
+.social-etiquette-practice-copy::after { color: color-mix(in srgb, var(--story-wash) 17%, transparent); }
+.social-etiquette-practice-copy h3::after { box-shadow: 0 0 11px color-mix(in srgb, var(--story-wash) 38%, transparent); }
+.social-etiquette-values {
+  border: 1px solid #b3855170;
+  color: var(--social-cream);
+  background: radial-gradient(circle at 88% 15%, #b3855113, transparent 35%), var(--social-panel);
+  box-shadow: 0 18px 42px #57433316;
+}
+.social-etiquette-values-heading .eyebrow,
+.social-etiquette-values-list article > span { color: var(--social-gold); }
+.social-etiquette-values-heading > p,
+.social-etiquette-values-list p { color: var(--social-muted); }
+.social-etiquette-values-list h3 { color: var(--social-cream); }
+.social-etiquette-values-list article { border-color: #8c72512b; }
+.social-etiquette-values::after { border-color: #8c72512b; box-shadow: 0 0 0 25px #8c72510a, 0 0 0 51px #8c725108, 0 0 0 78px #8c725106; }
+.social-etiquette-context-note { border-color: #b3855166; color: var(--social-cream); background: var(--social-panel); }
+.social-etiquette-context-note > span { color: var(--social-gold); background: #b385511a; }
+.social-etiquette-context-note p,
+.social-etiquette-context-note .button-text { color: var(--social-muted); }
+.social-etiquette-context-note p strong,
+.social-etiquette-context-note .button-text:hover { color: var(--social-gold); }
+.social-etiquette-detail-index { border-color: #b3855166; }
+.social-etiquette-detail-index a { color: var(--social-muted); }
+.social-etiquette-detail-index a span,
+.social-etiquette-editorial-copy > .eyebrow,
+.social-etiquette-editorial-mark { color: var(--social-gold); }
+.social-etiquette-detail-photo { border-color: #fff8f1b8; box-shadow: 0 28px 72px #57433324, 0 0 32px #b3855121; }
+.social-etiquette-editorial-copy h2 { color: var(--social-cream); }
+.social-etiquette-editorial-copy h2 em { color: var(--social-gold); }
+.social-etiquette-lede { color: var(--social-cream); }
+.social-etiquette-detail-notes { border-color: #b3855166; }
+.social-etiquette-detail-notes article { border-color: #8c72512e; }
+.social-etiquette-detail-notes article > span { color: var(--social-gold); }
+.social-etiquette-detail-notes p { color: var(--social-muted); }
+.social-etiquette-in-practice { border: 1px solid #b3855166; background: var(--social-panel); }
+.social-etiquette-in-practice .social-etiquette-practice-heading { border-color: #b3855166; }
+.social-etiquette-in-practice .social-etiquette-practice-heading h2 { color: var(--social-cream); }
+.social-etiquette-practice-heading > span { color: var(--social-muted); }
+.social-etiquette-example-grid article { border: 1px solid #b3855166; border-top: 1px solid #b3855166; color: var(--social-cream); background: var(--social-panel-raised); box-shadow: 0 12px 30px #57433316; }
+.social-etiquette-example-grid h3 { color: var(--social-cream); }
+.social-etiquette-example-grid p { color: var(--social-muted); }
+.social-etiquette-next-topics { border-color: #b3855166; }
+.social-etiquette-next-topics > .eyebrow { color: var(--social-gold); }
+.social-etiquette-next-topics > h2 { color: var(--social-cream); }
+.social-etiquette-next-topics > p { color: var(--social-muted); }
+.social-etiquette-practice-pagination > a { border-color: #b3855166 !important; color: var(--social-cream) !important; background: var(--social-panel) !important; }
+.social-etiquette-practice-pagination > a:hover { border-color: var(--practice-accent) !important; background: var(--social-panel-raised) !important; }
+.social-etiquette-practice-pagination > a small { color: var(--social-gold); }
+
+/* Keep every description visible as panels grow with their content */
+.social-etiquette-practice-card { height: auto; min-height: 410px; }
+.social-etiquette-practice-image { height: 100%; min-height: 0; }
+.social-etiquette-practice-copy { height: auto; min-height: 0; overflow: visible; }
+.social-etiquette-practice-copy p { display: block; overflow: visible; -webkit-line-clamp: unset; line-clamp: unset; }
+@media (max-width: 760px) {
+  .social-etiquette-practice-card { height: auto; min-height: 370px; }
+}
+@media (max-width: 520px) {
+  .social-etiquette-practice-card { height: auto; min-height: 490px; }
+  .social-etiquette-practice-image { height: 205px; min-height: 205px; }
+  .social-etiquette-practice-copy { min-height: 285px; }
+}
+
+/* Slightly more compact Po & Opo panel, with its full copy retained */
+.social-etiquette-practice-card[data-practice="po-and-opo"] { height: 370px; min-height: 370px; }
+.social-etiquette-practice-card[data-practice="po-and-opo"] .social-etiquette-practice-copy { padding: 16px 24px; }
+.social-etiquette-practice-card[data-practice="po-and-opo"] .social-etiquette-card-meta { margin-bottom: 9px; }
+.social-etiquette-practice-card[data-practice="po-and-opo"] .social-etiquette-practice-copy h3 { font-size: clamp(44px, 5vw, 54px); }
+.social-etiquette-practice-card[data-practice="po-and-opo"] .social-etiquette-practice-copy p { margin: 9px 0 12px; font-size: 13px; line-height: 1.55; }
+@media (max-width: 760px) {
+  .social-etiquette-practice-card[data-practice="po-and-opo"] { height: 340px; min-height: 340px; }
+}
+@media (max-width: 520px) {
+  .social-etiquette-practice-card[data-practice="po-and-opo"] { height: auto; min-height: 455px; }
+  .social-etiquette-practice-card[data-practice="po-and-opo"] .social-etiquette-practice-image { height: 180px; min-height: 180px; }
+  .social-etiquette-practice-card[data-practice="po-and-opo"] .social-etiquette-practice-copy { min-height: 275px; padding: 16px 18px; }
+  .social-etiquette-practice-card[data-practice="po-and-opo"] .social-etiquette-practice-copy h3 { font-size: 40px; }
+}
+
+/* Extra bottom room keeps the context note fully clear of the page edge */
+.social-etiquette-page { padding-bottom: 48px; }
+.social-etiquette-context-note { box-sizing: border-box; min-height: 92px; margin-bottom: 0; overflow: visible; }
+.social-etiquette-detail-page { padding-bottom: 24px; }
+.social-etiquette-next-topics { margin-bottom: 0; padding-bottom: 8px; overflow: visible; }
+.social-etiquette-detail-copy > .inline-link { display: flex; width: fit-content; margin: 0 0 24px; }
+.social-etiquette-detail-copy > .eyebrow { display: block; margin-bottom: 18px; line-height: 1.5; }
+.social-etiquette-hero-copy > .inline-link { display: flex; width: fit-content; margin-bottom: 24px; }
+.social-etiquette-hero-copy > .eyebrow { display: block; margin-bottom: 12px; line-height: 1.5; }
+@media (max-width: 760px) {
+  .social-etiquette-detail-copy > .inline-link { margin-bottom: 20px; }
+  .social-etiquette-detail-copy > .eyebrow { margin-bottom: 16px; }
+  .social-etiquette-hero-copy > .inline-link { margin-bottom: 20px; }
+}
