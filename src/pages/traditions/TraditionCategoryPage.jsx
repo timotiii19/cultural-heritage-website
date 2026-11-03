@@ -1,6 +1,7 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { traditionCategories } from './traditionData';
 import SuperstitionPage from './superstition/SuperstitionPage';
+import ChristmasPage from './christmas-festivities/ChristmasPage';
 
 export default function TraditionCategoryPage() {
   const { categoryId } = useParams();
@@ -8,6 +9,7 @@ export default function TraditionCategoryPage() {
 
   if (!category) return <Navigate to="/traditions" replace />;
   if (categoryId === 'superstition') return <SuperstitionPage />;
+  if (categoryId === 'christmas-festivities') return <ChristmasPage />;
 
   return (
     <main id="main-content" className="inner-page">

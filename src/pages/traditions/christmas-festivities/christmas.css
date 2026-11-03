@@ -1,0 +1,20 @@
+.christmas-page .superstition-back { display: flex; width: fit-content; }
+.christmas-page .superstition-entry-hero h1 em { display: inline-block; margin-top: 12px; line-height: 1.15; }
+.christmas-hero-art { background: radial-gradient(circle at 50% 42%,color-mix(in srgb,var(--sp-gold) 22%,transparent),transparent 58%),linear-gradient(160deg,color-mix(in srgb,#b36149 34%,#191b1d),#191b1d 70%); }
+.christmas-card-art { display: grid; place-items: center; background: radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--sp-gold) 20%,transparent),transparent 62%),color-mix(in srgb,#b36149 18%,var(--sp-panel)); }
+.christmas-card-art > b { color: var(--sp-gold); font: 400 74px/1 var(--serif); transition: transform .6s; }
+.superstition-story-card:hover .christmas-card-art > b { transform: scale(1.1) rotate(12deg); }
+.christmas-facts { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.christmas-delicacies { margin-top: 33px; padding-top: 24px; border-top: 1px solid var(--sp-line); }
+.christmas-delicacy-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; margin-top: 16px; }
+.christmas-delicacy { padding: 15px 14px 14px; border: 1px solid var(--sp-line); background: var(--sp-panel); }
+.christmas-delicacy > span { color: var(--sp-gold); font: 8px var(--mono); letter-spacing: .1em; }
+.christmas-delicacy h3 { margin: 8px 0 0; font: 400 23px/1.15 var(--serif); }
+.christmas-delicacy p { margin: 9px 0 0; color: var(--sp-text); font: 12px/1.75 'DM Sans', sans-serif; }
+.christmas-delicacy small { display: block; margin-top: 11px; color: var(--sp-muted); font: 10px/1.6 'DM Sans', sans-serif; }
+@media (max-width: 900px) {
+  .christmas-facts { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .christmas-delicacy-list { grid-template-columns: 1fr; }
+}
