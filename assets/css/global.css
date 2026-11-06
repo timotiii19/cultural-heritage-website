@@ -1732,3 +1732,45 @@ body { background: var(--paper); }
   .social-etiquette-detail-copy > .eyebrow { margin-bottom: 16px; }
   .social-etiquette-hero-copy > .inline-link { margin-bottom: 20px; }
 }
+
+/* Performance: keep the ambient look while avoiding full-page repaints and per-frame style recalcs. */
+.site-shell { animation: none; }
+.site-shell::before { filter: none; background: radial-gradient(circle, color-mix(in srgb, var(--palette-wash) 14%, transparent) 30%, transparent 70%); will-change: transform; }
+.site-shell::after { display: none; }
+.ambient-stage::before { filter: none; will-change: transform; }
+.ambient-stage::after { inset: -34px 0 0 -34px; animation-name: textile-slide; will-change: transform; }
+.topbar-inner { background: color-mix(in srgb, var(--paper-bright) 96%, transparent); backdrop-filter: none; }
+.pointer-glow { position: fixed; z-index: 99; top: 0; left: 0; width: 500px; height: 500px; margin: -250px 0 0 -250px; border-radius: 50%; pointer-events: none; opacity: 0; background: radial-gradient(circle, color-mix(in srgb, var(--gold) 13%, transparent), transparent 72%); transition: opacity .3s; will-change: transform; }
+.pointer-glow.is-active { opacity: 1; }
+.motion-off .pointer-glow { display: none; }
+@keyframes textile-slide { to { transform: translate3d(34px, 34px, 0); } }
+@media (hover: none) { .pointer-glow { display: none; } }
+/* Ambient decorations: the same motion as single `transform` keyframes, which the GPU compositor can run
+   off the main thread (the translate/rotate/scale versions above were restyled on every frame). */
+.ambient-orb { animation-name: ambient-orb-float-t; }
+.ambient-orbit { animation-name: ambient-orbit-turn-t; }
+.ambient-petal { animation-name: petal-drift-t; }
+.ambient-spark { animation-name: spark-drift-t; }
+.ambient-thread-one, .ambient-thread-two { animation-name: thread-glide-t; }
+.ambient-petal-one { transform: none; rotate: 34deg; }
+.ambient-thread { transform: none; rotate: -7deg; }
+.ambient-thread-two { transform: none; rotate: 6deg; }
+@keyframes ambient-orb-float-t {
+  0% { transform: translate(0, 0) rotate(-10deg) scale(.88); }
+  50% { transform: translate(18px, -28px) rotate(1deg) scale(1.08); }
+  100% { transform: translate(-12px, 17px) rotate(12deg) scale(.96); }
+}
+@keyframes ambient-orbit-turn-t { to { transform: rotate(360deg); } }
+@keyframes petal-drift-t {
+  0%, 100% { transform: translate(0, 0) rotate(-16deg); }
+  50% { transform: translate(19px, -27px) rotate(28deg); }
+}
+@keyframes spark-drift-t {
+  0%, 100% { opacity: 0; transform: translateY(11px) rotate(-25deg) scale(.55); }
+  25%, 72% { opacity: .65; }
+  50% { opacity: .85; transform: translateY(-18px) rotate(35deg) scale(1.2); }
+}
+@keyframes thread-glide-t {
+  from { transform: translateX(-2%) scale(1, .9); }
+  to { transform: translate(3%, 12px) scale(1.04, 1.2); }
+}

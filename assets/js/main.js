@@ -211,14 +211,27 @@ paletteControl.addEventListener('click', (event) => {
   }
 });
 
+// Move one fixed glow element with a transform, at most once per frame. Setting a custom
+// property on the shell instead forces a style recalc of the whole page on every pointer move.
+const pointerGlow = document.createElement('div');
+pointerGlow.className = 'pointer-glow';
+pointerGlow.setAttribute('aria-hidden', 'true');
+shell.append(pointerGlow);
+let pointerX = 0;
+let pointerY = 0;
+let pointerFrame = 0;
 shell.addEventListener('pointermove', (event) => {
-  shell.style.setProperty('--pointer-x', `${event.clientX}px`);
-  shell.style.setProperty('--pointer-y', `${event.clientY}px`);
+  if (event.pointerType !== 'mouse') return;
+  pointerX = event.clientX;
+  pointerY = event.clientY;
+  if (pointerFrame) return;
+  pointerFrame = requestAnimationFrame(() => {
+    pointerFrame = 0;
+    pointerGlow.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0)`;
+    pointerGlow.classList.add('is-active');
+  });
 });
-shell.addEventListener('pointerleave', () => {
-  shell.style.removeProperty('--pointer-x');
-  shell.style.removeProperty('--pointer-y');
-});
+shell.addEventListener('pointerleave', () => pointerGlow.classList.remove('is-active'));
 
 document.querySelectorAll('.is-loading img').forEach((image) => {
   const markLoaded = () => {
@@ -233,7 +246,7 @@ document.querySelectorAll('.is-loading img').forEach((image) => {
 if ('IntersectionObserver' in window && !shell.classList.contains('motion-off')
   && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const targets = document.querySelectorAll(
-    '.page-transition main > section:not([data-reveal-skip]), .page-transition main > .heritage-marquee, .page-transition .collection-card, .page-transition .sample-card, .page-transition .tradition-category-card, .page-transition .tradition-more-card, .page-transition .beat-card, .page-transition .festival-fact, .page-transition .team-feature-panel, .page-transition .team-directory, .page-transition .arts-collection-card, .page-transition .arts-reference-group',
+    '.page-transition main > section:not([data-reveal-skip]), .page-transition main > .heritage-marquee, .page-transition .collection-card, .page-transition .sample-card, .page-transition .tradition-category-card, .page-transition .tradition-more-card, .page-transition .beat-card, .page-transition .festival-fact, .page-transition .team-feature-panel, .page-transition .team-directory, .page-transition .arts-collection-card, .page-transition .arts-reference-group, .page-transition [data-reveal]',
   );
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
