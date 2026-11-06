@@ -1,40 +1,55 @@
 .superstition-page.christmas-page {
-  --xm-red: var(--accent);
-  --xm-red-deep: color-mix(in srgb, var(--forest-deep) 72%, var(--accent));
-  --xm-green: var(--forest);
-  --xm-gold: var(--gold);
+  --xm-red: color-mix(in srgb, #a81d26 80%, var(--accent));
+  --xm-red-deep: color-mix(in srgb, #5a1218 80%, var(--forest-deep));
+  --xm-green: color-mix(in srgb, #1e6b45 75%, var(--forest));
+  --xm-green-deep: color-mix(in srgb, #0f3a27 80%, var(--forest-deep));
+  --xm-gold: color-mix(in srgb, #e0aa35 70%, var(--gold));
   --xm-cream: var(--paper-bright);
-  --sp-bg: color-mix(in srgb, var(--paper) 92%, var(--forest));
-  --sp-panel: color-mix(in srgb, var(--paper-bright) 92%, var(--forest));
-  --sp-line: color-mix(in srgb, var(--line) 75%, var(--gold));
+  --xm-candy: repeating-linear-gradient(-45deg, var(--xm-red) 0 8px, var(--xm-cream) 8px 12px, var(--xm-green) 12px 20px, var(--xm-cream) 20px 24px);
+  --sp-bg: color-mix(in srgb, var(--paper) 94%, var(--xm-green));
+  --sp-panel: color-mix(in srgb, var(--paper-bright) 94%, var(--xm-green));
+  --sp-line: color-mix(in srgb, var(--line) 70%, var(--xm-gold));
   --sp-text: var(--ink);
-  --sp-muted: var(--muted);
-  --sp-gold: var(--gold);
-  --sp-rust: var(--accent);
-  --sp-glow: color-mix(in srgb, var(--palette-glow) 12%, transparent);
-  --sp-wash: color-mix(in srgb, var(--palette-wash) 10%, transparent);
+  /* Text tokens are mixed darker so they keep 4.5:1 contrast on every site palette. */
+  --sp-muted: color-mix(in srgb, var(--muted) 75%, var(--ink));
+  --sp-gold: color-mix(in srgb, var(--xm-gold) 38%, var(--xm-red-deep));
+  --sp-rust: var(--xm-red);
+  --sp-glow: color-mix(in srgb, var(--xm-green) 10%, transparent);
+  --sp-wash: color-mix(in srgb, var(--xm-red) 9%, transparent);
   position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 88% 10%, var(--sp-wash), transparent 34rem),
+    radial-gradient(ellipse at 5% 46%, var(--sp-glow), transparent 38rem),
+    radial-gradient(ellipse at 92% 88%, color-mix(in srgb, var(--xm-gold) 12%, transparent), transparent 30rem),
+    var(--sp-bg);
 }
+/* Gold snow drifting behind the content; tiles are 280/420px so an 840px shift loops seamlessly. */
+.superstition-page.christmas-page::before { position: fixed; top: -840px; right: 0; left: 0; z-index: -1; height: calc(100% + 840px); content: ''; pointer-events: none; opacity: .55; background-image: radial-gradient(2px 2px at 12% 18%, var(--xm-gold), transparent), radial-gradient(1.5px 1.5px at 38% 64%, var(--xm-gold), transparent), radial-gradient(2.5px 2.5px at 71% 32%, var(--xm-gold), transparent), radial-gradient(1.5px 1.5px at 88% 81%, var(--xm-gold), transparent), radial-gradient(3px 3px at 24% 52%, color-mix(in srgb, var(--xm-gold) 60%, transparent), transparent), radial-gradient(2px 2px at 58% 12%, color-mix(in srgb, var(--xm-red) 55%, transparent), transparent), radial-gradient(2.5px 2.5px at 82% 58%, color-mix(in srgb, var(--xm-gold) 60%, transparent), transparent); background-size: 280px 280px, 280px 280px, 280px 280px, 280px 280px, 420px 420px, 420px 420px, 420px 420px; animation: christmas-snow 38s linear infinite; }
 .christmas-lights { position: relative; z-index: 2; display: block; width: 100%; height: clamp(60px, 4.2vw, 120px); }
-.christmas-lights path { fill: none; stroke: color-mix(in srgb, var(--gold) 40%, transparent); stroke-width: 1.5; }
-.christmas-bulb { animation: christmas-twinkle 2.8s ease-in-out infinite; }
-.bulb-0 { fill: var(--xm-red); }
-.bulb-1 { fill: var(--xm-gold); animation-delay: -.7s; }
-.bulb-2 { fill: var(--xm-green); animation-delay: -1.4s; }
-.bulb-3 { fill: var(--xm-cream); animation-delay: -2.1s; }
+.christmas-lights path { fill: none; stroke: color-mix(in srgb, var(--xm-green) 70%, transparent); stroke-width: 2; }
+.christmas-bulb { filter: drop-shadow(0 0 5px currentColor); animation: christmas-twinkle 2.8s ease-in-out infinite; }
+.bulb-0 { color: var(--xm-red); fill: var(--xm-red); }
+.bulb-1 { color: var(--xm-gold); fill: var(--xm-gold); animation-delay: -.7s; }
+.bulb-2 { color: var(--xm-green); fill: var(--xm-green); animation-delay: -1.4s; }
+.bulb-3 { color: var(--xm-gold); fill: var(--xm-cream); animation-delay: -2.1s; }
 
 .christmas-page .superstition-back { display: flex; width: fit-content; min-height: 44px; font-size: 12px; }
 .christmas-page .superstition-entry-hero h1 em { display: inline-block; margin-top: 12px; line-height: 1.15; }
-.christmas-page .superstition-eyebrow { font-size: 11px; }
+.christmas-page .superstition-eyebrow { font-size: 12px; }
 .christmas-page .superstition-hero-copy > p { max-width: 480px; font-size: 16px; line-height: 1.75; }
 .christmas-page .superstition-hero-link { min-height: 44px; font-size: 12px; }
-.christmas-page .superstition-hero-index { font-size: 11px; }
-.christmas-greeting { display: block; margin-bottom: 14px; color: var(--xm-gold); font: italic 400 clamp(23px, 3vw, 30px)/1.2 var(--serif); letter-spacing: .01em; }
+.christmas-page .superstition-hero-index { font-size: 12px; }
+.christmas-greeting { display: block; margin-bottom: 14px; color: var(--xm-red); font: italic 400 clamp(23px, 3vw, 30px)/1.2 var(--serif); letter-spacing: .01em; }
+.christmas-page .superstition-hero h1 em, .christmas-page .superstition-card-heading h2 em { color: var(--xm-red); }
+.christmas-page .superstition-eyebrow i { width: 12px; height: 12px; border-radius: 0; background: var(--xm-red); box-shadow: none; clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); }
 
-.christmas-hero-art { min-height: 540px; border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent); border-radius: 26px; background: radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--gold) 28%,transparent),transparent 56%),radial-gradient(1.5px 1.5px at 18% 72%,var(--paper-bright),transparent),radial-gradient(1.5px 1.5px at 84% 66%,var(--paper-bright),transparent),radial-gradient(2px 2px at 9% 34%,var(--gold),transparent),radial-gradient(2px 2px at 92% 28%,var(--gold),transparent),linear-gradient(170deg,var(--xm-red-deep),var(--forest-deep) 74%); }
-.christmas-hero-art > img { z-index: -1; }
+.christmas-hero-art { min-height: 540px; border: 2px solid var(--xm-gold); box-shadow: 0 0 0 6px color-mix(in srgb, var(--xm-red) 14%, transparent), 0 24px 60px color-mix(in srgb, var(--xm-red-deep) 30%, transparent); border-radius: 26px; background: radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--gold) 28%,transparent),transparent 56%),radial-gradient(1.5px 1.5px at 18% 72%,var(--paper-bright),transparent),radial-gradient(1.5px 1.5px at 84% 66%,var(--paper-bright),transparent),radial-gradient(2px 2px at 9% 34%,var(--gold),transparent),radial-gradient(2px 2px at 92% 28%,var(--gold),transparent),linear-gradient(170deg,var(--xm-red-deep),var(--xm-green-deep) 74%); }
+.christmas-hero-art > img { z-index: -1; filter: brightness(.82) saturate(.95); }
+.christmas-hero-art:has(> img)::after { position: absolute; inset: 45% 0 0; z-index: -1; content: ''; background: linear-gradient(transparent, #0b0c0ecc); }
+.christmas-hero-art:has(> img) .christmas-parol-main { display: none; }
 .christmas-hero-art .superstition-hero-caption { z-index: 1; left: 26px; bottom: 26px; color: var(--xm-cream); font-size: 14px; letter-spacing: 0; }
-.christmas-hero-art .superstition-hero-figure { z-index: 1; right: 24px; bottom: 28px; color: var(--xm-cream); font-size: 11px; }
+.christmas-hero-art .superstition-hero-figure { z-index: 1; right: 24px; bottom: 28px; color: var(--xm-cream); font-size: 12px; }
 
 .christmas-parol { position: absolute; top: 0; display: block; transform-origin: top center; animation: christmas-sway 6s ease-in-out infinite alternate; }
 .christmas-parol::before { position: absolute; top: 0; left: 50%; width: 1px; height: 46px; content: ''; background: color-mix(in srgb, var(--gold) 60%, transparent); }
@@ -50,9 +65,9 @@
 .christmas-parol-small.parol-right::before { height: 96px; }
 .christmas-parol-small.parol-right .christmas-parol-shape { margin-top: 96px; }
 
-.tone-gold { --parol-main: var(--gold); --parol-alt: var(--paper-bright); }
-.tone-red { --parol-main: var(--accent); --parol-alt: color-mix(in srgb,var(--accent) 45%,var(--paper-bright)); }
-.tone-green { --parol-main: var(--forest); --parol-alt: color-mix(in srgb,var(--forest) 45%,var(--paper-bright)); }
+.tone-gold { --parol-main: var(--xm-gold); --parol-alt: var(--paper-bright); }
+.tone-red { --parol-main: var(--xm-red); --parol-alt: color-mix(in srgb,var(--xm-red) 45%,var(--paper-bright)); }
+.tone-green { --parol-main: var(--xm-green); --parol-alt: color-mix(in srgb,var(--xm-green) 45%,var(--paper-bright)); }
 .parol-ring { fill: none; stroke: var(--parol-main); stroke-width: 3; }
 .parol-lamp { fill: var(--xm-cream); }
 .parol-facet { fill: var(--parol-main); }
@@ -63,30 +78,40 @@
 
 .christmas-page .superstition-collection { border: 0; }
 .christmas-page .superstition-card-heading > p { max-width: 280px; font-size: 15px; }
-.christmas-page .superstition-story-card { border-radius: 20px; border-color: color-mix(in srgb,var(--gold) 30%,var(--sp-line)); }
-.christmas-page .superstition-story-card:hover { border-color: var(--xm-gold); box-shadow: 0 18px 40px color-mix(in srgb,var(--forest-deep) 38%,transparent),0 0 34px color-mix(in srgb,var(--gold) 20%,transparent); }
+.christmas-page .superstition-story-card { border-radius: 20px; border-color: color-mix(in srgb,var(--xm-gold) 45%,var(--sp-line)); }
+.christmas-page .superstition-story-card:hover { border-color: var(--xm-gold); box-shadow: 0 18px 40px color-mix(in srgb,var(--xm-red-deep) 30%,transparent),0 0 34px color-mix(in srgb,var(--xm-gold) 28%,transparent); }
+.christmas-page .superstition-card-copy { position: relative; padding-top: 23px; }
+.christmas-page .superstition-card-copy::before { position: absolute; top: 0; right: 0; left: 0; height: 6px; content: ''; background: var(--xm-candy); }
 .christmas-page .superstition-story-card:focus-visible, .christmas-page a:focus-visible { outline: 3px solid var(--xm-gold); outline-offset: 3px; }
 .christmas-card-art { display: grid; height: 250px; place-items: center; }
-.christmas-card-art.tone-gold { background: radial-gradient(circle at 50% 42%,color-mix(in srgb,var(--gold) 35%,transparent),transparent 66%),color-mix(in srgb,var(--forest-deep) 75%,var(--gold)); }
-.christmas-card-art.tone-red { background: radial-gradient(circle at 50% 42%,color-mix(in srgb,var(--accent) 30%,transparent),transparent 66%),var(--xm-red-deep); }
-.christmas-card-art.tone-green { background: radial-gradient(circle at 50% 42%,color-mix(in srgb,var(--forest) 30%,transparent),transparent 66%),color-mix(in srgb,var(--forest-deep) 25%,var(--forest)); }
+.christmas-card-art > img { position: absolute; inset: 0; filter: brightness(.9) saturate(.95); }
+.superstition-story-card:hover .christmas-card-art > img { filter: brightness(1) saturate(1); }
+.christmas-card-art:has(> img)::after { background: linear-gradient(transparent, #0b0c0eb3); }
+.christmas-card-art:has(> img) .christmas-parol-shape { display: none; }
+.christmas-card-art.tone-gold { background: radial-gradient(circle at 50% 42%,color-mix(in srgb,var(--xm-gold) 35%,transparent),transparent 66%),color-mix(in srgb,var(--xm-green-deep) 75%,var(--xm-gold)); }
+.christmas-card-art.tone-red { background: radial-gradient(circle at 50% 42%,color-mix(in srgb,var(--xm-red) 30%,transparent),transparent 66%),var(--xm-red-deep); }
+.christmas-card-art.tone-green { background: radial-gradient(circle at 50% 42%,color-mix(in srgb,var(--xm-green) 30%,transparent),transparent 66%),color-mix(in srgb,var(--xm-green-deep) 25%,var(--xm-green)); }
 .christmas-card-art .christmas-parol-shape { position: relative; z-index: 1; width: 124px; margin-top: -10px; transition: transform .5s cubic-bezier(.34,1.56,.64,1); }
 .superstition-story-card:hover .christmas-card-art .christmas-parol-shape { transform: scale(1.08) rotate(-5deg); }
-.christmas-page .superstition-card-image > span { font-size: 11px; }
-.christmas-page .superstition-card-image > .christmas-season { top: 15px; right: auto; bottom: auto; padding: 6px 11px; border-radius: 999px; color: var(--ink); background: var(--xm-gold); font-weight: 700; letter-spacing: .04em; }
+.christmas-page .superstition-card-image > span { font-size: 12px; }
+.christmas-page .superstition-story-card:hover .superstition-card-image > i { background: var(--xm-gold); }
+.christmas-page .superstition-card-image > .christmas-season { top: 15px; right: auto; bottom: auto; padding: 6px 12px; border-radius: 999px; color: var(--xm-cream); background: var(--xm-red); box-shadow: inset 0 0 0 2px var(--xm-gold), 0 4px 12px #0006; font-weight: 700; letter-spacing: .04em; }
 .christmas-page .superstition-card-copy > strong { font-size: 25px; }
 .christmas-page .superstition-card-copy > span { font-size: 15px; }
 .christmas-page .superstition-card-copy > i { font-size: 12px; }
 
-.christmas-page .superstition-story { border-top-color: var(--xm-gold); }
+.christmas-page .superstition-story { position: relative; border-top: 0; }
+.christmas-page .superstition-story::before { position: absolute; top: 0; right: 0; left: 0; height: 5px; border-radius: 999px; content: ''; background: var(--xm-candy); }
 .christmas-page .superstition-story-number { font-size: 12px; }
 .christmas-page .superstition-story-head > p { font-size: 19px; }
 .christmas-facts { grid-template-columns: repeat(2,minmax(0,1fr)); }
-.christmas-page .superstition-fact { min-height: 0; border-radius: 16px; border-color: color-mix(in srgb,var(--gold) 40%,var(--sp-line)); }
-.christmas-page .superstition-fact > span { font-size: 11px; }
+.christmas-page .superstition-fact { position: relative; min-height: 0; border-radius: 16px; border-color: color-mix(in srgb,var(--xm-gold) 45%,var(--sp-line)); background: linear-gradient(145deg,color-mix(in srgb,var(--xm-green) 7%,transparent),transparent); }
+/* Holly berries in the corner of each fact box. */
+.christmas-page .superstition-fact::after { position: absolute; top: 12px; right: 14px; width: 22px; height: 14px; content: ''; background: radial-gradient(circle at 4px 9px, var(--xm-red) 3.5px, transparent 4px), radial-gradient(circle at 11px 4px, var(--xm-red) 3.5px, transparent 4px), radial-gradient(circle at 18px 9px, var(--xm-red) 3.5px, transparent 4px); }
+.christmas-page .superstition-fact > span { display: block; padding-right: 32px; font-size: 12px; }
 .christmas-page .superstition-fact p, .christmas-page .superstition-detail-block > p { font-size: 15px; line-height: 1.8; }
-.christmas-page .superstition-meaning { border-left-color: var(--xm-gold); border-radius: 0 18px 18px 0; background: linear-gradient(100deg,var(--xm-red-deep),var(--forest-deep)); }
-.christmas-page .superstition-meaning > span, .christmas-page .superstition-source-link > span, .christmas-page .superstition-story-foot > span { color: var(--xm-gold); font-size: 11px; }
+.christmas-page .superstition-meaning { border-left-color: var(--xm-gold); border-radius: 0 18px 18px 0; background: radial-gradient(1.5px 1.5px at 86% 22%,var(--xm-gold),transparent),radial-gradient(1.5px 1.5px at 94% 70%,var(--xm-cream),transparent),radial-gradient(2px 2px at 78% 54%,var(--xm-gold),transparent),linear-gradient(100deg,var(--xm-red-deep),var(--xm-green-deep)); }
+.christmas-page .superstition-meaning > span, .christmas-page .superstition-source-link > span, .christmas-page .superstition-story-foot > span { color: var(--xm-gold); font-size: 12px; }
 .christmas-page .superstition-source-link { border-radius: 14px; }
 .christmas-page .superstition-source-link strong { color: var(--xm-cream); font-size: 15px; }
 .christmas-page .superstition-story-foot a { font-size: 12px; }
@@ -97,12 +122,12 @@
 .christmas-delicacy:nth-child(3n + 2) { border-top-color: var(--xm-gold); }
 .christmas-delicacy:nth-child(3n) { border-top-color: var(--xm-green); }
 .christmas-delicacy:last-child:nth-child(odd) { grid-column: 1 / -1; }
-.christmas-delicacy > span { color: var(--sp-gold); font: 11px var(--mono); letter-spacing: .1em; }
+.christmas-delicacy > span { color: var(--sp-gold); font: 12px var(--mono); letter-spacing: .1em; }
 .christmas-delicacy h3 { margin: 8px 0 0; font: 400 25px/1.15 var(--serif); }
 .christmas-delicacy p { margin: 9px 0 0; color: var(--sp-text); font: 14px/1.7 'DM Sans', sans-serif; }
 .christmas-delicacy small { display: block; margin-top: 11px; color: var(--sp-muted); font: 12px/1.6 'DM Sans', sans-serif; }
 
-.christmas-page .superstition-close { border: 0; border-radius: 28px; background: radial-gradient(ellipse at 84% 24%,color-mix(in srgb,var(--gold) 25%,transparent),transparent 46%),linear-gradient(120deg,var(--xm-red-deep),color-mix(in srgb,var(--accent) 78%,var(--forest-deep))); }
+.christmas-page .superstition-close { border: 2px solid var(--xm-gold); border-radius: 28px; background: radial-gradient(ellipse at 84% 24%,color-mix(in srgb,var(--xm-gold) 25%,transparent),transparent 46%),linear-gradient(120deg,var(--xm-red-deep),var(--xm-red) 55%,var(--xm-green-deep)); }
 .christmas-page .superstition-close::after { display: none; }
 .christmas-page .superstition-close > .superstition-eyebrow, .christmas-page .superstition-close h2 em { color: var(--xm-gold); }
 .christmas-page .superstition-close > p { font-size: 16px; }
@@ -113,6 +138,8 @@
 
 @keyframes christmas-sway { from { transform: rotate(-2.5deg); } to { transform: rotate(2.5deg); } }
 @keyframes christmas-twinkle { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+@keyframes christmas-snow { to { transform: translateY(840px); } }
+.motion-off .superstition-page.christmas-page::before { animation: none; }
 @media (max-width: 900px) {
   .christmas-facts { grid-template-columns: 1fr; }
   .christmas-hero-art { min-height: 470px; }
@@ -126,6 +153,6 @@
   .christmas-page .superstition-hero-copy > p { font-size: 15px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .christmas-parol, .christmas-bulb { animation: none; }
+  .christmas-parol, .christmas-bulb, .superstition-page.christmas-page::before { animation: none; }
   .christmas-card-art .christmas-parol-shape { transition: none; }
 }
