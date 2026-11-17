@@ -70,7 +70,7 @@ if (backgroundAudioSource) {
   controls.className = 'background-audio-controls';
   controls.innerHTML = `
     <button class="background-audio-toggle" type="button" aria-pressed="false" aria-label="Play ${title} background music">
-      <span class="background-audio-icon" aria-hidden="true">♫</span>
+      <span class="background-audio-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7m3-10a9 9 0 0 1 0 13"/></svg></span>
       <span class="background-audio-status">Play music</span>
     </button>
     <label class="background-audio-volume">
@@ -482,7 +482,7 @@ document.querySelector('.preview-play')?.addEventListener('click', (event) => {
   const button = event.currentTarget;
   const preview = button.closest('.motion-preview');
   const playing = preview.classList.toggle('preview-playing');
-  button.textContent = playing ? 'Ⅱ' : '▶';
+  button.classList.toggle('is-playing', playing);
   button.setAttribute('aria-pressed', String(playing));
   button.setAttribute('aria-label', playing ? 'Pause animated preview' : 'Play animated preview');
 });
