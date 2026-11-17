@@ -1,19 +1,20 @@
-/* Christmas Festivities: a fixed Filipino Christmas palette layered on the shared superstition layout.
+/* Christmas Festivities: fixed Christmas red and gold accents over the site palette (backgrounds, panels,
+   text, and the dark sections follow the chosen palette), layered on the shared superstition layout.
    Text pairings are checked for 4.5:1 contrast; antique gold is only used for text on the dark greens,
    the deep red, or at display sizes. */
 .superstition-page.christmas-page {
-  --xm-green: #183d32;
-  --xm-green-deep: #10291f;
+  --xm-green: color-mix(in srgb, var(--forest-deep) 80%, #000);
+  --xm-green-deep: color-mix(in srgb, var(--forest-deep) 60%, #000);
   --xm-red: #a52d35;
   --xm-red-deep: #6e1c23;
   --xm-gold: #d6ad68;
   --xm-gold-ink: #8a5a1c;
-  --xm-cream: #f7f0e3;
-  --xm-panel: #fffaf1;
-  --xm-cocoa: #49352d;
-  --xm-muted: #6b5449;
-  --xm-line: #e6d3b0;
-  --xm-shadow: 0 18px 44px rgb(73 53 45 / 14%);
+  --xm-cream: var(--paper);
+  --xm-panel: var(--paper-bright);
+  --xm-cocoa: var(--ink);
+  --xm-muted: color-mix(in srgb, var(--muted) 80%, var(--ink));
+  --xm-line: color-mix(in srgb, var(--line) 70%, #d6ad68);
+  --xm-shadow: 0 18px 44px color-mix(in srgb, var(--ink) 14%, transparent);
   --xm-ease: cubic-bezier(.2,.8,.2,1);
   /* Capiz window: pearly shell panes inside a fine lattice. */
   --xm-capiz: linear-gradient(90deg, rgb(214 173 104 / 22%) 0 1px, transparent 1px) 0 0 / 30px 30px, linear-gradient(rgb(214 173 104 / 22%) 0 1px, transparent 1px) 0 0 / 30px 30px, radial-gradient(circle at 50% 50%, rgb(255 250 241 / 9%) 0 9px, transparent 13px) 0 0 / 30px 30px;
@@ -27,7 +28,7 @@
   position: relative;
   isolation: isolate;
   color: var(--xm-cocoa);
-  background: radial-gradient(ellipse at 90% 30%, rgb(214 173 104 / 14%), transparent 34rem), radial-gradient(ellipse at 4% 62%, rgb(24 61 50 / 7%), transparent 36rem), var(--xm-cream);
+  background: radial-gradient(ellipse at 90% 30%, rgb(214 173 104 / 14%), transparent 34rem), radial-gradient(ellipse at 4% 62%, color-mix(in srgb, var(--forest) 7%, transparent), transparent 36rem), var(--xm-cream);
 }
 .christmas-page h1, .christmas-page h2, .christmas-page h3 { color: var(--xm-green); }
 .christmas-page .superstition-story-card:focus-visible, .christmas-page a:focus-visible { outline: 3px solid var(--xm-gold); outline-offset: 3px; }
@@ -56,7 +57,7 @@
 /* Hero */
 .xm-hero { position: relative; isolation: isolate; display: grid; align-items: end; min-height: min(84vh, 760px); padding: 104px 0 72px; overflow: hidden; color: var(--xm-cream); background: var(--xm-green-deep); }
 .xm-hero-photo { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 60% 42%; animation: xm-hero-drift 26s ease-in-out infinite alternate; }
-.xm-hero::before { position: absolute; inset: 0; z-index: -1; content: ''; background: linear-gradient(90deg, rgb(16 41 31 / 94%) 0%, rgb(16 41 31 / 78%) 40%, rgb(16 41 31 / 18%) 78%), linear-gradient(0deg, rgb(16 41 31 / 92%), transparent 42%), radial-gradient(ellipse at 74% 34%, rgb(214 173 104 / 16%), transparent 55%); }
+.xm-hero::before { position: absolute; inset: 0; z-index: -1; content: ''; background: linear-gradient(90deg, color-mix(in srgb, var(--xm-green-deep) 94%, transparent) 0%, color-mix(in srgb, var(--xm-green-deep) 78%, transparent) 40%, color-mix(in srgb, var(--xm-green-deep) 18%, transparent) 78%), linear-gradient(0deg, color-mix(in srgb, var(--xm-green-deep) 92%, transparent), transparent 42%), radial-gradient(ellipse at 74% 34%, rgb(214 173 104 / 16%), transparent 55%); }
 .xm-hero .christmas-lights { position: absolute; top: 0; left: 0; }
 .xm-hero-frame { position: absolute; inset: 22px; z-index: 0; border: 1px solid rgb(214 173 104 / 42%); border-radius: 28px; pointer-events: none; }
 .xm-hero-frame .xm-star { position: absolute; width: 18px; height: 18px; filter: drop-shadow(0 0 8px rgb(214 173 104 / 70%)); }
@@ -76,7 +77,7 @@
 .xm-hero .superstition-hero-index strong { color: var(--xm-gold); }
 .xm-hero .superstition-hero-index span { color: rgb(247 240 227 / 82%); }
 .xm-button { display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 28px; border: 1px solid var(--xm-gold); border-radius: 999px; color: var(--xm-green-deep); background: var(--xm-gold); font: 700 13px var(--mono); letter-spacing: .08em; text-transform: uppercase; transition: color .3s, background .3s, box-shadow .3s, transform .3s var(--xm-ease); }
-.xm-button:hover { color: var(--xm-gold); background: rgb(16 41 31 / 55%); box-shadow: 0 0 28px rgb(214 173 104 / 40%); transform: translateY(-2px); }
+.xm-button:hover { color: var(--xm-gold); background: color-mix(in srgb, var(--xm-green-deep) 55%, transparent); box-shadow: 0 0 28px rgb(214 173 104 / 40%); transform: translateY(-2px); }
 .xm-button span { transition: transform .3s var(--xm-ease); }
 .xm-button:hover span { transform: translateY(3px); }
 .xm-credit { position: absolute; top: 150px; right: 48px; z-index: 1; max-width: 340px; margin: 0; color: rgb(247 240 227 / 78%); font: 12px/1.5 'DM Sans', sans-serif; text-align: right; }
@@ -89,12 +90,12 @@
 .christmas-page .superstition-hero h1 em, .christmas-page .superstition-card-heading h2 em { color: var(--xm-red); }
 .christmas-page .superstition-card-heading > p { max-width: 300px; color: var(--xm-muted); font-size: 15px; }
 .christmas-page .superstition-card-grid { gap: 24px; }
-.christmas-page .superstition-story-card { display: flex; flex-direction: column; border: 1px solid var(--xm-line); border-radius: 22px; background: var(--xm-panel); box-shadow: 0 6px 20px rgb(73 53 45 / 8%); transition: transform .45s var(--xm-ease), box-shadow .45s, border-color .3s; }
+.christmas-page .superstition-story-card { display: flex; flex-direction: column; border: 1px solid var(--xm-line); border-radius: 22px; background: var(--xm-panel); box-shadow: 0 6px 20px color-mix(in srgb, var(--ink) 8%, transparent); transition: transform .45s var(--xm-ease), box-shadow .45s, border-color .3s; }
 .christmas-page .superstition-story-card:hover { transform: translateY(-6px); border-color: var(--xm-gold); box-shadow: var(--xm-shadow), 0 0 0 1px rgb(214 173 104 / 40%); }
 .christmas-card-art { display: block; height: auto; aspect-ratio: 4 / 3; background: var(--xm-green); }
 .christmas-card-art > img { position: absolute; inset: 0; filter: none; transition: transform .8s var(--xm-ease); }
 .christmas-page .superstition-story-card:hover .christmas-card-art > img { filter: none; transform: scale(1.06); }
-.christmas-card-art:has(> img)::after { inset: 45% 0 0; background: linear-gradient(transparent, rgb(16 41 31 / 82%)); }
+.christmas-card-art:has(> img)::after { inset: 45% 0 0; background: linear-gradient(transparent, color-mix(in srgb, var(--xm-green-deep) 82%, transparent)); }
 .christmas-card-art:has(> img) .christmas-parol-shape { display: none; }
 .christmas-card-art.tone-gold { background: radial-gradient(circle at 50% 42%, rgb(214 173 104 / 35%), transparent 66%), var(--xm-green); }
 .christmas-card-art.tone-red { background: radial-gradient(circle at 50% 42%, rgb(214 173 104 / 25%), transparent 66%), var(--xm-red-deep); }
@@ -102,7 +103,7 @@
 .christmas-card-art .christmas-parol-shape { position: relative; z-index: 1; width: 124px; margin: 40px auto 0; transition: transform .5s cubic-bezier(.34,1.56,.64,1); }
 .christmas-page .superstition-card-image > span { color: var(--xm-cream); font-size: 12px; }
 .christmas-page .superstition-card-image > .christmas-season { top: 16px; right: auto; bottom: auto; left: 16px; padding: 7px 13px; border-radius: 999px; color: var(--xm-green-deep); background: var(--xm-gold); box-shadow: 0 4px 14px rgb(0 0 0 / 30%); font-weight: 700; letter-spacing: .04em; }
-.christmas-page .superstition-card-image > i { border-color: rgb(247 240 227 / 70%); color: var(--xm-cream); background: rgb(16 41 31 / 45%); }
+.christmas-page .superstition-card-image > i { border-color: rgb(247 240 227 / 70%); color: var(--xm-cream); background: color-mix(in srgb, var(--xm-green-deep) 45%, transparent); }
 .christmas-page .superstition-story-card:hover .superstition-card-image > i { color: var(--xm-green-deep); background: var(--xm-gold); }
 .christmas-page .superstition-card-copy { flex: 1; gap: 9px; padding: 22px 22px 18px; border-top: 3px solid var(--xm-gold); }
 .christmas-page .superstition-card-copy > strong { color: var(--xm-green); font-size: 26px; line-height: 1.15; }
@@ -117,7 +118,7 @@
 .xm-feature-photo::before { position: absolute; inset: -14px 14px 14px -14px; z-index: -1; content: ''; border: 1px solid var(--xm-gold); border-radius: 30px; }
 .xm-feature.is-reversed .xm-feature-photo::before { inset: -14px -14px 14px 14px; }
 .xm-feature-photo img { display: block; width: 100%; height: auto; aspect-ratio: 5 / 4; border-radius: 26px; object-fit: cover; box-shadow: var(--xm-shadow); transition: transform .9s var(--xm-ease), box-shadow .5s; }
-.xm-feature-photo:hover img { transform: scale(1.02); box-shadow: 0 26px 60px rgb(73 53 45 / 22%); }
+.xm-feature-photo:hover img { transform: scale(1.02); box-shadow: 0 26px 60px color-mix(in srgb, var(--ink) 22%, transparent); }
 .xm-feature-photo figcaption { margin-top: 12px; color: var(--xm-muted); font: 12px/1.5 'DM Sans', sans-serif; }
 .xm-feature-copy h2 { margin: 14px 0 0; font: 400 clamp(38px, 4.4vw, 58px)/1.02 var(--serif); letter-spacing: -.035em; }
 .xm-feature-copy .superstition-eyebrow { margin-top: 10px; }
@@ -134,7 +135,7 @@
 .xm-gallery-head .xm-feature-lead { margin-top: 6px; }
 .xm-gallery-head .xm-text-link { grid-column: 2; }
 .xm-gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 24px; margin: 0; padding: 0; list-style: none; }
-.xm-dish { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--xm-line); border-radius: 20px; background: var(--xm-panel); box-shadow: 0 6px 20px rgb(73 53 45 / 7%); transition: transform .45s var(--xm-ease), box-shadow .45s; }
+.xm-dish { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--xm-line); border-radius: 20px; background: var(--xm-panel); box-shadow: 0 6px 20px color-mix(in srgb, var(--ink) 7%, transparent); transition: transform .45s var(--xm-ease), box-shadow .45s; }
 .xm-dish:hover { transform: translateY(-4px); box-shadow: var(--xm-shadow); }
 .xm-dish figure { margin: 0; overflow: hidden; }
 .xm-dish img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .8s var(--xm-ease); }
@@ -192,7 +193,7 @@
 .christmas-hero-art { min-height: 540px; border: 1px solid var(--xm-gold); border-radius: 26px; box-shadow: 0 0 0 8px rgb(214 173 104 / 14%), var(--xm-shadow); background: radial-gradient(circle at 50% 40%, rgb(214 173 104 / 26%), transparent 56%), linear-gradient(170deg, var(--xm-red-deep), var(--xm-green-deep) 74%); }
 .christmas-hero-art > img { z-index: -1; filter: none; transition: transform .9s var(--xm-ease); }
 .christmas-hero-art:hover > img { transform: scale(1.03); }
-.christmas-hero-art:has(> img)::after { position: absolute; inset: 45% 0 0; z-index: -1; content: ''; background: linear-gradient(transparent, rgb(16 41 31 / 85%)); }
+.christmas-hero-art:has(> img)::after { position: absolute; inset: 45% 0 0; z-index: -1; content: ''; background: linear-gradient(transparent, color-mix(in srgb, var(--xm-green-deep) 85%, transparent)); }
 .christmas-hero-art:has(> img) .christmas-parol-main { display: none; }
 .christmas-hero-art .superstition-hero-caption { z-index: 1; left: 26px; bottom: 26px; color: var(--xm-cream); font-size: 14px; letter-spacing: 0; }
 .christmas-hero-art .superstition-hero-figure { z-index: 1; right: 24px; bottom: 28px; color: var(--xm-cream); font-size: 12px; }
@@ -219,7 +220,7 @@
 /* Tradition pages: delicacy list */
 .christmas-delicacies { margin-top: 33px; padding-top: 24px; border-top: 1px solid var(--xm-line); }
 .christmas-delicacy-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 16px; }
-.christmas-delicacy { overflow: hidden; padding: 0 0 18px; border: 1px solid var(--xm-line); border-radius: 18px; background: var(--xm-panel); box-shadow: 0 6px 18px rgb(73 53 45 / 7%); }
+.christmas-delicacy { overflow: hidden; padding: 0 0 18px; border: 1px solid var(--xm-line); border-radius: 18px; background: var(--xm-panel); box-shadow: 0 6px 18px color-mix(in srgb, var(--ink) 7%, transparent); }
 .christmas-delicacy-photo { margin: 0 0 16px; overflow: hidden; border-bottom: 3px solid var(--xm-gold); }
 .christmas-delicacy-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .8s var(--xm-ease); }
 .christmas-delicacy:hover .christmas-delicacy-photo img { transform: scale(1.05); }
@@ -243,7 +244,7 @@
 .christmas-close-parol .christmas-parol-shape { margin-top: 34px; }
 
 /* Footer */
-.christmas-footer { position: relative; margin-top: 0; border-top: 3px solid var(--xm-gold, #d6ad68); background: radial-gradient(ellipse at 50% 0%, rgb(214 173 104 / 14%), transparent 60%), linear-gradient(160deg, #183d32, #10291f); }
+.christmas-footer { position: relative; margin-top: 0; border-top: 3px solid var(--xm-gold, #d6ad68); background: radial-gradient(ellipse at 50% 0%, rgb(214 173 104 / 14%), transparent 60%), linear-gradient(160deg, color-mix(in srgb, var(--forest-deep) 80%, #000), color-mix(in srgb, var(--forest-deep) 60%, #000)); }
 .christmas-footer::before { position: absolute; top: -12px; left: 50%; width: 22px; height: 22px; margin-left: -11px; content: ''; background: #d6ad68; clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); }
 .christmas-footer .footer-brand span { color: #d6ad68; }
 .christmas-footer .footer-inner > p:not(.xm-footer-greeting) { color: rgb(247 240 227 / 80%); font-size: 14px; }
@@ -263,7 +264,7 @@
 }
 @media (max-width: 900px) {
   .xm-hero { min-height: auto; padding: 120px 0 40px; }
-  .xm-hero::before { background: linear-gradient(0deg, rgb(16 41 31 / 95%) 10%, rgb(16 41 31 / 72%) 60%, rgb(16 41 31 / 45%)); }
+  .xm-hero::before { background: linear-gradient(0deg, color-mix(in srgb, var(--xm-green-deep) 95%, transparent) 10%, color-mix(in srgb, var(--xm-green-deep) 72%, transparent) 60%, color-mix(in srgb, var(--xm-green-deep) 45%, transparent)); }
   .xm-credit { position: relative; top: auto; right: auto; width: min(100% - 48px, 720px); max-width: none; margin: 34px auto 0; text-align: left; }
   .xm-hero-frame { inset: 12px; border-radius: 20px; }
   .xm-feature, .xm-feature.is-reversed { grid-template-columns: 1fr; gap: 30px; }
