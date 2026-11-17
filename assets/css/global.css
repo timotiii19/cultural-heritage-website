@@ -302,7 +302,7 @@ img { display: block; max-width: 100%; }
 .festival-detail-copy { max-width: 410px; }.festival-detail-copy > p { margin: 15px 0 20px; color: var(--muted); font-size: 11px; line-height: 1.85; }.inline-link { display: inline-flex; align-items: center; gap: 8px; color: var(--forest); font-size: 10px; font-weight: 700; }
 .festival-fact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }.festival-fact { min-height: 112px; display: grid; align-content: center; gap: 7px; padding: 17px; border: 1px solid var(--line); background: var(--paper-bright); }.festival-fact span { color: var(--accent); font: 8px var(--mono); letter-spacing: .08em; }.festival-fact strong { font: 17px var(--serif); }.festival-fact small { color: var(--muted); font-size: 9px; }
 .festival-beats { padding-top: 72px; }.beats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }.beat-card { position: relative; min-height: 200px; padding: 24px; border-top: 1px solid var(--forest); background: color-mix(in srgb, var(--paper-bright) 70%, transparent); }.beat-card > span { color: var(--accent); font: 9px var(--mono); }.beat-card h3 { margin: 35px 0 8px; font: 23px var(--serif); }.beat-card p { max-width: 280px; margin: 0; color: var(--muted); font-size: 10px; line-height: 1.7; }.beat-card > i { position: absolute; top: 19px; right: 20px; color: #e7dac2; font-size: 25px; font-style: normal; }
-.festival-media { margin-top: 0; }.festival-motion { background: radial-gradient(ellipse at 51% 104%,var(--palette-art-hill) 0 30%,transparent 30.5%),linear-gradient(145deg,var(--palette-art-land),var(--forest-deep)); }.festival-motion .motion-preview-orbit { width: 220px; height: 220px; transform: rotate(51deg); }.preview-sun { position: absolute; top: 50px; width: 75px; height: 75px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 45px color-mix(in srgb,var(--gold) 55%,transparent); }.preview-dancer { z-index: 1; position: absolute; top: 43%; width: 36px; height: 36px; font-size: 0; filter: drop-shadow(0 3px 12px #0005); }.preview-dancer::before { position: absolute; inset: 0; content: ''; background: var(--paper-bright); clip-path: polygon(50% 0, 60% 39%, 100% 50%, 60% 61%, 50% 100%, 40% 61%, 0 50%, 40% 39%); }.dancer-one { left: 24%; animation: dance-one 2.8s ease-in-out infinite alternate; }.dancer-two { top: 37%; animation: dance-two 3.1s ease-in-out infinite alternate; }.dancer-three { right: 23%; animation: dance-one 3.3s ease-in-out infinite alternate-reverse; }
+.festival-media { margin-top: 0; }.festival-motion { background: radial-gradient(ellipse at 51% 104%,var(--palette-art-hill) 0 30%,transparent 30.5%),linear-gradient(145deg,var(--palette-art-land),var(--forest-deep)); }.festival-motion .motion-preview-orbit { width: 220px; height: 220px; transform: rotate(51deg); }.preview-sun { position: absolute; top: 50px; width: 75px; height: 75px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 45px color-mix(in srgb,var(--gold) 55%,transparent); }.preview-dancer { z-index: 1; position: absolute; top: 43%; width: 36px; height: 36px; font-size: 0; filter: drop-shadow(0 3px 12px #0005); }.dancer-one { left: 24%; animation: dance-one 2.8s ease-in-out infinite alternate; }.dancer-two { top: 37%; animation: dance-two 3.1s ease-in-out infinite alternate; }.dancer-three { right: 23%; animation: dance-one 3.3s ease-in-out infinite alternate-reverse; }
 @keyframes dance-one { to { transform: translateY(-16px) rotate(25deg) scale(1.12); } }@keyframes dance-two { to { transform: translateY(13px) rotate(-23deg) scale(.88); } }
 .preview-play { position: absolute; z-index: 3; width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid #ffffffa1; border-radius: 50%; color: white; background: #ffffff1b; backdrop-filter: blur(5px); cursor: pointer; transition: transform .2s, background .2s; }.preview-play::before { width: 0; height: 0; margin-left: 3px; content: ''; border-top: 7px solid transparent; border-bottom: 7px solid transparent; border-left: 10px solid currentColor; }.preview-play.is-playing::before { width: 10px; height: 13px; margin-left: 0; border: 0; background: linear-gradient(90deg,currentColor 0 35%,transparent 35% 65%,currentColor 65% 100%); }.preview-play:hover { transform: scale(1.1); background: #ffffff37; }.festival-motion:not(.preview-playing) .preview-dancer { animation-play-state: paused; }
 
@@ -935,7 +935,6 @@ body { background: var(--paper); }
   filter: drop-shadow(0 0 10px color-mix(in srgb, var(--gold) 60%, transparent));
   animation: spark-drift 8s ease-in-out infinite;
 }
-.ambient-spark::before { position: absolute; inset: 0; content: ''; background: currentColor; clip-path: polygon(50% 0, 60% 39%, 100% 50%, 60% 61%, 50% 100%, 40% 61%, 0 50%, 40% 39%); }
 .ambient-spark svg { display: none; }
 .ambient-spark-one { top: 31%; left: 14%; animation-delay: -1s; }
 .ambient-spark-two { top: 47%; right: 16%; color: var(--forest); animation-delay: -4s; animation-duration: 10s; }
@@ -1003,6 +1002,95 @@ body { background: var(--paper); }
   .ambient-stage *, .ambient-stage, .ambient-stage::before, .ambient-stage::after { animation: none !important; }
   .ambient-stage { opacity: .45; }
 }
+
+:is(
+  .ambient-spark,
+  .caption-mark,
+  .hero-sticker > i,
+  .intro-band-mark,
+  .collection-art > i,
+  .heritage-marquee-copy > i,
+  .team-feature-seal > i,
+  .team-feature-image-caption > i,
+  .team-directory-foot > i,
+  .team-showcase-foot > span > i,
+  .arts-index-star,
+  .arts-hero-seal > b,
+  .arts-curator-note > span,
+  .arts-directory-note > span,
+  .arts-looking-note > span,
+  .arts-closing-mark,
+  .arts-reference-motif,
+  .arts-reference-endnote > span,
+  .festival-photo-stamp > i,
+  .beat-card > i,
+  .preview-dancer,
+  .superstition-hero-mark,
+  .superstition-page .superstition-quote > span,
+  .line-star
+) {
+  font-size: 0 !important;
+}
+
+:is(
+  .ambient-spark,
+  .caption-mark,
+  .hero-sticker > i,
+  .intro-band-mark,
+  .collection-art > i,
+  .heritage-marquee-copy > i,
+  .team-feature-seal > i,
+  .team-feature-image-caption > i,
+  .team-directory-foot > i,
+  .team-showcase-foot > span > i,
+  .arts-index-star,
+  .arts-hero-seal > b,
+  .arts-curator-note > span,
+  .arts-directory-note > span,
+  .arts-looking-note > span,
+  .arts-closing-mark,
+  .arts-reference-motif,
+  .arts-reference-endnote > span,
+  .festival-photo-stamp > i,
+  .beat-card > i,
+  .preview-dancer,
+  .superstition-hero-mark,
+  .superstition-page .superstition-quote > span,
+  .line-star
+)::before {
+  display: inline-block;
+  width: var(--line-mark-size, 16px);
+  height: var(--line-mark-size, 16px);
+  content: '';
+  background:
+    linear-gradient(currentColor, currentColor) center / 1px 100% no-repeat,
+    linear-gradient(currentColor, currentColor) center / 100% 1px no-repeat,
+    linear-gradient(45deg, transparent 48%, currentColor 49%, currentColor 51%, transparent 52%) center / 100% 100% no-repeat,
+    linear-gradient(-45deg, transparent 48%, currentColor 49%, currentColor 51%, transparent 52%) center / 100% 100% no-repeat;
+}
+
+.ambient-spark { --line-mark-size: clamp(13px, 1.4vw, 19px); }
+.caption-mark { --line-mark-size: 17px; }
+.hero-sticker > i { --line-mark-size: 14px; }
+.intro-band-mark { --line-mark-size: 25px; }
+.collection-art > i { --line-mark-size: 48px; }
+.heritage-marquee-copy > i { --line-mark-size: 12px; }
+.team-feature-seal > i, .team-feature-image-caption > i { --line-mark-size: 12px; }
+.team-directory-foot > i, .team-showcase-foot > span > i { --line-mark-size: 10px; }
+.arts-index-star { --line-mark-size: 24px; }
+.arts-hero-seal > b { --line-mark-size: 35px; }
+.arts-curator-note > span { --line-mark-size: 42px; }
+.arts-directory-note > span { --line-mark-size: 29px; }
+.arts-looking-note > span { --line-mark-size: 15px; }
+.arts-closing-mark { --line-mark-size: 82px; }
+.arts-reference-motif { --line-mark-size: 48px; }
+.arts-reference-endnote > span { --line-mark-size: 22px; }
+.festival-photo-stamp > i { --line-mark-size: 12px; }
+.beat-card > i { --line-mark-size: 24px; }
+.preview-dancer { --line-mark-size: 31px; }
+.superstition-hero-mark { --line-mark-size: 100px; }
+.superstition-page .superstition-quote > span { --line-mark-size: 17px; }
+.line-star { --line-mark-size: 18px; }
 
 /* Social Etiquette & Values: a distinct, relationship-centered collection */
 .social-etiquette-hero { position: relative; display: grid; grid-template-columns: minmax(0, 1.03fr) minmax(330px, .97fr); align-items: center; gap: 6%; padding: 46px 2% 84px; }

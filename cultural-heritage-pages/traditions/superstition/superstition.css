@@ -44,7 +44,6 @@
 .orbit-outer { width: 79%; }
 .orbit-inner { width: 62%; transform: translate(-50%,-50%) rotate(54deg); border-color: #ffffff55; }
 .superstition-hero-mark { position: absolute; z-index: 4; left: 50%; top: 42%; width: 100px; aspect-ratio: 1; color: var(--sp-gold); font-size: 0; filter: drop-shadow(0 0 35px color-mix(in srgb,var(--sp-gold) 42%,transparent)); transform: translate(-50%,-50%); animation: superstition-mark-glow 4.5s ease-in-out infinite alternate; }
-.superstition-hero-mark::before { position: absolute; inset: 0; content: ''; background: currentColor; clip-path: polygon(50% 0, 57% 36%, 76% 10%, 64% 40%, 100% 50%, 64% 60%, 76% 90%, 57% 64%, 50% 100%, 43% 64%, 24% 90%, 36% 60%, 0 50%, 36% 40%, 24% 10%, 43% 36%); }
 .superstition-hero-caption { position: absolute; z-index: 4; left: 30px; bottom: 60px; color: var(--sp-text); font: 16px/1.35 var(--mono); letter-spacing: -.05em; }
 .superstition-hero-figure { position: absolute; z-index: 4; right: 28px; bottom: 25px; color: #ffffffad; font: 7px var(--mono); letter-spacing: .12em; }
 .superstition-dust { position: absolute; z-index: 1; width: 3px; height: 3px; border-radius: 50%; background: var(--sp-gold); box-shadow: 0 0 10px var(--sp-gold); animation: superstition-drift 7s ease-in-out infinite; }
