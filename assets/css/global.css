@@ -179,7 +179,7 @@ img { display: block; max-width: 100%; }
 .shape-two { left: 17%; height: 54%; width: 29%; background: repeating-linear-gradient(90deg,#f3d9a1 0 8px,#58795a 8px 16px); transform: rotate(-16deg); animation-delay: -2s; }.shape-three { left: 47%; height: 58%; width: 30%; background: repeating-linear-gradient(90deg,#f6d487 0 7px,#b94e42 7px 14px); transform: rotate(16deg); animation-delay: -1s; }
 @keyframes shape-sway { from { translate: 0 0; } to { translate: 0 -7px; } }
 .collage-thread { position: absolute; top: 36%; left: 3%; width: 93%; height: 1px; background: #fff9; transform: rotate(-19deg); box-shadow: 0 11px #ffffff38,0 -11px #ffffff38; }
-.collage-label { position: absolute; top: 34%; left: 9%; color: white; font: 17px/1.1 var(--mono); letter-spacing: -.08em; transform: rotate(-8deg); }.collage-label i { color: var(--gold); font-style: normal; font-size: 24px; }
+.collage-label { position: absolute; top: 34%; left: 9%; color: white; font: 17px/1.1 var(--mono); letter-spacing: -.08em; transform: rotate(-8deg); }.collage-label i { color: var(--gold); font-style: normal; font-size: 24px; }.collage-label i svg { display: inline-block; width: 1em; height: 1em; vertical-align: middle; fill: currentColor; }
 .collage-index { position: absolute; right: 20px; bottom: 18px; color: #ffffffb8; font: 8px var(--mono); letter-spacing: .1em; }
 .template-pill { width: fit-content; display: flex; align-items: center; gap: 9px; margin-top: 23px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 999px; color: #69756e; background: color-mix(in srgb, var(--paper-bright) 80%, transparent); font-size: 10px; }
 .template-pill span { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
@@ -220,7 +220,7 @@ img { display: block; max-width: 100%; }
 .tradition-house { position: absolute; z-index: 1; left: 34%; bottom: 13%; width: 35%; height: 41%; border: 3px solid #edc17a; background: linear-gradient(90deg,#aa7952 0 50%,#bd8b5a 50%); box-shadow: 0 -15px 35px #0f332d55; }
 .tradition-house::before { position: absolute; top: -43%; left: -13%; width: 122%; height: 55%; content: ''; background: repeating-linear-gradient(160deg,#d9a761 0 5px,#b77e49 5px 9px); clip-path: polygon(50% 0,100% 90%,93% 100%,50% 24%,7% 100%,0 90%); }
 .tradition-house i { position: absolute; bottom: -1px; width: 20%; height: 38%; background: #5f4237; }.tradition-house i:nth-child(1) { left: 13%; height: 26%; border: 2px solid #edc17a; background: #78907a; }.tradition-house i:nth-child(2) { right: 12%; }.tradition-house i:nth-child(3) { left: 0; bottom: -15px; width: 100%; height: 13px; background: #e7c585; }
-.tradition-leaf { position: absolute; color: #d6da9a; font-size: 44px; }.leaf-one { left: 13%; bottom: 20%; transform: rotate(-28deg); }.leaf-two { right: 13%; bottom: 25%; color: var(--gold); font-size: 28px; }
+.tradition-leaf { position: absolute; color: #d6da9a; font-size: 44px; }.tradition-leaf svg { display: block; width: 1em; height: 1em; fill: currentColor; }.leaf-one { left: 13%; bottom: 20%; transform: rotate(-28deg); }.leaf-two { right: 13%; bottom: 25%; color: var(--gold); font-size: 28px; }
 .traditions-collection { padding-top: 83px; }
 .tradition-hero-cta { margin-top: 19px; }
 .tradition-category-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 15px; }
@@ -230,6 +230,7 @@ img { display: block; max-width: 100%; }
 .tradition-category-card:hover { transform: translateY(-5px); border-color: var(--tradition-tone); box-shadow: 0 16px 30px color-mix(in srgb, var(--tradition-tone) 13%, transparent); }
 .tradition-category-number, .tradition-entry-meta { color: var(--tradition-tone); font: 8px var(--mono); letter-spacing: .07em; }
 .tradition-category-motif { position: absolute; top: 20px; right: 22px; color: color-mix(in srgb, var(--tradition-tone) 24%, var(--line)); font-size: 34px; }
+.tradition-category-motif svg { display: block; width: 1em; height: 1em; fill: currentColor; }
 .tradition-category-card h3 { max-width: 250px; margin: 38px 0 9px; font: 27px/1.1 var(--serif); }
 .tradition-category-card > p { margin: 0 0 20px; color: var(--muted); font-size: 10px; line-height: 1.75; }
 .tradition-category-feature { display: grid; gap: 7px; margin-top: auto; padding: 14px 0 13px; border-top: 1px solid var(--line); color: var(--muted); font: 8px var(--mono); letter-spacing: .06em; }
@@ -928,6 +929,7 @@ body { background: var(--paper); }
   filter: drop-shadow(0 0 10px color-mix(in srgb, var(--gold) 60%, transparent));
   animation: spark-drift 8s ease-in-out infinite;
 }
+.ambient-spark svg { display: block; width: 1em; height: 1em; fill: currentColor; }
 .ambient-spark-one { top: 31%; left: 14%; animation-delay: -1s; }
 .ambient-spark-two { top: 47%; right: 16%; color: var(--forest); animation-delay: -4s; animation-duration: 10s; }
 .ambient-spark-three { top: 76%; right: 10%; color: var(--gold); animation-delay: -6s; animation-duration: 9s; }
@@ -1014,7 +1016,8 @@ body { background: var(--paper); }
 .social-etiquette-cover:hover img { transform: scale(1.035); }
 .social-etiquette-cover::after { position: absolute; inset: 38% 0 0; content: ''; background: linear-gradient(transparent, color-mix(in srgb, var(--forest-deep) 88%, transparent)); pointer-events: none; }
 .social-etiquette-cover-seal { position: absolute; z-index: 1; top: 25px; right: 22px; width: 78px; height: 78px; display: grid; align-content: center; justify-items: center; border: 1px solid #ffffffad; border-radius: 50%; color: white; background: color-mix(in srgb, var(--forest-deep) 72%, transparent); font: 8px/1.5 var(--mono); letter-spacing: .1em; text-align: center; transform: rotate(8deg); }
-.social-etiquette-cover-seal i { color: var(--gold); font: 18px var(--serif); font-style: normal; }
+.social-etiquette-cover-seal i { display: grid; width: 18px; height: 18px; place-items: center; color: var(--gold); font-style: normal; }
+.social-etiquette-cover-seal i svg { display: block; width: 100%; height: 100%; fill: currentColor; }
 .social-etiquette-cover figcaption { position: absolute; z-index: 1; right: 20px; bottom: 17px; left: 20px; display: grid; gap: 5px; color: white; }
 .social-etiquette-cover figcaption span { font: 18px/1.2 var(--serif); }
 .social-etiquette-cover figcaption a { color: #ffffffd9; font: 9px/1.55 var(--mono); text-decoration: underline; text-underline-offset: 3px; }
@@ -1051,6 +1054,7 @@ body { background: var(--paper); }
 .social-etiquette-values-list p { margin: 0; color: #ffffffd1; font-size: 13px; line-height: 1.7; }
 .social-etiquette-context-note { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 15px; margin-bottom: 50px; padding: 17px 20px; border: 1px solid var(--line); background: color-mix(in srgb, var(--paper-bright) 78%, transparent); }
 .social-etiquette-context-note > span { color: var(--accent); font-size: 21px; }
+.social-etiquette-context-note > span svg { display: block; width: 1em; height: 1em; fill: currentColor; }
 .social-etiquette-context-note p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
 .social-etiquette-context-note p strong { color: var(--ink); }
 .social-etiquette-context-note .button-text { white-space: nowrap; }
@@ -1131,7 +1135,7 @@ body { background: var(--paper); }
 .social-etiquette-editorial-mark { position: relative; display: flex; flex-direction: column; align-items: flex-start; padding-top: 5px; color: var(--practice-accent); }
 .social-etiquette-editorial-mark > span { font: 8px var(--mono); letter-spacing: .1em; }
 .social-etiquette-editorial-mark > strong { margin-top: 10px; color: color-mix(in srgb, var(--practice-accent) 25%, var(--line)); font: 110px/.8 var(--serif); font-weight: 400; letter-spacing: -.09em; }
-.social-etiquette-editorial-mark > i { position: absolute; top: 56px; left: 88px; color: var(--gold); font: 31px var(--serif); font-style: normal; }
+.social-etiquette-editorial-mark > i { position: absolute; top: 56px; left: 88px; color: var(--gold); font-size: 31px; font-style: normal; }
 .social-etiquette-editorial-copy > .eyebrow { color: var(--practice-accent); }
 .social-etiquette-editorial-copy h2 { margin: 13px 0 19px; font: 400 clamp(37px, 4.5vw, 57px)/1.02 var(--serif); letter-spacing: -.045em; }
 .social-etiquette-editorial-copy h2 em { color: var(--practice-accent); font-weight: 400; }
@@ -1150,6 +1154,8 @@ body { background: var(--paper); }
 .social-etiquette-example-grid h3 { font-size: 22px; }
 .social-etiquette-example-grid p { font-size: 13px; }
 .social-example-mark { position: absolute; right: 12px; bottom: -17px; color: color-mix(in srgb, var(--practice-accent) 10%, transparent); font-size: 53px; font-style: normal; }
+.social-etiquette-editorial-mark > i svg,
+.social-example-mark svg { display: block; width: 1em; height: 1em; fill: currentColor; }
 .social-etiquette-next-topics { margin: 44px 0 70px; scroll-margin-top: 120px; }
 .social-etiquette-next-topics > div { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .social-etiquette-next-topics > div a { min-height: 114px; grid-template-columns: 86px 1fr; grid-template-rows: 1fr auto; align-items: end; column-gap: 15px; padding: 0 43px 0 0; overflow: hidden; }
@@ -1500,7 +1506,7 @@ body { background: var(--paper); }
 
 /* Give each practice panel its own quiet visual signature */
 .social-etiquette-practice-card[data-practice="po-and-opo"] { --story-mark: '“'; --story-wash: #c39245; }
-.social-etiquette-practice-card[data-practice="pag-mamano"] { --story-mark: '✳'; --story-wash: #ad654d; }
+.social-etiquette-practice-card[data-practice="pag-mamano"] { --story-mark: ''; --story-wash: #ad654d; }
 .social-etiquette-practice-card[data-practice="bayanihan"] { --story-mark: '∞'; --story-wash: #4b8066; }
 .social-etiquette-practice-card { box-shadow: 0 10px 30px color-mix(in srgb, var(--story-wash) 10%, transparent); }
 .social-etiquette-practice-card:hover { box-shadow: 0 22px 45px color-mix(in srgb, var(--story-wash) 18%, transparent); }
@@ -1519,14 +1525,24 @@ body { background: var(--paper); }
   pointer-events: none;
   transition: transform .3s, color .3s;
 }
+.social-etiquette-practice-card[data-practice="pag-mamano"] .social-etiquette-practice-copy::after {
+  content: '';
+  width: 190px;
+  height: 190px;
+  background: color-mix(in srgb, var(--story-wash) 10%, transparent);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M12 1.5 14.7 9.3 22.5 12l-7.8 2.7L12 22.5l-2.7-7.8L1.5 12l7.8-2.7L12 1.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M12 1.5 14.7 9.3 22.5 12l-7.8 2.7L12 22.5l-2.7-7.8L1.5 12l7.8-2.7L12 1.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
 .social-etiquette-practice-copy > * { position: relative; z-index: 1; }
 .social-etiquette-practice-card:hover .social-etiquette-practice-copy::after { color: color-mix(in srgb, var(--story-wash) 16%, transparent); transform: translate(-5px, -5px) rotate(-5deg); }
+.social-etiquette-practice-card[data-practice="pag-mamano"]:hover .social-etiquette-practice-copy::after { background-color: color-mix(in srgb, var(--story-wash) 16%, transparent); }
 .social-etiquette-practice-copy .social-etiquette-card-meta > span { color: var(--story-wash); }
 .social-etiquette-card-meta small { border-color: color-mix(in srgb, var(--story-wash) 26%, var(--line)); color: var(--story-wash); background: color-mix(in srgb, var(--story-wash) 6%, transparent); }
 .social-etiquette-practice-copy h3 { text-wrap: balance; }
 .social-etiquette-practice-copy > b { color: var(--story-wash); }
 @media (max-width: 520px) {
   .social-etiquette-practice-copy::after { right: 4px; bottom: -56px; font-size: 145px; }
+  .social-etiquette-practice-card[data-practice="pag-mamano"] .social-etiquette-practice-copy::after { width: 145px; height: 145px; }
 }
 
 /* Add a crafted, distinct finish to each practice panel */
