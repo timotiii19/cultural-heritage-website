@@ -1808,6 +1808,7 @@ body { background: var(--paper); }
 .social-etiquette-values-list article { grid-template-columns: 48px 1fr; align-items: start; gap: 16px; }
 .social-etiquette-values-list article > span { display: grid; width: 38px; height: 38px; padding: 0; place-items: center; border: 1px solid color-mix(in srgb, var(--social-gold) 42%, transparent); border-radius: 50%; background: color-mix(in srgb, var(--social-gold) 8%, transparent); font-size: 10px; }
 .social-etiquette-values-list article:hover > span { color: var(--social-cream); background: color-mix(in srgb, var(--social-gold) 18%, transparent); }
+.social-etiquette-arrow { display: inline-block; width: 1em; height: 1em; overflow: visible; vertical-align: -.16em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 @media (max-width: 760px) {
   .social-etiquette-hero-copy { padding: 24px; }
   .social-etiquette-hero-thread { margin: -4px 0 11px; }
