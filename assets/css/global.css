@@ -1946,33 +1946,3 @@ body { background: var(--paper); }
   .social-etiquette-example-grid article > .social-example-number { font-size: 13px; }
   .social-etiquette-next-topics > div a span { font-size: 9px; }
 }
-
-.topbar-inner, .home-hero, .collection-section, .sample-collection, .festival-beats,
-.inner-page, .team-page, .team-showcase, .intro-band, .home-note, .footer-inner {
-  width: 90%;
-  max-width: none;
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: 0;
-  padding-left: 0;
-}
-.topbar-inner { padding-right: 24px; padding-left: 24px; }
-.home-hero { gap: clamp(20px, 2vw, 36px); }
-.inner-page > .sample-collection, .inner-page > .festival-beats { width: 100%; }
-@media (min-width: 761px) and (max-width: 1050px) {
-  .topbar-inner, .home-hero, .collection-section, .sample-collection, .festival-beats,
-  .inner-page, .team-page, .team-showcase, .intro-band, .home-note, .footer-inner {
-    width: 90%;
-  }
-  .topbar-inner { padding-right: 16px; padding-left: 16px; }
-}
-@media (max-width: 760px) {
-  .topbar-inner, .home-hero, .collection-section, .sample-collection, .festival-beats,
-  .inner-page, .team-page, .team-showcase, .intro-band, .home-note, .footer-inner {
-    width: calc(100% - 24px);
-  }
-  .topbar-inner { padding-right: 13px; padding-left: 13px; }
-}
-@media (max-width: 490px) {
-  .topbar-inner { padding-right: 9px; padding-left: 9px; }
-}
