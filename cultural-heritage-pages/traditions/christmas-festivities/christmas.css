@@ -40,7 +40,7 @@
 .xm-divider { display: flex; align-items: center; justify-content: center; gap: 14px; }
 .xm-divider::before, .xm-divider::after { width: min(120px, 22vw); height: 1px; content: ''; background: linear-gradient(90deg, transparent, var(--xm-gold)); }
 .xm-divider::after { transform: scaleX(-1); }
-.xm-text-link { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; color: var(--xm-red); font: 700 12px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+.xm-text-link { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; color: var(--xm-red); font: 700 12px var(--sans); letter-spacing: .1em; text-transform: uppercase; }
 .xm-text-link span { transition: transform .3s var(--xm-ease); }
 .xm-text-link:hover span { transform: translateX(5px); }
 .xm-feature-number { display: block; color: transparent; font: 400 clamp(64px, 7vw, 96px)/.9 var(--serif); -webkit-text-stroke: 1px var(--xm-gold); }
@@ -76,7 +76,7 @@
 .xm-hero .superstition-hero-index { margin: 0; color: rgb(247 240 227 / 82%); font-size: 12px; }
 .xm-hero .superstition-hero-index strong { color: var(--xm-gold); }
 .xm-hero .superstition-hero-index span { color: rgb(247 240 227 / 82%); }
-.xm-button { display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 28px; border: 1px solid var(--xm-gold); border-radius: 999px; color: var(--xm-green-deep); background: var(--xm-gold); font: 700 13px var(--mono); letter-spacing: .08em; text-transform: uppercase; transition: color .3s, background .3s, box-shadow .3s, transform .3s var(--xm-ease); }
+.xm-button { display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 28px; border: 1px solid var(--xm-gold); border-radius: 999px; color: var(--xm-green-deep); background: var(--xm-gold); font: 700 13px var(--sans); letter-spacing: .08em; text-transform: uppercase; transition: color .3s, background .3s, box-shadow .3s, transform .3s var(--xm-ease); }
 .xm-button:hover { color: var(--xm-gold); background: color-mix(in srgb, var(--xm-green-deep) 55%, transparent); box-shadow: 0 0 28px rgb(214 173 104 / 40%); transform: translateY(-2px); }
 .xm-button span { transition: transform .3s var(--xm-ease); }
 .xm-button:hover span { transform: translateY(3px); }
@@ -124,7 +124,7 @@
 .xm-feature-copy .superstition-eyebrow { margin-top: 10px; }
 .xm-feature-lead { max-width: 520px; margin: 18px 0 0; color: var(--xm-cocoa); font: 20px/1.6 var(--serif); }
 .xm-feature-facts { margin: 26px 0 18px; padding: 16px 20px; border: 1px solid var(--xm-line); border-left: 3px solid var(--xm-gold); border-radius: 0 14px 14px 0; background: var(--xm-panel); }
-.xm-feature-facts dt { color: var(--xm-red); font: 12px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+.xm-feature-facts dt { color: var(--xm-red); font: 12px var(--sans); letter-spacing: .1em; text-transform: uppercase; }
 .xm-feature-facts dd { margin: 6px 0 0; color: var(--xm-cocoa); font: 15px/1.6 'DM Sans', sans-serif; }
 
 /* Delicacies gallery */
@@ -146,7 +146,7 @@
 .xm-dish-copy small { margin-top: auto; padding-top: 14px; color: var(--xm-muted); font: 12px/1.5 'DM Sans', sans-serif; }
 .xm-dish-copy small a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .xm-photo-placeholder { display: grid; place-content: center; gap: 6px; aspect-ratio: 4 / 3; color: var(--xm-cream); text-align: center; background: var(--xm-capiz), linear-gradient(145deg, var(--xm-green), var(--xm-green-deep)); outline: 2px dashed rgb(214 173 104 / 70%); outline-offset: -14px; }
-.xm-photo-placeholder span { color: var(--xm-gold); font: 700 12px var(--mono); letter-spacing: .14em; }
+.xm-photo-placeholder span { color: var(--xm-gold); font: 700 12px var(--sans); letter-spacing: .14em; }
 .xm-photo-placeholder strong { font: 400 28px var(--serif); }
 
 /* Christmas message */
@@ -227,7 +227,7 @@
 .christmas-delicacy > span, .christmas-delicacy h3, .christmas-delicacy p, .christmas-delicacy small { margin-right: 18px; margin-left: 18px; }
 .christmas-delicacy:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .christmas-delicacy:last-child:nth-child(odd) .christmas-delicacy-photo img { aspect-ratio: 16 / 7; }
-.christmas-delicacy > span { display: block; color: var(--xm-red); font: 12px var(--mono); letter-spacing: .1em; }
+.christmas-delicacy > span { display: block; color: var(--xm-red); font: 12px var(--sans); letter-spacing: .1em; }
 .christmas-delicacy h3 { margin-top: 8px; margin-bottom: 0; font: 400 25px/1.15 var(--serif); }
 .christmas-delicacy p { margin-top: 9px; margin-bottom: 0; color: var(--xm-cocoa); font: 15px/1.7 'DM Sans', sans-serif; }
 .christmas-delicacy small { display: block; margin-top: 11px; color: var(--xm-muted); font: 12px/1.6 'DM Sans', sans-serif; }
