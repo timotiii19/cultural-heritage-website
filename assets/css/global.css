@@ -2061,3 +2061,120 @@ body { background: var(--paper); }
 }
 .arts-hero-main figcaption { text-shadow: 0 1px 10px rgb(0 0 0 / .45); }
 .arts-card-image-label { text-shadow: 0 1px 8px rgb(0 0 0 / .55); }
+
+/* Restore the image-led Discover cards and their palette-aware artwork. */
+.collection-card { --collection-tone: var(--forest); position: relative; isolation: isolate; min-height: 445px; overflow: hidden; border-color: color-mix(in srgb, var(--collection-tone) 24%, var(--line)); background: radial-gradient(circle at 98% 0, color-mix(in srgb, var(--collection-tone) 12%, transparent), transparent 13rem), var(--paper-bright); }
+.collection-card::before, .collection-card::after { position: absolute; z-index: 0; content: ''; pointer-events: none; }
+.collection-card::before { inset: 0; opacity: .28; background: repeating-linear-gradient(135deg, transparent 0 18px, color-mix(in srgb, var(--collection-tone) 9%, transparent) 18px 19px); }
+.collection-card::after { top: -62px; right: -48px; width: 170px; aspect-ratio: 1; border: 1px solid color-mix(in srgb, var(--collection-tone) 28%, transparent); border-radius: 50%; box-shadow: inset 0 0 0 8px color-mix(in srgb, var(--collection-tone) 4%, transparent), inset 0 0 0 9px color-mix(in srgb, var(--collection-tone) 14%, transparent); }
+.collection-card.art { --collection-tone: color-mix(in srgb, #a85d36 62%, var(--palette-art-sunset)); background: radial-gradient(circle at 96% 4%, color-mix(in srgb, var(--palette-art-sky) 52%, transparent), transparent 12rem), linear-gradient(145deg, color-mix(in srgb, var(--paper-bright) 76%, #e8c69b), color-mix(in srgb, var(--paper) 82%, #c68157)); }
+.collection-card.art::before { opacity: .34; background: repeating-linear-gradient(45deg, transparent 0 12px, color-mix(in srgb, var(--collection-tone) 13%, transparent) 12px 13px, transparent 13px 25px), repeating-linear-gradient(-45deg, transparent 0 12px, color-mix(in srgb, var(--gold) 13%, transparent) 12px 13px, transparent 13px 25px); }
+.collection-card.art::after { transform: rotate(18deg); }
+.collection-card.tradition { --collection-tone: color-mix(in srgb, #55734b 58%, var(--palette-art-hill)); background: radial-gradient(circle at 4% 92%, color-mix(in srgb, var(--palette-art-hill) 30%, transparent), transparent 11rem), radial-gradient(circle at 96% 5%, color-mix(in srgb, var(--palette-art-sky) 32%, transparent), transparent 11rem), linear-gradient(145deg, color-mix(in srgb, var(--paper-bright) 80%, #d5d4a0), color-mix(in srgb, var(--paper) 88%, #93a879)); }
+.collection-card.tradition::before { opacity: .34; background: radial-gradient(circle at 88% 22%, transparent 0 20px, color-mix(in srgb, var(--collection-tone) 25%, transparent) 21px 22px, transparent 23px 34px, color-mix(in srgb, var(--collection-tone) 18%, transparent) 35px 36px, transparent 37px), repeating-linear-gradient(0deg, transparent 0 17px, color-mix(in srgb, var(--collection-tone) 8%, transparent) 17px 18px); }
+.collection-card.tradition::after { border-radius: 46% 54% 50% 50%; transform: rotate(-24deg); }
+.collection-card.festival { --collection-tone: color-mix(in srgb, #d05743 54%, var(--accent)); background: radial-gradient(circle at 96% 6%, color-mix(in srgb, var(--gold) 56%, transparent), transparent 9rem), radial-gradient(circle at 4% 94%, color-mix(in srgb, var(--palette-art-sunset) 34%, transparent), transparent 10rem), radial-gradient(circle at 74% 77%, color-mix(in srgb, var(--palette-art-hill) 26%, transparent), transparent 10rem), linear-gradient(145deg, color-mix(in srgb, var(--paper-bright) 73%, #f2c674), color-mix(in srgb, var(--paper) 85%, #df8c64)); }
+.collection-card.festival::before { opacity: .58; background: radial-gradient(circle at 10% 27%, var(--accent) 0 2px, transparent 2.5px), radial-gradient(circle at 93% 39%, var(--gold) 0 3px, transparent 3.5px), radial-gradient(circle at 83% 86%, var(--palette-art-land) 0 2.5px, transparent 3px), radial-gradient(circle at 18% 82%, var(--palette-art-sunset) 0 2px, transparent 2.5px), radial-gradient(circle, color-mix(in srgb, var(--collection-tone) 38%, transparent) 1.5px, transparent 2px); background-size: auto, auto, auto, auto, 33px 33px; }
+.collection-card.festival::after { border-style: dashed; transform: rotate(12deg); }
+.collection-card:hover { border-color: var(--collection-tone); box-shadow: 0 24px 46px color-mix(in srgb, var(--collection-tone) 17%, transparent); }
+.collection-card-top, .collection-card-bottom { position: relative; z-index: 1; }
+.collection-card-top { color: color-mix(in srgb, var(--collection-tone) 62%, var(--muted)); }
+.collection-card:hover .card-arrow { color: #fff; background: var(--collection-tone); }
+.collection-art { position: relative; z-index: 1; top: auto; left: auto; display: block; flex: none; width: 100%; height: auto; aspect-ratio: 16 / 9; margin: 18px 0; overflow: hidden; transform: none; border: 1px solid color-mix(in srgb, var(--collection-tone) 32%, var(--line)); border-radius: 17px; background: var(--palette-art-land); box-shadow: 0 10px 24px color-mix(in srgb, var(--collection-tone) 15%, transparent); }
+.collection-art img { width: 100%; height: 100%; max-width: none; object-fit: cover; transition: transform .55s ease; }
+.collection-card:hover .collection-art img { transform: scale(1.045); }
+.collection-card.art .collection-art img { object-position: center 56%; }
+.collection-card.tradition .collection-art img { object-position: center 46%; }
+.collection-card.festival .collection-art img { object-position: center 52%; }
+.collection-card-symbol { position: absolute; z-index: 2; top: 82px; right: 34px; width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid color-mix(in srgb, var(--collection-tone) 48%, white); border-radius: 50%; color: var(--collection-tone); background: color-mix(in srgb, var(--paper-bright) 86%, transparent); box-shadow: 0 5px 14px color-mix(in srgb, var(--collection-tone) 24%, transparent); transition: transform .3s ease, box-shadow .3s ease; }
+.collection-card-symbol svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.collection-card:hover .collection-card-symbol { transform: rotate(12deg) scale(1.08); box-shadow: 0 7px 18px color-mix(in srgb, var(--collection-tone) 32%, transparent); }
+.collection-card-bottom { display: grid; }
+.collection-card-bottom .collection-card-kicker { max-width: none; margin-bottom: 6px; color: var(--collection-tone); font: 8px var(--sans); letter-spacing: .075em; }
+.collection-card-bottom .collection-card-description em { color: var(--collection-tone); font-family: var(--accent-serif); font-size: 1.1em; }
+.collection-card-bottom b { border-color: color-mix(in srgb, var(--collection-tone) 28%, var(--line)); color: var(--collection-tone); }
+.collection-card.tradition, .collection-card.festival { margin-top: var(--space-6); }
+.collection-card.festival { margin-top: var(--space-7); }
+
+/* Restore the matching image frames and distinct Traditions card themes. */
+.tradition-category-grid { align-items: stretch; }
+.tradition-category-card { --tradition-tone: color-mix(in srgb, #76583e 68%, var(--palette-art-land)); --tradition-ink: var(--ink); --tradition-muted: var(--muted); --tradition-line: var(--line); position: relative; isolation: isolate; overflow: hidden; min-height: 0; align-items: stretch; padding: 26px; border-color: var(--tradition-line); border-top-color: var(--tradition-tone); color: var(--tradition-ink); background: radial-gradient(circle at 98% 0, color-mix(in srgb, var(--palette-art-sky) 30%, transparent), transparent 13rem), linear-gradient(145deg, color-mix(in srgb, var(--paper-bright) 83%, #e6d5bd), color-mix(in srgb, var(--paper) 88%, #c4a17c)); }
+.tradition-category-card::before, .tradition-category-card::after { position: absolute; z-index: 0; content: ''; pointer-events: none; }
+.tradition-category-card::before { inset: 0; opacity: .3; background: repeating-linear-gradient(135deg, transparent 0 22px, color-mix(in srgb, var(--tradition-tone) 12%, transparent) 22px 23px); }
+.tradition-category-card::after { top: -66px; right: -52px; width: 170px; aspect-ratio: 1; border: 1px solid color-mix(in srgb, var(--tradition-tone) 22%, transparent); border-radius: 50%; }
+.tradition-category-card > * { position: relative; z-index: 1; }
+.tradition-category-card.social-etiquette { --tradition-tone: color-mix(in srgb, #76583e 70%, var(--palette-art-shadow)); background: radial-gradient(circle at 94% 8%, color-mix(in srgb, var(--palette-art-sky) 34%, transparent), transparent 9rem), linear-gradient(145deg, color-mix(in srgb, var(--paper-bright) 79%, #e8cfaa), color-mix(in srgb, var(--paper) 82%, #c89d6f)); }
+.tradition-category-card.social-etiquette::before { opacity: .28; background: repeating-linear-gradient(45deg, transparent 0 10px, color-mix(in srgb, var(--tradition-tone) 28%, transparent) 10px 11px, transparent 11px 21px), repeating-linear-gradient(-45deg, transparent 0 10px, color-mix(in srgb, var(--palette-art-sunset) 18%, transparent) 10px 11px, transparent 11px 21px); }
+.tradition-category-card.social-etiquette::after { top: auto; right: -48px; bottom: 56px; width: 164px; border-color: color-mix(in srgb, var(--tradition-tone) 24%, transparent); box-shadow: inset 0 0 0 8px color-mix(in srgb, var(--tradition-tone) 5%, transparent), inset 0 0 0 9px color-mix(in srgb, var(--tradition-tone) 16%, transparent); }
+.tradition-category-card.social-etiquette .tradition-category-motif { top: 16px; right: 20px; width: 45px; height: 45px; display: grid; place-items: center; border: 1px solid color-mix(in srgb, var(--tradition-tone) 48%, var(--line)); outline: 1px dashed color-mix(in srgb, var(--tradition-tone) 32%, transparent); outline-offset: 3px; border-radius: 50%; color: var(--tradition-tone); background: color-mix(in srgb, var(--paper-bright) 70%, transparent); }
+.tradition-category-card.social-etiquette .tradition-category-motif svg { width: 22px; height: 22px; }
+.tradition-social-seal { position: absolute !important; z-index: 0 !important; right: 18px; bottom: 61px; width: 96px; height: 96px; color: color-mix(in srgb, var(--tradition-tone) 72%, var(--palette-art-sky)); opacity: .32; transform: rotate(-8deg); pointer-events: none; }
+.tradition-social-seal svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+.tradition-category-card.christmas-festivities { --tradition-tone: color-mix(in srgb, #b44148 58%, var(--accent)); background: radial-gradient(circle at 96% 8%, color-mix(in srgb, var(--gold) 48%, transparent), transparent 8rem), radial-gradient(circle at 4% 92%, color-mix(in srgb, var(--palette-art-sunset) 34%, transparent), transparent 9rem), radial-gradient(circle at 66% 64%, color-mix(in srgb, var(--palette-art-hill) 22%, transparent), transparent 10rem), linear-gradient(145deg, color-mix(in srgb, var(--paper-bright) 60%, #f5ce90), color-mix(in srgb, var(--paper) 72%, #dc8c69)); }
+.tradition-category-card.christmas-festivities::before { opacity: .8; background: radial-gradient(circle at 7% 32%, color-mix(in srgb, var(--accent) 82%, transparent) 0 4px, transparent 4.5px), radial-gradient(circle at 95% 42%, color-mix(in srgb, var(--gold) 88%, transparent) 0 4px, transparent 4.5px), radial-gradient(circle at 90% 82%, color-mix(in srgb, var(--palette-art-land) 78%, transparent) 0 4px, transparent 4.5px), radial-gradient(circle at 14% 88%, color-mix(in srgb, var(--palette-art-sunset) 78%, transparent) 0 4px, transparent 4.5px), radial-gradient(circle, color-mix(in srgb, var(--gold) 52%, transparent) 1.5px, transparent 2px); background-size: auto, auto, auto, auto, 30px 30px; }
+.tradition-category-card.christmas-festivities::after { top: -34px; right: -8px; width: 156px; height: 96px; border-color: transparent transparent color-mix(in srgb, var(--gold) 78%, var(--tradition-tone)); border-radius: 0 0 50% 50%; }
+.tradition-category-card.christmas-festivities .tradition-category-motif { color: var(--gold); filter: drop-shadow(0 0 8px color-mix(in srgb, var(--gold) 72%, transparent)); }
+.tradition-christmas-lights { position: absolute !important; z-index: 0 !important; top: 5px; right: 68px; width: 125px; height: 42px; pointer-events: none; }
+.tradition-christmas-lights::before { position: absolute; top: 5px; right: 0; left: 0; height: 26px; border-top: 1px solid color-mix(in srgb, var(--tradition-tone) 65%, transparent); border-radius: 50%; content: ''; transform: rotate(-3deg); }
+.tradition-christmas-lights i { position: absolute; width: 9px; height: 12px; border-radius: 50% 50% 46% 46%; background: currentColor; box-shadow: 0 0 12px color-mix(in srgb, currentColor 74%, transparent); }
+.tradition-christmas-lights i::before { position: absolute; top: -3px; left: 2px; width: 5px; height: 3px; border-radius: 1px; background: color-mix(in srgb, var(--tradition-tone) 70%, var(--ink)); content: ''; }
+.tradition-christmas-lights i:nth-child(1) { top: 10px; left: 5%; color: var(--accent); }
+.tradition-christmas-lights i:nth-child(2) { top: 20px; left: 27%; color: var(--gold); }
+.tradition-christmas-lights i:nth-child(3) { top: 23px; left: 48%; color: var(--palette-art-land); }
+.tradition-christmas-lights i:nth-child(4) { top: 18px; left: 70%; color: var(--palette-art-sunset); }
+.tradition-christmas-lights i:nth-child(5) { top: 8px; left: 91%; color: var(--palette-art-hill); }
+.tradition-christmas-lights b { position: absolute; top: 23px; left: -20px; color: var(--gold); font: 18px/1 var(--serif); text-shadow: 0 0 10px color-mix(in srgb, var(--gold) 65%, transparent); }
+.tradition-category-card.superstition { --tradition-tone: color-mix(in srgb, var(--palette-art-sky) 62%, var(--gold)); --tradition-ink: #fff7e9; --tradition-muted: #d3c7b9; --tradition-line: color-mix(in srgb, #fff 20%, var(--palette-art-shadow)); background: radial-gradient(circle at 88% 12%, color-mix(in srgb, var(--palette-art-shadow) 72%, transparent), transparent 13rem), linear-gradient(145deg, color-mix(in srgb, #171820 84%, var(--palette-art-shadow)), color-mix(in srgb, #20212b 72%, var(--palette-art-land))); }
+.tradition-category-card.superstition::before { opacity: 1; background: radial-gradient(circle at 88% 15%, transparent 0 34px, color-mix(in srgb, var(--palette-art-sky) 26%, transparent) 35px 36px, transparent 37px 54px, color-mix(in srgb, var(--palette-art-sky) 18%, transparent) 55px 56px, transparent 57px), radial-gradient(circle at 13% 84%, color-mix(in srgb, var(--palette-art-shadow) 50%, transparent), transparent 58%); }
+.tradition-category-card.superstition::after { top: -48px; right: -42px; width: 160px; border-color: color-mix(in srgb, var(--palette-art-sky) 23%, transparent); }
+.tradition-category-card:hover { box-shadow: 0 16px 30px color-mix(in srgb, var(--tradition-tone) 18%, transparent); }
+.tradition-category-number { color: var(--tradition-tone); }
+.tradition-category-card.superstition .tradition-category-number { color: var(--tradition-tone); }
+.tradition-category-motif { z-index: 2; top: 20px; right: 22px; color: color-mix(in srgb, var(--tradition-tone) 24%, var(--line)); font-size: 34px; }
+.tradition-category-card.superstition .tradition-category-motif { color: color-mix(in srgb, var(--tradition-tone) 70%, transparent); }
+.tradition-category-motif svg { display: block; width: 1em; height: 1em; fill: currentColor; }
+.tradition-category-motif svg[fill="none"] { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; }
+.tradition-category-image { position: relative; isolation: isolate; display: block; flex: none; align-self: stretch; width: 100%; height: auto; aspect-ratio: 16 / 11; margin: 16px 0 5px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--tradition-tone) 32%, var(--tradition-line)); border-radius: 14px; background: var(--palette-art-land); box-shadow: 0 10px 24px color-mix(in srgb, var(--tradition-tone) 16%, transparent); }
+.tradition-category-image::after { position: absolute; z-index: 0; inset: 0; content: ''; background: linear-gradient(180deg, transparent 36%, color-mix(in srgb, #10171a 72%, transparent)); pointer-events: none; }
+.tradition-category-image img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center; transition: transform .5s ease; }
+.tradition-category-card:hover .tradition-category-image img { transform: scale(1.045); }
+.tradition-category-image > span { position: absolute; z-index: 1; right: 11px; bottom: 10px; left: 11px; width: fit-content; max-width: calc(100% - 22px); padding: 7px 10px; border: 1px solid #ffffff55; border-radius: 999px; color: #fff; background: #18231f9c; font: 8px/1.2 var(--sans); letter-spacing: .06em; }
+.tradition-category-card h3 { max-width: 250px; margin: 12px 0 9px; color: var(--tradition-ink); }
+.tradition-category-card > p { margin: 0 0 20px; color: var(--tradition-muted); }
+.tradition-category-feature { border-color: var(--tradition-line); color: var(--tradition-muted); }
+.tradition-category-feature strong { color: var(--tradition-ink); }
+.tradition-category-action { border-color: var(--tradition-line); color: var(--tradition-tone); }
+
+@media (max-width: 760px) {
+  .collection-card { min-height: 0; }
+  .collection-card.tradition, .collection-card.festival { margin-top: 0; }
+  .collection-card-symbol { top: 75px; right: 29px; }
+  .tradition-category-grid { align-items: stretch; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .collection-art img, .tradition-category-image img { transition: none; }
+}
+
+/* A clear, palette-aware footer with predictable desktop and mobile flow. */
+.site-footer { position: relative; isolation: isolate; overflow: hidden; margin-top: clamp(52px, 7vw, 88px); border-top: 1px solid color-mix(in srgb, var(--gold) 34%, transparent); color: var(--paper-bright); background: linear-gradient(120deg, color-mix(in srgb, var(--forest-deep) 96%, var(--paper)), color-mix(in srgb, var(--forest) 84%, var(--forest-deep))); }
+.site-footer::before { position: absolute; z-index: -1; top: -190px; right: max(-100px, calc((100vw - 1300px)/2)); width: 390px; aspect-ratio: 1; border: 1px solid #ffffff20; border-radius: 50%; content: ''; box-shadow: 0 0 0 26px #ffffff08, 0 0 0 54px #ffffff06; pointer-events: none; }
+.footer-inner { position: relative; width: min(1200px, calc(100% - 80px)); min-height: 0; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: center; gap: 12px 64px; padding: 48px 0 25px; }
+.footer-brand { grid-column: 1; grid-row: 1; color: var(--paper-bright); font-size: 34px; }
+.footer-brand span { color: var(--gold); }
+.footer-inner > p { grid-column: 1; grid-row: 2; max-width: 370px; color: color-mix(in srgb, var(--paper-bright) 72%, transparent); font-size: 14px; line-height: 1.75; }
+.footer-links { grid-column: 2; grid-row: 1 / 3; justify-content: flex-end; flex-wrap: wrap; gap: 8px; }
+.footer-links a { padding: 10px 13px; border: 1px solid #ffffff30; border-radius: 999px; color: color-mix(in srgb, var(--paper-bright) 82%, transparent); font-size: 12px; line-height: 1; transition: color .2s, border-color .2s, background .2s, transform .2s; }
+.footer-links a:hover, .footer-links a.active { transform: translateY(-1px); border-color: color-mix(in srgb, var(--gold) 72%, transparent); color: var(--forest-deep); background: var(--gold); }
+.footer-note { grid-column: 1 / -1; padding-top: 17px; border-top: 1px solid #ffffff26; color: color-mix(in srgb, var(--paper-bright) 58%, transparent); font-size: 11px; letter-spacing: .04em; }
+@media (max-width: 760px) {
+  .footer-inner { width: calc(100% - 44px); grid-template-columns: 1fr; gap: 11px; padding: 38px 0 22px; }
+  .footer-brand, .footer-inner > p, .footer-links { grid-column: 1; grid-row: auto; }
+  .footer-inner > p { margin-bottom: 5px; }
+  .footer-links { justify-content: flex-start; }
+  .footer-note { grid-column: 1; margin-top: 8px; }
+}
+@media (max-width: 490px) {
+  .footer-inner { width: calc(100% - 36px); }
+  .footer-links { gap: 7px; }
+  .footer-links a { padding: 9px 11px; font-size: 11px; }
+}
