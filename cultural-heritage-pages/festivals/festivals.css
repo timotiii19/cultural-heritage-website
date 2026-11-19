@@ -1,0 +1,153 @@
+/* Sinulog Festival: a bright, celebratory theme layered on the shared story layout.
+   Festival colors are fixed (red, gold, blue, green, magenta); backgrounds and body text follow the site palette. */
+.superstition-page.festival-page {
+  --fs-red: #d6283b;
+  --fs-gold: #f2b01e;
+  --fs-blue: #1f5fbf;
+  --fs-green: #148a4d;
+  --fs-magenta: #c2185b;
+  --fs-ink: #2b1238;
+  --sp-bg: var(--paper);
+  --sp-panel: var(--paper-bright);
+  --sp-line: color-mix(in srgb, var(--fs-ink) 16%, transparent);
+  --sp-text: var(--fs-ink);
+  --sp-muted: color-mix(in srgb, var(--fs-ink) 76%, #fff);
+  --sp-gold: var(--fs-red);
+  --sp-rust: var(--fs-magenta);
+  position: relative;
+  isolation: isolate;
+  color: var(--fs-ink);
+  background:
+    radial-gradient(circle at 88% 8%, rgb(242 176 30 / 28%), transparent 30rem),
+    radial-gradient(circle at 4% 34%, rgb(194 24 91 / 12%), transparent 32rem),
+    radial-gradient(circle at 96% 70%, rgb(31 95 191 / 12%), transparent 30rem),
+    var(--paper);
+}
+.festival-page h1, .festival-page h2 { color: var(--fs-ink); }
+.festival-page .superstition-hero h1 em, .festival-page .superstition-close h2 em {
+  background: linear-gradient(90deg, var(--fs-red), var(--fs-magenta) 45%, var(--fs-blue));
+  -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+}
+.festival-page a:focus-visible { outline: 3px solid var(--fs-blue); outline-offset: 3px; }
+
+/* Bunting */
+.festival-bunting { position: relative; z-index: 3; display: block; width: 100%; height: clamp(54px, 5vw, 84px); pointer-events: none; }
+.festival-bunting path { fill: none; stroke: color-mix(in srgb, var(--fs-ink) 55%, transparent); stroke-width: 1.4; }
+.festival-bunting .flag { transform-box: fill-box; transform-origin: 50% 0; animation: fs-sway 3.4s ease-in-out infinite alternate; }
+.flag-red { fill: var(--fs-red); } .flag-gold { fill: var(--fs-gold); } .flag-blue { fill: var(--fs-blue); }
+.flag-green { fill: var(--fs-green); } .flag-magenta { fill: var(--fs-magenta); }
+.sway-1 { animation-delay: -.8s !important; } .sway-2 { animation-delay: -1.7s !important; } .sway-3 { animation-delay: -2.4s !important; }
+@keyframes fs-sway { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
+
+/* Confetti */
+.festival-confetti { position: absolute; z-index: 0; top: 0; right: -56px; left: -56px; height: 860px; overflow: hidden; pointer-events: none; }
+.confetti { position: absolute; top: -20px; width: 9px; height: 14px; border-radius: 2px; opacity: .85; animation: fs-fall linear infinite; }
+.confetti.s-1 { width: 11px; height: 11px; border-radius: 50%; } .confetti.s-2 { width: 16px; height: 6px; }
+.c-red { background: var(--fs-red); } .c-gold { background: var(--fs-gold); } .c-blue { background: var(--fs-blue); }
+.c-green { background: var(--fs-green); } .c-magenta { background: var(--fs-magenta); }
+@keyframes fs-fall { 0% { transform: translate3d(0, -4%, 0) rotate(0); } 50% { transform: translate3d(26px, 440px, 0) rotate(260deg); } 100% { transform: translate3d(-18px, 900px, 0) rotate(520deg); } }
+
+/* Hero */
+.festival-page .superstition-hero { min-height: 680px; padding-top: 30px; }
+.festival-page .superstition-hero-copy { border-top: 0; }
+.festival-page .superstition-hero-copy::after { display: none; }
+.festival-page .superstition-back { color: var(--sp-muted) !important; }
+.festival-page .superstition-back:hover { color: var(--fs-red) !important; }
+.festival-page .superstition-eyebrow { color: var(--fs-magenta); font-size: 14px; font-weight: 700; }
+.festival-page .superstition-eyebrow i { width: 11px; height: 11px; border-radius: 0; background: var(--fs-gold); box-shadow: none; clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); animation: fs-spin 9s linear infinite; }
+.festival-page .superstition-hero-copy > p { color: var(--sp-muted); font-size: 16px; }
+.festival-page .superstition-hero-link { border-color: var(--fs-red); color: var(--fs-red) !important; font-size: 14px; font-weight: 700; }
+.festival-page .superstition-hero-index { border-left-color: var(--fs-gold); color: var(--sp-muted); font-size: 13px; }
+.festival-page .superstition-hero-index strong { color: var(--fs-red); }
+.festival-page .superstition-hero-art {
+  min-height: 560px; margin: 18px 26px 26px 0; border: 8px solid #fff; background: var(--fs-blue); clip-path: none;
+  border-radius: 200px 200px 24px 24px; transform: rotate(1.6deg);
+  box-shadow: 14px 14px 0 var(--fs-gold), 26px 26px 0 var(--fs-red), 38px 38px 0 var(--fs-blue), 0 30px 60px rgb(43 18 56 / 25%);
+}
+.festival-page .superstition-hero-art::before { z-index: 3; inset: 12px; border: 2px dashed rgb(255 255 255 / 85%); border-radius: 190px 190px 14px 14px; }
+.festival-page .superstition-hero-art::after { display: none; }
+.festival-page .superstition-hero-art > img { filter: none; }
+.festival-page .superstition-hero-shade { background: linear-gradient(180deg, transparent 55%, rgb(43 18 56 / 82%) 100%); }
+.festival-page .superstition-orbit { display: none; }
+.festival-page .superstition-hero-mark { display: none; top: 14%; width: 70px; color: var(--fs-gold); font-size: 56px; line-height: 70px; text-align: center; filter: drop-shadow(0 2px 0 rgb(43 18 56 / 35%)); animation: fs-spin 14s linear infinite; }
+.festival-page .superstition-hero-caption { left: 34px; bottom: 54px; color: #fff; font: 400 24px/1.2 var(--serif); letter-spacing: -.01em; text-shadow: 0 2px 10px rgb(0 0 0 / 40%); }
+.festival-page .superstition-hero-figure { right: 34px; bottom: 28px; color: #fff; font-size: 12px; font-weight: 700; }
+@keyframes fs-spin { to { transform: rotate(360deg); } }
+.festival-page .superstition-hero-mark { transform: none; }
+
+/* Marquee ribbon */
+.festival-marquee { position: relative; z-index: 1; overflow: hidden; margin: 6px -56px 0; padding: 15px 0; background: linear-gradient(90deg, var(--fs-red), var(--fs-magenta), var(--fs-blue), var(--fs-green)); color: #fff; transform: rotate(-1.2deg); box-shadow: 0 8px 24px rgb(43 18 56 / 22%); }
+.festival-marquee-track { display: flex; width: max-content; align-items: center; gap: 28px; font: 400 26px/1 var(--serif); letter-spacing: .01em; white-space: nowrap; animation: fs-marquee 38s linear infinite; }
+.festival-marquee-track span { white-space: nowrap; }
+.festival-marquee-track i { color: var(--fs-gold); font-style: normal; }
+@keyframes fs-marquee { to { transform: translateX(-50%); } }
+.festival-marquee-track { padding-right: 28px; }
+
+/* Story */
+.festival-page .superstition-story { border-top: 0; padding-top: 80px; }
+.festival-page .superstition-story-number { color: var(--fs-magenta); font-size: 14px; font-weight: 700; }
+.festival-page .superstition-story-number i { color: var(--fs-gold); }
+.festival-page .superstition-story-head h2 { color: var(--fs-ink); }
+.festival-page .superstition-story-head > p { color: var(--fs-red); font-size: 18px; }
+.festival-page .superstition-lead { color: var(--fs-ink); }
+.festival-page .festival-info { margin: 0 0 24px; color: var(--sp-muted); font: 16px/1.9 'DM Sans', sans-serif; }
+.festival-page .superstition-facts { gap: 16px; }
+.festival-page .superstition-fact { position: relative; min-height: 150px; padding: 22px 17px 18px; border: 0; border-radius: 18px; background: #fff; box-shadow: 0 10px 26px rgb(43 18 56 / 10%); transition: transform .25s, box-shadow .25s; }
+.festival-page .superstition-fact::before { position: absolute; top: 0; right: 18px; left: 18px; height: 6px; border-radius: 0 0 6px 6px; content: ''; background: var(--fs-red); }
+.festival-page .superstition-fact:nth-child(2)::before { background: var(--fs-blue); }
+.festival-page .superstition-fact:nth-child(3)::before { background: var(--fs-green); }
+.festival-page .superstition-fact:hover { transform: translateY(-6px) rotate(-.6deg); box-shadow: 0 18px 34px rgb(43 18 56 / 16%); }
+.festival-page .superstition-fact > span { color: var(--fs-red); font-size: 14px; font-weight: 700; }
+.festival-page .superstition-fact:nth-child(2) > span { color: var(--fs-blue); }
+.festival-page .superstition-fact:nth-child(3) > span { color: var(--fs-green); }
+.festival-page .superstition-fact p { color: var(--fs-ink); font-size: 15px; }
+.festival-page .superstition-detail-block > p { color: var(--fs-ink); font-size: 16px; }
+.festival-page .superstition-meaning { border-left: 0; border-radius: 20px; padding: 26px 28px 28px; color: #fff; background: linear-gradient(120deg, var(--fs-magenta), var(--fs-red) 55%, #e8741b); box-shadow: 0 16px 34px rgb(194 24 91 / 28%); }
+.festival-page .superstition-meaning > span { color: var(--fs-gold); font-size: 13px; font-weight: 700; }
+.festival-page .superstition-meaning p { color: #fff; font-size: 21px; }
+.festival-page .superstition-context { border-top: 0; margin-top: 35px; padding: 24px 26px 26px; border-radius: 20px; background: rgb(242 176 30 / 18%); border: 2px dashed var(--fs-gold); }
+.festival-page .superstition-context .superstition-eyebrow { color: var(--fs-red); }
+
+/* Aside */
+.festival-page .superstition-image { border: 6px solid #fff; border-radius: 16px; background: #fff; box-shadow: 0 12px 28px rgb(43 18 56 / 16%); transform: rotate(-1.4deg); }
+.festival-page .superstition-image img { height: 230px; filter: none; border-radius: 8px; }
+.festival-page .superstition-image:hover img { filter: saturate(1.12); }
+.festival-page .superstition-image figcaption { color: var(--sp-muted); font-size: 13px; }
+.festival-page .superstition-image figcaption a { color: var(--fs-blue); font-weight: 700; }
+.festival-page .superstition-quote { border: 0; border-radius: 18px; color: #fff; background: var(--fs-blue); box-shadow: 6px 6px 0 var(--fs-gold); }
+.festival-page .superstition-quote > span { color: var(--fs-gold); }
+.festival-page .superstition-quote p { color: #fff; font-size: 20px; }
+.festival-page .superstition-quote small { color: #fff; font-size: 12px; opacity: .85; }
+.festival-page .superstition-source-link { border: 1px solid var(--sp-line); border-left: 5px solid var(--fs-green); border-radius: 12px; background: #fff; transition: transform .2s, box-shadow .2s; }
+.festival-page .superstition-source-link:nth-of-type(3n+1) { border-left-color: var(--fs-red); }
+.festival-page .superstition-source-link:nth-of-type(3n+2) { border-left-color: var(--fs-blue); }
+.festival-page a.superstition-source-link:hover { transform: translateX(4px); box-shadow: 0 8px 20px rgb(43 18 56 / 12%); }
+.festival-page .superstition-source-link > span { color: var(--fs-magenta); font-size: 12px; font-weight: 700; }
+.festival-page .superstition-source-link strong { color: var(--fs-ink); }
+.festival-page .superstition-source-link > i { color: var(--fs-red); }
+
+/* Footer + close */
+.festival-page .superstition-story-foot { border-top: 2px dotted var(--sp-line); }
+.festival-page .superstition-story-foot > span { color: var(--fs-magenta); font-size: 12px; font-weight: 700; }
+.festival-page .superstition-story-foot a { color: var(--fs-red); font-weight: 700; }
+.festival-page .superstition-close { position: relative; margin: 20px 0 70px; padding: 70px 8% 64px; border-radius: 28px; text-align: center; background: #fff; box-shadow: 0 20px 46px rgb(43 18 56 / 12%); overflow: hidden; }
+.festival-page .superstition-close::before { position: absolute; top: 0; right: 0; left: 0; height: 10px; content: ''; background: repeating-linear-gradient(90deg, var(--fs-red) 0 40px, var(--fs-gold) 40px 80px, var(--fs-blue) 80px 120px, var(--fs-green) 120px 160px, var(--fs-magenta) 160px 200px); }
+.festival-page .superstition-close .superstition-eyebrow { color: var(--fs-magenta); }
+.festival-page .superstition-close h2 { line-height: 1.18; }
+.festival-page .superstition-close h2 em { display: inline-block; padding-bottom: .12em; } /* keep italic descenders (y, g, f) from being clipped by the gradient text */
+.festival-page .superstition-story-navigation { justify-content: center; align-items: center; margin-top: 40px; }
+.festival-page .superstition-story-navigation a { padding: 12px 22px; border-radius: 999px; color: #fff; background: var(--fs-red); font: 700 15px var(--sans); transition: transform .2s, background .2s; }
+.festival-page .superstition-story-navigation a:nth-child(2) { background: var(--fs-blue); }
+.festival-page .superstition-story-navigation a:hover { transform: translateY(-3px) rotate(-1deg); }
+
+@media (max-width: 860px) {
+  .festival-page .superstition-hero-art { min-height: 400px; margin-right: 14px; box-shadow: 8px 8px 0 var(--fs-gold), 15px 15px 0 var(--fs-red), 0 20px 40px rgb(43 18 56 / 22%); border-radius: 140px 140px 20px 20px; }
+  .festival-page .superstition-hero-caption { font-size: 19px; }
+  .festival-marquee { margin-inline: -24px; }
+  .festival-marquee-track { font-size: 20px; }
+  .festival-page .superstition-close { padding: 56px 22px 48px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .festival-bunting .flag, .confetti, .festival-marquee-track, .festival-page .superstition-hero-mark, .festival-page .superstition-eyebrow i { animation: none !important; }
+  .festival-confetti { display: none; }
+}
