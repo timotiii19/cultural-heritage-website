@@ -1,0 +1,4 @@
+# Source PNGs are unreferenced; the site serves the optimized .webp versions.
+cultural-heritage-pages/**/*.png
+# Archived design files are not part of the live site.
+design-backups
