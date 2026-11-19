@@ -24,8 +24,8 @@ The Arts, Festivals, Christmas Festivities, and Superstition pages each have the
 
 ## Project structure
 
-- `index.html` — forwards to the site
-- `cultural-heritage-pages/` — all site pages, including the landing page, arts, festivals, references, traditions, and team redirect
+- `index.html` — Pamana landing page
+- `cultural-heritage-pages/` — arts, festivals, references, traditions, and team pages; the landing page is `index.html` at the repository root
 - `cultural-heritage-pages/arts/` — arts page, styles, and art images
 - `cultural-heritage-pages/festivals/` — festival page and images
 - `cultural-heritage-pages/traditions/` — traditions and their subcategories

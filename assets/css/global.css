@@ -149,23 +149,38 @@ h1 em, h2 em { font-family: var(--accent-serif); font-size: 1.08em; font-style: 
 .section-heading h2, .home-note h2, .festival-detail-copy h2, .media-template-copy h2, .team-intro-row h2 { margin: 12px 0 0; font: 400 clamp(34px, 4vw, 49px)/1.05 var(--serif); letter-spacing: -.035em; }
 .section-heading > p { max-width: 365px; margin: 0 0 4px; color: var(--muted); font-size: 12px; line-height: 1.85; }
 .collection-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.collection-card { position: relative; min-height: 370px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; padding: 22px 23px 24px; border: 1px solid var(--line); border-radius: 4px 30px 4px 30px; background: var(--paper-bright); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
-.collection-card:hover { transform: translateY(-7px); border-color: color-mix(in srgb, var(--forest) 28%, var(--line)); box-shadow: 0 20px 34px #1e332310; }
-.collection-card-top { z-index: 1; display: flex; align-items: center; justify-content: space-between; color: #7d8780; font: 8px var(--sans); letter-spacing: .06em; }
+.collection-card { --collection-tone: var(--forest); position: relative; isolation: isolate; min-height: 370px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; padding: 22px 23px 24px; border: 1px solid color-mix(in srgb, var(--collection-tone) 24%, var(--line)); border-radius: 4px 30px 4px 30px; color: var(--ink); background: radial-gradient(circle at 98% 0, color-mix(in srgb, var(--collection-tone) 12%, transparent), transparent 13rem), var(--paper-bright); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.collection-card::before, .collection-card::after { position: absolute; z-index: 0; content: ''; pointer-events: none; }
+.collection-card::before { inset: 0; opacity: .28; background: repeating-linear-gradient(135deg, transparent 0 18px, color-mix(in srgb, var(--collection-tone) 9%, transparent) 18px 19px); }
+.collection-card::after { top: -62px; right: -48px; width: 170px; aspect-ratio: 1; border: 1px solid color-mix(in srgb, var(--collection-tone) 28%, transparent); border-radius: 50%; box-shadow: inset 0 0 0 8px color-mix(in srgb, var(--collection-tone) 4%, transparent), inset 0 0 0 9px color-mix(in srgb, var(--collection-tone) 14%, transparent); }
+.collection-card.art { --collection-tone: color-mix(in srgb, #a85d36 62%, var(--palette-art-sunset)); background: radial-gradient(circle at 96% 4%, color-mix(in srgb, var(--palette-art-sky) 52%, transparent), transparent 12rem), linear-gradient(145deg, color-mix(in srgb, var(--paper-bright) 76%, #e8c69b), color-mix(in srgb, var(--paper) 82%, #c68157)); }
+.collection-card.art::before { opacity: .34; background: repeating-linear-gradient(45deg, transparent 0 12px, color-mix(in srgb, var(--collection-tone) 13%, transparent) 12px 13px, transparent 13px 25px), repeating-linear-gradient(-45deg, transparent 0 12px, color-mix(in srgb, var(--gold) 13%, transparent) 12px 13px, transparent 13px 25px); }
+.collection-card.art::after { transform: rotate(18deg); }
+.collection-card.tradition { --collection-tone: color-mix(in srgb, #55734b 58%, var(--palette-art-hill)); background: radial-gradient(circle at 4% 92%, color-mix(in srgb, var(--palette-art-hill) 30%, transparent), transparent 11rem), radial-gradient(circle at 96% 5%, color-mix(in srgb, var(--palette-art-sky) 32%, transparent), transparent 11rem), linear-gradient(145deg, color-mix(in srgb, var(--paper-bright) 80%, #d5d4a0), color-mix(in srgb, var(--paper) 88%, #93a879)); }
+.collection-card.tradition::before { opacity: .34; background: radial-gradient(circle at 88% 22%, transparent 0 20px, color-mix(in srgb, var(--collection-tone) 25%, transparent) 21px 22px, transparent 23px 34px, color-mix(in srgb, var(--collection-tone) 18%, transparent) 35px 36px, transparent 37px), repeating-linear-gradient(0deg, transparent 0 17px, color-mix(in srgb, var(--collection-tone) 8%, transparent) 17px 18px); }
+.collection-card.tradition::after { border-radius: 46% 54% 50% 50%; transform: rotate(-24deg); }
+.collection-card.festival { --collection-tone: color-mix(in srgb, #d05743 54%, var(--accent)); background: radial-gradient(circle at 96% 6%, color-mix(in srgb, var(--gold) 56%, transparent), transparent 9rem), radial-gradient(circle at 4% 94%, color-mix(in srgb, var(--palette-art-sunset) 34%, transparent), transparent 10rem), radial-gradient(circle at 74% 77%, color-mix(in srgb, var(--palette-art-hill) 26%, transparent), transparent 10rem), linear-gradient(145deg, color-mix(in srgb, var(--paper-bright) 73%, #f2c674), color-mix(in srgb, var(--paper) 85%, #df8c64)); }
+.collection-card.festival::before { opacity: .58; background: radial-gradient(circle at 10% 27%, var(--accent) 0 2px, transparent 2.5px), radial-gradient(circle at 93% 39%, var(--gold) 0 3px, transparent 3.5px), radial-gradient(circle at 83% 86%, var(--palette-art-land) 0 2.5px, transparent 3px), radial-gradient(circle at 18% 82%, var(--palette-art-sunset) 0 2px, transparent 2.5px), radial-gradient(circle, color-mix(in srgb, var(--collection-tone) 38%, transparent) 1.5px, transparent 2px); background-size: auto, auto, auto, auto, 33px 33px; }
+.collection-card.festival::after { border-style: dashed; border-radius: 50%; transform: rotate(12deg); }
+.collection-card:hover { transform: translateY(-7px); border-color: var(--collection-tone); box-shadow: 0 20px 34px color-mix(in srgb, var(--collection-tone) 17%, transparent); }
+.collection-card-top { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; color: color-mix(in srgb, var(--collection-tone) 62%, var(--muted)); font: 8px var(--sans); letter-spacing: .06em; }
 .card-arrow { width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--forest); font-size: 15px; transition: color .2s, background .2s, transform .2s; }
-.collection-card:hover .card-arrow { transform: rotate(45deg); color: white; background: var(--forest); }
-.collection-art { position: absolute; top: 80px; left: 50%; width: 180px; height: 160px; display: grid; place-items: center; transform: translateX(-50%); }
-.collection-art > i { z-index: 2; width: 83px; height: 83px; display: grid; place-items: center; border: 1px solid #ffffff9c; border-radius: 50%; color: #fff; background: var(--forest); font: 48px var(--serif); box-shadow: 0 12px 24px #1b2b2620; transition: transform .4s cubic-bezier(.2,.8,.2,1); }
-.collection-card:hover .collection-art > i { transform: rotate(25deg) scale(1.09); }
-.collection-art > span { position: absolute; width: 130px; height: 80px; border-radius: 50%; background: color-mix(in srgb, var(--accent) 55%, transparent); transform: rotate(-24deg); }
-.collection-art > span:last-child { width: 90px; height: 116px; background: color-mix(in srgb, var(--gold) 68%, transparent); transform: rotate(47deg); }
-.collection-card.art .collection-art > i { background: var(--accent); }.collection-card.art .collection-art > span:first-of-type { background: var(--forest); }
-.collection-card.tradition .collection-art > i { background: var(--palette-art-hill); }.collection-card.tradition .collection-art > span:first-of-type { background: var(--gold); }
-.collection-card.festival .collection-art > i { background: var(--forest-deep); }.collection-card.festival .collection-art > span:first-of-type { background: var(--palette-glow); }
-.collection-card-bottom { z-index: 1; display: grid; }
+.collection-card:hover .card-arrow { transform: rotate(45deg); color: white; background: var(--collection-tone); }
+.collection-art { position: relative; z-index: 1; flex: none; width: 100%; aspect-ratio: 16 / 9; margin: 18px 0; overflow: hidden; border: 1px solid color-mix(in srgb, var(--collection-tone) 32%, var(--line)); border-radius: 17px; background: var(--palette-art-land); box-shadow: 0 10px 24px color-mix(in srgb, var(--collection-tone) 15%, transparent); }
+.collection-art img { width: 100%; height: 100%; max-width: none; object-fit: cover; transition: transform .55s ease; }
+.collection-card:hover .collection-art img { transform: scale(1.045); }
+.collection-card.art .collection-art img { object-position: center 56%; }
+.collection-card.tradition .collection-art img { object-position: center 46%; }
+.collection-card.festival .collection-art img { object-position: center 52%; }
+.collection-card-symbol { position: absolute; z-index: 2; top: 82px; right: 34px; width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid color-mix(in srgb, var(--collection-tone) 48%, white); border-radius: 50%; color: var(--collection-tone); background: color-mix(in srgb, var(--paper-bright) 86%, transparent); box-shadow: 0 5px 14px color-mix(in srgb, var(--collection-tone) 24%, transparent); transition: transform .3s ease, box-shadow .3s ease; }
+.collection-card-symbol svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.collection-card:hover .collection-card-symbol { transform: rotate(12deg) scale(1.08); box-shadow: 0 7px 18px color-mix(in srgb, var(--collection-tone) 32%, transparent); }
+.collection-card-bottom { position: relative; z-index: 1; display: grid; }
 .collection-card-bottom strong { margin-bottom: 7px; font: 26px var(--serif); }
 .collection-card-bottom > span { max-width: 290px; color: var(--muted); font-size: 11px; line-height: 1.7; }
-.collection-card-bottom b { display: flex; align-items: center; justify-content: space-between; margin-top: 17px; padding-top: 13px; border-top: 1px solid var(--line); color: var(--forest); font-size: 10px; }
+.collection-card-bottom .collection-card-kicker { max-width: none; margin-bottom: 6px; color: var(--collection-tone); font: 8px var(--sans); letter-spacing: .075em; }
+.collection-card-bottom .collection-card-description em { color: var(--collection-tone); font-family: var(--accent-serif); font-size: 1.1em; }
+.collection-card-bottom b { display: flex; align-items: center; justify-content: space-between; margin-top: 17px; padding-top: 13px; border-top: 1px solid color-mix(in srgb, var(--collection-tone) 28%, var(--line)); color: var(--collection-tone); font-size: 10px; }
 .collection-card-bottom b i { color: var(--accent); font-size: 14px; font-style: normal; }
 .home-note { position: relative; min-height: 325px; display: flex; align-items: center; justify-content: space-between; gap: 35px; overflow: hidden; margin: 0 auto 100px; padding: 55px max(8%, calc((100% - 1120px)/2)); color: #fff; background: var(--forest); }
 .home-note::before, .home-note::after { position: absolute; content: ''; border: 1px solid #ffffff26; border-radius: 50%; pointer-events: none; }
@@ -230,20 +245,52 @@ h1 em, h2 em { font-family: var(--accent-serif); font-size: 1.08em; font-style: 
 .tradition-leaf { position: absolute; color: #d6da9a; font-size: 44px; }.tradition-leaf svg { display: block; width: 1em; height: 1em; fill: currentColor; }.leaf-one { left: 13%; bottom: 20%; transform: rotate(-28deg); }.leaf-two { right: 13%; bottom: 25%; color: var(--gold); font-size: 28px; }
 .traditions-collection { padding-top: 83px; }
 .tradition-hero-cta { margin-top: 19px; }
-.tradition-category-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 15px; }
-.tradition-category-card { --tradition-tone: #577451; position: relative; min-width: 0; min-height: 325px; display: flex; flex-direction: column; align-items: flex-start; padding: 24px; border: 1px solid var(--line); border-top: 3px solid var(--tradition-tone); color: var(--ink); background: color-mix(in srgb, var(--paper-bright) 82%, transparent); transition: transform .22s, border-color .22s, box-shadow .22s; }
-.tradition-category-card.christmas-festivities { --tradition-tone: #b36149; }
-.tradition-category-card.superstition { --tradition-tone: #355a62; }
-.tradition-category-card:hover { transform: translateY(-5px); border-color: var(--tradition-tone); box-shadow: 0 16px 30px color-mix(in srgb, var(--tradition-tone) 13%, transparent); }
+.tradition-category-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; gap: 15px; }
+.tradition-category-card { --tradition-tone: color-mix(in srgb, #76583e 68%, var(--palette-art-land)); --tradition-ink: var(--ink); --tradition-muted: var(--muted); --tradition-line: var(--line); position: relative; isolation: isolate; overflow: hidden; min-width: 0; min-height: 325px; display: flex; flex-direction: column; align-items: stretch; padding: 26px; border: 1px solid var(--tradition-line); border-top: 3px solid var(--tradition-tone); color: var(--tradition-ink); background: radial-gradient(circle at 98% 0, color-mix(in srgb, var(--palette-art-sky) 30%, transparent), transparent 13rem), linear-gradient(145deg, color-mix(in srgb, var(--paper-bright) 83%, #e6d5bd), color-mix(in srgb, var(--paper) 88%, #c4a17c)); transition: transform .22s, border-color .22s, box-shadow .22s; }
+.tradition-category-card::before, .tradition-category-card::after { position: absolute; z-index: 0; content: ''; pointer-events: none; }
+.tradition-category-card::before { inset: 0; opacity: .3; background: repeating-linear-gradient(135deg, transparent 0 22px, color-mix(in srgb, var(--tradition-tone) 12%, transparent) 22px 23px); }
+.tradition-category-card::after { top: -66px; right: -52px; width: 170px; aspect-ratio: 1; border: 1px solid color-mix(in srgb, var(--tradition-tone) 22%, transparent); border-radius: 50%; }
+.tradition-category-card > * { position: relative; z-index: 1; }
+.tradition-category-card.social-etiquette { --tradition-tone: color-mix(in srgb, #76583e 70%, var(--palette-art-shadow)); background: radial-gradient(circle at 94% 8%, color-mix(in srgb, var(--palette-art-sky) 34%, transparent), transparent 9rem), linear-gradient(145deg, color-mix(in srgb, var(--paper-bright) 79%, #e8cfaa), color-mix(in srgb, var(--paper) 82%, #c89d6f)); }
+.tradition-category-card.social-etiquette::before { opacity: .28; background: repeating-linear-gradient(45deg, transparent 0 10px, color-mix(in srgb, var(--tradition-tone) 28%, transparent) 10px 11px, transparent 11px 21px), repeating-linear-gradient(-45deg, transparent 0 10px, color-mix(in srgb, var(--palette-art-sunset) 18%, transparent) 10px 11px, transparent 11px 21px); }
+.tradition-category-card.social-etiquette::after { top: auto; right: -48px; bottom: 56px; width: 164px; border-color: color-mix(in srgb, var(--tradition-tone) 24%, transparent); box-shadow: inset 0 0 0 8px color-mix(in srgb, var(--tradition-tone) 5%, transparent), inset 0 0 0 9px color-mix(in srgb, var(--tradition-tone) 16%, transparent); }
+.tradition-category-card.social-etiquette .tradition-category-motif { top: 16px; right: 20px; width: 45px; height: 45px; display: grid; place-items: center; border: 1px solid color-mix(in srgb, var(--tradition-tone) 48%, var(--line)); outline: 1px dashed color-mix(in srgb, var(--tradition-tone) 32%, transparent); outline-offset: 3px; border-radius: 50%; color: var(--tradition-tone); background: color-mix(in srgb, var(--paper-bright) 70%, transparent); }
+.tradition-category-card.social-etiquette .tradition-category-motif svg { width: 22px; height: 22px; }
+.tradition-social-seal { position: absolute !important; z-index: 0 !important; right: 18px; bottom: 61px; width: 96px; height: 96px; color: color-mix(in srgb, var(--tradition-tone) 72%, var(--palette-art-sky)); opacity: .32; transform: rotate(-8deg); pointer-events: none; }
+.tradition-social-seal svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+.tradition-category-card.christmas-festivities { --tradition-tone: color-mix(in srgb, #b44148 58%, var(--accent)); background: radial-gradient(circle at 96% 8%, color-mix(in srgb, var(--gold) 48%, transparent), transparent 8rem), radial-gradient(circle at 4% 92%, color-mix(in srgb, var(--palette-art-sunset) 34%, transparent), transparent 9rem), radial-gradient(circle at 66% 64%, color-mix(in srgb, var(--palette-art-hill) 22%, transparent), transparent 10rem), linear-gradient(145deg, color-mix(in srgb, var(--paper-bright) 60%, #f5ce90), color-mix(in srgb, var(--paper) 72%, #dc8c69)); }
+.tradition-category-card.christmas-festivities::before { opacity: .8; background: radial-gradient(circle at 7% 32%, color-mix(in srgb, var(--accent) 82%, transparent) 0 4px, transparent 4.5px), radial-gradient(circle at 95% 42%, color-mix(in srgb, var(--gold) 88%, transparent) 0 4px, transparent 4.5px), radial-gradient(circle at 90% 82%, color-mix(in srgb, var(--palette-art-land) 78%, transparent) 0 4px, transparent 4.5px), radial-gradient(circle at 14% 88%, color-mix(in srgb, var(--palette-art-sunset) 78%, transparent) 0 4px, transparent 4.5px), radial-gradient(circle, color-mix(in srgb, var(--gold) 52%, transparent) 1.5px, transparent 2px); background-size: auto, auto, auto, auto, 30px 30px; }
+.tradition-category-card.christmas-festivities::after { top: -34px; right: -8px; width: 156px; height: 96px; border-color: transparent transparent color-mix(in srgb, var(--gold) 78%, var(--tradition-tone)); border-radius: 0 0 50% 50%; }
+.tradition-category-card.christmas-festivities .tradition-category-motif { color: var(--gold); filter: drop-shadow(0 0 8px color-mix(in srgb, var(--gold) 72%, transparent)); }
+.tradition-christmas-lights { position: absolute !important; z-index: 0 !important; top: 5px; right: 68px; width: 125px; height: 42px; pointer-events: none; }
+.tradition-christmas-lights::before { position: absolute; top: 5px; right: 0; left: 0; height: 26px; border-top: 1px solid color-mix(in srgb, var(--tradition-tone) 65%, transparent); border-radius: 50%; content: ''; transform: rotate(-3deg); }
+.tradition-christmas-lights i { position: absolute; width: 9px; height: 12px; border-radius: 50% 50% 46% 46%; background: currentColor; box-shadow: 0 0 12px color-mix(in srgb, currentColor 74%, transparent); }
+.tradition-christmas-lights i::before { position: absolute; top: -3px; left: 2px; width: 5px; height: 3px; border-radius: 1px; background: color-mix(in srgb, var(--tradition-tone) 70%, var(--ink)); content: ''; }
+.tradition-christmas-lights i:nth-child(1) { top: 10px; left: 5%; color: var(--accent); }
+.tradition-christmas-lights i:nth-child(2) { top: 20px; left: 27%; color: var(--gold); }
+.tradition-christmas-lights i:nth-child(3) { top: 23px; left: 48%; color: var(--palette-art-land); }
+.tradition-christmas-lights i:nth-child(4) { top: 18px; left: 70%; color: var(--palette-art-sunset); }
+.tradition-christmas-lights i:nth-child(5) { top: 8px; left: 91%; color: var(--palette-art-hill); }
+.tradition-christmas-lights b { position: absolute; top: 23px; left: -20px; color: var(--gold); font: 18px/1 var(--serif); text-shadow: 0 0 10px color-mix(in srgb, var(--gold) 65%, transparent); }
+.tradition-category-card.superstition { --tradition-tone: color-mix(in srgb, var(--palette-art-sky) 62%, var(--gold)); --tradition-ink: #fff7e9; --tradition-muted: #d3c7b9; --tradition-line: color-mix(in srgb, #fff 20%, var(--palette-art-shadow)); background: radial-gradient(circle at 88% 12%, color-mix(in srgb, var(--palette-art-shadow) 72%, transparent), transparent 13rem), linear-gradient(145deg, color-mix(in srgb, #171820 84%, var(--palette-art-shadow)), color-mix(in srgb, #20212b 72%, var(--palette-art-land))); }
+.tradition-category-card.superstition::before { opacity: 1; background: radial-gradient(circle at 88% 15%, transparent 0 34px, color-mix(in srgb, var(--palette-art-sky) 26%, transparent) 35px 36px, transparent 37px 54px, color-mix(in srgb, var(--palette-art-sky) 18%, transparent) 55px 56px, transparent 57px), radial-gradient(circle at 13% 84%, color-mix(in srgb, var(--palette-art-shadow) 50%, transparent), transparent 58%); }
+.tradition-category-card.superstition::after { top: -48px; right: -42px; width: 160px; border-color: color-mix(in srgb, var(--palette-art-sky) 23%, transparent); }
+.tradition-category-card:hover { transform: translateY(-5px); border-color: var(--tradition-tone); box-shadow: 0 16px 30px color-mix(in srgb, var(--tradition-tone) 18%, transparent); }
 .tradition-category-number, .tradition-entry-meta { color: var(--tradition-tone); font: 8px var(--sans); letter-spacing: .07em; }
 .tradition-category-motif { position: absolute; top: 20px; right: 22px; color: color-mix(in srgb, var(--tradition-tone) 24%, var(--line)); font-size: 34px; }
+.tradition-category-card.superstition .tradition-category-motif { color: color-mix(in srgb, var(--tradition-tone) 42%, transparent); }
 .tradition-category-motif svg { display: block; width: 1em; height: 1em; fill: currentColor; }
 .tradition-category-motif svg[fill="none"] { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; }
-.tradition-category-card h3 { max-width: 250px; margin: 38px 0 9px; font: 27px/1.1 var(--serif); }
-.tradition-category-card > p { margin: 0 0 20px; color: var(--muted); font-size: 10px; line-height: 1.75; }
-.tradition-category-feature { display: grid; gap: 7px; margin-top: auto; padding: 14px 0 13px; border-top: 1px solid var(--line); color: var(--muted); font: 8px var(--sans); letter-spacing: .06em; }
-.tradition-category-feature strong { color: var(--ink); font: 18px var(--serif); letter-spacing: 0; }
-.tradition-category-action { width: 100%; display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--line); color: var(--tradition-tone); font: 9px var(--sans); }
+.tradition-category-image { position: relative; isolation: isolate; display: block; flex: none; align-self: stretch; width: 100%; height: clamp(145px, 17vw, 190px); margin: 16px 0 5px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--tradition-tone) 32%, var(--line)); border-radius: 14px; background: var(--palette-art-land); box-shadow: 0 10px 24px color-mix(in srgb, var(--tradition-tone) 16%, transparent); }
+.tradition-category-image::after { position: absolute; z-index: 0; inset: 0; content: ''; background: linear-gradient(180deg, transparent 36%, color-mix(in srgb, #10171a 72%, transparent)); pointer-events: none; }
+.tradition-category-image img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center; transition: transform .5s ease; }
+.tradition-category-card:hover .tradition-category-image img { transform: scale(1.045); }
+.tradition-category-image > span { position: absolute; z-index: 1; right: 11px; bottom: 10px; left: 11px; width: fit-content; max-width: calc(100% - 22px); padding: 7px 10px; border: 1px solid #ffffff55; border-radius: 999px; color: #fff; background: #18231f9c; font: 8px/1.2 var(--sans); letter-spacing: .06em; }
+.tradition-category-card h3 { max-width: 250px; margin: 12px 0 9px; color: var(--tradition-ink); font: 27px/1.1 var(--serif); }
+.tradition-category-card > p { margin: 0 0 20px; color: var(--tradition-muted); font-size: 10px; line-height: 1.75; }
+.tradition-category-feature { display: grid; gap: 7px; margin-top: auto; padding: 14px 0 13px; border-top: 1px solid var(--tradition-line); color: var(--tradition-muted); font: 8px var(--sans); letter-spacing: .06em; }
+.tradition-category-feature strong { color: var(--tradition-ink); font: 18px var(--serif); letter-spacing: 0; }
+.tradition-category-action { width: 100%; display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--tradition-line); color: var(--tradition-tone); font: 9px var(--sans); }
 .tradition-category-action i { font-size: 15px; font-style: normal; transition: transform .2s; }
 .tradition-category-card:hover .tradition-category-action i { transform: translate(2px, -2px); }
 .tradition-detail-hero { min-height: 440px; display: grid; grid-template-columns: 1fr .75fr; align-items: center; gap: 8%; padding: 55px 3% 60px; }
@@ -350,7 +397,19 @@ h1 em, h2 em { font-family: var(--accent-serif); font-size: 1.08em; font-style: 
 .team-card-identity { display: grid; gap: 8px; padding: 16px 16px 17px; }.team-card-role { color: var(--accent); font: 7px var(--sans); letter-spacing: .09em; }.team-card-identity strong { min-height: 48px; font: 21px/1.05 var(--serif); }.team-card-prompt { display: flex; justify-content: space-between; align-items: center; padding-top: 9px; border-top: 1px solid var(--line); color: var(--forest); font-size: 9px; font-weight: 700; }.team-card-prompt i { width: 22px; height: 22px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--accent); font-size: 16px; font-style: normal; transition: color .2s,background .2s,transform .3s; }.team-flip-card.is-expanded .team-card-prompt i { transform: rotate(45deg); color: white; background: var(--forest); }
 .team-card-details { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .42s cubic-bezier(.2,.8,.2,1),opacity .24s; }.team-flip-card.is-expanded .team-card-details { grid-template-rows: 1fr; opacity: 1; }.team-card-details-inner { min-height: 0; overflow: hidden; padding: 0 16px; border-top: 1px solid transparent; transition: padding .42s,border-color .2s; }.team-flip-card.is-expanded .team-card-details-inner { padding: 14px 16px 18px; border-color: var(--line); }.team-details-kicker { color: #839087; font: 7px var(--sans); letter-spacing: .06em; }.team-card-details p { margin: 8px 0 12px; color: var(--muted); font: italic 11px/1.65 var(--serif); }.team-details-role { display: flex; flex-direction: column; gap: 5px; color: var(--accent); font: 7px var(--sans); }.team-details-role i { color: var(--ink); font-style: normal; font-size: 8px; }.team-socials { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 12px; }.team-socials span { display: flex; align-items: center; gap: 6px; min-width: 0; padding: 6px; border: 1px dashed #d8d8ce; color: var(--forest); font: 7px var(--sans); }.team-socials small { overflow: hidden; color: var(--muted); font: 7px 'DM Sans',sans-serif; text-overflow: ellipsis; white-space: nowrap; }
 .team-showcase-foot { display: flex; justify-content: space-between; gap: 20px; margin-top: 46px; padding-top: 15px; border-top: 1px solid #ffffff3a; color: #ffffff91; font: 7px var(--sans); letter-spacing: .09em; }.team-showcase-foot span:last-child i { padding-left: 8px; color: var(--gold); font-size: 13px; font-style: normal; }
-.site-footer { color: #fff; background: #142c26; }.footer-inner { width: min(1200px, calc(100% - 72px)); min-height: 180px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px 28px; margin: 0 auto; padding: 37px 0; }.footer-brand { width: fit-content; color: #fff; font: 29px var(--serif); letter-spacing: -.04em; }.footer-inner > p { max-width: 370px; margin: 0; color: #ffffff9c; font-size: 10px; line-height: 1.7; }.footer-links { display: flex; gap: 15px; }.footer-links a { color: #ffffffb5; font-size: 9px; transition: color .2s; }.footer-links a:hover, .footer-links a.active { color: var(--gold); }.footer-note { grid-column: 1 / -1; padding-top: 15px; border-top: 1px solid #ffffff24; color: #ffffff70; font: 8px var(--sans); letter-spacing: .03em; }
+.site-footer { position: relative; isolation: isolate; overflow: hidden; margin-top: 38px; color: #fff; background: radial-gradient(ellipse at 92% 8%, color-mix(in srgb, var(--gold) 19%, transparent), transparent 25rem), radial-gradient(ellipse at 4% 100%, color-mix(in srgb, var(--accent) 15%, transparent), transparent 28rem), linear-gradient(125deg, var(--forest-deep), color-mix(in srgb, var(--forest-deep) 76%, var(--forest))); }
+.site-footer::before, .site-footer::after { position: absolute; z-index: -1; content: ''; border: 1px solid color-mix(in srgb, var(--gold) 18%, transparent); border-radius: 50%; pointer-events: none; }
+.site-footer::before { top: -190px; right: -66px; width: 390px; aspect-ratio: 1; box-shadow: inset 0 0 0 12px color-mix(in srgb, var(--gold) 3%, transparent), inset 0 0 0 13px color-mix(in srgb, var(--gold) 12%, transparent); }
+.site-footer::after { top: -140px; right: -18px; width: 292px; aspect-ratio: 1; border-style: dashed; opacity: .8; }
+.footer-inner { position: relative; z-index: 1; width: min(1200px, calc(100% - 72px)); display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "brand nav" "description nav" "note note"; align-items: center; gap: 12px 40px; margin: 0 auto; padding: 48px 0 22px; }
+.footer-brand { grid-area: brand; width: fit-content; color: #fff; font: 36px/.95 var(--serif); letter-spacing: -.055em; }
+.footer-brand span { color: var(--gold); }
+.footer-brand::after { display: block; margin-top: 8px; color: color-mix(in srgb, #fff 62%, var(--gold)); content: "FILIPINO HERITAGE, REIMAGINED"; font: 8px/1 var(--sans); letter-spacing: .11em; }
+.footer-inner > p { grid-area: description; max-width: 390px; margin: 0; color: color-mix(in srgb, #fff 76%, var(--forest)); font-size: 11px; line-height: 1.8; }
+.footer-links { grid-area: nav; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; max-width: 510px; }
+.footer-links a { padding: 10px 13px; border: 1px solid color-mix(in srgb, #fff 17%, transparent); border-radius: 999px; color: color-mix(in srgb, #fff 82%, var(--forest)); font-size: 10px; transition: color .2s, background .2s, border-color .2s, transform .2s; }
+.footer-links a:hover, .footer-links a.active { transform: translateY(-1px); border-color: color-mix(in srgb, var(--gold) 65%, transparent); color: var(--forest-deep); background: var(--gold); }
+.footer-note { grid-area: note; display: flex; align-items: center; min-height: 43px; margin-top: 10px; padding-top: 14px; border-top: 1px solid color-mix(in srgb, #fff 18%, transparent); color: color-mix(in srgb, #fff 64%, var(--forest)); font: 9px var(--sans); letter-spacing: .04em; }
 
 .motion-off *, .motion-off *::before, .motion-off *::after { scroll-behavior: auto !important; animation: none !important; transition-duration: .01ms !important; }
 
@@ -368,14 +427,14 @@ h1 em, h2 em { font-family: var(--accent-serif); font-size: 1.08em; font-style: 
   .nav-links { grid-column: 1 / -1; grid-row: 2; width: 100%; justify-content: flex-start; gap: 2px; overflow-x: auto; scrollbar-width: none; }.nav-links::-webkit-scrollbar { display: none; }.nav-links a { flex: 0 0 auto; padding: 8px 12px; }
   .home-hero { min-height: unset; grid-template-columns: 1fr; gap: 37px; padding: 57px 7% 58px; }.hero-copy h1 { font-size: clamp(49px, 10vw, 74px); }.hero-visual { min-height: 390px; margin-right: 12px; }.hero-scroll-cue { right: 7%; bottom: 18px; }
   .intro-band { min-height: 130px; gap: 14px; }.intro-band p { font-size: clamp(19px, 4vw, 28px); }
-  .collection-section, .sample-collection, .festival-beats { width: calc(100% - 38px); padding: 72px 0; }.section-heading { align-items: flex-start; flex-direction: column; gap: 14px; }.section-heading > p { max-width: 480px; }.collection-grid { grid-template-columns: 1fr; gap: 12px; }.collection-card { min-height: 310px; }.collection-art { top: 60px; }.collection-card-bottom > span { max-width: 420px; }
+  .collection-section, .sample-collection, .festival-beats { width: calc(100% - 38px); padding: 72px 0; }.section-heading { align-items: flex-start; flex-direction: column; gap: 14px; }.section-heading > p { max-width: 480px; }.collection-grid { grid-template-columns: 1fr; gap: 12px; }.collection-card { min-height: 390px; }.collection-card-bottom > span { max-width: 420px; }
   .home-note { align-items: flex-start; flex-direction: column; margin-bottom: 65px; padding: 43px 7%; }.note-stamp { position: absolute; top: 35px; right: 7%; width: 75px; height: 75px; font-size: 7px; }.home-note-copy { padding-right: 10px; }.home-note h2 { padding-right: 70px; }.button-light { margin-top: 0; }
   .inner-page, .team-page { width: calc(100% - 38px); }.editorial-hero { min-height: unset; grid-template-columns: 1fr; gap: 34px; padding: 53px 0 35px; }.editorial-hero h1, .festival-template-copy h1 { font-size: clamp(46px, 10vw, 66px); }.editorial-art { min-height: 340px; }.sample-banner { margin-right: 0; margin-left: 0; align-items: flex-start; }.sample-banner-tag { display: none; }.sample-grid, .prompt-grid { grid-template-columns: 1fr; }.sample-artwork { height: 230px; }.sample-card p { min-height: unset; }.media-template, .festival-media { grid-template-columns: 1fr; gap: 28px; margin: 0 0 55px; padding: 27px 22px; }.media-template-copy { max-width: unset; }.motion-preview { min-height: 245px; }.page-end-cta { align-items: flex-start; flex-direction: column; padding: 25px 0 55px; }.page-end-cta .button-primary { margin-top: 2px; }
   .tradition-collage { min-height: 310px; }.traditions-collection { padding-top: 60px; }.tradition-category-grid, .tradition-template-fields, .tradition-more-grid { grid-template-columns: 1fr; }.tradition-category-card { min-height: 285px; }.tradition-detail-hero { min-height: unset; grid-template-columns: 1fr; gap: 30px; padding: 45px 0 35px; }.tradition-detail-art { min-height: 260px; }.social-etiquette-detail-photo { min-height: 300px; }.social-etiquette-story .tradition-template-fields { grid-template-columns: 1fr; }.tradition-story-heading { flex-direction: column; }.tradition-story-template { padding: 21px 17px; }.tradition-more-stories { padding: 55px 0; }
   .festival-template-hero { min-height: unset; grid-template-columns: 1fr; gap: 35px; padding: 53px 0 35px; }.festival-template-photo { min-height: 350px; }.festival-details { grid-template-columns: 1fr; gap: 27px; padding: 55px 0; }.festival-beats { padding-top: 58px; }.beats-grid { grid-template-columns: 1fr; }.beat-card { min-height: 170px; }.beat-card h3 { margin-top: 27px; }.festival-media { margin-top: 0; }
   .team-hero { min-height: unset; grid-template-columns: 1fr; gap: 33px; padding: 50px 0 38px; }.team-hero h1 { font-size: clamp(47px, 10vw, 66px); }.team-hero-art { min-height: 270px; }.team-intro-row { grid-template-columns: 1fr; gap: 17px; padding: 33px 0 24px; }.developers-grid { gap: 13px; padding: 4px 0 55px; }.developer-portrait { height: 270px; }  .team-credit { align-items: flex-start; flex-wrap: wrap; margin: 0 0 55px; padding: 22px; }.team-credit > div { flex-basis: calc(100% - 85px); }.team-credit .contact-placeholder { margin-left: 79px; }
   .heritage-marquee { padding: 15px 0; }.heritage-marquee-copy { font-size: 10px; }.team-showcase { margin-top: 45px; padding: 65px 19px 27px; }.team-showcase-head { align-items: flex-start; flex-direction: column; gap: 15px; margin-bottom: 29px; }.team-showcase-head h2 { font-size: 46px; }.team-showcase-head > p { max-width: 470px; }.team-showcase-grid { gap: 12px; }.team-flip-card { transform: translateY(calc(var(--card-index)* 6px)) rotate(calc((var(--card-index) - 1.5)* .4deg)); }.team-flip-card:hover { transform: translateY(-4px) rotate(0) scale(1.01); }.team-flip-card.is-expanded { transform: translateY(-4px) rotate(0) scale(1.01); }.team-card-photo { height: 200px; }.team-card-identity { padding: 13px; }.team-card-identity strong { font-size: 19px; }.team-card-details-inner,.team-flip-card.is-expanded .team-card-details-inner { padding-right: 13px; padding-left: 13px; }.team-showcase-foot { flex-direction: column; gap: 8px; margin-top: 30px; }
-  .footer-inner { width: calc(100% - 38px); grid-template-columns: 1fr; gap: 13px; padding: 30px 0; }.footer-links { flex-wrap: wrap; }.footer-note { grid-column: 1; }
+  .footer-inner { width: calc(100% - 38px); grid-template-columns: 1fr; grid-template-areas: "brand" "description" "nav" "note"; justify-items: start; gap: 13px; padding: 34px 0 20px; }.footer-links { justify-content: flex-start; gap: 7px; max-width: 100%; }.footer-links a { padding: 9px 11px; }.footer-note { width: 100%; margin-top: 3px; }
 }
 @media (max-width: 490px) {
   .site-shell { --header-height: 116px; }.topbar-inner { padding-right: 12px; padding-left: 12px; }.brand-name { font-size: 17px; }.brand-name small { font-size: 7px; }.brand-mark { width: 35px; height: 35px; }.customize-button { gap: 5px; padding: 8px 9px; }.palette-panel { right: -4px; width: min(292px, calc(100vw - 24px)); }.nav-links a { padding: 8px 10px; font-size: 10px; }
@@ -427,8 +486,6 @@ h1 em, h2 em { font-family: var(--accent-serif); font-size: 1.08em; font-style: 
 
 .hero-visual > img { animation: image-arrive .9s ease both, hero-image-drift 24s ease-in-out 1s infinite alternate; }.hero-orbit { animation: orbit-turn 22s linear infinite; }.orbit-two { animation-direction: reverse; animation-duration: 29s; }.hero-sticker { animation: sticker-float 5s ease-in-out infinite; }
 @keyframes hero-image-drift { to { transform: scale(1.12) translate3d(-1.5%,1%,0); } }@keyframes orbit-turn { to { rotate: 360deg; } }@keyframes sticker-float { 50% { translate: 0 -9px; rotate: 15deg; } }
-.collection-art > span:first-of-type { animation: art-lobe 7s ease-in-out infinite alternate; }.collection-art > span:last-child { animation: art-lobe 9s ease-in-out -3s infinite alternate-reverse; }.collection-card:hover .collection-art > span:first-of-type { animation-duration: 2s; }.collection-card:hover .collection-art > span:last-child { animation-duration: 2.5s; }
-@keyframes art-lobe { to { transform: rotate(35deg) scale(1.12) translateY(-7px); } }
 .editorial-art { background-size: 140% 140%; animation: collage-breathe 17s ease-in-out infinite alternate; }.collage-sun { animation: sun-pulse 6s ease-in-out infinite alternate; }.collage-thread { animation: thread-glint 8s linear infinite; }.tradition-house { animation: house-float 6s ease-in-out infinite alternate; }.tradition-leaf { animation: leaf-drift 7s ease-in-out infinite alternate; }.tradition-leaf.leaf-two { animation-delay: -3s; }
 @keyframes collage-breathe { to { background-position: 90% 60%; } }@keyframes sun-pulse { to { transform: translate(-8px,7px) scale(1.08); box-shadow: 0 0 80px #f6cb7880; } }@keyframes thread-glint { 50% { opacity: .48; } 100% { opacity: 1; } }@keyframes house-float { to { translate: 0 -8px; } }@keyframes leaf-drift { to { translate: 8px -10px; rotate: 12deg; } }
 .sample-artwork > i { animation: sample-orbit 19s linear infinite; }.sample-artwork > i:nth-of-type(2) { animation-direction: reverse; animation-duration: 25s; }.sample-artwork > i:nth-of-type(3) { animation: sample-pulse 4s ease-in-out infinite alternate; }.sample-artwork > span { animation: sample-mark-float 4s ease-in-out infinite alternate; }.sample-card:hover .sample-artwork > span { animation-duration: 1.5s; }
@@ -655,8 +712,6 @@ body { background: var(--paper); }
   box-shadow: 0 9px 30px color-mix(in srgb, var(--ink) 5%, transparent);
 }
 .collection-card:hover { transform: translateY(-8px); border-color: color-mix(in srgb, var(--forest) 30%, var(--line)); box-shadow: 0 24px 46px color-mix(in srgb, var(--ink) 12%, transparent); }
-.collection-art { top: 91px; }
-.collection-art > i { border: 0; border-radius: 35px; }
 .collection-card-bottom strong { font-size: 29px; }
 .home-note {
   width: min(1180px, calc(100% - 72px));
@@ -745,9 +800,9 @@ body { background: var(--paper); }
 .team-picker-grid { gap: 13px; }
 .team-picker-photo { height: 125px; }
 .team-picker-card:hover { transform: translateY(-5px); }
-.site-footer { margin-top: 20px; border-radius: 38px 38px 0 0; background: linear-gradient(125deg, #17392f, #102d26); }
-.footer-inner { min-height: 210px; padding-top: 46px; padding-bottom: 42px; }
-.footer-brand { font-size: 34px; }
+.site-footer { margin-top: 38px; border-radius: 38px 38px 0 0; }
+.footer-inner { min-height: 235px; padding-top: 49px; padding-bottom: 25px; }
+.footer-brand { font-size: 39px; }
 .footer-links a { font-size: 11px; }
 .footer-note { font-size: 9px; }
 .button-text, .inline-link { transition: color .2s, transform .2s; }
@@ -817,7 +872,7 @@ body { background: var(--paper); }
   .festival-fact-grid { grid-template-columns: 1fr; }
   .festival-fact { min-height: 95px; }
   .team-showcase { padding-right: 14px; padding-left: 14px; }
-  .footer-inner { width: calc(100% - 32px); }
+  .footer-inner { width: calc(100% - 32px); }.footer-links { gap: 6px; }.footer-links a { padding: 8px 10px; font-size: 9px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .site-shell, .site-shell::before, .home-hero::before, .home-note::before, .home-note::after { animation: none !important; }
@@ -1012,7 +1067,6 @@ body { background: var(--paper); }
   .caption-mark,
   .hero-sticker > i,
   .intro-band-mark,
-  .collection-art > i,
   .heritage-marquee-copy > i,
   .team-feature-seal > i,
   .team-feature-image-caption > i,
@@ -1041,7 +1095,6 @@ body { background: var(--paper); }
   .caption-mark,
   .hero-sticker > i,
   .intro-band-mark,
-  .collection-art > i,
   .heritage-marquee-copy > i,
   .team-feature-seal > i,
   .team-feature-image-caption > i,
@@ -1077,7 +1130,6 @@ body { background: var(--paper); }
 .caption-mark { --line-mark-size: 17px; }
 .hero-sticker > i { --line-mark-size: 14px; }
 .intro-band-mark { --line-mark-size: 25px; }
-.collection-art > i { --line-mark-size: 48px; }
 .heritage-marquee-copy > i { --line-mark-size: 12px; }
 .team-feature-seal > i, .team-feature-image-caption > i { --line-mark-size: 12px; }
 .team-directory-foot > i, .team-showcase-foot > span > i { --line-mark-size: 10px; }
