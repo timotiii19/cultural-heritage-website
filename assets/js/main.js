@@ -173,19 +173,27 @@ function setMotion(enabled) {
 
 function setPalette(id) {
   const palette = palettes[id];
-  if (!palette) return;
+  if (!palette || !shell) return;
   shell.dataset.palette = id;
   localStorage.setItem(paletteKey, id);
-  paletteButton.querySelector('.palette-button-icon').innerHTML = swatches(palette.colors);
+  if (paletteButton) {
+    paletteButton.querySelector('.palette-button-icon')?.replaceChildren(
+      ...palette.colors.map((color) => {
+        const swatch = document.createElement('i');
+        swatch.style.backgroundColor = color;
+        return swatch;
+      }),
+    );
+  }
   const panel = document.querySelector('.palette-panel');
-  if (panel) panel.replaceWith(renderPalettePanel(id));
+  if (panel && paletteControl) panel.replaceWith(renderPalettePanel(id));
 }
 
 const savedPalette = localStorage.getItem(paletteKey);
 setPalette(Object.hasOwn(palettes, savedPalette) ? savedPalette : 'green');
 setMotion(localStorage.getItem(motionKey) !== 'off');
 
-paletteButton.addEventListener('click', () => {
+paletteButton?.addEventListener('click', () => {
   const panel = document.querySelector('.palette-panel');
   if (panel) {
     panel.remove();
@@ -198,7 +206,7 @@ paletteButton.addEventListener('click', () => {
   paletteButton.classList.add('is-open');
 });
 
-paletteControl.addEventListener('click', (event) => {
+paletteControl?.addEventListener('click', (event) => {
   if (event.target.closest('.panel-close')) {
     document.querySelector('.palette-panel')?.remove();
     paletteButton.setAttribute('aria-expanded', 'false');
@@ -336,7 +344,7 @@ if (developerPanels.length) {
       panel.style.display = panel.dataset.developerPanel === id ? '' : 'none';
     });
     cards.forEach((card) => {
-      const cardId = card.querySelector('.team-picker-name small').textContent.slice(0, 2);
+      const cardId = card.dataset.developerId;
       const selected = cardId === id;
       card.classList.toggle('selected', selected);
       card.setAttribute('aria-pressed', String(selected));
@@ -344,22 +352,126 @@ if (developerPanels.length) {
   };
   document.querySelector('.team-picker-grid')?.addEventListener('click', (event) => {
     const card = event.target.closest('.team-picker-card');
-    if (card) selectDeveloper(card.querySelector('.team-picker-name small').textContent.slice(0, 2));
+    if (card) selectDeveloper(card.dataset.developerId);
   });
-  document.querySelector('.team-feature-panel')?.parentElement.addEventListener('click', (event) => {
-    if (event.target.closest('.team-feature-topline button')) {
-      selectDeveloper('intro');
+  selectDeveloper('intro');
+}
+
+const stepButton = document.querySelector('[data-stair-step]');
+if (stepButton) {
+  const names = ['oro', 'plata', 'mata'];
+  const steps = document.querySelector('[data-stair-steps]');
+  const verdict = document.querySelector('[data-stair-verdict]');
+  const walker = document.querySelector('[data-stair-walker]');
+  const action = document.querySelector('[data-stair-action]');
+  const progress = document.querySelector('[data-stair-progress]');
+  let current = 0;
+  const positionWalker = () => {
+    if (!walker || !current) return;
+    const scene = document.querySelector('[data-stair-scene]');
+    const reachedStep = steps?.querySelectorAll('.sp-stair-step')[current - 1];
+    if (!scene || !reachedStep) return;
+    const sceneRect = scene.getBoundingClientRect();
+    const stepRect = reachedStep.getBoundingClientRect();
+    walker.style.left = `${stepRect.left - sceneRect.left + (stepRect.width / 2) - (walker.offsetWidth / 2)}px`;
+    walker.style.bottom = `${sceneRect.height - (stepRect.top - sceneRect.top)}px`;
+  };
+  const render = () => {
+    if (!steps || !verdict) return;
+    steps.innerHTML = Array.from({ length: 7 }, (_, index) => {
+      const name = names[index % 3];
+      const reached = index < current;
+      return `<div class="sp-stair-step sp-stair-${name}${reached ? ' is-reached' : ''}"><span>${String(index + 1).padStart(2, '0')}</span><strong>${name}</strong></div>`;
+    }).join('');
+    if (walker) {
+      if (!current) {
+        walker.style.left = '18px';
+        walker.style.bottom = '18px';
+      }
+      positionWalker();
+    }
+    if (!current) {
+      verdict.textContent = 'At the starting step. Step forward to begin the oro, plata, mata count.';
+      if (action) action.textContent = 'Step Forward';
+      if (progress) progress.textContent = 'At the starting step';
       return;
     }
-    const direction = event.target.closest('[aria-label="Previous developer"]') ? -1
-      : event.target.closest('[aria-label="Next developer"]') ? 1 : 0;
-    if (!direction) return;
-    const current = cards.indexOf(activeProfile());
-    const next = current < 0
-      ? (direction > 0 ? 0 : cards.length - 1)
-      : (current + direction + cards.length) % cards.length;
-    selectDeveloper(cards[next].querySelector('.team-picker-name small').textContent.slice(0, 2));
+    const name = names[(current - 1) % 3];
+    if (action) action.textContent = current === 7 ? 'Start Again' : 'Step Forward';
+    if (progress) progress.textContent = `Step ${current} of 7 · ${name}`;
+    verdict.textContent = name === 'oro'
+      ? `Step ${current} ends on oro — gold. The tradition associates this ending with good fortune and abundance.`
+      : name === 'plata'
+        ? `Step ${current} ends on plata — silver. The tradition considers this a fortunate ending.`
+        : `Step ${current} ends on mata — death or misfortune. The tradition considers this an unlucky ending.`;
+  };
+  stepButton.addEventListener('click', () => {
+    current = current >= 7 ? 0 : current + 1;
+    render();
   });
+  window.addEventListener('resize', positionWalker);
+  render();
+}
+
+const routeButtons = [...document.querySelectorAll('.sp-route-controls [data-route]')];
+if (routeButtons.length) {
+  const positionRoutePerson = () => {
+    const scene = document.querySelector('[data-route-scene]');
+    const person = document.querySelector('[data-route-person]');
+    if (!scene || !person) return;
+    const place = scene.dataset.routeScene === 'wake'
+      ? scene.querySelector('.sp-wake i')
+      : scene.querySelector(scene.dataset.routeScene === 'direct' ? '.sp-home i' : '.sp-stop i');
+    if (!place) return;
+    const sceneRect = scene.getBoundingClientRect();
+    const placeRect = place.getBoundingClientRect();
+    const personRect = person.getBoundingClientRect();
+    const atWake = scene.dataset.routeScene === 'wake';
+    person.style.left = `${placeRect.left - sceneRect.left + (placeRect.width / 2) - (personRect.width / 2)}px`;
+    person.style.top = `${atWake
+      ? placeRect.bottom - sceneRect.top + 6
+      : placeRect.top - sceneRect.top - personRect.height - 8}px`;
+    person.style.bottom = 'auto';
+  };
+  routeButtons.forEach((button) => button.addEventListener('click', () => {
+    routeButtons.forEach((item) => {
+      const active = item === button;
+      item.classList.toggle('is-active', active);
+      item.setAttribute('aria-pressed', String(active));
+    });
+    const direct = button.dataset.route === 'direct';
+    const scene = document.querySelector('[data-route-scene]');
+    if (scene) scene.dataset.routeScene = direct ? 'direct' : 'detour';
+    requestAnimationFrame(positionRoutePerson);
+    document.querySelector('[data-route-result]').textContent = direct
+      ? 'Go Home: The figure returns straight to the household. This skips the brief pause described in pagpag, although families observe it differently.'
+      : 'Short Detour: The figure stops before returning home. This pause is traditionally meant to leave the presence of the deceased behind.';
+  }));
+  window.addEventListener('resize', () => requestAnimationFrame(positionRoutePerson));
+  positionRoutePerson();
+}
+
+const sukobButtons = [...document.querySelectorAll('.sp-sukob-controls [data-sukob]')];
+if (sukobButtons.length) {
+  sukobButtons.forEach((button) => button.addEventListener('click', () => {
+    sukobButtons.forEach((item) => {
+      const active = item === button;
+      item.classList.toggle('is-active', active);
+      item.setAttribute('aria-pressed', String(active));
+    });
+    const mourning = button.dataset.sukob === 'mourning';
+    const scene = document.querySelector('[data-sukob-scene]');
+    if (scene) scene.dataset.sukobScene = mourning ? 'mourning' : 'siblings';
+    const highlight = document.querySelector('[data-sukob-highlight]');
+    highlight.classList.toggle('is-good', !mourning);
+    highlight.classList.toggle('is-warning', mourning);
+    highlight.textContent = mourning
+      ? 'SUKOB WARNING — A wedding meets a period of mourning'
+      : 'GOOD LUCK — Both sibling weddings share blessings';
+    document.querySelector('[data-sukob-result]').textContent = mourning
+      ? 'Bad-luck interpretation: the belief warns that overlapping a wedding with mourning may bring misfortune or family conflict. Many families delay or reschedule to honor the meaning.'
+      : 'Good-luck interpretation: when both siblings marry in 2026, the celebration of each wedding is highlighted. The belief is meant to show shared blessings—not that every overlapping wedding has the same outcome.';
+  }));
 }
 
 const storyPanels = [...document.querySelectorAll('[data-art-story]')];
