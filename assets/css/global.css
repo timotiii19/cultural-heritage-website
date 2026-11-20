@@ -2587,25 +2587,228 @@ body { background: var(--paper); }
 }
 
 /* ---------- Pagmamano: gesture diagram ---------- */
-.se-gesture { display: block; width: 100%; height: auto; max-height: 240px; margin: 4px 0 18px; overflow: visible; }
-.se-gesture circle, .se-gesture path { fill: none; stroke: #ffffffd9; stroke-width: 2.2; stroke-linecap: round; }
-.se-g-young, .se-g-elder, .se-g-hand, .se-g-bubble { transition: transform .9s cubic-bezier(.4, 0, .2, 1), opacity .5s ease; }
-.se-g-bubble rect { fill: var(--gold); stroke: none; }
-.se-g-hand rect { fill: var(--gold); stroke: var(--ink); stroke-width: 1.3; }
-.se-g-hand .se-wrist { fill-opacity: .55; }.se-g-bubble text { fill: var(--ink); font: 600 13px var(--sans); text-anchor: middle; }
+.se-gesture {
+  --se-g-ease: cubic-bezier(.65, 0, .35, 1);
+  --se-g-fill: color-mix(in srgb, var(--forest) 7%, var(--paper-bright));
+  display: block; width: 100%; height: auto; max-height: 250px; margin: 4px 0 18px; overflow: visible;
+}
+.se-gesture {
+  --se-skin: #c98d63;
+  --se-skin-2: #b97d55;
+  --se-hair: #2b211d;
+  --se-grey: #dcd7d0;
+}
+.se-g-skin { fill: var(--se-skin); }
+.se-g-skin-2 { fill: var(--se-skin-2); }
+.se-g-hair { fill: var(--se-hair); }
+.se-g-grey { fill: var(--se-grey); }
+.se-g-shirt { fill: var(--forest); }
+.se-g-sleeve { fill: color-mix(in srgb, var(--forest) 82%, #000); }
+.se-g-pants { fill: color-mix(in srgb, var(--ink) 78%, var(--forest)); }
+.se-g-pants-2 { fill: color-mix(in srgb, var(--ink) 92%, #000); }
+.se-g-shoe { fill: var(--ink); }
+.se-g-top { fill: color-mix(in srgb, var(--gold) 70%, var(--paper-bright)); }
+.se-g-top-2 { fill: color-mix(in srgb, var(--gold) 82%, var(--ink)); }
+.se-g-skirt { fill: color-mix(in srgb, var(--forest) 55%, var(--ink)); }
+.se-g-collar { fill: none; stroke: var(--paper-bright); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.se-g-cane { fill: none; stroke: #7a5a3c; stroke-width: 3; stroke-linecap: round; }
+.se-g-eye { fill: var(--ink); transform-box: fill-box; transform-origin: center; }
+.se-g-blush { fill: #e8897a; opacity: .45; }
+.se-g-line { fill: none; stroke: var(--ink); stroke-width: 1.2; stroke-linecap: round; }
+.se-g-glass { fill: #ffffff40; stroke: var(--ink); stroke-width: 1.2; }
+.se-g-ground { stroke: color-mix(in srgb, var(--forest) 30%, transparent); stroke-width: 1.5; stroke-dasharray: 1 7; stroke-linecap: round; }
+.se-g-shadow { fill: var(--forest); opacity: .12; }
+.se-g-tag { fill: var(--muted); font: 600 8.5px var(--sans); letter-spacing: .16em; text-anchor: middle; }
+.se-g-bubble rect, .se-g-bubble path { fill: var(--gold); }
+.se-g-bubble text { fill: var(--ink); font: 600 12.5px var(--sans); letter-spacing: .02em; text-anchor: middle; }
+.se-g-glow { fill: var(--gold); opacity: 0; transform-box: fill-box; transform-origin: center; }
+.se-g-ring { fill: none; stroke: var(--gold); stroke-width: 2; opacity: 0; transform-box: fill-box; transform-origin: center; }
 
-.se-g-young  { transform: translate(-34px, 0); opacity: .55; }
-.se-g-hand   { transform: translate(226px, 132px) rotate(0deg); }
-.se-g-bubble { transform: translate(0, 8px); opacity: 0; }
+/* idle: both characters blink now and then */
+.se-g-eye { animation: se-g-blink 5s infinite; }
+.se-g-eye-elder { animation-delay: 1.8s; }
+@keyframes se-g-blink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(.1); } }
 
-.se-gesture[data-step="2"] .se-g-young,
-.se-gesture[data-step="3"] .se-g-young  { transform: none; opacity: 1; }
-.se-gesture[data-step="2"] .se-g-hand   { transform: translate(152px, 128px) rotate(0deg); }
-.se-gesture[data-step="3"] .se-g-hand   { transform: translate(98px, 48px) rotate(-14deg); }
-.se-gesture[data-step="3"] .se-g-bubble { transform: none; opacity: 1; }
+/* resting pose (step 1) */
+.se-g-young { transform: translateX(150px); }
+.se-g-lean, .se-g-nod, .se-g-bless, .se-g-yarm { transform: rotate(0deg); transition: transform .9s var(--se-g-ease); }
+.se-g-yarm { transform: rotate(-4deg); }
+.se-g-arm { transform: rotate(6deg); transition: transform .8s var(--se-g-ease); }
+.se-g-bubble { opacity: 0; transform: translateY(6px) scale(.9); transform-box: fill-box; transform-origin: 60% 100%; transition: transform .45s cubic-bezier(.34, 1.45, .64, 1), opacity .25s ease; }
+
+/* 1 · approach: the younger person walks in, legs and arm swinging */
+.se-gesture[data-step="1"] .se-g-young { animation: se-g-walk 2s cubic-bezier(.33, .4, .3, 1) both, se-g-fade-in .5s ease-out both; }
+.se-gesture[data-step="1"] .se-g-leg-a { animation: se-g-stride 2s cubic-bezier(.45, 0, .55, 1) both; }
+.se-gesture[data-step="1"] .se-g-leg-b { animation: se-g-stride-b 2s cubic-bezier(.45, 0, .55, 1) both; }
+.se-gesture[data-step="1"] .se-g-yarm { animation: se-g-swing 2s cubic-bezier(.45, 0, .55, 1) both; }
+.se-gesture[data-step="1"] .se-g-lean,
+.se-gesture[data-step="1"] .se-g-nod { transition: none; }
+@keyframes se-g-walk { from { transform: translateX(46px); } to { transform: translateX(150px); } }
+@keyframes se-g-fade-in { from { opacity: 0; } to { opacity: 1; } }
+/* stride swings shrink as the walk eases to a stop */
+@keyframes se-g-stride {
+  0%   { transform: rotate(0deg); }
+  10%  { transform: rotate(17deg); }
+  30%  { transform: rotate(-16deg); }
+  50%  { transform: rotate(12deg); }
+  70%  { transform: rotate(-7deg); }
+  86%  { transform: rotate(3deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes se-g-stride-b {
+  0%   { transform: rotate(0deg); }
+  10%  { transform: rotate(-17deg); }
+  30%  { transform: rotate(16deg); }
+  50%  { transform: rotate(-12deg); }
+  70%  { transform: rotate(7deg); }
+  86%  { transform: rotate(-3deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes se-g-swing {
+  0%   { transform: rotate(-4deg); }
+  10%  { transform: rotate(-22deg); }
+  30%  { transform: rotate(12deg); }
+  50%  { transform: rotate(-16deg); }
+  70%  { transform: rotate(3deg); }
+  86%  { transform: rotate(-7deg); }
+  100% { transform: rotate(-4deg); }
+}
+
+/* 2 · the elder offers a hand, the younger reaches to receive it */
+.se-gesture[data-step="2"] .se-g-arm { transform: rotate(70deg); transition: transform 1.2s cubic-bezier(.5, 0, .2, 1); }
+.se-gesture[data-step="2"] .se-g-yarm { transform: rotate(-70deg); transition: transform 1.1s cubic-bezier(.5, 0, .2, 1) .35s; }
+.se-gesture[data-step="2"] .se-g-lean { transform: rotate(4deg); transition: transform 1.1s cubic-bezier(.5, 0, .2, 1) .35s; }
+
+/* 3 · bow and bring the hand to the forehead, all moving together */
+.se-gesture[data-step="3"] .se-g-arm { transform: rotate(94deg); transition: transform 1.3s var(--se-g-ease); }
+.se-gesture[data-step="3"] .se-g-yarm { transform: rotate(-140deg); transition: transform 1.3s var(--se-g-ease); }
+.se-gesture[data-step="3"] .se-g-lean { transform: rotate(35deg); transition: transform 1.3s var(--se-g-ease); }
+.se-gesture[data-step="3"] .se-g-nod { transform: rotate(20deg); transition: transform 1.1s var(--se-g-ease) .25s; }
+.se-gesture[data-step="3"] .se-g-bless { transform: rotate(-9deg); transition: transform 1s var(--se-g-ease) .8s; }
+.se-gesture[data-step="3"] .se-g-glow { animation: se-g-pulse 1.6s ease-out 1.2s both; }
+.se-gesture[data-step="3"] .se-g-ring { animation: se-g-ring 1.6s cubic-bezier(.2, .7, .3, 1) 1.25s both; }
+.se-gesture[data-step="3"] .se-g-bubble { opacity: 1; transform: none; transition-delay: 1.4s; }
+
+/* loop reset: fade the scene back out before the walk starts again */
+.se-gesture.is-resetting .se-g-young { opacity: 0; transition: opacity .5s ease; }
+.se-gesture.is-resetting .se-g-bubble { opacity: 0; transform: translateY(6px) scale(.9); transition: opacity .3s ease, transform .3s ease; }
+.se-gesture.is-resetting .se-g-arm { transform: rotate(6deg); transition: transform .6s var(--se-g-ease); }
+.se-gesture.is-resetting .se-g-bless { transform: rotate(0deg); transition: transform .6s var(--se-g-ease); }
+
+/* ---------- Continuous play: one 7s timeline, every motion flows into the next ----------
+   0–1.6s walk in · 1.3–2.4 elder offers hand · 1.6–2.6 younger reaches
+   2.6–3.6 bow to the hand · 3.5–4.4 mano po · 4.4–5.3 rise · 5.3–5.5 turn · 5.5–7 walk away */
+.se-gesture.is-playing { --se-loop: 7s; }
+.se-gesture.is-playing .se-g-young { animation: se-gl-move var(--se-loop) infinite, se-gl-fade var(--se-loop) linear infinite; }
+.se-gesture.is-playing .se-g-turn { animation: se-gl-turn var(--se-loop) cubic-bezier(.45, 0, .55, 1) infinite; }
+.se-gesture.is-playing .se-g-leg-a { animation: se-gl-stride var(--se-loop) cubic-bezier(.45, 0, .55, 1) infinite; }
+.se-gesture.is-playing .se-g-leg-b { animation: se-gl-stride-b var(--se-loop) cubic-bezier(.45, 0, .55, 1) infinite; }
+.se-gesture.is-playing .se-g-yarm { animation: se-gl-yarm var(--se-loop) cubic-bezier(.45, 0, .55, 1) infinite; }
+.se-gesture.is-playing .se-g-lean { animation: se-gl-lean var(--se-loop) cubic-bezier(.45, 0, .55, 1) infinite; }
+.se-gesture.is-playing .se-g-nod { animation: se-gl-nod var(--se-loop) cubic-bezier(.45, 0, .55, 1) infinite; }
+.se-gesture.is-playing .se-g-arm { animation: se-gl-arm var(--se-loop) cubic-bezier(.45, 0, .55, 1) infinite; }
+.se-gesture.is-playing .se-g-bless { animation: se-gl-bless var(--se-loop) cubic-bezier(.45, 0, .55, 1) infinite; }
+.se-gesture.is-playing .se-g-glow { animation: se-gl-glow var(--se-loop) ease-out infinite; }
+.se-gesture.is-playing .se-g-ring { animation: se-gl-ring var(--se-loop) ease-out infinite; }
+.se-gesture.is-playing .se-g-bubble { animation: se-gl-bubble var(--se-loop) cubic-bezier(.34, 1.3, .64, 1) infinite; }
+.se-gesture-card[data-paused] .se-gesture.is-playing * { animation-play-state: paused; }
+
+@keyframes se-gl-move {
+  0%      { transform: translateX(46px); animation-timing-function: cubic-bezier(.3, .45, .3, 1); }
+  22.86%  { transform: translateX(150px); }
+  78.57%  { transform: translateX(150px); animation-timing-function: cubic-bezier(.55, 0, .8, .7); }
+  100%    { transform: translateX(40px); }
+}
+@keyframes se-gl-fade {
+  0% { opacity: 0; } 6% { opacity: 1; } 88% { opacity: 1; } 99%, 100% { opacity: 0; }
+}
+@keyframes se-gl-turn {
+  0%, 75.71% { transform: scaleX(1); }
+  78.57%, 100% { transform: scaleX(-1); }
+}
+@keyframes se-gl-stride {
+  0% { transform: rotate(0deg); } 3.4% { transform: rotate(17deg); } 8% { transform: rotate(-16deg); }
+  12.6% { transform: rotate(12deg); } 17.1% { transform: rotate(-7deg); } 20.5% { transform: rotate(3deg); }
+  22.86%, 78.57% { transform: rotate(0deg); }
+  82% { transform: rotate(15deg); } 86% { transform: rotate(-16deg); } 90% { transform: rotate(16deg); }
+  94% { transform: rotate(-16deg); } 97% { transform: rotate(10deg); } 100% { transform: rotate(0deg); }
+}
+@keyframes se-gl-stride-b {
+  0% { transform: rotate(0deg); } 3.4% { transform: rotate(-17deg); } 8% { transform: rotate(16deg); }
+  12.6% { transform: rotate(-12deg); } 17.1% { transform: rotate(7deg); } 20.5% { transform: rotate(-3deg); }
+  22.86%, 78.57% { transform: rotate(0deg); }
+  82% { transform: rotate(-15deg); } 86% { transform: rotate(16deg); } 90% { transform: rotate(-16deg); }
+  94% { transform: rotate(16deg); } 97% { transform: rotate(-10deg); } 100% { transform: rotate(0deg); }
+}
+@keyframes se-gl-yarm {
+  0% { transform: rotate(-4deg); } 3.4% { transform: rotate(-22deg); } 8% { transform: rotate(12deg); }
+  12.6% { transform: rotate(-16deg); } 17.1% { transform: rotate(3deg); } 20.5% { transform: rotate(-7deg); }
+  22.86% { transform: rotate(-4deg); }
+  37.14% { transform: rotate(-70deg); }
+  51.43%, 62.86% { transform: rotate(-140deg); }
+  75.71%, 78.57% { transform: rotate(-4deg); }
+  82% { transform: rotate(-20deg); } 86% { transform: rotate(12deg); } 90% { transform: rotate(-20deg); }
+  94% { transform: rotate(12deg); } 100% { transform: rotate(-4deg); }
+}
+@keyframes se-gl-lean {
+  0%, 22.86% { transform: rotate(0deg); }
+  37.14% { transform: rotate(4deg); }
+  51.43%, 62.86% { transform: rotate(35deg); }
+  75.71%, 100% { transform: rotate(0deg); }
+}
+@keyframes se-gl-nod {
+  0%, 40% { transform: rotate(0deg); }
+  51.43%, 62.86% { transform: rotate(20deg); }
+  72.86%, 100% { transform: rotate(0deg); }
+}
+@keyframes se-gl-arm {
+  0%, 18.57% { transform: rotate(6deg); }
+  34.29% { transform: rotate(70deg); }
+  51.43%, 64.29% { transform: rotate(94deg); }
+  77.14%, 100% { transform: rotate(6deg); }
+}
+@keyframes se-gl-bless {
+  0%, 47.14% { transform: rotate(0deg); }
+  54.29%, 62.86% { transform: rotate(-9deg); }
+  70%, 100% { transform: rotate(0deg); }
+}
+@keyframes se-gl-glow {
+  0%, 48.57% { opacity: 0; transform: scale(.3); }
+  51.43% { opacity: .45; }
+  62.86%, 100% { opacity: 0; transform: scale(1.6); }
+}
+@keyframes se-gl-ring {
+  0%, 49.29% { opacity: 0; transform: scale(.4); }
+  51.43% { opacity: .9; }
+  64.29%, 100% { opacity: 0; transform: scale(2.1); }
+}
+@keyframes se-gl-bubble {
+  0%, 50% { opacity: 0; transform: translateY(6px) scale(.9); }
+  54.29%, 67.14% { opacity: 1; transform: none; animation-timing-function: ease-in; }
+  70% { opacity: 0; transform: translateY(-4px) scale(.96); }
+  100% { opacity: 0; transform: translateY(6px) scale(.9); }
+}
+
+/* the elder breathes gently so the scene never fully freezes */
+.se-g-elder { animation: se-g-breathe 3.2s ease-in-out infinite alternate; }
+@keyframes se-g-breathe { from { transform: translateY(0); } to { transform: translateY(-1.2px); } }
+@keyframes se-g-pulse {
+  0%   { opacity: 0; transform: scale(.3); }
+  30%  { opacity: .45; }
+  100% { opacity: 0; transform: scale(1.6); }
+}
+@keyframes se-g-ring {
+  0%   { opacity: 0; transform: scale(.4); }
+  20%  { opacity: .9; }
+  100% { opacity: 0; transform: scale(2.1); }
+}
+
+/* gloss line eases in on each step */
+.se-gesture-card .se-try-gloss.is-in { animation: se-g-text .5s ease both; }
+@keyframes se-g-text { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .se-g-young, .se-g-elder, .se-g-hand, .se-g-bubble { transition: none; }
+  .se-gesture *, .se-gesture-card .se-try-gloss { transition: none !important; animation: none !important; }
 }
 
 .se-seal { position: absolute; z-index: 2; top: 18px; right: 18px; width: 104px; height: 104px; border-radius: 50%; color: #fff; background: color-mix(in srgb, var(--forest-deep) 70%, transparent); backdrop-filter: blur(4px); animation: se-spin 26s linear infinite; }
@@ -2650,9 +2853,6 @@ body { background: var(--paper); }
 .se-try-stage { border-top-color: var(--line); }
 .se-try-gloss, .se-try-note { color: var(--muted); }
 
-/* Pagmamano diagram lines (were white on the dark panel) */
-.se-gesture circle, .se-gesture path { stroke: var(--forest); }
-
 /* ---------- Interaction cues ---------- */
 .se-try-label { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; color: var(--muted); font: 12px var(--sans); letter-spacing: .06em; text-transform: uppercase; }
 .se-try-label span { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; color: #fff; background: var(--forest); font-size: 11px; letter-spacing: 0; }
@@ -2683,58 +2883,198 @@ body { background: var(--paper); }
 
 /* fill bar on the active step shows when the next one arrives */
 .se-gesture-card .se-try-chips button { position: relative; overflow: hidden; }
-.se-gesture-card .se-try-chips button.is-active::after { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 3px; background: var(--forest); transform-origin: left; animation: se-fill 3.8s linear forwards; }
+.se-gesture-card .se-try-chips button.is-active::after { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 3px; background: var(--forest); transform-origin: left; animation: se-fill var(--se-step-dur, 4.2s) linear var(--se-step-delay, 0s) forwards; }
 .se-gesture-card[data-paused] .se-try-chips button.is-active::after { display: none; }
 @keyframes se-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @media (prefers-reduced-motion: reduce) { .se-gesture-card .se-try-chips button.is-active::after { display: none; } }
 
-/* ---------- Pagmamano hand (final) ---------- */
-.se-g-hand .se-forearm { fill: url(#se-arm-fade); stroke: none; }
-.se-hand-outline { fill: var(--ink); stroke: var(--ink); stroke-width: 3.4; stroke-linejoin: round; }
-.se-hand-fill { fill: var(--gold); stroke: none; }
+/* ---------- Bayanihan: many hands carry the kubo ---------- */
+.se-bayani {
+  --lift: 0; --tilt: 0deg;
+  --se-b-ease: cubic-bezier(.65, 0, .35, 1);
+  display: block; width: 100%; height: auto; max-height: 270px; margin: 4px 0 16px;
+  overflow: hidden; border-radius: 14px;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--forest) 14%, transparent);
+}
 
-.se-g-hand { transform: translate(214px, 130px) rotate(-90deg); }
-.se-gesture[data-step="2"] .se-g-hand { transform: translate(142px, 128px) rotate(-90deg); }
-.se-gesture[data-step="3"] .se-g-hand { transform: translate(98px, 56px) rotate(-78deg); }
+/* backdrop */
+.se-b-sky-top { stop-color: color-mix(in srgb, #9cc7d9 45%, var(--paper-bright)); }
+.se-b-sky-bottom { stop-color: color-mix(in srgb, var(--gold) 22%, var(--paper-bright)); }
+.se-b-sun { fill: var(--gold); }
+.se-b-sun-halo { fill: var(--gold); opacity: .22; transform-box: fill-box; transform-origin: center; animation: se-b-glow 4s ease-in-out infinite alternate; }
+.se-b-cloud ellipse { fill: #fff; opacity: .85; }
+.se-b-cloud-1 { animation: se-b-drift 46s linear infinite; animation-delay: -12s; }
+.se-b-cloud-2 { animation: se-b-drift 62s linear infinite; animation-delay: -40s; }
+.se-b-birds path { fill: none; stroke: color-mix(in srgb, var(--ink) 55%, transparent); stroke-width: 1.2; stroke-linecap: round; }
+.se-b-birds { animation: se-b-fly 26s linear infinite; animation-delay: -8s; }
+.se-b-hill-far { fill: color-mix(in srgb, var(--forest) 20%, var(--paper-bright)); }
+.se-b-hill-near { fill: color-mix(in srgb, var(--forest) 34%, var(--paper-bright)); }
+.se-b-trunk { fill: none; stroke: #8a6a45; stroke-width: 4; stroke-linecap: round; }
+.se-b-frond { fill: color-mix(in srgb, var(--forest) 80%, #3c7a3a); }
+.se-b-palm { animation: se-b-sway 5s ease-in-out infinite alternate; }
+.se-b-palm { transform-origin: 0 0; }
+.se-b-palm-late { animation-delay: -2.5s; }
 
-/* elder steps closer once the hand is offered */
-.se-g-elder { transform: none; }
-.se-gesture[data-step="2"] .se-g-elder,
-.se-gesture[data-step="3"] .se-g-elder { transform: translate(-34px, 0); }
+/* more scenery that rolls past on the journey */
+.se-b-farhut path:first-child { fill: color-mix(in srgb, var(--forest) 45%, var(--paper-bright)); }
+.se-b-farhut rect { fill: color-mix(in srgb, var(--gold) 35%, var(--paper-bright)); }
+.se-b-farhut path:last-child { fill: none; stroke: color-mix(in srgb, var(--forest) 45%, var(--paper-bright)); stroke-width: 1.2; }
+.se-b-banana-stem { fill: none; stroke: #6f8f3e; stroke-width: 3; stroke-linecap: round; }
+.se-b-leaf { fill: #6fa04a; }
+.se-b-banana { transform-origin: 0 0; animation: se-b-sway 4s ease-in-out infinite alternate; }
+.se-b-fence { fill: none; stroke: #8a6a45; stroke-width: 1.8; stroke-linecap: round; }
+.se-b-paddy { fill: none; stroke: color-mix(in srgb, #8fbf5a 70%, var(--forest)); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 2 4; opacity: .8; }
 
-/* ---------- Pagmamano: back to the original pill hand ---------- */
-.se-g-hand rect { fill: var(--gold); stroke: none; }
+/* day and night: the script sets --night (0 = day, 1 = deep night) as they walk */
+.se-bayani { --night: 0; }
+.se-b-night { fill: #0d1433; opacity: calc(var(--night) * .42); pointer-events: none; }
+.se-b-stars circle { fill: #fffbe8; }
+.se-b-stars { opacity: var(--night); }
+.se-b-stars circle:nth-child(3n) { animation: se-b-twinkle 2.4s ease-in-out infinite alternate; }
+.se-b-stars circle:nth-child(3n+1) { animation: se-b-twinkle 3.1s ease-in-out infinite alternate-reverse; }
+@keyframes se-b-twinkle { from { opacity: 1; } to { opacity: .3; } }
+.se-b-moon { fill: #f6f0da; }
+.se-b-crater { fill: #e3dbc0; }
+.se-b-fireflies { opacity: var(--night); }
+.se-b-fireflies circle { fill: #f8e27a; animation: se-b-blinkfly 1.8s ease-in-out infinite alternate; }
+.se-b-fireflies circle:nth-child(2n) { animation-duration: 2.4s; animation-delay: -.8s; }
+.se-b-fireflies circle:nth-child(3n) { animation-duration: 1.5s; animation-delay: -1.2s; }
+@keyframes se-b-blinkfly { from { opacity: .15; transform: translateY(0); } to { opacity: 1; transform: translateY(-3px); } }
+/* the crew dims with the night, but the kubo's lamp glows through its window and door */
+.se-b-crew { filter: brightness(calc(1 - var(--night) * .32)); }
+.se-b-opening { fill: color-mix(in srgb, #ffcf5c calc(var(--night) * 100%), #4f3820); }
 
-.se-g-hand { transform: translate(226px, 132px); }
-.se-gesture[data-step="2"] .se-g-hand { transform: translate(152px, 128px); }
-.se-gesture[data-step="3"] .se-g-hand { transform: translate(94px, 50px); }
 
-.se-g-elder,
-.se-gesture[data-step="2"] .se-g-elder,
-.se-gesture[data-step="3"] .se-g-elder { transform: none; }
+/* dogs and cats: the script walks them; tails and heads move on their own */
+.se-b-pets { filter: brightness(calc(1 - var(--night) * .32)); }
+.se-b-pet-shadow { fill: #000; opacity: .12; }
+.se-b-pet-line { fill: none; stroke-linecap: round; }
+.se-b-pet-dark { fill: #1f1a18; }
+.se-b-whisker { fill: none; stroke: #00000055; stroke-width: .4; stroke-linecap: round; }
+.se-b-pet-head { transition: transform .5s cubic-bezier(.45, 0, .3, 1); }
+.se-b-dog .se-b-pet-tail { animation: se-b-wag .32s ease-in-out infinite alternate; }
+.se-b-cat .se-b-pet-tail { animation: se-b-curl 2.2s ease-in-out infinite alternate; }
+@keyframes se-b-wag { from { transform: rotate(-16deg); } to { transform: rotate(14deg); } }
+@keyframes se-b-curl { from { transform: rotate(-8deg); } to { transform: rotate(10deg); } }
 
-/* ---------- Bayanihan: many hands ---------- */
-.se-bayani { display: block; width: 100%; height: auto; max-height: 250px; margin: 4px 0 14px; overflow: visible; }
-.se-b-ground { fill: none; stroke: color-mix(in srgb, var(--forest) 35%, transparent); stroke-width: 2; }
-.se-b-ghost { fill: none; stroke: var(--forest); stroke-width: 1.6; stroke-dasharray: 5 5; opacity: .45; }
+/* Pause freezes every looping motion; the script stops the walk too */
+.se-bayani[data-paused] * { animation-play-state: paused !important; }
 
-.se-b-house, .se-b-helpers { transition: transform 1.2s cubic-bezier(.4, 0, .2, 1); }
-.se-b-house   { transform: translate(14px, calc(var(--sag, 0) * 1px)); }
-.se-b-helpers { transform: translate(14px, 0); }
-.se-bayani[data-full] .se-b-house,
-.se-bayani[data-full] .se-b-helpers { transform: translate(190px, 0); }
+/* loop: fade the whole scene out and back in when it starts over */
+.se-bayani { transition: opacity .5s ease; }
+.se-bayani.is-fading { opacity: 0; }
+.se-b-field { fill: color-mix(in srgb, var(--forest) 42%, #a7b85a); }
+.se-b-tufts { fill: none; stroke: color-mix(in srgb, var(--forest) 75%, #000); stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; opacity: .55; }
+/* carabao: grazes, swishes its tail; the egret shifts now and then */
+.se-b-cb-body, .se-b-cb-leg { fill: #5d5a57; }
+.se-b-cb-leg-front { fill: #6b6865; }
+.se-b-cb-muzzle { fill: #7d7874; }
+.se-b-cb-eye { fill: #1f1c1a; }
+.se-b-cb-horn { fill: none; stroke: #d6cfc2; stroke-width: 2.4; stroke-linecap: round; }
+.se-b-cb-tail path { fill: none; stroke: #5d5a57; stroke-width: 1.6; stroke-linecap: round; }
+.se-b-cb-tail ellipse { fill: #3f3c3a; }
+.se-b-cb-tail { transform-origin: 42px 7px; animation: se-b-swish 2.6s ease-in-out infinite; }
+.se-b-cb-head { transform-origin: 10px 6px; animation: se-b-graze 5.5s ease-in-out infinite; }
+.se-b-egret ellipse, .se-b-egret circle { fill: #fbfaf6; stroke: #00000022; stroke-width: .4; }
+.se-b-egret path { fill: none; stroke: #fbfaf6; stroke-width: 1.4; stroke-linecap: round; }
+.se-b-egret .se-b-egret-beak { stroke: #e3b23c; stroke-width: 1; }
+.se-b-egret { transform-origin: 27px 0; animation: se-b-perch 7s ease-in-out infinite; }
+@keyframes se-b-swish { 0%, 100% { transform: rotate(0deg); } 20% { transform: rotate(18deg); } 40% { transform: rotate(-6deg); } 55% { transform: rotate(0deg); } }
+@keyframes se-b-graze {
+  0%, 100% { transform: rotate(0deg); }
+  10%, 18% { transform: rotate(-4deg); }
+  14% { transform: rotate(-1deg); }
+  45% { transform: rotate(0deg); }
+  60%, 70% { transform: rotate(9deg); }
+  65% { transform: rotate(6deg); }
+  85% { transform: rotate(0deg); }
+}
+@keyframes se-b-perch {
+  0%, 60%, 100% { transform: translate(0, 0); }
+  64% { transform: translate(-1px, -3px); }
+  68% { transform: translate(-3px, 0); }
+  88% { transform: translate(-3px, 0); }
+  92% { transform: translate(-1px, -2.5px); }
+  96% { transform: translate(0, 0); }
+}
+@keyframes se-b-drift { from { transform: translateX(-120px); } to { transform: translateX(420px); } }
+@keyframes se-b-fly { from { transform: translate(-200px, 8px); } to { transform: translate(260px, -10px); } }
+@keyframes se-b-sway { from { transform: rotate(-2deg); } to { transform: rotate(2.5deg); } }
+@keyframes se-b-glow { from { transform: scale(.9); } to { transform: scale(1.12); } }
 
-.se-b-body { fill: color-mix(in srgb, var(--gold) 45%, var(--paper-bright)); stroke: var(--forest); stroke-width: 2; }
-.se-b-roof { fill: var(--forest); }
-.se-b-door { fill: var(--forest); opacity: .75; }
-.se-b-pole { fill: color-mix(in srgb, var(--gold) 80%, var(--ink)); }
+/* the new spot */
+.se-b-sparkles path { fill: var(--gold); opacity: 0; transform-box: fill-box; transform-origin: center; }
+.se-bayani[data-phase="done"] .se-b-sparkles path { animation: se-b-spark 1.6s cubic-bezier(.34, 1.4, .64, 1) both; }
+.se-bayani[data-phase="done"] .se-b-sparkles path:nth-child(2) { animation-delay: .15s; }
+.se-bayani[data-phase="done"] .se-b-sparkles path:nth-child(3) { animation-delay: .3s; }
+@keyframes se-b-spark { 0% { opacity: 0; transform: scale(0) rotate(-40deg); } 40% { opacity: 1; transform: scale(1.2) rotate(0); } 100% { opacity: .85; transform: scale(1); } }
 
-.se-b-h { opacity: 0; transform: translateY(10px); transition: opacity .35s, transform .35s; }
+/* the kubo */
+.se-b-stilt, .se-b-pole { fill: #a07a45; }
+.se-b-beam { fill: #7d5a32; }
+.se-b-wall { fill: url(#se-b-weave); stroke: #7d5a32; stroke-width: 1.2; }
+.se-b-wall-bg { fill: #e6c98d; }
+.se-b-weave-line { fill: none; stroke: #c39b5c; stroke-width: 1.3; }
+.se-b-awning { fill: #b4864a; stroke: #7d5a32; stroke-width: 1; stroke-linejoin: round; }
+.se-b-prop { stroke: #7d5a32; stroke-width: 1.4; stroke-linecap: round; }
+.se-b-roof { fill: #b07f43; }
+.se-b-roof-line { fill: none; stroke: #8a5f2e; stroke-width: 1.4; stroke-linecap: round; }
+.se-b-fringe { fill: none; stroke: #8a5f2e; stroke-width: 1.4; stroke-linejoin: round; }
+.se-b-node { stroke: #7d5a32; stroke-width: 1.2; }
+.se-b-lash { stroke: #5e4325; stroke-width: 1.6; stroke-linecap: round; }
+
+/* load: rises and tips with the number of helpers */
+.se-b-load {
+  transform-origin: 95px 138px;
+  transform: translateY(calc((10 - var(--lift)) * 1px)) rotate(var(--tilt));
+  transition: transform .8s var(--se-b-ease);
+}
+.se-bayani[data-strain] .se-b-shake { animation: se-b-strain .45s ease-in-out infinite; }
+@keyframes se-b-strain {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  25% { transform: translate(.6px, -1.2px) rotate(-.5deg); }
+  50% { transform: translate(0, 0) rotate(0); }
+  75% { transform: translate(-.6px, -.8px) rotate(.4deg); }
+}
+
+/* helpers */
+.se-b-h { opacity: 0; transform: translateX(-30px); transition: opacity .45s ease, transform .9s cubic-bezier(.25, .6, .3, 1); }
 .se-b-h.on { opacity: 1; transform: none; }
-.se-b-h circle { fill: var(--paper-bright); stroke: var(--forest); stroke-width: 2; }
-.se-b-h path { fill: none; stroke: var(--forest); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.se-b-foot { fill: #2b221d; }
+.se-b-eye { fill: #2b221d; }
+.se-b-hair { fill: #2b211d; }
+.se-b-hat { fill: #d2ab68; stroke: #9a7340; stroke-width: .8; }
+.se-b-limb { fill: none; stroke-width: 3.2; stroke-linecap: round; }
+.se-b-shirt { stroke: #00000018; stroke-width: .6; }
+/* knees bend while the load is still low */
+.se-b-legs { transform-origin: 0 182px; transform: scaleY(calc(1 - (10 - var(--lift)) / 24)); transition: transform .8s var(--se-b-ease); }
+.se-b-upper { transform: translateY(calc((10 - var(--lift)) * 1px)); transition: transform .8s var(--se-b-ease); }
+.se-b-leg { transform-origin: 0 159px; }
+.se-b-arm { transform-origin: 1.5px 143.5px; transition: transform .5s var(--se-b-ease); }
+/* a few steps as each helper walks in */
+.se-b-h.on .se-b-leg-a { animation: se-b-step .22s ease-in-out 4 alternate; }
+.se-b-h.on .se-b-leg-b { animation: se-b-step .22s ease-in-out 4 alternate-reverse; }
+@keyframes se-b-step { from { transform: rotate(-20deg); } to { transform: rotate(20deg); } }
 
-.se-bayani-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px; }
+/* march: the whole crew walks in step to the new spot */
+/* the crew steps out to the middle, then walks in place as the land rolls by */
+.se-b-crew { transition: transform 2.2s cubic-bezier(.45, 0, .4, 1); }
+.se-bayani[data-phase="march"] .se-b-crew,
+.se-bayani[data-phase="set"] .se-b-crew,
+.se-bayani[data-phase="done"] .se-b-crew { transform: translateX(80px); }
+@keyframes se-b-bob { from { transform: translateY(0); } to { transform: translateY(-1.6px); } }
+
+/* done: set down, hands up, a little hop of joy */
+.se-bayani[data-phase="done"] .se-b-arm { transform: rotate(-38deg); }
+.se-bayani[data-phase="done"] .se-b-h.on { animation: se-b-hop .5s cubic-bezier(.3, 0, .4, 1) 2 alternate; }
+.se-bayani[data-phase="done"] .se-b-helpers > g:nth-child(even) .se-b-h.on { animation-delay: .12s; }
+@keyframes se-b-hop { from { transform: translateY(0); } to { transform: translateY(-4px); } }
+
+/* Start again snaps back without replaying the march */
+.se-bayani.se-b-reset * { transition: none !important; }
+
+.se-bayani-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+.se-bayani-actions { display: flex; align-items: center; gap: 8px; }
 .se-bayani-row .se-try-label { margin: 0; }
 .se-bayani-row .se-try-label b { font-weight: 600; color: var(--ink); }
 .se-add { padding: 10px 20px; border: 0; border-radius: 999px; color: #fff; background: var(--forest); font: 14px var(--sans); cursor: pointer; transition: transform .12s, background .2s; }
@@ -2748,9 +3088,9 @@ body { background: var(--paper); }
   70%, 100% { box-shadow: 0 0 0 11px transparent; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .se-b-house, .se-b-helpers, .se-b-h { transition: none; }
-  .se-bayani-card:not([data-touched]) .se-add { animation: none; }
+  .se-bayani *, .se-bayani-card:not([data-touched]) .se-add { transition: none !important; animation: none !important; }
 }
+.se-add:disabled { opacity: .7; cursor: default; }
 
 .se-seal .se-rings circle { fill: none; stroke: var(--gold); stroke-width: 2; }
 

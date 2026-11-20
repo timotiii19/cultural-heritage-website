@@ -147,23 +147,154 @@
   <div class="se-try-head">
     <span class="eyebrow"><i></i> TRY IT</span>
     <h2 id="se-see-title">Many hands,<br/><em>lighter work.</em></h2>
-    <p>Add helpers one at a time and see what happens to the load.</p>
+    <p>Watch the neighbors gather and carry the kubo through day and night. Set it down to rest and carry it on again whenever you like.</p>
   </div>
   <div class="se-try-card se-bayani-card">
-    <svg class="se-bayani" viewBox="0 0 320 190" role="img" aria-label="Simple illustration of neighbors lifting a house together and carrying it to a new place.">
-      <path class="se-b-ground" d="M0 170H320"/>
-      <path class="se-b-ghost" d="M190 92 246 58 302 92Z M196 92V130H296V92"/>
-      <g class="se-b-helpers"></g>
-      <g class="se-b-house">
-        <rect class="se-b-pole" x="-6" y="130" width="124" height="5" rx="2.5"/>
-        <rect class="se-b-body" x="6" y="90" width="100" height="40"/>
-        <path class="se-b-roof" d="M0 92 56 58l56 34Z"/>
-        <rect class="se-b-door" x="48" y="106" width="16" height="24"/>
+    <svg class="se-bayani" viewBox="0 0 360 210" role="img" aria-label="Illustration of neighbors carrying a bahay kubo on a bamboo pole through the countryside, from day into night and day again.">
+      <defs>
+        <linearGradient id="se-b-sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" class="se-b-sky-top"/><stop offset="1" class="se-b-sky-bottom"/>
+        </linearGradient>
+        <radialGradient id="se-b-moonglow">
+          <stop offset="0" stop-color="#fff6d8" stop-opacity=".55"/><stop offset="1" stop-color="#fff6d8" stop-opacity="0"/>
+        </radialGradient>
+        <pattern id="se-b-weave" width="6" height="6" patternUnits="userSpaceOnUse">
+          <rect class="se-b-wall-bg" width="6" height="6"/>
+          <path class="se-b-weave-line" d="M0 1.5h3M3 4.5h3M1.5 0v3M4.5 3v3"/>
+        </pattern>
+        <g id="se-b-palm-shape">
+          <path class="se-b-trunk" d="M0 0c2-24 4-48 10-70"/>
+          <g transform="translate(10 -70)">
+            <path class="se-b-frond" d="M0 0c-8-9-22-10-32-2 10-3 22-2 32 2Z"/>
+            <path class="se-b-frond" d="M0 0c-4-12-14-18-26-18 10 4 18 10 26 18Z"/>
+            <path class="se-b-frond" d="M0 0c6-11 18-15 30-11-11 1-21 5-30 11Z"/>
+            <path class="se-b-frond" d="M0 0c10-4 22 0 28 10-9-5-19-8-28-10Z"/>
+            <path class="se-b-frond" d="M0 0c-10-2-20 4-24 14 7-7 15-11 24-14Z"/>
+          </g>
+        </g>
+        <!-- grazing carabao with an egret on its back -->
+        <g id="se-b-cb">
+          <rect class="se-b-cb-leg" x="9" y="17" width="4.5" height="13" rx="2"/>
+          <rect class="se-b-cb-leg" x="34" y="17" width="4.5" height="13" rx="2"/>
+          <g class="se-b-cb-tail"><path d="M42 7c3 3 4 8 3 13"/><ellipse cx="45" cy="21" rx="1.6" ry="2.6"/></g>
+          <path class="se-b-cb-body" d="M5 10C5 2 14 0 24 0s19 2 19 10-6 12-19 12S5 18 5 10Z"/>
+          <rect class="se-b-cb-leg se-b-cb-leg-front" x="14" y="18" width="4.5" height="12" rx="2"/>
+          <rect class="se-b-cb-leg se-b-cb-leg-front" x="38" y="18" width="4.5" height="12" rx="2"/>
+          <g class="se-b-cb-head">
+            <path class="se-b-cb-body" d="M10 4C4 5 0 10-1 15l7 4c2-5 5-8 9-9Z"/>
+            <ellipse class="se-b-cb-body" cx="-1" cy="19" rx="5.5" ry="4.8"/>
+            <ellipse class="se-b-cb-muzzle" cx="-4" cy="22" rx="3.2" ry="2.6"/>
+            <ellipse class="se-b-cb-body" cx="5" cy="14" rx="3" ry="1.5" transform="rotate(25 5 14)"/>
+            <path class="se-b-cb-horn" d="M-3 15C-12 13-12 4-5 2M2 15c5-6 4-12-1-14"/>
+            <circle class="se-b-cb-eye" cx="-2" cy="17.5" r=".8"/>
+          </g>
+          <g class="se-b-egret">
+            <ellipse cx="27" cy="-3" rx="4.5" ry="2.8"/>
+            <path d="M24 -4c-1-3 0-5 2-6"/>
+            <circle cx="26.3" cy="-10" r="1.8"/>
+            <path class="se-b-egret-beak" d="M24.7 -10h-3"/>
+          </g>
+        </g>
+        <!-- distant hills: one 540-wide tile that repeats seamlessly -->
+        <g id="se-b-far-tile">
+          <path class="se-b-hill-far" d="M0 140C40 118 80 122 120 134c40-22 90-24 130-4 40-14 80-22 120-4 40-14 100-12 170 14V186H0Z"/>
+          <g class="se-b-farhut" transform="translate(236 108)"><path d="M0 10 9 2l9 8Z"/><rect x="2" y="10" width="14" height="7"/><path d="M4 17v5M14 17v5"/></g>
+          <g class="se-b-farhut" transform="translate(424 104) scale(.8)"><path d="M0 10 9 2l9 8Z"/><rect x="2" y="10" width="14" height="7"/><path d="M4 17v5M14 17v5"/></g>
+        </g>
+        <!-- near countryside: one 720-wide tile that repeats seamlessly -->
+        <g id="se-b-near-tile">
+          <path class="se-b-hill-near" d="M0 164c60-14 120-12 180-2 60-12 120-14 180-3 60-10 120-12 180-2 60-12 120-10 180 7V188H0Z"/>
+          <use href="#se-b-cb" transform="translate(168 143) scale(.72)"/>
+          <use href="#se-b-cb" transform="translate(640 145) scale(-.68 .68)"/>
+          <g transform="translate(14 182)"><use class="se-b-palm" href="#se-b-palm-shape"/></g>
+          <g transform="translate(348 182) scale(-1 1)"><use class="se-b-palm se-b-palm-late" href="#se-b-palm-shape"/></g>
+          <g transform="translate(486 182) scale(.9)"><use class="se-b-palm se-b-palm-late" href="#se-b-palm-shape"/></g>
+          <g transform="translate(690 182) scale(-.95 .95)"><use class="se-b-palm" href="#se-b-palm-shape"/></g>
+          <g class="se-b-banana" transform="translate(566 182)">
+            <path class="se-b-banana-stem" d="M0 0v-24"/>
+            <path class="se-b-leaf" d="M0-24c-10-6-20-4-24 4 8-4 16-5 24-4Z"/>
+            <path class="se-b-leaf" d="M0-24c10-8 20-6 24 2-8-3-16-4-24-2Z"/>
+            <path class="se-b-leaf" d="M0-24c-2-10 2-18 8-20-3 6-5 13-8 20Z"/>
+          </g>
+          <path class="se-b-fence" d="M384 167v15M402 167v15M420 167v15M438 167v15M380 171h62M380 177h62"/>
+          <rect class="se-b-field" x="0" y="182" width="720" height="28"/>
+          <path class="se-b-paddy" d="M380 189h180M372 196h196M364 203h212"/>
+          <path class="se-b-tufts" d="M30 196l2-5 2 5M120 202l2-5 2 5M190 194l2-5 2 5M262 204l2-5 2 5M330 197l2-5 2 5M80 206l2-4 2 4M600 195l2-5 2 5M650 204l2-5 2 5M700 193l2-5 2 5"/>
+          <g class="se-b-fireflies">
+            <circle cx="60" cy="160" r="1.3"/><circle cx="230" cy="150" r="1.1"/><circle cx="300" cy="168" r="1.3"/>
+            <circle cx="420" cy="156" r="1.2"/><circle cx="530" cy="164" r="1.1"/><circle cx="610" cy="150" r="1.3"/>
+          </g>
+        </g>
+      </defs>
+
+      <!-- sky and everything behind the hills reaches past the edges so wide cards stay filled -->
+      <rect class="se-b-skyfill" x="-400" y="0" width="1160" height="210" fill="url(#se-b-sky)"/>
+      <g class="se-b-stars">
+        <circle cx="-150" cy="30" r="1"/><circle cx="-90" cy="70" r=".8"/><circle cx="-30" cy="18" r="1.1"/>
+        <circle cx="20" cy="54" r=".8"/><circle cx="70" cy="22" r="1"/><circle cx="118" cy="80" r=".7"/>
+        <circle cx="150" cy="40" r="1.1"/><circle cx="205" cy="14" r=".8"/><circle cx="240" cy="62" r="1"/>
+        <circle cx="300" cy="28" r=".8"/><circle cx="340" cy="84" r="1"/><circle cx="380" cy="16" r="1.1"/>
+        <circle cx="430" cy="58" r=".8"/><circle cx="480" cy="26" r="1"/><circle cx="530" cy="72" r=".8"/>
       </g>
+      <g class="se-b-sun-g">
+        <circle class="se-b-sun-halo" r="28"/>
+        <circle class="se-b-sun" r="15"/>
+      </g>
+      <g class="se-b-moon-g">
+        <circle r="30" fill="url(#se-b-moonglow)"/>
+        <circle class="se-b-moon" r="11"/>
+        <circle class="se-b-crater" cx="-3" cy="-2" r="2.2"/><circle class="se-b-crater" cx="4" cy="3" r="1.5"/>
+      </g>
+      <g class="se-b-skylayer">
+        <g class="se-b-cloud se-b-cloud-1"><ellipse cx="60" cy="34" rx="20" ry="7"/><ellipse cx="72" cy="29" rx="12" ry="8"/><ellipse cx="50" cy="31" rx="9" ry="6"/></g>
+        <g class="se-b-cloud se-b-cloud-2"><ellipse cx="200" cy="22" rx="16" ry="5.5"/><ellipse cx="209" cy="18" rx="9" ry="6"/></g>
+        <g class="se-b-birds"><path d="M150 44q3-3 6 0q3-3 6 0M170 36q2.5-2.5 5 0q2.5-2.5 5 0"/></g>
+      </g>
+
+      <g class="se-b-far">
+        <use href="#se-b-far-tile" x="-1080"/><use href="#se-b-far-tile" x="-540"/><use href="#se-b-far-tile"/>
+        <use href="#se-b-far-tile" x="540"/><use href="#se-b-far-tile" x="1080"/>
+      </g>
+      <g class="se-b-near">
+        <use href="#se-b-near-tile" x="-720"/><use href="#se-b-near-tile"/><use href="#se-b-near-tile" x="720"/>
+      </g>
+
+      <!-- night falls over the land (the crew dims separately so the lit window still glows) -->
+      <rect class="se-b-night" x="-400" y="0" width="1160" height="210"/>
+
+      <!-- the crew: kubo (behind), helpers, then the pole on their shoulders -->
+      <g class="se-b-crew">
+        <g class="se-b-load"><g class="se-b-shake">
+          <rect class="se-b-stilt" x="49" y="104" width="4" height="68" rx="1"/>
+          <rect class="se-b-stilt" x="73" y="104" width="4" height="68" rx="1"/>
+          <rect class="se-b-stilt" x="113" y="104" width="4" height="68" rx="1"/>
+          <rect class="se-b-stilt" x="137" y="104" width="4" height="68" rx="1"/>
+          <rect class="se-b-beam" x="43" y="103" width="104" height="6" rx="1.5"/>
+          <rect class="se-b-wall" x="48" y="72" width="94" height="32"/>
+          <rect class="se-b-opening" x="58" y="81" width="22" height="15"/>
+          <path class="se-b-awning" d="M55 80h28l7-10H62z"/>
+          <path class="se-b-prop" d="M81 96l7-25"/>
+          <rect class="se-b-opening" x="106" y="80" width="17" height="24"/>
+          <path class="se-b-roof" d="M36 76 95 28l59 48Z"/>
+          <path class="se-b-roof-line" d="M75.3 44h39.4M60.6 56h68.8M45.8 68h98.4M95 28v4"/>
+          <path class="se-b-fringe" d="M35.5 76l4 5 4-5 4 5 4-5 4 5 4-5 4 5 4-5 4 5 4-5 4 5 4-5 4 5 4-5 4 5 4-5 4 5 4-5 4 5 4-5 4 5 4-5 4 5 4-5 4 5 4-5 4 5 4-5 4 5 4-5"/>
+        </g></g>
+        <g class="se-b-helpers"></g>
+        <g class="se-b-load"><g class="se-b-shake">
+          <rect class="se-b-pole" x="23" y="136" width="144" height="5" rx="2.5"/>
+          <path class="se-b-node" d="M41 136v5M65 136v5M89 136v5M113 136v5M137 136v5M159 136v5"/>
+          <path class="se-b-lash" d="M49 134l4 9M73 134l4 9M113 134l4 9M137 134l4 9"/>
+        </g></g>
+      </g>
+      <!-- dogs and cats that wander in and walk alongside (added by the script) -->
+      <g class="se-b-pets"></g>
     </svg>
     <div class="se-bayani-row">
       <p class="se-try-label"><b class="se-b-count">1 of 8 people</b></p>
-      <button type="button" class="se-add">+ Add a helper</button>
+      <div class="se-bayani-actions">
+        <button type="button" class="se-pause se-b-auto" aria-label="Pause auto-play">❚❚ Pause</button>
+        <button type="button" class="se-add">+ Add a helper</button>
+      </div>
     </div>
     <p class="se-try-gloss" aria-live="polite">One person alone can’t carry a house.</p>
     <small class="se-try-note">A simple illustration of the idea. Bayanihan also appears in farming, community gatherings, and support during hardship.</small>
@@ -249,18 +380,37 @@
 <script src="/assets/js/main.js" defer></script>
 <script>
 (function () {
-  var MAX = 8, NS = 'http://www.w3.org/2000/svg', n = 1;
-  var SAG = [0, 8, 5, 3, 1, 0, 0, 0, 0];
-  var MSG = [
-    'One person alone can’t carry a house.',
-    'More hands help, but it is still heavy.',
-    'More neighbors join, and the load is shared.',
-    'Together, the house moves to its new place.'
+  var MAX = 8, NS = 'http://www.w3.org/2000/svg', n = 1, timers = [];
+  var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // how high the load rises (0–10) and how unevenly it tips, by number of helpers
+  var LIFT = [0, 0, 0, 2, 4, 6, 8, 9, 10];
+  var TILT = [0, 0, 0, -3, 2, -1.5, 1, 0, 0];
+  var MSG = {
+    1: 'One person alone can’t carry a house.',
+    2: 'Two pull hard, but the kubo won’t budge.',
+    3: 'More hands help, but it is still heavy.',
+    5: 'More neighbors join, and the load is shared.',
+    7: 'Almost there. One more pair of shoulders!',
+    march: 'Together, in step, the kubo travels on.',
+    sunset: 'The sun sets, and still they walk together.',
+    night: 'Through the night, no one carries it alone.',
+    dawn: 'A new day, and the bayanihan goes on.',
+    lift: 'Shoulders under the pole. Lift together!',
+    set: 'They set the kubo down and rest a while.',
+    done: 'Many hands, lighter work.'
+  };
+  // varied neighbors: shirt, trousers, skin, hat or hair
+  var LOOKS = [
+    ['#2f6f57', '#3b3330', '#c98d63', 1], ['#c4683f', '#4a4f63', '#a8714a', 0],
+    ['#e0b552', '#3b3330', '#d9a274', 0], ['#4e6f8f', '#3b3330', '#b57a52', 1],
+    ['#efe6d2', '#4a4f63', '#c98d63', 0], ['#8a4f7d', '#3b3330', '#a8714a', 0],
+    ['#5f8f5a', '#4a4f63', '#d9a274', 1], ['#d98b5f', '#3b3330', '#b57a52', 0]
   ];
 
-  function el(name, attrs) {
+  function el(name, attrs, parent) {
     var e = document.createElementNS(NS, name);
     for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
     return e;
   }
 
@@ -268,36 +418,369 @@
     var box = document.querySelector('.se-b-helpers');
     if (!box || box.firstChild) return;
     for (var i = 0; i < MAX; i++) {
-      var pos = el('g', { transform: 'translate(' + (8 + i * 13.4) + ' 0)' });
-      var h = el('g', { 'class': 'se-b-h' });
-      h.appendChild(el('circle', { cx: 0, cy: 143, r: 4.5 }));
-      h.appendChild(el('path', { d: 'M-7 137L0 150L7 137M0 150V160L-4.5 170M0 160L4.5 170' }));
-      pos.appendChild(h);
-      box.appendChild(pos);
+      var L = LOOKS[i];
+      var pos = el('g', { transform: 'translate(' + (39 + i * 16) + ' 0)' }, box);
+      var h = el('g', { 'class': 'se-b-h' }, pos);
+      // the stepper bobs with each stride (driven by the script, so steps match the ground)
+      var stepper = el('g', { 'class': 'se-b-stepper' }, h);
+      var legs = el('g', { 'class': 'se-b-legs' }, stepper);
+      [['se-b-leg se-b-leg-b', 0.82], ['se-b-leg se-b-leg-a', 1]].forEach(function (leg) {
+        var g = el('g', { 'class': leg[0], style: 'filter:brightness(' + leg[1] + ')' }, legs);
+        el('rect', { x: -2.3, y: 158, width: 4.6, height: 23, rx: 2.3, fill: L[1] }, g);
+        el('rect', { x: -2.3, y: 179, width: 7.5, height: 3.2, rx: 1.6, 'class': 'se-b-foot' }, g);
+      });
+      var up = el('g', { 'class': 'se-b-upper' }, stepper);
+      el('rect', { x: -5.2, y: 139, width: 10.4, height: 22, rx: 4, fill: L[0], 'class': 'se-b-shirt' }, up);
+      el('rect', { x: -1.6, y: 134, width: 3.6, height: 6, fill: L[2] }, up);
+      el('circle', { cx: 0.6, cy: 130.5, r: 5.6, fill: L[2] }, up);
+      el('circle', { cx: 3.6, cy: 130, r: 0.85, 'class': 'se-b-eye' }, up);
+      if (L[3]) {
+        el('path', { d: 'M-9 127.5 0.6 119l9.6 8.5q-9.6 2.4-19.2 0Z', 'class': 'se-b-hat' }, up);
+      } else {
+        el('path', { d: 'M-5.2 131.5C-6.4 123.5 3 121.5 6.1 127c-3-1.2-5.6-.4-7.2 2.4-.8 1.6-2.4 2.6-4.1 2.1Z', 'class': 'se-b-hair' }, up);
+      }
+      var arm = el('g', { 'class': 'se-b-arm' }, up);
+      el('path', { d: 'M1.5 143.5 5 137', stroke: L[2], 'class': 'se-b-limb' }, arm);
     }
   }
 
-  function render() {
-    var card = document.querySelector('.se-bayani-card');
-    if (!card) return;
-    build();
-    var art = card.querySelector('.se-bayani');
-    art.style.setProperty('--sag', SAG[n]);
-    if (n >= MAX) art.setAttribute('data-full', ''); else art.removeAttribute('data-full');
-    card.querySelectorAll('.se-b-h').forEach(function (h, i) { h.classList.toggle('on', i < n); });
-    card.querySelector('.se-b-count').textContent = n + ' of ' + MAX + ' people';
-    card.querySelector('.se-try-gloss').textContent = MSG[n === 1 ? 0 : n < 4 ? 1 : n < MAX ? 2 : 3];
-    card.querySelector('.se-add').textContent = n >= MAX ? '↺ Start again' : '+ Add a helper';
+  // timings (ms)
+  var T = { addEvery: 800, lift: 1000, setDown: 900 };
+  var NEAR_W = 720, FAR_W = 540;   // widths of the repeating scenery tiles
+  var PACE = 34;                   // walking speed (svg units per second)
+  var DAY = 48;                    // seconds of walking for one full day and night
+  var STRIDE = 28;                 // ground covered by one full step cycle, so feet don't slide
+
+  // sky colours through the day: [time 0–1, top, bottom]; 0 = midday
+  var SKY = [
+    [0.00, '#a9d3e6', '#f3ead2'],
+    [0.20, '#b4d3dc', '#f6d9a0'],
+    [0.30, '#e79a6a', '#f6c27a'],
+    [0.38, '#5b4a7a', '#d98a6a'],
+    [0.46, '#1d2440', '#3a3f63'],
+    [0.62, '#1a2039', '#343a5c'],
+    [0.72, '#6a6e9a', '#f0a98a'],
+    [0.82, '#9cc9e0', '#f7dcb0'],
+    [1.00, '#a9d3e6', '#f3ead2']
+  ];
+
+  var playing = !REDUCED, paused = false;
+  var stage = 'gather';            // gather → lifting → walk → stopping → rest → lifting → walk …
+  var START_TOD = 0.18;            // begin in early afternoon so the sun clears the roof
+  var offset = 0, speed = 0, target = 0, tod = START_TOD, last = 0, rafId = 0, msgKey = '';
+  var legsA = [], legsB = [], steppers = [], shakes = [];
+
+  function clearTimers() { timers.forEach(clearTimeout); timers = []; }
+  function later(fn, ms) { timers.push(setTimeout(fn, REDUCED ? 0 : ms)); }
+
+  function card() { return document.querySelector('.se-bayani-card'); }
+  function art() { return card().querySelector('.se-bayani'); }
+  function q(sel) { return art().querySelector(sel); }
+  function setPhase(phase) {
+    if (phase) art().setAttribute('data-phase', phase); else art().removeAttribute('data-phase');
+  }
+  function say(key) {
+    if (key === msgKey) return;
+    msgKey = key;
+    card().querySelector('.se-try-gloss').textContent = MSG[key];
+  }
+  function addBtn(text, disabled) {
+    var b = card().querySelector('.se-add');
+    b.textContent = text;
+    b.disabled = !!disabled;
+  }
+  function setPlayLabel() {
+    var p = card().querySelector('.se-b-auto');
+    var on = playing && !paused;
+    p.textContent = on ? '❚❚ Pause' : '▶ Play';
+    p.setAttribute('aria-label', on ? 'Pause the animation' : 'Play the animation');
+  }
+  function setPaused(v) {
+    paused = v;
+    if (v) art().setAttribute('data-paused', ''); else art().removeAttribute('data-paused');
+    setPlayLabel();
+  }
+
+  // ---- sky, sun, moon, night ----
+  function hex(c) { return [1, 3, 5].map(function (i) { return parseInt(c.substr(i, 2), 16); }); }
+  function mix(a, b, t) {
+    a = hex(a); b = hex(b);
+    return 'rgb(' + a.map(function (v, i) { return Math.round(v + (b[i] - v) * t); }).join(',') + ')';
+  }
+  function smooth(t) { return t * t * (3 - 2 * t); }
+  function nightAt(t) {
+    if (t < 0.30 || t > 0.78) return 0;
+    if (t < 0.44) return smooth((t - 0.30) / 0.14);
+    if (t < 0.64) return 1;
+    return 1 - smooth((t - 0.64) / 0.14);
+  }
+  function arc(p, h) { return 'translate(' + (20 + p * 320) + ' ' + (150 - Math.sin(Math.PI * p) * h) + ')'; }
+  function timeKey() { return tod < 0.28 || tod >= 0.84 ? 'march' : tod < 0.40 ? 'sunset' : tod < 0.70 ? 'night' : 'dawn'; }
+
+  function paintSky() {
+    for (var i = 0; i < SKY.length - 1 && tod > SKY[i + 1][0]; i++);
+    var a = SKY[i], b = SKY[i + 1], t = smooth((tod - a[0]) / (b[0] - a[0]));
+    q('.se-b-sky-top').style.stopColor = mix(a[1], b[1], t);
+    q('.se-b-sky-bottom').style.stopColor = mix(a[2], b[2], t);
+    art().style.setProperty('--night', nightAt(tod).toFixed(3));
+    // sun rises at 0.74, sets at 0.36; the moon crosses the sky in between
+    var sp = ((tod - 0.74 + 1) % 1) / 0.62;
+    q('.se-b-sun-g').setAttribute('transform', sp <= 1 ? arc(sp, 118) : 'translate(-200 400)');
+    var mp = (tod - 0.36) / 0.38;
+    q('.se-b-moon-g').setAttribute('transform', mp >= 0 && mp <= 1 ? arc(mp, 110) : 'translate(-200 400)');
+    if (stage === 'walk') say(timeKey());
+  }
+
+  function paintLand() {
+    q('.se-b-near').setAttribute('transform', 'translate(' + -(offset % NEAR_W) + ' 0)');
+    q('.se-b-far').setAttribute('transform', 'translate(' + -((offset * 0.3) % FAR_W) + ' 0)');
+  }
+
+  // strides follow the ground: legs swing further as the crew speeds up and settle as it slows
+  function paintGait() {
+    var ph = offset / STRIDE * Math.PI * 2;
+    var amp = Math.min(1, speed * 1.4);
+    var a = Math.sin(ph) * 18 * amp;
+    var bob = (1 - Math.cos(ph * 2)) / 2 * 1.6 * amp;
+    legsA.forEach(function (l) { l.style.transform = 'rotate(' + a.toFixed(2) + 'deg)'; });
+    legsB.forEach(function (l) { l.style.transform = 'rotate(' + (-a).toFixed(2) + 'deg)'; });
+    steppers.forEach(function (s) { s.style.transform = 'translateY(' + (-bob).toFixed(2) + 'px)'; });
+    shakes.forEach(function (s) { s.style.transform = 'translateY(' + (-bob * 0.8).toFixed(2) + 'px)'; });
+  }
+
+  // ---- dogs and cats ----
+  var PET_LOOKS = [
+    { kind: 'dog', body: '#b07a48', dark: '#7d5230' },
+    { kind: 'dog', body: '#e6d6b8', dark: '#a8906a' },
+    { kind: 'dog', body: '#3d3532', dark: '#1f1a18' },
+    { kind: 'cat', body: '#e0954a', dark: '#b8692c' },
+    { kind: 'cat', body: '#8d8a86', dark: '#5f5c59' },
+    { kind: 'cat', body: '#f2ede4', dark: '#3a3533' }
+  ];
+  var pets = [], petTimer = 2.5;
+  function rnd(a, b) { return a + Math.random() * (b - a); }
+
+  function viewRange() {
+    var r = art().getBoundingClientRect();
+    var w = r.height ? r.width * 210 / r.height : 360;
+    return [180 - w / 2, 180 + w / 2];
+  }
+
+  function makePet(look) {
+    var dog = look.kind === 'dog';
+    var g = el('g', { 'class': 'se-b-pet se-b-' + look.kind }, q('.se-b-pets'));
+    el('ellipse', { cx: 0, cy: 182.5, rx: dog ? 11 : 9, ry: 1.6, 'class': 'se-b-pet-shadow' }, g);
+    var legs = [];
+    // far legs first (darker), near legs after the body
+    function leg(x, far) {
+      var l = el('rect', { x: x - (dog ? 1.2 : 0.9), y: dog ? 172 : 173, width: dog ? 2.4 : 1.8, height: dog ? 10.5 : 9.5, rx: 1, fill: far ? look.dark : look.body }, g);
+      l.style.transformOrigin = x + 'px ' + (dog ? 172 : 173) + 'px';
+      return l;
+    }
+    var bf = leg(-6, true), ff = leg(6, true);
+    var tail = el('g', { 'class': 'se-b-pet-tail' }, g);
+    tail.style.transformOrigin = '-8px 169px';
+    el('path', { d: dog ? 'M-8 169q-5-3-5-9' : 'M-7.5 170q-8-3-5-13q1-2 2.5-1', stroke: look.body, 'class': 'se-b-pet-line', 'stroke-width': dog ? 2.4 : 1.8 }, tail);
+    el('ellipse', { cx: 0, cy: dog ? 171 : 172, rx: dog ? 10 : 8.5, ry: dog ? 5 : 4.2, fill: look.body }, g);
+    var bn = leg(-6, false), fn = leg(6, false);
+    legs = [bn, ff, fn, bf];
+    var head = el('g', { 'class': 'se-b-pet-head' }, g);
+    head.style.transformOrigin = '7px 168px';
+    if (dog) {
+      el('circle', { cx: 11, cy: 164, r: 4.6, fill: look.body }, head);
+      el('ellipse', { cx: 15, cy: 165.6, rx: 3, ry: 2, fill: look.body }, head);
+      el('circle', { cx: 17.7, cy: 165.1, r: 0.95, 'class': 'se-b-pet-dark' }, head);
+      el('path', { d: 'M8.6 160.5q-2.4 4 .2 7.2q1.6-3.4 1.6-6.6z', fill: look.dark }, head);
+      el('circle', { cx: 12.6, cy: 163, r: 0.75, 'class': 'se-b-pet-dark' }, head);
+    } else {
+      el('path', { d: 'M7.2 163.6l.8-4.6 2.6 3.2zM10.6 162.6l1.8-4.2 1.4 4z', fill: look.body }, head);
+      el('circle', { cx: 10, cy: 166, r: 3.9, fill: look.body }, head);
+      el('circle', { cx: 11.6, cy: 165.2, r: 0.65, 'class': 'se-b-pet-dark' }, head);
+      el('circle', { cx: 13.7, cy: 166.6, r: 0.55, fill: '#e28a8a' }, head);
+      el('path', { d: 'M13 167.4l3 .6M13 167.9l2.8 1.4', 'class': 'se-b-whisker' }, head);
+    }
+    return { g: g, legs: legs, head: head, dog: dog };
+  }
+
+  function spawnPet() {
+    var look = PET_LOOKS[Math.floor(Math.random() * PET_LOOKS.length)];
+    var parts = makePet(look);
+    var range = viewRange();
+    var p = {
+      parts: parts, x: range[0] - 30, phase: Math.random() * 6,
+      // where along the crew it likes to walk, in front of the helpers' legs
+      home: rnd(120, 250), state: 'join', timer: 0, gspeed: 0, sniff: 0
+    };
+    pets.push(p);
+  }
+
+  // each pet picks a mood: walk alongside, stop to sniff, dash ahead, catch up, or sit and drift away
+  function updatePets(dt) {
+    var v = speed * PACE;
+    var range = viewRange();
+    if (stage === 'walk' && speed > 0.6) {
+      petTimer -= dt;
+      if (petTimer <= 0 && pets.length < 2) { spawnPet(); petTimer = rnd(6, 13); }
+    }
+    pets = pets.filter(function (p) {
+      p.timer -= dt;
+      var want;
+      if (p.state === 'join') {
+        want = Math.max(v, 8) + 26;
+        if (p.x >= p.home) { p.state = 'walk'; p.timer = rnd(4, 9); }
+      } else if (p.state === 'walk') {
+        // drift gently around its spot so it never looks glued in place
+        want = v + (p.home - p.x) * 0.6 + Math.sin(p.phase * 0.21) * 3;
+        if (p.timer <= 0) {
+          var r = Math.random();
+          if (v < 1) { p.state = 'idle'; p.timer = rnd(2, 4); }
+          else if (r < 0.35) { p.state = 'sniff'; p.timer = rnd(1.2, 2.6); }
+          else if (r < 0.55) { p.state = 'dash'; p.home = Math.min(range[1] - 40, p.home + rnd(40, 80)); p.timer = 1.6; }
+          else if (r < 0.75) { p.home = rnd(110, 250); p.timer = rnd(3, 7); }
+          else { p.state = 'leave'; }
+        }
+      } else if (p.state === 'sniff') {
+        want = 0;
+        if (p.timer <= 0) { p.state = 'join'; p.home = rnd(120, 240); }
+      } else if (p.state === 'dash') {
+        want = v + 30;
+        if (p.x >= p.home || p.timer <= 0) { p.state = 'walk'; p.timer = rnd(3, 6); }
+      } else if (p.state === 'idle') {
+        want = 0;
+        if (p.timer <= 0) { p.state = v > 1 ? 'join' : 'idle'; p.timer = rnd(2, 4); }
+      } else { // leave: stops and lets the procession pass, then is left behind
+        want = 0;
+      }
+      // ease toward the wanted ground speed
+      p.gspeed += (want - p.gspeed) * Math.min(1, dt * 3);
+      p.x += (p.gspeed - v) * dt;
+      p.phase += p.gspeed * dt / (p.parts.dog ? 9 : 7) * Math.PI * 2;
+      var amp = Math.min(1, p.gspeed / 14);
+      var a = Math.sin(p.phase) * 28 * amp;
+      p.parts.legs.forEach(function (l, i) { l.style.transform = 'rotate(' + (i % 2 ? -a : a).toFixed(1) + 'deg)'; });
+      var bob = Math.abs(Math.sin(p.phase)) * 0.9 * amp;
+      p.parts.g.setAttribute('transform', 'translate(' + p.x.toFixed(2) + ' ' + (-bob).toFixed(2) + ')');
+      var sniffing = (p.state === 'sniff' || p.state === 'leave') && p.gspeed < 4;
+      p.parts.head.style.transform = sniffing ? 'rotate(24deg)' : 'rotate(0deg)';
+      if (p.x < range[0] - 50 || p.x > range[1] + 50) { p.parts.g.remove(); return false; }
+      return true;
+    });
+  }
+
+  // one loop drives everything: speed eases toward its target so starts and stops glide
+  function frame(ts) {
+    var dt = last ? Math.min(0.05, (ts - last) / 1000) : 0;
+    last = ts;
+    if (!paused) {
+      speed += (target - speed) * Math.min(1, dt * 1.1);
+      if (Math.abs(target - speed) < 0.003) speed = target;
+      offset += speed * PACE * dt;
+      tod = (tod + speed * dt / DAY) % 1;
+      paintLand();
+      paintSky();
+      paintGait();
+      updatePets(dt);
+    }
+    if (stage === 'stopping' && speed === 0) setDown();
+    rafId = requestAnimationFrame(frame);
+  }
+  function loop() { if (!rafId && !REDUCED) { last = 0; rafId = requestAnimationFrame(frame); } }
+
+  // ---- story ----
+  function setHelpers(k) {
+    n = k;
+    var a = art();
+    a.style.setProperty('--lift', LIFT[n]);
+    a.style.setProperty('--tilt', TILT[n] + 'deg');
+    if (n <= 2) a.setAttribute('data-strain', ''); else a.removeAttribute('data-strain');
+    card().querySelectorAll('.se-b-h').forEach(function (h, i) { h.classList.toggle('on', i < n); });
+    card().querySelector('.se-b-count').textContent = n + ' of ' + MAX + ' people';
+    say(n >= 7 ? 7 : n >= 5 ? 5 : n >= 3 ? 3 : n);
+    addBtn('+ Add a helper');
+  }
+
+  function gather() {
+    if (!playing || paused || stage !== 'gather') return;
+    later(function () {
+      if (n < MAX) setHelpers(n + 1);
+      if (n >= MAX) lift(); else gather();
+    }, T.addEvery);
+  }
+
+  // shoulders up, then walk on — used for the first start and every "carry it again"
+  function lift() {
+    clearTimers();
+    stage = 'lifting';
+    addBtn('Lifting together…', true);
+    art().style.setProperty('--lift', LIFT[MAX]);
+    say('lift');
+    later(function () {
+      stage = 'walk';
+      setPhase('march');
+      msgKey = '';
+      say(timeKey());
+      target = 1;
+      addBtn('■ Set it down');
+      loop();
+      if (REDUCED) paintSky();
+    }, T.lift);
+  }
+
+  // the button ends the walk: they slow to a stop and lower the kubo right where they are
+  function stopWalk() {
+    stage = 'stopping';
+    target = 0;
+    addBtn('Slowing down…', true);
+    if (paused) setPaused(false);
+    if (REDUCED) setDown();
+  }
+  function setDown() {
+    stage = 'resting';
+    setPhase('set');
+    art().style.setProperty('--lift', 0);
+    say('set');
+    later(function () {
+      stage = 'rest';
+      addBtn('▲ Carry it again');
+    }, T.setDown);
   }
 
   document.addEventListener('click', function (e) {
+    var c = card();
+    if (!c || !c.contains(e.target)) return;
+
+    if (e.target.closest('.se-b-auto')) {
+      if (!playing) { playing = true; setPaused(false); }
+      else setPaused(!paused);
+      if (paused) clearTimers(); else gather();
+      return;
+    }
+
     var b = e.target.closest('.se-add');
-    if (!b) return;
-    b.closest('.se-bayani-card').setAttribute('data-touched', '');
-    n = n >= MAX ? 1 : n + 1;
-    render();
+    if (!b || b.disabled) return;
+    c.setAttribute('data-touched', '');
+    if (paused) setPaused(false);
+    if (stage === 'walk') { stopWalk(); return; }
+    if (stage === 'rest') { lift(); return; }
+    // adding by hand: the story continues from here
+    clearTimers();
+    setHelpers(n + 1);
+    if (n >= MAX) lift(); else gather();
   });
-  render();
+
+  if (card()) {
+    build();
+    legsA = [].slice.call(art().querySelectorAll('.se-b-leg-a'));
+    legsB = [].slice.call(art().querySelectorAll('.se-b-leg-b'));
+    steppers = [].slice.call(art().querySelectorAll('.se-b-stepper'));
+    shakes = [].slice.call(art().querySelectorAll('.se-b-shake'));
+    setHelpers(1);
+    paintLand();
+    paintSky();
+    setPlayLabel();
+    if (REDUCED) card().querySelector('.se-b-auto').hidden = true;
+    else gather();
+  }
 
   // Reading progress bar
   var bar = document.createElement('div');

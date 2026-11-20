@@ -154,11 +154,78 @@
     <p>Follow the greeting step by step. It plays on its own, or tap a step to take control.</p>
   </div>
   <div class="se-try-card se-gesture-card">
-    <svg class="se-gesture" data-step="1" viewBox="0 0 320 190" role="img" aria-label="Simple diagram: a younger person approaches an elder, receives the offered hand, and brings it to the forehead.">
-      <g class="se-g-young"><circle cx="90" cy="70" r="26"/><path d="M52 176c0-36 17-54 38-54s38 18 38 54"/></g>
-      <g class="se-g-elder"><circle cx="236" cy="70" r="26"/><path d="M198 176c0-36 17-54 38-54s38 18 38 54"/></g>
-      <g class="se-g-hand"><rect x="-17" y="-9" width="34" height="18" rx="9"/></g>
-      <g class="se-g-bubble"><rect x="46" y="2" width="88" height="26" rx="13"/><text x="90" y="20">mano po</text></g>
+    <svg class="se-gesture" data-step="1" viewBox="0 0 340 206" role="img" aria-label="Simple diagram: a younger person approaches an elder, the elder offers a hand, and the younger person bows to bring it to the forehead.">
+      <line class="se-g-ground" x1="24" y1="182" x2="316" y2="182"/>
+      <circle class="se-g-glow" cx="212" cy="87" r="16"/>
+
+      <!-- younger person (faces right) -->
+      <g class="se-g-young">
+        <ellipse class="se-g-shadow" cx="2" cy="182" rx="26" ry="3.5"/>
+        <g class="se-g-turn">
+        <g transform="translate(0 128)"><g class="se-g-leg-b">
+          <rect class="se-g-pants-2" x="-6" y="-2" width="11" height="52" rx="5.5"/>
+          <path class="se-g-shoe" d="M-6 48h12a6 6 0 0 1 6 6h-18z"/>
+        </g></g>
+        <g transform="translate(0 128)"><g class="se-g-leg-a">
+          <rect class="se-g-pants" x="-6" y="-2" width="11" height="52" rx="5.5"/>
+          <path class="se-g-shoe" d="M-6 48h12a6 6 0 0 1 6 6h-18z"/>
+        </g></g>
+        <circle class="se-g-pants" cx="0" cy="128" r="12"/>
+        <g transform="translate(0 130)"><g class="se-g-lean"><g transform="translate(0 -130)">
+          <rect class="se-g-skin" x="-3" y="72" width="8" height="14" rx="3"/>
+          <rect class="se-g-shirt" x="-16" y="82" width="32" height="52" rx="13"/>
+          <g transform="translate(0 80)"><g class="se-g-nod"><g transform="translate(0 -80)">
+            <circle class="se-g-skin" cx="2" cy="62" r="15"/>
+            <path class="se-g-hair" d="M-13 66C-16 52-8 44 3 45c9 0 15 5 14.5 10-4.5-3-9.5-3-12.5-1-3 2-5 4-7 7s-4 7-7 11c-3-1-4-3-4-6z"/>
+            <circle class="se-g-skin-2" cx="-3" cy="64" r="3.2"/>
+            <ellipse class="se-g-eye" cx="10.5" cy="60.5" rx="1.6" ry="1.9"/>
+            <circle class="se-g-blush" cx="9" cy="67" r="2.8"/>
+            <path class="se-g-line" d="M10.5 70.5q2.5 1.8 5-.3"/>
+          </g></g></g>
+          <g transform="translate(6 88)"><g class="se-g-yarm">
+            <rect class="se-g-skin" x="-3.5" y="14" width="7" height="22" rx="3.5"/>
+            <rect class="se-g-sleeve" x="-5" y="-5" width="10" height="22" rx="5"/>
+            <circle class="se-g-skin" cx="0" cy="37" r="4.5"/>
+          </g></g>
+        </g></g></g>
+        </g>
+        <text class="se-g-tag" x="0" y="200">YOUNGER</text>
+      </g>
+
+      <!-- elder (faces left) -->
+      <g class="se-g-elder"><g transform="translate(262 0)">
+        <ellipse class="se-g-shadow" cx="-2" cy="182" rx="28" ry="3.5"/>
+        <path class="se-g-cane" d="M19 120l4 61M12 121c1-6 9-6 8 0"/>
+        <rect class="se-g-top-2" x="6" y="86" width="10" height="30" rx="5"/>
+        <circle class="se-g-skin-2" cx="17" cy="119" r="4.5"/>
+        <rect class="se-g-skin-2" x="-11" y="150" width="8" height="30" rx="4"/>
+        <rect class="se-g-skin-2" x="0" y="150" width="8" height="30" rx="4"/>
+        <path class="se-g-shoe" d="M-3 176h-10a6 6 0 0 0-6 6h16zM8 176h-10a6 6 0 0 0-6 6h16z"/>
+        <path class="se-g-skirt" d="M-15 112l-7 46q22 5 44 0l-7-46z"/>
+        <rect class="se-g-skin-2" x="-5" y="72" width="8" height="12" rx="3"/>
+        <rect class="se-g-top" x="-16" y="82" width="32" height="40" rx="13"/>
+        <path class="se-g-collar" d="M-7 83l6 9 6-9"/>
+        <g transform="translate(0 80)"><g class="se-g-bless"><g transform="translate(0 -80)">
+          <circle class="se-g-grey" cx="12" cy="51" r="6.5"/>
+          <circle class="se-g-skin-2" cx="-2" cy="63" r="14"/>
+          <path class="se-g-grey" d="M12 68c4-14-4-22-14-19.5-8 .5-14 5.5-14 11.5 5-4 11-5 15-3s6 6 8 11z"/>
+          <circle class="se-g-skin-2" cx="4" cy="64" r="3"/>
+          <ellipse class="se-g-eye se-g-eye-elder" cx="-10" cy="62" rx="1.4" ry="1.7"/>
+          <circle class="se-g-glass" cx="-9.5" cy="62" r="4.2"/>
+          <path class="se-g-line" d="M-5.3 62h7"/>
+          <circle class="se-g-blush" cx="-9" cy="69" r="2.6"/>
+          <path class="se-g-line" d="M-12 71.5q-2.5 1.8-5-.3"/>
+        </g></g></g>
+        <g transform="translate(-8 88)"><g class="se-g-arm">
+          <rect class="se-g-skin-2" x="-3.5" y="14" width="7" height="22" rx="3.5"/>
+          <rect class="se-g-top-2" x="-5" y="-5" width="10" height="22" rx="5"/>
+          <circle class="se-g-skin-2" cx="0" cy="37" r="4.5"/>
+        </g></g>
+        <text class="se-g-tag" x="0" y="200">ELDER</text>
+      </g></g>
+
+      <circle class="se-g-ring" cx="212" cy="87" r="12"/>
+      <g class="se-g-bubble"><rect x="110" y="18" width="84" height="26" rx="13"/><path d="M168 42l12 11-1-11z"/><text x="152" y="35.5">mano po</text></g>
     </svg>
     <div class="se-try-labelrow">
     <p class="se-try-label">Tap a step, or let it play</p>
@@ -258,19 +325,68 @@
     2: 'If the elder offers a hand, receive it gently.',
     3: 'Bring the back of the hand to the forehead, often saying “mano po.”'
   };
-  var step = 1, timer = null;
+  // manual mode (a step was tapped): how long each step's progress bar runs (ms)
+  var DUR = { 1: 3400, 2: 3600, 3: 5000 };
+  // play mode: one continuous 7s CSS timeline.
+  // [step, starts at (ms), progress-bar length (ms)] — the bars sweep 1 → 2 → 3 back to back
+  var LOOP = 7000;
+  var SEG = [[1, 0, 1300], [2, 1300, 1300], [3, 2600, 1400]];
+  var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var step = 1, resetTimer = null;
+  var playing = false, startAt = 0, pausedAt = 0, ticker = null;
 
-  function show(n) {
+  // going back to step 1 fades the scene out first so the loop doesn't jump
+  function show(n, done) {
     var card = document.querySelector('.se-gesture-card');
     if (!card) return;
+    clearTimeout(resetTimer);
+    var svg = card.querySelector('.se-gesture');
+    if (n === 1 && step !== 1 && !REDUCED) {
+      step = 1;
+      svg.classList.add('is-resetting');
+      resetTimer = setTimeout(function () {
+        svg.classList.remove('is-resetting');
+        render(1);
+        if (done) done();
+      }, 600);
+      return;
+    }
+    svg.classList.remove('is-resetting');
+    render(n);
+    if (done) done();
+  }
+
+  // updates chips + caption; in play mode the SVG pose comes from the timeline instead
+  function render(n, dur, delay) {
+    var card = document.querySelector('.se-gesture-card');
     step = n;
+    card.style.setProperty('--se-step-dur', (dur || DUR[n]) + 'ms');
+    card.style.setProperty('--se-step-delay', (delay ? -delay : 0) + 'ms');
     card.querySelector('.se-gesture').dataset.step = n;
-    card.querySelector('.se-try-gloss').textContent = TEXT[n];
-    card.querySelectorAll('[data-step]').forEach(function (b) {
+    var gloss = card.querySelector('.se-try-gloss');
+    gloss.textContent = TEXT[n];
+    gloss.classList.remove('is-in');
+    void gloss.offsetWidth;
+    gloss.classList.add('is-in');
+    card.querySelectorAll('button[data-step]').forEach(function (b) {
       var on = +b.dataset.step === n;
-      b.classList.toggle('is-active', on);
+      b.classList.remove('is-active');
+      if (on) { void b.offsetWidth; b.classList.add('is-active'); }
       b.setAttribute('aria-pressed', on);
     });
+  }
+
+  // which step the continuous timeline is in at time t (ms into the loop)
+  function segmentAt(t) {
+    for (var i = SEG.length - 1; i >= 0; i--) {
+      if (t >= SEG[i][1]) {
+        return { n: SEG[i][0], dur: SEG[i][2], into: t - SEG[i][1] };
+      }
+    }
+  }
+  function tick(force) {
+    var s = segmentAt((performance.now() - startAt) % LOOP);
+    if (force || s.n !== step) render(s.n, s.dur, s.into);
   }
 
   function setPauseLabel(paused) {
@@ -281,26 +397,55 @@
   }
   function play() {
     var card = document.querySelector('.se-gesture-card');
-    clearInterval(timer);
-    timer = setInterval(function () { show(step % 3 + 1); }, 3800);
-    if (card) card.removeAttribute('data-paused');
+    if (!card) return;
+    var svg = card.querySelector('.se-gesture');
+    clearTimeout(resetTimer);
+    svg.classList.remove('is-resetting');
+    if (svg.classList.contains('is-playing') && pausedAt) {
+      // resume where the paused timeline froze
+      startAt = performance.now() - pausedAt;
+    } else {
+      // (re)start the continuous timeline from the top
+      svg.classList.remove('is-playing');
+      void svg.getBoundingClientRect();
+      svg.classList.add('is-playing');
+      startAt = performance.now();
+    }
+    pausedAt = 0;
+    playing = true;
+    card.removeAttribute('data-paused');
+    tick(true);
+    clearInterval(ticker);
+    ticker = setInterval(tick, 100);
     setPauseLabel(false);
   }
   function stop() {
     var card = document.querySelector('.se-gesture-card');
-    clearInterval(timer);
-    timer = null;
+    if (playing) pausedAt = (performance.now() - startAt) % LOOP;
+    playing = false;
+    clearInterval(ticker);
     if (card) card.setAttribute('data-paused', '');
     setPauseLabel(true);
   }
 
   document.addEventListener('click', function (e) {
     var b = e.target.closest('.se-gesture-card button[data-step]');
-    if (b) { stop(); show(+b.dataset.step); return; }
-    if (e.target.closest('.se-pause')) { timer ? stop() : play(); }
+    if (b) {
+      // leave the timeline and show that step as a still, controllable pose
+      stop();
+      pausedAt = 0;
+      var svg = document.querySelector('.se-gesture');
+      var wasPlaying = svg.classList.contains('is-playing');
+      svg.classList.remove('is-playing');
+      if (wasPlaying) render(+b.dataset.step); else show(+b.dataset.step);
+      return;
+    }
+    if (e.target.closest('.se-pause')) { playing ? stop() : play(); }
   });
 
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (document.querySelector('.se-gesture-card')) render(1);
+
+  if (REDUCED) {
     stop();
     var pb = document.querySelector('.se-pause');
     if (pb) pb.hidden = true;
