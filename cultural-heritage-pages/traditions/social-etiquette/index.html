@@ -122,6 +122,17 @@
 <span>03 — HELPING AS A COMMUNITY</span>
 </div>
 </section>
+<div class="se-ribbon" aria-hidden="true">
+  <div class="se-ribbon-track">
+    <span>Opo</span><span>Salamat po</span><span>Mano po</span><span>Tulong tayo</span><span>Kapwa</span>
+    <span>Opo</span><span>Salamat po</span><span>Mano po</span><span>Tulong tayo</span><span>Kapwa</span>
+    <span>Opo</span><span>Salamat po</span><span>Mano po</span><span>Tulong tayo</span><span>Kapwa</span>
+    <span>Opo</span><span>Salamat po</span><span>Mano po</span><span>Tulong tayo</span><span>Kapwa</span>
+    <span>Opo</span><span>Salamat po</span><span>Mano po</span><span>Tulong tayo</span><span>Kapwa</span>
+    <span>Opo</span><span>Salamat po</span><span>Mano po</span><span>Tulong tayo</span><span>Kapwa</span>
+  </div>
+</div>
+
 <section class="social-etiquette-practices" id="social-practices">
 <div class="social-etiquette-section-head">
 <div>
@@ -191,6 +202,7 @@
 </a>
 </div>
 </section>
+
 <section class="social-etiquette-values">
 <div class="social-etiquette-values-heading">
 <span class="eyebrow">
@@ -251,5 +263,40 @@
 </footer>
 </div>
 <script src="/assets/js/main.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Try-it toggle
+  const lines = { friend: '“Sige, salamat!”', elder: '“Opo, sige po. Salamat po!”' };
+  const out = document.querySelector('.se-demo-output');
+  document.querySelectorAll('.se-demo-toggle button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.se-demo-toggle button').forEach(b => {
+        const on = b === btn;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', on);
+      });
+      out.style.opacity = 0;
+      setTimeout(() => { out.textContent = lines[btn.dataset.who]; out.style.opacity = 1; }, 150);
+    });
+  });
+
+  // Staggered reveal
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    const items = document.querySelectorAll('.social-etiquette-practice-card, .social-etiquette-values-list article');
+    items.forEach((el, i) => { el.classList.add('se-reveal'); el.style.transitionDelay = (i % 3) * 120 + 'ms'; });
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+        if (e.isIntersecting) {
+            const el = e.target;
+            el.classList.add('is-visible');
+            io.unobserve(el);
+            setTimeout(() => { el.style.transitionDelay = ''; }, 1000);
+        }
+        });
+    }, { threshold: .15 });
+    items.forEach(el => io.observe(el));
+  }
+});
+</script>
 </body>
 </html>

@@ -107,10 +107,12 @@
 <nav class="social-etiquette-detail-index" aria-label="On this page">
 <a href="#overview">
 <span>01</span> The practice</a>
+<a href="#try-it">
+<span>02</span> Try it</a>
 <a href="#everyday">
-<span>02</span> In everyday life</a>
+<span>03</span> In everyday life</a>
 <a href="#related">
-<span>03</span> Keep exploring</a>
+<span>04</span> Keep exploring</a>
 </nav>
 <section class="social-etiquette-editorial" id="overview">
 <div class="social-etiquette-editorial-mark">
@@ -138,6 +140,32 @@
 </div>
 </div>
 </section>
+
+<section class="se-try" id="try-it" aria-labelledby="se-try-title">
+  <div class="se-try-head">
+    <span class="eyebrow"><i></i> TRY IT</span>
+    <h2 id="se-try-title">Same meaning,<br/><em>different respect.</em></h2>
+    <p>Pick a situation, then choose who you are speaking with. Watch where <b>po</b> appears.</p>
+  </div>
+  <div class="se-try-card" data-situation="thanks" data-who="friend">
+    <div class="se-try-chips" role="group" aria-label="Situation">
+      <button type="button" class="is-active" data-situation="thanks" aria-pressed="true">Saying thanks</button>
+      <button type="button" data-situation="morning" aria-pressed="false">Good morning</button>
+      <button type="button" data-situation="yes" aria-pressed="false">Saying yes</button>
+      <button type="button" data-situation="ask" aria-pressed="false">Asking</button>
+    </div>
+    <div class="se-try-toggle" role="group" aria-label="Who are you speaking with?">
+      <button type="button" class="is-active" data-who="friend" aria-pressed="true">A close friend</button>
+      <button type="button" data-who="elder" aria-pressed="false">An elder</button>
+    </div>
+    <div class="se-try-stage" aria-live="polite">
+      <p class="se-try-phrase">Salamat!</p>
+      <p class="se-try-gloss">“Thank you.”</p>
+    </div>
+    <small class="se-try-note">Usage varies by family, region, and language community. Follow the people you are with.</small>
+  </div>
+</section>
+
 <section class="social-etiquette-in-practice" id="everyday" aria-labelledby="practice-examples-heading">
 <div class="social-etiquette-practice-heading">
 <div>
@@ -153,7 +181,7 @@
 <span class="social-example-number">01</span>
 <div>
 <h3>Po in a phrase</h3>
-<p>&quot;Magandang umaga po&quot; adds a respectful marker to a morning greeting.</p>
+<p>&quot;Magandang umaga <mark class="se-po">po</mark>&quot; adds a respectful marker to a morning greeting.</p>
 </div>
 <i class="social-example-mark" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 1.5 14.7 9.3 22.5 12l-7.8 2.7L12 22.5l-2.7-7.8L1.5 12l7.8-2.7L12 1.5Z"/></svg></i>
 </article>
@@ -161,7 +189,7 @@
 <span class="social-example-number">02</span>
 <div>
 <h3>Opo as yes</h3>
-<p>&quot;Opo, salamat po&quot; combines a respectful yes with thanks.</p>
+<p>&quot;O<mark class="se-po">po</mark>, salamat <mark class="se-po">po</mark>&quot; combines a respectful yes with thanks.</p>
 </div>
 <i class="social-example-mark" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 1.5 14.7 9.3 22.5 12l-7.8 2.7L12 22.5l-2.7-7.8L1.5 12l7.8-2.7L12 1.5Z"/></svg></i>
 </article>
@@ -215,5 +243,54 @@
 </footer>
 </div>
 <script src="/assets/js/main.js" defer></script>
+<script>
+(function () {
+  var SET = {
+    thanks:  { gloss: '“Thank you.”',   friend: [['Salamat!']],            elder: [['Salamat '], ['po', 1], ['!']] },
+    morning: { gloss: '“Good morning.”', friend: [['Magandang umaga!']],    elder: [['Magandang umaga '], ['po', 1], ['!']] },
+    yes:     { gloss: '“Yes.”',          friend: [['Oo.']],                 elder: [['O'], ['po', 1], ['.']] },
+    ask:     { gloss: '“May I?”',        friend: [['Pwede ba?']],           elder: [['Pwede '], ['po', 1], [' ba?']] }
+  };
+
+  function render(card) {
+    var s = SET[card.dataset.situation];
+    var parts = s[card.dataset.who].map(function (p) {
+      if (!p[1]) return document.createTextNode(/^[!.?]/.test(p[0]) ? '\u2060' + p[0] : p[0]);
+      var m = document.createElement('span');
+      m.className = 'se-try-po';
+      m.textContent = p[0];
+      return m;
+    });
+    card.querySelector('.se-try-phrase').replaceChildren.apply(card.querySelector('.se-try-phrase'), parts);
+    card.querySelector('.se-try-gloss').textContent = s.gloss;
+  }
+
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('.se-try-card button');
+    if (!btn) return;
+    var card = btn.closest('.se-try-card');
+    if (btn.dataset.situation) card.dataset.situation = btn.dataset.situation;
+    if (btn.dataset.who) card.dataset.who = btn.dataset.who;
+    btn.parentElement.querySelectorAll('button').forEach(function (b) {
+      var on = b === btn;
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-pressed', on);
+    });
+    render(card);
+  });
+
+  // Reading progress bar
+  var bar = document.createElement('div');
+  bar.className = 'se-progress';
+  bar.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(bar);
+  function onScroll() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(window.scrollY / max, 1) : 0) + ')';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 </body>
 </html>
