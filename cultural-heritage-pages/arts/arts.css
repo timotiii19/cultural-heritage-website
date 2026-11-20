@@ -82,6 +82,7 @@
 .arts-story-directory i { margin-left: auto; color: var(--accent-ink); font-size: 18px; font-style: normal; }
 .arts-directory-note { display: flex; align-items: center; gap: 15px; margin: 26px 12px; padding-top: 24px; border-top: 1px solid var(--line); }
 .arts-directory-note > span { color: var(--accent-ink); font-size: 33px; }
+.arts-directory-note > .detail-icon { width: 33px; height: 33px; flex: 0 0 33px; color: var(--accent-ink); stroke-width: 1.6; }
 .arts-directory-note p { color: var(--muted); font: 16px/1.4 var(--serif); }
 .arts-story-panel { min-width: 0; padding: 33px; border: 1px solid var(--line); border-radius: 28px; background: color-mix(in srgb, var(--paper-bright) 86%, transparent); box-shadow: 0 15px 45px #183a3209; animation: arts-panel-in .3s ease both; }
 .arts-story-topline { display: flex; justify-content: space-between; align-items: center; gap: 15px; }

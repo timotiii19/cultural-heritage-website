@@ -94,6 +94,11 @@
 </div>
 <figure class="social-etiquette-detail-photo">
 <img src="/cultural-heritage-pages/traditions/social-etiquette/images/pagmamano.webp" alt="A young girl performs pagmamano by bringing an elder woman&#x27;s hand to her forehead." fetchPriority="high"/>
+<svg class="se-seal" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+  <defs><path id="se-seal-circle" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs>
+  <text><textPath href="#se-seal-circle" textLength="270" lengthAdjust="spacing">mano po ✦ mano po ✦ mano po ✦ mano po ✦ </textPath></text>
+  <path class="se-heart" transform="translate(48 48)" d="M20.8 4.8a5.1 5.1 0 0 0-7.2 0L12 6.4l-1.6-1.6a5.1 5.1 0 0 0-7.2 7.2l1.6 1.6L12 20.8l7.2-7.2 1.6-1.6a5.1 5.1 0 0 0 0-7.2Z"/>
+</svg>
 <figcaption>
 <span>Pagmamano</span>
 <a href="https://buklat.blogspot.com/2017/09/talahulugan-tradisyong-pilipino.html" target="_blank" rel="noreferrer">Image: Buklat, Talahulugan: Tradisyong Pilipino (2017) <svg class="social-etiquette-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
@@ -105,10 +110,12 @@
 <nav class="social-etiquette-detail-index" aria-label="On this page">
 <a href="#overview">
 <span>01</span> The practice</a>
+<a href="#see-it">
+<span>02</span> See it</a>
 <a href="#everyday">
-<span>02</span> In everyday life</a>
+<span>03</span> In everyday life</a>
 <a href="#related">
-<span>03</span> Keep exploring</a>
+<span>04</span> Keep exploring</a>
 </nav>
 <section class="social-etiquette-editorial" id="overview">
 <div class="social-etiquette-editorial-mark">
@@ -140,6 +147,33 @@
 </div>
 </div>
 </section>
+<section class="se-try" id="see-it" aria-labelledby="se-see-title">
+  <div class="se-try-head">
+    <span class="eyebrow"><i></i> SEE IT</span>
+    <h2 id="se-see-title">Three small moments,<br/><em>one gesture.</em></h2>
+    <p>Follow the greeting step by step. It plays on its own, or tap a step to take control.</p>
+  </div>
+  <div class="se-try-card se-gesture-card">
+    <svg class="se-gesture" data-step="1" viewBox="0 0 320 190" role="img" aria-label="Simple diagram: a younger person approaches an elder, receives the offered hand, and brings it to the forehead.">
+      <g class="se-g-young"><circle cx="90" cy="70" r="26"/><path d="M52 176c0-36 17-54 38-54s38 18 38 54"/></g>
+      <g class="se-g-elder"><circle cx="236" cy="70" r="26"/><path d="M198 176c0-36 17-54 38-54s38 18 38 54"/></g>
+      <g class="se-g-hand"><rect x="-17" y="-9" width="34" height="18" rx="9"/></g>
+      <g class="se-g-bubble"><rect x="46" y="2" width="88" height="26" rx="13"/><text x="90" y="20">mano po</text></g>
+    </svg>
+    <div class="se-try-labelrow">
+    <p class="se-try-label">Tap a step, or let it play</p>
+    <button type="button" class="se-pause" aria-label="Pause animation">❚❚ Pause</button>
+    </div>
+    <div class="se-try-chips" role="group" aria-label="Steps">
+      <button type="button" class="is-active" data-step="1" aria-pressed="true">1 · Approach</button>
+      <button type="button" data-step="2" aria-pressed="false">2 · Offered hand</button>
+      <button type="button" data-step="3" aria-pressed="false">3 · Mano po</button>
+    </div>
+    <p class="se-try-gloss">Greet the elder in the way that feels appropriate in that family or setting.</p>
+    <small class="se-try-note">A simplified diagram. Customs differ among households and communities; follow the elder’s cue.</small>
+  </div>
+</section>
+
 <section class="social-etiquette-in-practice" id="everyday" aria-labelledby="practice-examples-heading">
 <div class="social-etiquette-practice-heading">
 <div>
@@ -217,5 +251,75 @@
 </footer>
 </div>
 <script src="/assets/js/main.js" defer></script>
+<script>
+(function () {
+  var TEXT = {
+    1: 'Greet the elder in the way that feels appropriate in that family or setting.',
+    2: 'If the elder offers a hand, receive it gently.',
+    3: 'Bring the back of the hand to the forehead, often saying “mano po.”'
+  };
+  var step = 1, timer = null;
+
+  function show(n) {
+    var card = document.querySelector('.se-gesture-card');
+    if (!card) return;
+    step = n;
+    card.querySelector('.se-gesture').dataset.step = n;
+    card.querySelector('.se-try-gloss').textContent = TEXT[n];
+    card.querySelectorAll('[data-step]').forEach(function (b) {
+      var on = +b.dataset.step === n;
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-pressed', on);
+    });
+  }
+
+  function setPauseLabel(paused) {
+    var p = document.querySelector('.se-pause');
+    if (!p) return;
+    p.textContent = paused ? '▶ Play' : '❚❚ Pause';
+    p.setAttribute('aria-label', paused ? 'Play animation' : 'Pause animation');
+  }
+  function play() {
+    var card = document.querySelector('.se-gesture-card');
+    clearInterval(timer);
+    timer = setInterval(function () { show(step % 3 + 1); }, 3800);
+    if (card) card.removeAttribute('data-paused');
+    setPauseLabel(false);
+  }
+  function stop() {
+    var card = document.querySelector('.se-gesture-card');
+    clearInterval(timer);
+    timer = null;
+    if (card) card.setAttribute('data-paused', '');
+    setPauseLabel(true);
+  }
+
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.se-gesture-card button[data-step]');
+    if (b) { stop(); show(+b.dataset.step); return; }
+    if (e.target.closest('.se-pause')) { timer ? stop() : play(); }
+  });
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    stop();
+    var pb = document.querySelector('.se-pause');
+    if (pb) pb.hidden = true;
+  } else {
+    play();
+  }
+
+  // Reading progress bar
+  var bar = document.createElement('div');
+  bar.className = 'se-progress';
+  bar.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(bar);
+  function onScroll() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(window.scrollY / max, 1) : 0) + ')';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 </body>
 </html>

@@ -2324,8 +2324,239 @@ body { background: var(--paper); }
 
 /* giant "po" watermark behind the meaning section */
 .social-etiquette-editorial { position: relative; overflow: clip; }
-.social-etiquette-editorial::after { content: "po"; position: absolute; top: 50%; right: 1%; translate: 0 -50%; z-index: 0; color: color-mix(in srgb, var(--gold) 16%, transparent); font: italic 400 clamp(180px, 26vw, 380px)/1 var(--accent-serif); pointer-events: none; }
+.social-etiquette-editorial::after { content: none; position: absolute; top: 50%; right: 1%; translate: 0 -50%; z-index: 0; color: color-mix(in srgb, var(--practice-accent) 14%, transparent); font: italic 400 clamp(150px, 21vw, 300px)/1 var(--accent-serif); pointer-events: none; }
+.social-etiquette-detail-page[data-practice="po-and-opo"] .social-etiquette-editorial::after { content: "po"; font-size: clamp(180px, 26vw, 380px); }
+.social-etiquette-detail-page[data-practice="pag-mamano"] .social-etiquette-editorial::after { content: "mano"; }
 .social-etiquette-editorial > * { position: relative; z-index: 1; }
 
 /* reading progress bar */
 .se-progress { position: fixed; z-index: 60; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--forest), var(--gold)); transform: scaleX(0); transform-origin: left; pointer-events: none; }
+
+/* Shared SVG styling for decorative sparkles, leaf sprigs, rice stalks, and detail icons. */
+.sparkle-icon,
+.leaf-icon,
+.rice-icon,
+.detail-icon {
+  display: inline-block;
+  width: var(--line-mark-size, 1em);
+  height: var(--line-mark-size, 1em);
+  flex: 0 0 auto;
+  overflow: visible;
+  vertical-align: -.15em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.ambient-spark .sparkle-icon,
+.ambient-spark .leaf-icon,
+.ambient-spark .rice-icon,
+.ambient-spark .detail-icon { display: block; width: 100%; height: 100%; }
+:is(
+  .ambient-spark,
+  .caption-mark,
+  .hero-sticker > i,
+  .intro-band-mark,
+  .heritage-marquee-copy > i,
+  .team-feature-seal > i,
+  .team-feature-image-caption > i,
+  .team-directory-foot > i,
+  .team-showcase-foot > span > i,
+  .arts-index-star,
+  .arts-hero-seal > b,
+  .arts-curator-note > span,
+  .arts-directory-note > span,
+  .arts-looking-note > span,
+  .arts-closing-mark,
+  .arts-reference-motif,
+  .arts-reference-endnote > span,
+  .festival-photo-stamp > i,
+  .beat-card > i,
+  .preview-dancer,
+  .superstition-hero-mark,
+  .superstition-page .superstition-quote > span,
+  .line-star
+):has(> .sparkle-icon, > .leaf-icon, > .rice-icon, > .detail-icon)::before {
+  display: none;
+  content: none;
+}
+
+/* ---------- Pagmamano: gesture diagram ---------- */
+.se-gesture { display: block; width: 100%; height: auto; max-height: 240px; margin: 4px 0 18px; overflow: visible; }
+.se-gesture circle, .se-gesture path { fill: none; stroke: #ffffffd9; stroke-width: 2.2; stroke-linecap: round; }
+.se-g-young, .se-g-elder, .se-g-hand, .se-g-bubble { transition: transform .9s cubic-bezier(.4, 0, .2, 1), opacity .5s ease; }
+.se-g-bubble rect { fill: var(--gold); stroke: none; }
+.se-g-hand rect { fill: var(--gold); stroke: var(--ink); stroke-width: 1.3; }
+.se-g-hand .se-wrist { fill-opacity: .55; }.se-g-bubble text { fill: var(--ink); font: 600 13px var(--sans); text-anchor: middle; }
+
+.se-g-young  { transform: translate(-34px, 0); opacity: .55; }
+.se-g-hand   { transform: translate(226px, 132px) rotate(0deg); }
+.se-g-bubble { transform: translate(0, 8px); opacity: 0; }
+
+.se-gesture[data-step="2"] .se-g-young,
+.se-gesture[data-step="3"] .se-g-young  { transform: none; opacity: 1; }
+.se-gesture[data-step="2"] .se-g-hand   { transform: translate(152px, 128px) rotate(0deg); }
+.se-gesture[data-step="3"] .se-g-hand   { transform: translate(98px, 48px) rotate(-14deg); }
+.se-gesture[data-step="3"] .se-g-bubble { transform: none; opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .se-g-young, .se-g-elder, .se-g-hand, .se-g-bubble { transition: none; }
+}
+
+.se-seal { position: absolute; z-index: 2; top: 18px; right: 18px; width: 104px; height: 104px; border-radius: 50%; color: #fff; background: color-mix(in srgb, var(--forest-deep) 70%, transparent); backdrop-filter: blur(4px); animation: se-spin 26s linear infinite; }
+.se-seal text { fill: currentColor; font: 600 10.5px var(--sans); letter-spacing: .08em; text-transform: uppercase; }
+.se-seal .se-heart { fill: var(--gold); }
+@keyframes se-spin { to { rotate: 360deg; } }
+@media (prefers-reduced-motion: reduce) { .se-seal { animation: none; } }
+
+.social-etiquette-detail-page[data-practice="pag-mamano"] .social-etiquette-detail-notes article:last-child {
+  padding: 17px 18px;
+  border-left: 3px solid var(--practice-accent);
+  border-radius: 0 14px 14px 0;
+  background: color-mix(in srgb, var(--practice-accent) 7%, transparent);
+}
+
+/* ---------- Softer Try it / See it panel ---------- */
+.se-try {
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 90% 8%, color-mix(in srgb, var(--gold) 22%, transparent), transparent 38%),
+    linear-gradient(135deg, color-mix(in srgb, var(--forest) 9%, var(--paper-bright)), color-mix(in srgb, var(--forest) 16%, var(--paper-bright)));
+  border: 1px solid color-mix(in srgb, var(--forest) 22%, var(--line));
+  box-shadow: var(--elev-2);
+}
+.se-try .eyebrow { color: var(--forest); }
+.se-try h2 em { color: var(--forest); }
+.se-try-head > p { color: var(--muted); }
+.se-try-head > p b { color: var(--forest); }
+
+.se-try-card {
+  border-color: color-mix(in srgb, var(--forest) 20%, var(--line));
+  background: color-mix(in srgb, var(--paper-bright) 82%, transparent);
+}
+.se-try-chips button { color: var(--ink); border-color: color-mix(in srgb, var(--forest) 28%, var(--line)); }
+.se-try-chips button:hover { border-color: var(--forest); }
+.se-try-chips button.is-active { color: var(--ink); background: var(--gold); border-color: var(--gold); }
+
+.se-try-toggle { background: color-mix(in srgb, var(--forest) 10%, transparent); }
+.se-try-toggle button { color: var(--muted); }
+.se-try-toggle button.is-active { color: #fff; background: var(--forest); }
+
+.se-try-stage { border-top-color: var(--line); }
+.se-try-gloss, .se-try-note { color: var(--muted); }
+
+/* Pagmamano diagram lines (were white on the dark panel) */
+.se-gesture circle, .se-gesture path { stroke: var(--forest); }
+
+/* ---------- Interaction cues ---------- */
+.se-try-label { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; color: var(--muted); font: 12px var(--sans); letter-spacing: .06em; text-transform: uppercase; }
+.se-try-label span { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; color: #fff; background: var(--forest); font-size: 11px; letter-spacing: 0; }
+.se-try-chips + .se-try-label { margin-top: 18px; }
+.se-try-label + .se-try-toggle { margin-top: 0; }
+
+.se-try-chips button, .se-try-toggle button { transition: background .2s, color .2s, border-color .2s, transform .12s; }
+.se-try-chips button:active, .se-try-toggle button:active { transform: scale(.96); }
+.se-try-toggle button:not(.is-active):hover { color: var(--ink); background: color-mix(in srgb, var(--forest) 12%, transparent); }
+
+.se-try-prompt { display: inline-block; margin-top: 12px; padding: 5px 13px; border-radius: 999px; color: var(--ink); background: color-mix(in srgb, var(--gold) 38%, transparent); font: 12px var(--sans); }
+.se-try-prompt-b { display: none; }
+.se-try-card[data-touched] .se-try-prompt-a { display: none; }
+.se-try-card[data-touched] .se-try-prompt-b { display: inline; }
+
+/* ripple on the button to try first, until the card is used */
+.se-try-card:not([data-touched]) .se-try-toggle button:not(.is-active) { animation: se-ripple 1.8s ease-out infinite; }
+@keyframes se-ripple {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--gold) 80%, transparent); }
+  70%, 100% { box-shadow: 0 0 0 10px transparent; }
+}
+@media (prefers-reduced-motion: reduce) { .se-try-card:not([data-touched]) .se-try-toggle button { animation: none; } }
+
+.se-try-labelrow { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px; }
+.se-try-labelrow .se-try-label { margin: 0; }
+.se-pause { padding: 4px 12px; border: 1px solid color-mix(in srgb, var(--forest) 28%, var(--line)); border-radius: 999px; color: var(--ink); background: none; font: 12px var(--sans); cursor: pointer; }
+.se-pause:hover { border-color: var(--forest); }
+
+/* fill bar on the active step shows when the next one arrives */
+.se-gesture-card .se-try-chips button { position: relative; overflow: hidden; }
+.se-gesture-card .se-try-chips button.is-active::after { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 3px; background: var(--forest); transform-origin: left; animation: se-fill 3.8s linear forwards; }
+.se-gesture-card[data-paused] .se-try-chips button.is-active::after { display: none; }
+@keyframes se-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) { .se-gesture-card .se-try-chips button.is-active::after { display: none; } }
+
+/* ---------- Pagmamano hand (final) ---------- */
+.se-g-hand .se-forearm { fill: url(#se-arm-fade); stroke: none; }
+.se-hand-outline { fill: var(--ink); stroke: var(--ink); stroke-width: 3.4; stroke-linejoin: round; }
+.se-hand-fill { fill: var(--gold); stroke: none; }
+
+.se-g-hand { transform: translate(214px, 130px) rotate(-90deg); }
+.se-gesture[data-step="2"] .se-g-hand { transform: translate(142px, 128px) rotate(-90deg); }
+.se-gesture[data-step="3"] .se-g-hand { transform: translate(98px, 56px) rotate(-78deg); }
+
+/* elder steps closer once the hand is offered */
+.se-g-elder { transform: none; }
+.se-gesture[data-step="2"] .se-g-elder,
+.se-gesture[data-step="3"] .se-g-elder { transform: translate(-34px, 0); }
+
+/* ---------- Pagmamano: back to the original pill hand ---------- */
+.se-g-hand rect { fill: var(--gold); stroke: none; }
+
+.se-g-hand { transform: translate(226px, 132px); }
+.se-gesture[data-step="2"] .se-g-hand { transform: translate(152px, 128px); }
+.se-gesture[data-step="3"] .se-g-hand { transform: translate(94px, 50px); }
+
+.se-g-elder,
+.se-gesture[data-step="2"] .se-g-elder,
+.se-gesture[data-step="3"] .se-g-elder { transform: none; }
+
+/* ---------- Bayanihan: many hands ---------- */
+.se-bayani { display: block; width: 100%; height: auto; max-height: 250px; margin: 4px 0 14px; overflow: visible; }
+.se-b-ground { fill: none; stroke: color-mix(in srgb, var(--forest) 35%, transparent); stroke-width: 2; }
+.se-b-ghost { fill: none; stroke: var(--forest); stroke-width: 1.6; stroke-dasharray: 5 5; opacity: .45; }
+
+.se-b-house, .se-b-helpers { transition: transform 1.2s cubic-bezier(.4, 0, .2, 1); }
+.se-b-house   { transform: translate(14px, calc(var(--sag, 0) * 1px)); }
+.se-b-helpers { transform: translate(14px, 0); }
+.se-bayani[data-full] .se-b-house,
+.se-bayani[data-full] .se-b-helpers { transform: translate(190px, 0); }
+
+.se-b-body { fill: color-mix(in srgb, var(--gold) 45%, var(--paper-bright)); stroke: var(--forest); stroke-width: 2; }
+.se-b-roof { fill: var(--forest); }
+.se-b-door { fill: var(--forest); opacity: .75; }
+.se-b-pole { fill: color-mix(in srgb, var(--gold) 80%, var(--ink)); }
+
+.se-b-h { opacity: 0; transform: translateY(10px); transition: opacity .35s, transform .35s; }
+.se-b-h.on { opacity: 1; transform: none; }
+.se-b-h circle { fill: var(--paper-bright); stroke: var(--forest); stroke-width: 2; }
+.se-b-h path { fill: none; stroke: var(--forest); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.se-bayani-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px; }
+.se-bayani-row .se-try-label { margin: 0; }
+.se-bayani-row .se-try-label b { font-weight: 600; color: var(--ink); }
+.se-add { padding: 10px 20px; border: 0; border-radius: 999px; color: #fff; background: var(--forest); font: 14px var(--sans); cursor: pointer; transition: transform .12s, background .2s; }
+.se-add:hover { background: var(--forest-deep); }
+.se-add:active { transform: scale(.96); }
+
+/* ripple cue until the card is used */
+.se-bayani-card:not([data-touched]) .se-add { animation: se-ripple-b 1.8s ease-out infinite; }
+@keyframes se-ripple-b {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--gold) 85%, transparent); }
+  70%, 100% { box-shadow: 0 0 0 11px transparent; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .se-b-house, .se-b-helpers, .se-b-h { transition: none; }
+  .se-bayani-card:not([data-touched]) .se-add { animation: none; }
+}
+
+.se-seal .se-rings circle { fill: none; stroke: var(--gold); stroke-width: 2; }
+
+/* big faint word behind the meaning section (Bayanihan only) */
+.social-etiquette-detail-page[data-practice="bayanihan"] .social-etiquette-editorial::after { content: "tulong"; font-size: clamp(120px, 17vw, 250px); }
+
+/* NOTE / 02 (other local names) as a callout */
+.social-etiquette-detail-page[data-practice="bayanihan"] .social-etiquette-detail-notes article:last-child {
+  padding: 17px 18px;
+  border-left: 3px solid var(--practice-accent);
+  border-radius: 0 14px 14px 0;
+  background: color-mix(in srgb, var(--practice-accent) 7%, transparent);
+}

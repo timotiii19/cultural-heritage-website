@@ -148,12 +148,14 @@
     <p>Pick a situation, then choose who you are speaking with. Watch where <b>po</b> appears.</p>
   </div>
   <div class="se-try-card" data-situation="thanks" data-who="friend">
+    <p class="se-try-label"><span>1</span> Pick a situation</p>
     <div class="se-try-chips" role="group" aria-label="Situation">
       <button type="button" class="is-active" data-situation="thanks" aria-pressed="true">Saying thanks</button>
       <button type="button" data-situation="morning" aria-pressed="false">Good morning</button>
       <button type="button" data-situation="yes" aria-pressed="false">Saying yes</button>
       <button type="button" data-situation="ask" aria-pressed="false">Asking</button>
     </div>
+    <p class="se-try-label"><span>2</span> Who are you speaking with?</p>
     <div class="se-try-toggle" role="group" aria-label="Who are you speaking with?">
       <button type="button" class="is-active" data-who="friend" aria-pressed="true">A close friend</button>
       <button type="button" data-who="elder" aria-pressed="false">An elder</button>
@@ -162,6 +164,7 @@
       <p class="se-try-phrase">Salamat!</p>
       <p class="se-try-gloss">“Thank you.”</p>
     </div>
+    <small class="se-try-prompt"><span class="se-try-prompt-a">↑ Tap “An elder” to see how the phrase changes</span><span class="se-try-prompt-b">Tap again to compare, or pick another situation</span></small>
     <small class="se-try-note">Usage varies by family, region, and language community. Follow the people you are with.</small>
   </div>
 </section>
@@ -269,6 +272,7 @@
     var btn = e.target.closest('.se-try-card button');
     if (!btn) return;
     var card = btn.closest('.se-try-card');
+    card.dataset.touched = '1';
     if (btn.dataset.situation) card.dataset.situation = btn.dataset.situation;
     if (btn.dataset.who) card.dataset.who = btn.dataset.who;
     btn.parentElement.querySelectorAll('button').forEach(function (b) {

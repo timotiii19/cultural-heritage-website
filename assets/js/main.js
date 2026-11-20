@@ -269,7 +269,7 @@ if (referenceSearch) {
   const emptyState = document.createElement('div');
   emptyState.className = 'arts-reference-empty';
   emptyState.style.display = 'none';
-  emptyState.innerHTML = '<span class="line-star" aria-hidden="true">✳</span><h2>No sources found.</h2><p>Try a subject such as “Jeepney,” an author, or a website name.</p><button class="button-primary" type="button">Clear search &amp; filters</button>';
+  emptyState.innerHTML = '<span class="line-star" aria-hidden="true"><svg class="leaf-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 22c-.4-6 .1-12 0-20M12 17c-3.5-.3-5.8-2.5-6.4-6.2 3.8.2 5.9 2.2 6.4 6.2ZM12 12c.5-3.8 2.7-6 6.4-6.4.1 3.9-2 6.1-6.4 6.4ZM12 20c-2.7-.2-4.3-1.9-4.8-4.6 2.8.1 4.5 1.8 4.8 4.6ZM12 8.5C9 8 7.5 6.3 7 3.5c3 .2 4.6 1.8 5 5Z"/></svg></span><h2>No sources found.</h2><p>Try a subject such as “Jeepney,” an author, or a website name.</p><button class="button-primary" type="button">Clear search &amp; filters</button>';
   library.append(emptyState);
   let filter = 'All sources';
   const updateReferences = () => {

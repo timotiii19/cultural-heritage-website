@@ -94,6 +94,11 @@
 </div>
 <figure class="social-etiquette-detail-photo">
 <img src="/cultural-heritage-pages/traditions/social-etiquette/images/bayanihan.webp" alt="Community members work together to carry a house to a new location." fetchPriority="high"/>
+<svg class="se-seal" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+  <defs><path id="se-seal-circle-b" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs>
+  <text><textPath href="#se-seal-circle-b" textLength="270" lengthAdjust="spacing">bayanihan ✦ bayanihan ✦ bayanihan ✦ </textPath></text>
+  <g class="se-rings"><circle cx="52" cy="65" r="9"/><circle cx="68" cy="65" r="9"/><circle cx="60" cy="52" r="9"/></g>
+</svg>
 <figcaption>
 <span>Neighbors moving a house together</span>
 <a href="https://primer.com.ph/tips-guides/2015/12/24/expat-guide-to-filipino-values/" target="_blank" rel="noreferrer">Photo via Philippine Primer; photo credit listed as The Apricity <svg class="social-etiquette-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
@@ -105,6 +110,8 @@
 <nav class="social-etiquette-detail-index" aria-label="On this page">
 <a href="#overview">
 <span>01</span> The practice</a>
+<a href="#see-it">
+<span>02</span> Try it</a>
 <a href="#everyday">
 <span>02</span> In everyday life</a>
 <a href="#related">
@@ -136,6 +143,33 @@
 </div>
 </div>
 </section>
+<section class="se-try" id="see-it" aria-labelledby="se-see-title">
+  <div class="se-try-head">
+    <span class="eyebrow"><i></i> TRY IT</span>
+    <h2 id="se-see-title">Many hands,<br/><em>lighter work.</em></h2>
+    <p>Add helpers one at a time and see what happens to the load.</p>
+  </div>
+  <div class="se-try-card se-bayani-card">
+    <svg class="se-bayani" viewBox="0 0 320 190" role="img" aria-label="Simple illustration of neighbors lifting a house together and carrying it to a new place.">
+      <path class="se-b-ground" d="M0 170H320"/>
+      <path class="se-b-ghost" d="M190 92 246 58 302 92Z M196 92V130H296V92"/>
+      <g class="se-b-helpers"></g>
+      <g class="se-b-house">
+        <rect class="se-b-pole" x="-6" y="130" width="124" height="5" rx="2.5"/>
+        <rect class="se-b-body" x="6" y="90" width="100" height="40"/>
+        <path class="se-b-roof" d="M0 92 56 58l56 34Z"/>
+        <rect class="se-b-door" x="48" y="106" width="16" height="24"/>
+      </g>
+    </svg>
+    <div class="se-bayani-row">
+      <p class="se-try-label"><b class="se-b-count">1 of 8 people</b></p>
+      <button type="button" class="se-add">+ Add a helper</button>
+    </div>
+    <p class="se-try-gloss" aria-live="polite">One person alone can’t carry a house.</p>
+    <small class="se-try-note">A simple illustration of the idea. Bayanihan also appears in farming, community gatherings, and support during hardship.</small>
+  </div>
+</section>
+
 <section class="social-etiquette-in-practice" id="everyday" aria-labelledby="practice-examples-heading">
 <div class="social-etiquette-practice-heading">
 <div>
@@ -213,5 +247,70 @@
 </footer>
 </div>
 <script src="/assets/js/main.js" defer></script>
+<script>
+(function () {
+  var MAX = 8, NS = 'http://www.w3.org/2000/svg', n = 1;
+  var SAG = [0, 8, 5, 3, 1, 0, 0, 0, 0];
+  var MSG = [
+    'One person alone can’t carry a house.',
+    'More hands help, but it is still heavy.',
+    'More neighbors join, and the load is shared.',
+    'Together, the house moves to its new place.'
+  ];
+
+  function el(name, attrs) {
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  function build() {
+    var box = document.querySelector('.se-b-helpers');
+    if (!box || box.firstChild) return;
+    for (var i = 0; i < MAX; i++) {
+      var pos = el('g', { transform: 'translate(' + (8 + i * 13.4) + ' 0)' });
+      var h = el('g', { 'class': 'se-b-h' });
+      h.appendChild(el('circle', { cx: 0, cy: 143, r: 4.5 }));
+      h.appendChild(el('path', { d: 'M-7 137L0 150L7 137M0 150V160L-4.5 170M0 160L4.5 170' }));
+      pos.appendChild(h);
+      box.appendChild(pos);
+    }
+  }
+
+  function render() {
+    var card = document.querySelector('.se-bayani-card');
+    if (!card) return;
+    build();
+    var art = card.querySelector('.se-bayani');
+    art.style.setProperty('--sag', SAG[n]);
+    if (n >= MAX) art.setAttribute('data-full', ''); else art.removeAttribute('data-full');
+    card.querySelectorAll('.se-b-h').forEach(function (h, i) { h.classList.toggle('on', i < n); });
+    card.querySelector('.se-b-count').textContent = n + ' of ' + MAX + ' people';
+    card.querySelector('.se-try-gloss').textContent = MSG[n === 1 ? 0 : n < 4 ? 1 : n < MAX ? 2 : 3];
+    card.querySelector('.se-add').textContent = n >= MAX ? '↺ Start again' : '+ Add a helper';
+  }
+
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.se-add');
+    if (!b) return;
+    b.closest('.se-bayani-card').setAttribute('data-touched', '');
+    n = n >= MAX ? 1 : n + 1;
+    render();
+  });
+  render();
+
+  // Reading progress bar
+  var bar = document.createElement('div');
+  bar.className = 'se-progress';
+  bar.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(bar);
+  function onScroll() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(window.scrollY / max, 1) : 0) + ')';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 </body>
 </html>
