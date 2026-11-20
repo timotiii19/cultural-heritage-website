@@ -2177,3 +2177,67 @@ body { background: var(--paper); }
   .footer-links { gap: 7px; }
   .footer-links a { padding: 9px 11px; font-size: 11px; }
 }
+
+
+/* Keep the collection heading close to the intro quote on Discover. */
+.intro-band + #explore { padding-top: 48px; }
+@media (max-width: 760px) {
+  .intro-band + #explore { padding-top: 36px; }
+}
+/* Keep selected developer photos the same size and crop as picker photos. */
+.team-showcase .team-directory .team-picker-photo {
+  flex: none;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+}
+.team-showcase .team-directory .team-picker-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.team-showcase .team-feature-panel.has-selection .team-feature-image {
+  width: min(100%, 460px);
+  max-width: 460px;
+  height: auto;
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+.team-showcase .team-feature-panel.has-selection .team-feature-image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: none;
+  transform: none;
+}
+.team-showcase .team-feature-panel.has-selection .team-feature-image:hover > img {
+  transform: none;
+}
+
+/* Keep developer picker cards at their content height beside tall profiles. */
+.team-showcase .team-directory .team-picker-grid {
+  flex: 0 0 auto;
+  align-content: start;
+  grid-auto-rows: max-content;
+}
+.team-showcase .team-directory .team-picker-card {
+  align-self: start;
+  height: auto;
+}
+
+/* Bring the Traditions collection closer to its hero CTA. */
+.tradition-hero {
+  min-height: 0;
+  padding-bottom: 28px;
+}
+.traditions-collection {
+  padding-top: 36px;
+}
+@media (max-width: 760px) {
+  .tradition-hero {
+    gap: 22px;
+    padding-top: 38px;
+    padding-bottom: 24px;
+  }
+  .traditions-collection { padding-top: 30px; }
+}
