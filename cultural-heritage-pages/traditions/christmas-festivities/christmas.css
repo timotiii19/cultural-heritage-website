@@ -134,7 +134,10 @@
 .xm-gallery-head h2 { margin: 6px 0 0; font: 400 clamp(36px, 4.2vw, 54px)/1.04 var(--serif); letter-spacing: -.035em; }
 .xm-gallery-head .xm-feature-lead { margin-top: 6px; }
 .xm-gallery-head .xm-text-link { grid-column: 2; }
-.xm-gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 24px; margin: 0; padding: 0; list-style: none; }
+.xm-gallery-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 28px 24px; margin: 0; padding: 0; list-style: none; }
+.xm-gallery-grid .xm-dish { grid-column: span 2; }
+.xm-gallery-grid .xm-dish:nth-child(n+4) { grid-column: span 3; }
+.xm-gallery-grid .xm-dish:nth-child(n+4) img { aspect-ratio: 16 / 9; }
 .xm-dish { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--xm-line); border-radius: 20px; background: var(--xm-panel); box-shadow: 0 6px 20px color-mix(in srgb, var(--ink) 7%, transparent); transition: transform .45s var(--xm-ease), box-shadow .45s; }
 .xm-dish:hover { transform: translateY(-4px); box-shadow: var(--xm-shadow); }
 .xm-dish figure { margin: 0; overflow: hidden; }
@@ -261,6 +264,9 @@
 
 @media (max-width: 1024px) {
   .xm-gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .xm-gallery-grid .xm-dish, .xm-gallery-grid .xm-dish:nth-child(n+4) { grid-column: auto; }
+  .xm-gallery-grid .xm-dish:nth-child(n+4) img { aspect-ratio: 4 / 3; }
+  .xm-gallery-grid .xm-dish:last-child { grid-column: 1 / -1; }
 }
 @media (max-width: 900px) {
   .xm-hero { min-height: auto; padding: 120px 0 40px; }
@@ -323,3 +329,40 @@
 .christmas-more a { color: var(--xm-red); font-weight: 700; }
 .christmas-delicacy > small.christmas-served { display: block; color: var(--xm-red); font-weight: 700; }
 @media (max-width: 720px) { .christmas-novena-list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* Festive layer */
+/* Hanging parols in the hero */
+.xm-hero-parol { z-index: 1; width: 92px; }
+.xm-hero-parol::before { height: var(--hang, 70px); }
+.xm-hero-parol .christmas-parol-shape { margin-top: var(--hang, 70px); }
+.xm-hero-parol-a { --hang: 110px; right: 7%; width: 110px; }
+.xm-hero-parol-b { --hang: 56px; right: 19%; width: 84px; animation-delay: -2s; animation-duration: 5s; }
+.xm-hero-parol-c { --hang: 150px; right: 30%; width: 72px; animation-delay: -4s; animation-duration: 7s; }
+.xm-credit { top: auto; bottom: 30px; }
+/* Golden glow on the title */
+.xm-hero h1 { background: linear-gradient(100deg, var(--xm-cream) 20%, #f4d58d 55%, var(--xm-cream) 90%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-shadow: none; filter: drop-shadow(0 4px 24px rgb(0 0 0 / 40%)); }
+/* Falling sparkles */
+.xm-hero::after { position: absolute; inset: 0; z-index: -1; content: ''; pointer-events: none; background-image: radial-gradient(circle, rgb(255 233 170 / 90%) 0 1.5px, transparent 2.5px), radial-gradient(circle, rgb(255 255 255 / 70%) 0 1px, transparent 2px), radial-gradient(circle, rgb(214 173 104 / 80%) 0 2px, transparent 3px); background-size: 210px 260px, 140px 180px, 310px 340px; background-position: 0 0, 60px 40px, 120px 90px; animation: xm-sparkle-fall 22s linear infinite; }
+/* String-light dividers between sections */
+.christmas-page .superstition-collection, .xm-gallery, .xm-message { position: relative; }
+.christmas-page .superstition-collection::before, .xm-gallery::before { position: absolute; top: 24px; right: 0; left: 0; height: 14px; content: ''; pointer-events: none; background: radial-gradient(circle at 7px 7px, #e05a5f 0 5px, transparent 6px) 0 0 / 84px 14px repeat-x, radial-gradient(circle at 7px 7px, var(--xm-gold) 0 5px, transparent 6px) 28px 0 / 84px 14px repeat-x, radial-gradient(circle at 7px 7px, #3f8a69 0 5px, transparent 6px) 56px 0 / 84px 14px repeat-x; filter: drop-shadow(0 0 5px rgb(214 173 104 / 55%)); animation: christmas-twinkle 3.2s ease-in-out infinite; }
+.christmas-page .superstition-collection { padding-top: 112px; }
+.xm-gallery { padding-top: 130px; }
+/* Candy-cane trim on cards */
+.christmas-page .superstition-card-copy, .xm-dish-copy, .christmas-delicacy-photo { border-top: 0; }
+.christmas-page .superstition-card-copy::before, .xm-dish-copy::before { display: block; height: 6px; margin: -22px -22px 18px; content: ''; background: repeating-linear-gradient(-45deg, var(--xm-red) 0 10px, #fff7ea 10px 20px); }
+.xm-dish-copy::before { margin: -18px -20px 16px; }
+.christmas-page .superstition-card-copy { gap: 9px; }
+/* Holly-berry accent on the gallery heading */
+.xm-gallery-head h2::after { display: inline-block; width: 14px; height: 14px; margin-left: 14px; content: ''; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f08a8f, var(--xm-red) 60%); box-shadow: 20px 5px 0 -1px var(--xm-red), 10px -9px 0 -2px #3f8a69; vertical-align: middle; }
+/* Warm festive wash behind the collection and the gallery */
+.christmas-page .superstition-collection::after, .xm-gallery::after { position: absolute; inset: 0; z-index: -1; content: ''; pointer-events: none; background: radial-gradient(ellipse at 15% 0%, rgb(165 45 53 / 7%), transparent 55%), radial-gradient(ellipse at 90% 100%, rgb(63 138 105 / 9%), transparent 55%); }
+@keyframes xm-sparkle-fall { from { background-position: 0 0, 60px 40px, 120px 90px; } to { background-position: 40px 260px, 20px 220px, 80px 430px; } }
+@media (max-width: 900px) {
+  .xm-hero-parol-c { display: none; }
+  .xm-hero-parol-a { right: 5%; width: 78px; --hang: 70px; }
+  .xm-hero-parol-b { right: 24%; width: 60px; --hang: 40px; }
+  .xm-credit { bottom: auto; }
+}
+@media (max-width: 620px) { .xm-hero-parol-b { display: none; } .xm-hero-parol-a { width: 64px; --hang: 52px; } }
+@media (prefers-reduced-motion: reduce) { .xm-hero::after, .christmas-page .superstition-collection::before, .xm-gallery::before { animation: none; } }
