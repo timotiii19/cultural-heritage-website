@@ -417,7 +417,7 @@ if (storyPanels.length) {
       photoDialog.innerHTML = `
         <div class="arts-lightbox-content">
           <div class="arts-lightbox-top"><span id="photo-viewer-title">THE PHOTO ALBUM</span><button type="button" aria-label="Close photo viewer">×</button></div>
-          <div class="arts-lightbox-stage"><button class="arts-photo-arrow" type="button" aria-label="Previous photo">←</button><img alt=""><button class="arts-photo-arrow" type="button" aria-label="Next photo">→</button></div>
+          <div class="arts-lightbox-stage"><button class="arts-photo-arrow" type="button" aria-label="Previous photo"><svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12H4m7 7-7-7 7-7"/></svg></button><img alt=""><button class="arts-photo-arrow" type="button" aria-label="Next photo"><svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></button></div>
           <div class="arts-lightbox-caption" aria-live="polite"><div><span class="arts-micro"></span><p></p></div></div>
           <p class="arts-lightbox-hint">Use ← → to browse · Esc to close</p>
         </div>`;

@@ -112,6 +112,7 @@ img { display: block; max-width: 100%; }
 .button-primary, .button-light { min-height: 47px; display: inline-flex; align-items: center; justify-content: center; gap: 14px; padding: 0 19px; border: 1px solid var(--forest); border-radius: 4px 18px 4px 18px; color: white; background: var(--forest); font-size: 15px; font-weight: 700; transition: transform .2s ease, background .2s, box-shadow .2s; }
 .button-primary:hover { transform: translateY(-3px); background: var(--forest-deep); box-shadow: 0 10px 20px color-mix(in srgb, var(--forest) 22%, transparent); }
 .button-primary span, .button-light span { font-size: 16px; }
+.arrow-icon { display: inline-block; width: 1em; height: 1em; flex: 0 0 auto; overflow: visible; vertical-align: -.15em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .button-text { display: inline-flex; align-items: center; gap: 9px; font-size: 15px; font-weight: 700; }
 .button-text span, .inline-link span { color: var(--accent-ink); transition: transform .2s; }
 .button-text:hover span, .inline-link:hover span { transform: translateX(4px); }
