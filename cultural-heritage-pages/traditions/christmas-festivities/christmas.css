@@ -366,3 +366,62 @@
 }
 @media (max-width: 620px) { .xm-hero-parol-b { display: none; } .xm-hero-parol-a { width: 64px; --hang: 52px; } }
 @media (prefers-reduced-motion: reduce) { .xm-hero::after, .christmas-page .superstition-collection::before, .xm-gallery::before { animation: none; } }
+
+/* Compact Christmas message: the whole red box fits in one screen at 100% zoom */
+.xm-message { margin-top: 72px; padding: clamp(128px, 11vw, 150px) clamp(22px, 7%, 96px) clamp(36px, 4vw, 52px); }
+.xm-message-parol { width: 76px; margin-left: -38px; }
+.xm-message-parol::before { height: 20px; }
+.xm-message-parol .christmas-parol-shape { margin-top: 20px; }
+.xm-message-text { max-width: 900px; margin: 14px auto 18px; font-size: clamp(19px, 1.9vw, 25px); line-height: 1.45; }
+.xm-message h2 { margin-top: 12px; font-size: clamp(30px, 3.8vw, 50px); }
+@media (max-width: 620px) { .xm-message { margin-top: 56px; padding-top: 120px; } }
+
+/* ===== Subpages: extra Christmas spirit (Simbang Gabi, Noche Buena, Delicacies) ===== */
+/* Soft snow-and-glow backdrop behind the story */
+.christmas-page .superstition-story { background: radial-gradient(circle at 8% 0%, rgb(165 45 53 / 7%), transparent 34%), radial-gradient(circle at 96% 12%, rgb(31 94 70 / 8%), transparent 32%), radial-gradient(circle, rgb(214 173 104 / 30%) 0 1.5px, transparent 2.5px) 0 0 / 64px 64px, radial-gradient(circle, rgb(214 173 104 / 18%) 0 1px, transparent 2px) 32px 32px / 64px 64px; border-radius: 28px; }
+/* Candy-cane rule under the title */
+.christmas-page .superstition-story-head { padding-bottom: 26px; }
+.christmas-page .superstition-story-head::after { display: block; width: min(320px, 60%); height: 6px; margin-top: 22px; border-radius: 6px; content: ''; background: repeating-linear-gradient(-45deg, var(--xm-red) 0 10px, #fdf8ee 10px 20px); box-shadow: 0 0 0 1px rgb(165 45 53 / 25%); }
+/* Fact cards: red and green like ribbon wrap */
+.christmas-page .superstition-fact:nth-child(odd) { border-left-color: var(--xm-red); }
+.christmas-page .superstition-fact:nth-child(even) { border-left-color: #2f7a57; }
+/* Meaning panel: twinkling stars */
+.christmas-page .superstition-meaning { position: relative; overflow: hidden; }
+.christmas-page .superstition-meaning::after { position: absolute; top: 16px; right: 20px; width: 26px; height: 26px; content: ''; background: var(--xm-gold); clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); filter: drop-shadow(0 0 8px rgb(214 173 104 / 70%)); }
+/* Pull quote */
+.christmas-pullquote { position: relative; padding: 18px 24px 18px 64px; border: 1px solid var(--xm-line); border-left: 4px solid var(--xm-red); border-radius: 0 18px 18px 0; background: linear-gradient(100deg, rgb(165 45 53 / 7%), transparent 70%), var(--xm-panel); }
+.christmas-pullquote::before { position: absolute; top: 2px; left: 16px; color: var(--xm-gold); content: '“'; font: 400 72px/1 var(--serif); }
+/* Nine days: alternating red and green candles, Christmas Eve lit up */
+.christmas-novena-list li:nth-child(odd) { border-top-color: var(--xm-red); }
+.christmas-novena-list li:nth-child(even) { border-top-color: #2f7a57; }
+.christmas-novena-list li:last-child { border-color: var(--xm-gold); color: var(--xm-cream); background: linear-gradient(160deg, var(--xm-red), var(--xm-red-deep)); box-shadow: 0 0 0 3px rgb(214 173 104 / 35%), 0 8px 20px rgb(165 45 53 / 30%); }
+.christmas-novena-list li:last-child b, .christmas-novena-list li:last-child span { color: var(--xm-cream); }
+/* Steps: round ornaments */
+.christmas-steps li { position: relative; border-left-color: var(--xm-red); }
+.christmas-steps li:nth-child(even) { border-left-color: #2f7a57; }
+.christmas-steps b { display: grid; width: 44px; height: 44px; place-items: center; border: 2px solid var(--xm-gold); border-radius: 50%; color: var(--xm-cream); font: 400 20px/1 var(--serif); background: radial-gradient(circle at 35% 30%, #d4565d, var(--xm-red) 55%, var(--xm-red-deep)); box-shadow: 0 4px 10px rgb(110 28 35 / 30%); }
+.christmas-steps li:nth-child(even) b { background: radial-gradient(circle at 35% 30%, #4fa27c, #2f7a57 55%, #1b4d38); box-shadow: 0 4px 10px rgb(27 77 56 / 30%); }
+/* Photo cards: gift-tag badge and ribbon edge */
+.christmas-delicacy { position: relative; border-top: 4px solid var(--xm-red); }
+.christmas-delicacy:nth-child(even) { border-top-color: #2f7a57; }
+.christmas-page .christmas-delicacy > span { position: absolute; top: 14px; left: 14px; z-index: 2; display: grid; width: 38px; height: 38px; margin: 0; place-items: center; border: 2px solid var(--xm-gold); border-radius: 50%; color: var(--xm-cream); font: 400 15px/1 var(--serif); letter-spacing: 0; background: var(--xm-red); box-shadow: 0 4px 10px rgb(0 0 0 / 28%); }
+.christmas-page .christmas-delicacy:nth-child(even) > span { background: #2f7a57; }
+.christmas-delicacy-photo { position: relative; }
+.christmas-delicacy-photo::after { position: absolute; inset: 0; z-index: 1; content: ''; pointer-events: none; background: radial-gradient(circle, rgb(255 244 214 / 55%) 0 1.5px, transparent 2.5px) 0 0 / 46px 46px; opacity: .35; mix-blend-mode: screen; }
+.christmas-delicacy-photo figcaption { position: relative; z-index: 2; }
+/* Source cards: festive left stripe */
+.christmas-page .superstition-source-link { border-left: 4px solid var(--xm-red); }
+.christmas-page .superstition-source-link:nth-of-type(even) { border-left-color: #2f7a57; }
+/* Closing panel: sparkle */
+.christmas-page .superstition-close { background: radial-gradient(circle, rgb(255 244 214 / 45%) 0 1.5px, transparent 2.5px) 0 0 / 54px 54px, var(--xm-capiz), radial-gradient(ellipse at 84% 24%, rgb(214 173 104 / 22%), transparent 46%), linear-gradient(120deg, var(--xm-green), var(--xm-green-deep)); }
+@media (prefers-reduced-motion: no-preference) {
+  .christmas-page .superstition-meaning::after { animation: christmas-twinkle 2.6s ease-in-out infinite; }
+  .christmas-novena-list li:last-child { animation: christmas-twinkle 2.8s ease-in-out infinite; }
+}
+@media (max-width: 620px) { .christmas-pullquote { padding-left: 52px; } .christmas-pullquote::before { left: 12px; } }
+/* Hero photo credit: readable on the dark photo */
+.christmas-hero-credit { position: absolute; z-index: 3; top: 16px; left: 22px; padding: 4px 10px; border-radius: 999px; color: var(--xm-cream); font: 12px/1.4 var(--sans); background: rgb(0 0 0 / 45%); }
+.christmas-hero-credit a { color: var(--xm-gold); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Falling snow (snow.js) */
+.christmas-snow { position: fixed; inset: 0; z-index: -1; width: 100vw; height: 100vh; pointer-events: none; }
