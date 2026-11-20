@@ -306,3 +306,20 @@
   .christmas-parol, .christmas-bulb, .xm-hero-photo { animation: none; }
   .christmas-card-art .christmas-parol-shape, .xm-button, .xm-dish, .xm-dish img, .xm-feature-photo img { transition: none; }
 }
+
+/* Story pages: nine days, pull quote, steps */
+.christmas-novena-list { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
+.christmas-novena-list li { display: grid; justify-items: center; gap: 4px; padding: 12px 0; border: 1px solid var(--xm-line); border-top: 3px solid var(--xm-gold); border-radius: 12px; background: var(--xm-panel); }
+.christmas-novena-list li:last-child { border-top-color: var(--xm-red); }
+.christmas-novena-list b { color: var(--xm-red); font: 400 24px/1 var(--serif); }
+.christmas-novena-list span { color: var(--xm-muted); font: 11px var(--sans); letter-spacing: .1em; }
+.christmas-pullquote { margin: 28px 0; padding: 6px 0 6px 22px; border-left: 3px solid var(--xm-gold); color: var(--xm-green); font: italic 400 clamp(22px, 2.6vw, 28px)/1.4 var(--serif); }
+.christmas-steps { display: grid; gap: 14px; margin: 16px 0 0; padding: 0; list-style: none; }
+.christmas-steps li { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 4px 16px; padding: 16px 18px; border: 1px solid var(--xm-line); border-left: 3px solid var(--xm-gold); border-radius: 0 16px 16px 0; background: var(--xm-panel); }
+.christmas-steps b { grid-row: 1 / 3; color: var(--xm-red); font: 400 28px/1 var(--serif); }
+.christmas-steps strong { color: var(--xm-green); font: 400 21px/1.2 var(--serif); }
+.christmas-steps p { margin: 0; color: var(--xm-cocoa); font-size: 16px; line-height: 1.7; }
+.christmas-more { margin: 18px 0 0; color: var(--xm-cocoa); font-size: 16px; }
+.christmas-more a { color: var(--xm-red); font-weight: 700; }
+.christmas-delicacy > small.christmas-served { display: block; color: var(--xm-red); font-weight: 700; }
+@media (max-width: 720px) { .christmas-novena-list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }

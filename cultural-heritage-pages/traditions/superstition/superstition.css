@@ -232,3 +232,10 @@
 }
 .superstition-image figcaption,
 .superstition-quote small { font-size: 12px; }
+
+/* Fireflies: glowing dots drifting in the dark hero background */
+.superstition-fireflies { position: absolute; z-index: 0; inset: 0 -6% 0 -6%; overflow: hidden; pointer-events: none; }
+.superstition-fireflies i { position: absolute; left: var(--x); top: var(--y); width: var(--s); height: var(--s); border-radius: 50%; background: #ffd98a; box-shadow: 0 0 8px 2px #f0bf68b3, 0 0 22px 6px #f0bf6840; opacity: 0; animation: sp-firefly-drift var(--t) ease-in-out var(--d) infinite alternate, sp-firefly-glow var(--g) ease-in-out var(--d) infinite; }
+@keyframes sp-firefly-drift { from { transform: translate(0, 0); } to { transform: translate(var(--dx), var(--dy)); } }
+@keyframes sp-firefly-glow { 0%, 100% { opacity: 0; } 30%, 65% { opacity: .9; } 48% { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { .superstition-fireflies i { animation: none; opacity: .5; } }
