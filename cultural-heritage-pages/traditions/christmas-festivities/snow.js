@@ -3,6 +3,10 @@
    hidden, and is skipped entirely for visitors who prefer reduced motion. */
 (function () {
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  // The site's own motion switch (Play/Pause motion) also turns the snow off.
+  var shell = document.querySelector('.site-shell');
+  var motionOff = function () { return shell && shell.classList.contains('motion-off'); };
+  if (motionOff()) return;
   var canvas = document.createElement('canvas');
   canvas.className = 'christmas-snow';
   canvas.setAttribute('aria-hidden', 'true');
@@ -36,6 +40,7 @@
     flakes.length = want;
   }
   function frame() {
+    if (motionOff()) { ctx.clearRect(0, 0, w, h); raf = requestAnimationFrame(frame); return; }
     t += 0.01;
     ctx.clearRect(0, 0, w, h);
     ctx.shadowColor = light ? 'rgba(138, 90, 28, 0.75)' : 'rgba(214, 173, 104, 0.8)';
