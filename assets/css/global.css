@@ -3081,7 +3081,7 @@ body { background: var(--paper); }
 .se-bayani-actions { display: flex; align-items: center; gap: 8px; }
 .se-bayani-row .se-try-label { margin: 0; }
 .se-bayani-row .se-try-label b { font-weight: 600; color: var(--ink); }
-.se-add { padding: 10px 20px; border: 0; border-radius: 999px; color: #fff; background: var(--forest); font: 14px var(--sans); cursor: pointer; transition: transform .12s, background .2s; }
+.se-add { display: inline-flex; align-items: center; gap: 7px; padding: 10px 20px; border: 0; border-radius: 999px; color: #fff; background: var(--forest); font: 14px var(--sans); cursor: pointer; transition: transform .12s, background .2s; }
 .se-add:hover { background: var(--forest-deep); }
 .se-add:active { transform: scale(.96); }
 
@@ -3092,7 +3092,8 @@ body { background: var(--paper); }
   70%, 100% { box-shadow: 0 0 0 11px transparent; }
 }
 /* the walk button waits until everyone is here, then invites a press */
-.se-b-go { padding: 9px 16px; font-size: 14px; transition: background .2s, color .2s, border-color .2s; }
+.se-b-go { display: inline-flex; align-items: center; gap: 7px; padding: 9px 16px; font-size: 14px; transition: background .2s, color .2s, border-color .2s; }
+.se-b-go-icon { width: 13px; height: 13px; flex: none; fill: currentColor; }
 .se-b-go:disabled { opacity: .5; cursor: default; }
 .se-b-go.is-ready { border-color: var(--forest); color: #fff; background: var(--forest); animation: se-ripple-b 1.8s ease-out infinite; }
 .se-b-go.is-ready:hover { background: var(--forest-deep); }

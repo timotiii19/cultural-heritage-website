@@ -292,8 +292,8 @@
     <div class="se-bayani-row">
       <p class="se-try-label"><b class="se-b-count">1 of 8 people</b></p>
       <div class="se-bayani-actions">
-        <button type="button" class="se-add">+ Add a helper</button>
-        <button type="button" class="se-pause se-b-go" disabled>▶ Start walking</button>
+        <button type="button" class="se-add"><svg class="se-b-go-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Add a helper</span></button>
+        <button type="button" class="se-pause se-b-go" disabled><svg class="se-b-go-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4.5 2.8v10.4a.8.8 0 0 0 1.2.7l8.2-5.2a.8.8 0 0 0 0-1.4L5.7 2.1a.8.8 0 0 0-1.2.7Z"/></svg><span>Start walking</span></button>
       </div>
     </div>
     <p class="se-try-gloss" aria-live="polite">One person alone can’t carry a house.</p>
@@ -491,15 +491,21 @@
     msgKey = key;
     card().querySelector('.se-try-gloss').textContent = MSG[key];
   }
-  function addBtn(text, disabled) {
+  function addBtn(text, disabled, icon) {
     var b = card().querySelector('.se-add');
-    b.textContent = text;
+    b.innerHTML = (icon ? ICONS[icon] : '') + '<span>' + text + '</span>';
     b.disabled = !!disabled;
   }
-  // the walk button: Start walking → Set it down → Carry it again
-  function goBtn(text, disabled) {
+  // small inline icons for the walk button (play triangle, stop square)
+  var ICONS = {
+    play: '<svg class="se-b-go-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4.5 2.8v10.4a.8.8 0 0 0 1.2.7l8.2-5.2a.8.8 0 0 0 0-1.4L5.7 2.1a.8.8 0 0 0-1.2.7Z"/></svg>',
+    stop: '<svg class="se-b-go-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="9" height="9" rx="1.6"/></svg>',
+    plus: '<svg class="se-b-go-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
+  };
+  // the walk button: Start walking → Set it down → (helpers leave) → Start walking
+  function goBtn(text, disabled, icon) {
     var b = card().querySelector('.se-b-go');
-    b.textContent = text;
+    b.innerHTML = (icon ? ICONS[icon] : '') + '<span>' + text + '</span>';
     b.disabled = !!disabled;
     b.classList.toggle('is-ready', !disabled && stage === 'gather');
   }
@@ -707,11 +713,11 @@
       // everyone is here: adding is done, walking is up to the user
       say('ready');
       addBtn('All ' + MAX + ' are here', true);
-      goBtn('▶ Start walking', false);
+      goBtn('Start walking', false, 'play');
     } else {
       say(n >= 7 ? 7 : n >= 5 ? 5 : n >= 3 ? 3 : n);
-      addBtn('+ Add a helper');
-      goBtn('▶ Start walking', true);
+      addBtn('Add a helper', false, 'plus');
+      goBtn('Start walking', true, 'play');
     }
   }
 
@@ -729,7 +735,7 @@
       msgKey = '';
       say(timeKey());
       rampDir = 1;
-      goBtn('■ Set it down');
+      goBtn('Set it down', false, 'stop');
       if (REDUCED) {
         // no motion: jump straight to the end of the trip
         offset += WALK;
