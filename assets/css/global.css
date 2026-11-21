@@ -2953,8 +2953,7 @@ body { background: var(--paper); }
 .se-b-whisker { fill: none; stroke: #00000055; stroke-width: .4; stroke-linecap: round; }
 .se-b-pet-head { transition: transform .5s cubic-bezier(.45, 0, .3, 1); }
 .se-b-dog .se-b-pet-tail { animation: se-b-wag .32s ease-in-out infinite alternate; }
-.se-b-cat .se-b-pet-tail { animation: se-b-curl 2.2s ease-in-out infinite alternate; }
-@keyframes se-b-wag { from { transform: rotate(-16deg); } to { transform: rotate(14deg); } }
+.se-b-cat .se-b-pet-tail { animation: se-b-curl 2.2s ease-in-out infinite alternate; }@keyframes se-b-wag { from { transform: rotate(-16deg); } to { transform: rotate(14deg); } }
 @keyframes se-b-curl { from { transform: rotate(-8deg); } to { transform: rotate(10deg); } }
 
 /* Pause freezes every looping motion; the script stops the walk too */
@@ -3051,6 +3050,11 @@ body { background: var(--paper); }
 .se-b-upper { transform: translateY(calc((10 - var(--lift)) * 1px)); transition: transform .8s var(--se-b-ease); }
 .se-b-leg { transform-origin: 0 159px; }
 .se-b-arm { transform-origin: 1.5px 143.5px; transition: transform .5s var(--se-b-ease); }
+/* after the job, helpers walk off ahead and fade out (delay set per helper by the script) */
+.se-b-h.on.leaving { opacity: 0; transform: translateX(90px); transition: opacity .9s ease .9s, transform 2s cubic-bezier(.4, 0, .7, 1); }
+.se-b-h.on.leaving .se-b-arm { transform: rotate(-38deg); }
+.se-b-h.on.leaving .se-b-leg-a { animation: se-b-step .26s ease-in-out infinite alternate; }
+.se-b-h.on.leaving .se-b-leg-b { animation: se-b-step .26s ease-in-out infinite alternate-reverse; }
 /* a few steps as each helper walks in */
 .se-b-h.on .se-b-leg-a { animation: se-b-step .22s ease-in-out 4 alternate; }
 .se-b-h.on .se-b-leg-b { animation: se-b-step .22s ease-in-out 4 alternate-reverse; }
@@ -3087,8 +3091,13 @@ body { background: var(--paper); }
   0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--gold) 85%, transparent); }
   70%, 100% { box-shadow: 0 0 0 11px transparent; }
 }
+/* the walk button waits until everyone is here, then invites a press */
+.se-b-go { padding: 9px 16px; font-size: 14px; transition: background .2s, color .2s, border-color .2s; }
+.se-b-go:disabled { opacity: .5; cursor: default; }
+.se-b-go.is-ready { border-color: var(--forest); color: #fff; background: var(--forest); animation: se-ripple-b 1.8s ease-out infinite; }
+.se-b-go.is-ready:hover { background: var(--forest-deep); }
 @media (prefers-reduced-motion: reduce) {
-  .se-bayani *, .se-bayani-card:not([data-touched]) .se-add { transition: none !important; animation: none !important; }
+  .se-bayani *, .se-bayani-card:not([data-touched]) .se-add, .se-b-go.is-ready { transition: none !important; animation: none !important; }
 }
 .se-add:disabled { opacity: .7; cursor: default; }
 

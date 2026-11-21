@@ -147,7 +147,7 @@
   <div class="se-try-head">
     <span class="eyebrow"><i></i> TRY IT</span>
     <h2 id="se-see-title">Many hands,<br/><em>lighter work.</em></h2>
-    <p>Watch the neighbors gather and carry the kubo through day and night. Set it down to rest and carry it on again whenever you like.</p>
+    <p>Add neighbors one by one. Once all eight are under the pole, start walking: they carry the kubo a stretch, set it down, and head home. Gather them again to carry it further.</p>
   </div>
   <div class="se-try-card se-bayani-card">
     <svg class="se-bayani" viewBox="0 0 360 210" role="img" aria-label="Illustration of neighbors carrying a bahay kubo on a bamboo pole through the countryside, from day into night and day again.">
@@ -292,8 +292,8 @@
     <div class="se-bayani-row">
       <p class="se-try-label"><b class="se-b-count">1 of 8 people</b></p>
       <div class="se-bayani-actions">
-        <button type="button" class="se-pause se-b-auto" aria-label="Pause auto-play">❚❚ Pause</button>
         <button type="button" class="se-add">+ Add a helper</button>
+        <button type="button" class="se-pause se-b-go" disabled>▶ Start walking</button>
       </div>
     </div>
     <p class="se-try-gloss" aria-live="polite">One person alone can’t carry a house.</p>
@@ -391,12 +391,16 @@
     3: 'More hands help, but it is still heavy.',
     5: 'More neighbors join, and the load is shared.',
     7: 'Almost there. One more pair of shoulders!',
+    ready: 'All hands are here. Press Start walking to lift together.',
+    arrive: 'They’ve carried it a long way. Time to slow down.',
     march: 'Together, in step, the kubo travels on.',
     sunset: 'The sun sets, and still they walk together.',
     night: 'Through the night, no one carries it alone.',
     dawn: 'A new day, and the bayanihan goes on.',
     lift: 'Shoulders under the pole. Lift together!',
     set: 'They set the kubo down and rest a while.',
+    leave: 'Job done. The neighbors head home.',
+    again: 'Need to move it again? Gather your neighbors once more.',
     done: 'Many hands, lighter work.'
   };
   // varied neighbors: shirt, trousers, skin, hat or hair
@@ -445,11 +449,13 @@
   }
 
   // timings (ms)
-  var T = { addEvery: 800, lift: 1000, setDown: 900 };
+  var T = { lift: 1100, setDown: 1400, leave: 2900 };
   var NEAR_W = 720, FAR_W = 540;   // widths of the repeating scenery tiles
   var PACE = 34;                   // walking speed (svg units per second)
   var DAY = 48;                    // seconds of walking for one full day and night
   var STRIDE = 28;                 // ground covered by one full step cycle, so feet don't slide
+  var RAMP = 2.6;                  // seconds to ease from standing to full pace (and back down)
+  var WALK = STRIDE * 20;          // each trip is 20 full strides, then they set the kubo down
 
   // sky colours through the day: [time 0–1, top, bottom]; 0 = midday
   var SKY = [
@@ -464,10 +470,11 @@
     [1.00, '#a9d3e6', '#f3ead2']
   ];
 
-  var playing = !REDUCED, paused = false;
-  var stage = 'gather';            // gather → lifting → walk → stopping → rest → lifting → walk …
+  var stage = 'gather';            // gather → lifting → walk → stopping → resting → rest → lifting …
   var START_TOD = 0.18;            // begin in early afternoon so the sun clears the roof
-  var offset = 0, speed = 0, target = 0, tod = START_TOD, last = 0, rafId = 0, msgKey = '';
+  // ramp runs 0→1 as the crew sets off and 1→0 as it slows; speed follows a smoothstep of it
+  var offset = 0, speed = 0, ramp = 0, rampDir = 0, walked = 0;
+  var tod = START_TOD, last = 0, rafId = 0, msgKey = '';
   var legsA = [], legsB = [], steppers = [], shakes = [];
 
   function clearTimers() { timers.forEach(clearTimeout); timers = []; }
@@ -489,16 +496,12 @@
     b.textContent = text;
     b.disabled = !!disabled;
   }
-  function setPlayLabel() {
-    var p = card().querySelector('.se-b-auto');
-    var on = playing && !paused;
-    p.textContent = on ? '❚❚ Pause' : '▶ Play';
-    p.setAttribute('aria-label', on ? 'Pause the animation' : 'Play the animation');
-  }
-  function setPaused(v) {
-    paused = v;
-    if (v) art().setAttribute('data-paused', ''); else art().removeAttribute('data-paused');
-    setPlayLabel();
+  // the walk button: Start walking → Set it down → Carry it again
+  function goBtn(text, disabled) {
+    var b = card().querySelector('.se-b-go');
+    b.textContent = text;
+    b.disabled = !!disabled;
+    b.classList.toggle('is-ready', !disabled && stage === 'gather');
   }
 
   // ---- sky, sun, moon, night ----
@@ -667,21 +670,26 @@
     });
   }
 
-  // one loop drives everything: speed eases toward its target so starts and stops glide
+  // ground still covered when easing from ramp r down to a stop (integral of the smoothstep)
+  function brakeDistance(r) { return PACE * RAMP * (r * r * r - r * r * r * r / 2); }
+
+  // one loop drives everything: speed follows a smoothstep ramp so starts and stops glide
   function frame(ts) {
     var dt = last ? Math.min(0.05, (ts - last) / 1000) : 0;
     last = ts;
-    if (!paused) {
-      speed += (target - speed) * Math.min(1, dt * 1.1);
-      if (Math.abs(target - speed) < 0.003) speed = target;
-      offset += speed * PACE * dt;
-      tod = (tod + speed * dt / DAY) % 1;
-      paintLand();
-      paintSky();
-      paintGait();
-      updatePets(dt);
-    }
-    if (stage === 'stopping' && speed === 0) setDown();
+    ramp = Math.max(0, Math.min(1, ramp + rampDir * dt / RAMP));
+    speed = smooth(ramp);
+    var step = speed * PACE * dt;
+    offset += step;
+    walked += step;
+    tod = (tod + dt / DAY) % 1;    // time keeps passing whether they walk, rest or gather
+    // start braking early enough to come to rest right at the end of the trip
+    if (stage === 'walk' && WALK - walked <= brakeDistance(ramp)) arrive();
+    paintLand();
+    paintSky();
+    paintGait();
+    updatePets(dt);
+    if (stage === 'stopping' && ramp === 0) setDown();
     rafId = requestAnimationFrame(frame);
   }
   function loop() { if (!rafId && !REDUCED) { last = 0; rafId = requestAnimationFrame(frame); } }
@@ -695,43 +703,55 @@
     if (n <= 2) a.setAttribute('data-strain', ''); else a.removeAttribute('data-strain');
     card().querySelectorAll('.se-b-h').forEach(function (h, i) { h.classList.toggle('on', i < n); });
     card().querySelector('.se-b-count').textContent = n + ' of ' + MAX + ' people';
-    say(n >= 7 ? 7 : n >= 5 ? 5 : n >= 3 ? 3 : n);
-    addBtn('+ Add a helper');
-  }
-
-  function gather() {
-    if (!playing || paused || stage !== 'gather') return;
-    later(function () {
-      if (n < MAX) setHelpers(n + 1);
-      if (n >= MAX) lift(); else gather();
-    }, T.addEvery);
+    if (n >= MAX) {
+      // everyone is here: adding is done, walking is up to the user
+      say('ready');
+      addBtn('All ' + MAX + ' are here', true);
+      goBtn('▶ Start walking', false);
+    } else {
+      say(n >= 7 ? 7 : n >= 5 ? 5 : n >= 3 ? 3 : n);
+      addBtn('+ Add a helper');
+      goBtn('▶ Start walking', true);
+    }
   }
 
   // shoulders up, then walk on — used for the first start and every "carry it again"
   function lift() {
     clearTimers();
     stage = 'lifting';
-    addBtn('Lifting together…', true);
+    goBtn('Lifting together…', true);
     art().style.setProperty('--lift', LIFT[MAX]);
     say('lift');
     later(function () {
       stage = 'walk';
+      walked = 0;
       setPhase('march');
       msgKey = '';
       say(timeKey());
-      target = 1;
-      addBtn('■ Set it down');
-      loop();
-      if (REDUCED) paintSky();
+      rampDir = 1;
+      goBtn('■ Set it down');
+      if (REDUCED) {
+        // no motion: jump straight to the end of the trip
+        offset += WALK;
+        tod = (tod + WALK / PACE / DAY) % 1;
+        paintLand();
+        paintSky();
+        arrive();
+      } else loop();
     }, T.lift);
   }
 
-  // the button ends the walk: they slow to a stop and lower the kubo right where they are
+  // the trip is over: they ease to a stop on their own
+  function arrive() {
+    stopWalk();
+    say('arrive');
+  }
+
+  // slow to a stop and lower the kubo right where they are
   function stopWalk() {
     stage = 'stopping';
-    target = 0;
-    addBtn('Slowing down…', true);
-    if (paused) setPaused(false);
+    rampDir = -1;
+    goBtn('Slowing down…', true);
     if (REDUCED) setDown();
   }
   function setDown() {
@@ -739,33 +759,50 @@
     setPhase('set');
     art().style.setProperty('--lift', 0);
     say('set');
+    later(leave, T.setDown);
+  }
+
+  // the job is done: the helpers walk off one by one, leaving the owner with the kubo,
+  // and gathering starts over
+  function leave() {
+    stage = 'leaving';
+    goBtn('Heading home…', true);
+    say('leave');
+    var hs = card().querySelectorAll('.se-b-h');
+    // the front helper leaves first; each fades out partway through its walk
+    for (var i = 1; i < n; i++) {
+      var d = (n - 1 - i) * 0.18;
+      hs[i].style.transitionDelay = REDUCED ? '0s' : (d + 0.9) + 's, ' + d + 's';
+      hs[i].classList.add('leaving');
+    }
     later(function () {
-      stage = 'rest';
-      addBtn('▲ Carry it again');
-    }, T.setDown);
+      // drop "on" before "leaving" so they stay hidden instead of fading back in
+      [].forEach.call(hs, function (h, i) { if (i) h.classList.remove('on'); });
+      [].forEach.call(hs, function (h) {
+        h.classList.remove('leaving');
+        h.style.transitionDelay = '';
+      });
+      stage = 'gather';
+      setHelpers(1);
+      say('again');
+    }, T.leave);
   }
 
   document.addEventListener('click', function (e) {
     var c = card();
     if (!c || !c.contains(e.target)) return;
 
-    if (e.target.closest('.se-b-auto')) {
-      if (!playing) { playing = true; setPaused(false); }
-      else setPaused(!paused);
-      if (paused) clearTimers(); else gather();
+    var add = e.target.closest('.se-add');
+    if (add && !add.disabled && stage === 'gather' && n < MAX) {
+      c.setAttribute('data-touched', '');
+      setHelpers(n + 1);
       return;
     }
 
-    var b = e.target.closest('.se-add');
-    if (!b || b.disabled) return;
-    c.setAttribute('data-touched', '');
-    if (paused) setPaused(false);
-    if (stage === 'walk') { stopWalk(); return; }
-    if (stage === 'rest') { lift(); return; }
-    // adding by hand: the story continues from here
-    clearTimers();
-    setHelpers(n + 1);
-    if (n >= MAX) lift(); else gather();
+    var go = e.target.closest('.se-b-go');
+    if (!go || go.disabled) return;
+    if (stage === 'gather') lift();
+    else if (stage === 'walk') stopWalk();
   });
 
   if (card()) {
@@ -777,9 +814,7 @@
     setHelpers(1);
     paintLand();
     paintSky();
-    setPlayLabel();
-    if (REDUCED) card().querySelector('.se-b-auto').hidden = true;
-    else gather();
+    loop();                        // start the sky clock right away, before anyone walks
   }
 
   // Reading progress bar
