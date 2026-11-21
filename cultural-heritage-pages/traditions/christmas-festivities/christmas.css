@@ -327,7 +327,6 @@
 .christmas-steps p { margin: 0; color: var(--xm-cocoa); font-size: 16px; line-height: 1.7; }
 .christmas-more { margin: 18px 0 0; color: var(--xm-cocoa); font-size: 16px; }
 .christmas-more a { color: var(--xm-red); font-weight: 700; }
-.christmas-delicacy > small.christmas-served { display: block; color: var(--xm-red); font-weight: 700; }
 @media (max-width: 720px) { .christmas-novena-list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
 /* Festive layer */
@@ -340,7 +339,7 @@
 .xm-hero-parol-c { --hang: 150px; right: 30%; width: 72px; animation-delay: -4s; animation-duration: 7s; }
 .xm-credit { top: auto; bottom: 30px; }
 /* Golden glow on the title */
-.xm-hero h1 { background: linear-gradient(100deg, var(--xm-cream) 20%, #f4d58d 55%, var(--xm-cream) 90%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-shadow: none; filter: drop-shadow(0 4px 24px rgb(0 0 0 / 40%)); }
+.xm-hero h1 { background: linear-gradient(100deg, var(--xm-cream) 20%, #f4d58d 55%, var(--xm-cream) 90%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-shadow: none; filter: drop-shadow(0 4px 24px rgb(0 0 0 / 40%)); padding-bottom: .2em; margin-bottom: -.2em; }
 /* Falling sparkles */
 .xm-hero::after { position: absolute; inset: 0; z-index: -1; content: ''; pointer-events: none; background-image: radial-gradient(circle, rgb(255 233 170 / 90%) 0 1.5px, transparent 2.5px), radial-gradient(circle, rgb(255 255 255 / 70%) 0 1px, transparent 2px), radial-gradient(circle, rgb(214 173 104 / 80%) 0 2px, transparent 3px); background-size: 210px 260px, 140px 180px, 310px 340px; background-position: 0 0, 60px 40px, 120px 90px; animation: xm-sparkle-fall 22s linear infinite; }
 /* String-light dividers between sections */
@@ -443,50 +442,242 @@
 .christmas-play-btn[hidden] { display: none; }
 .christmas-page .christmas-play .christmas-play-message { margin: 18px 0 0; padding: 12px 16px; border-left: 3px solid var(--xm-gold); border-radius: 0 12px 12px 0; color: var(--xm-cream); font: 400 16px/1.6 var(--sans); background: rgb(0 0 0 / 22%); }
 
-/* Simbang Gabi: nine parols under a sky that turns to dawn */
-.christmas-dawn-scene { --p: 0; position: relative; overflow: hidden; height: 200px; border: 1px solid rgb(214 173 104 / 40%); border-radius: 16px; background: linear-gradient(180deg, #0b1f33, #17354d 70%, #1d4a52); }
-.christmas-dawn-scene::before { position: absolute; inset: 0; content: ''; opacity: var(--p); background: linear-gradient(180deg, transparent 20%, rgb(214 140 70 / 55%) 70%, rgb(240 196 110 / 75%)); transition: opacity .8s ease; }
-.christmas-dawn-sun { position: absolute; left: 50%; bottom: calc(-60px + var(--p) * 90px); width: 90px; height: 90px; margin-left: -45px; border-radius: 50%; background: radial-gradient(circle, #ffe9a8, #f0b956 60%, transparent 72%); box-shadow: 0 0 60px 20px rgb(240 190 100 / 50%); transition: bottom .9s ease; }
-.christmas-dawn-row { position: absolute; inset: auto 0 14px; display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 4px; margin: 0; padding: 0 12px; list-style: none; }
-.christmas-dawn-row li { display: grid; justify-items: center; gap: 6px; }
-.christmas-dawn-row svg { width: clamp(24px, 4.4vw, 46px); height: auto; fill: #1c3b52; stroke: rgb(214 173 104 / 55%); stroke-width: .8; transition: fill .5s, filter .5s, transform .5s; }
-.christmas-dawn-row b { color: rgb(247 240 227 / 65%); font: 700 13px/1 var(--sans); }
-.christmas-dawn-row li.is-lit svg { fill: #f6cf7a; stroke: #8a5a1c; stroke-width: 1.1; filter: drop-shadow(0 0 10px rgb(246 207 122 / 90%)); animation: christmas-pop .6s var(--xm-ease); }
-.christmas-dawn-row li.is-lit b { color: #ffe9a8; }
+/* Simbang Gabi: an SVG church with nine parols, the night turning to dawn */
+.christmas-dawn-scene { --p: 0; position: relative; overflow: hidden; aspect-ratio: 2 / 1; max-height: 360px; border: 1px solid rgb(214 173 104 / 40%); border-radius: 16px; background: linear-gradient(180deg, #08182a, #12304a 62%, #1d4a52); }
+.christmas-dawn-glow { position: absolute; inset: 0; opacity: var(--p); background: radial-gradient(ellipse at 50% 80%, rgb(255 205 120 / 70%), transparent 58%), linear-gradient(180deg, transparent 30%, rgb(240 160 90 / 38%)); transition: opacity .8s ease; }
+.christmas-church { position: relative; display: block; width: 100%; height: 100%; }
+.christmas-church .ch-sky { fill: #fff; opacity: calc(.75 - var(--p) * .6); }
+.christmas-church .ch-body { fill: #18151c; stroke: #2b2530; stroke-width: 1; }
+.christmas-church .ch-cross { fill: none; stroke: #d6ad68; stroke-width: 3; stroke-linecap: round; }
+.christmas-church .ch-glow-parts { fill: #ffd98a; opacity: .9; }
+.christmas-church .ch-lights { fill: none; stroke: #ffe2a0; stroke-width: 3.2; stroke-linecap: round; stroke-dasharray: .1 7; filter: drop-shadow(0 0 3px rgb(255 214 140 / 90%)); }
+.christmas-church .ch-garland { fill: none; stroke: rgb(255 226 160 / 55%); stroke-width: 1.5; }
+.christmas-church .ch-crowd { fill: #070a10; }
+.christmas-church .ch-thread { stroke: rgb(255 226 160 / 55%); stroke-width: 1; }
+.christmas-church .ch-star { fill: rgb(12 30 46 / 85%); stroke: rgb(255 226 160 / 85%); stroke-width: 1.1; stroke-linejoin: round; transition: fill .5s, filter .5s; }
+.christmas-church .ch-tail { fill: none; stroke: rgb(255 226 160 / 55%); stroke-width: 1.6; stroke-linecap: round; transition: stroke .5s; }
+.christmas-church .ch-core { fill: rgb(255 226 160 / 50%); transition: fill .5s; }
+.christmas-church .ch-day { fill: rgb(247 240 227 / 82%); font: 700 11px var(--sans); transition: fill .5s; }
+.christmas-church .ch-parol.is-lit .ch-star { fill: #f6cf7a; stroke: #8a5a1c; filter: drop-shadow(0 0 7px rgb(246 207 122 / 95%)); }
+.christmas-church .ch-bell { transform-box: fill-box; transform-origin: 50% 0; }
+.christmas-church .ch-bell-beam { stroke: #3a2610; stroke-width: 3; stroke-linecap: round; }
+.christmas-church .ch-bell-body { fill: #7a4f14; stroke: #2b1d09; stroke-width: 1.2; stroke-linejoin: round; }
+.christmas-church .ch-bell-clapper { fill: #2b1d09; }
+@media (prefers-reduced-motion: no-preference) {
+  .christmas-church .ch-bell.is-ring { animation: christmas-bell 1.6s ease-out; }
+}
+@keyframes christmas-bell { 0% { transform: rotate(0); } 12% { transform: rotate(26deg); } 30% { transform: rotate(-22deg); } 48% { transform: rotate(15deg); } 66% { transform: rotate(-9deg); } 82% { transform: rotate(4deg); } 100% { transform: rotate(0); } }
+.christmas-church .ch-parol.is-lit .ch-core { fill: #fff6d6; }
+.christmas-church .ch-parol.is-lit .ch-tail { stroke: #f6cf7a; }
+.christmas-church .ch-parol.is-lit .ch-day { fill: #ffe9a8; }
+@media (prefers-reduced-motion: no-preference) {
+  .christmas-church .ch-lights { animation: christmas-twinkle 2.4s ease-in-out infinite; }
+}
 @keyframes christmas-pop { 0% { transform: scale(.4) rotate(-40deg); } 60% { transform: scale(1.25) rotate(8deg); } 100% { transform: scale(1) rotate(0); } }
 
 /* Noche Buena: clock and plates */
-.christmas-table-scene { display: grid; grid-template-columns: 112px minmax(0, 1fr); align-items: center; gap: 22px; padding: 18px; border: 1px solid rgb(214 173 104 / 40%); border-radius: 16px; background: linear-gradient(180deg, rgb(110 28 35 / 55%), rgb(60 14 20 / 70%)); }
-.christmas-clock { width: 112px; height: 112px; }
-.christmas-table-scene .christmas-plates { flex-wrap: nowrap; }
-.christmas-table-scene .christmas-plate { width: clamp(66px, 8vw, 100px); }
-.christmas-clock .clock-face { fill: #fbf3df; stroke: var(--xm-gold); stroke-width: 3; }
-.christmas-clock .clock-ticks line { stroke: #6e1c23; stroke-width: 2.5; stroke-linecap: round; }
-.christmas-clock .clock-twelve { fill: #6e1c23; font: 700 11px var(--sans); }
-.christmas-clock .clock-hand { stroke: #a52d35; stroke-width: 3.5; stroke-linecap: round; transition: transform .8s var(--xm-ease); }
-.christmas-clock .clock-pin { fill: #a52d35; }
-.christmas-table-scene.is-midnight .clock-face { fill: #fff0bf; filter: drop-shadow(0 0 12px rgb(246 207 122 / 90%)); }
 
-/* Plates (shared by the table and the serving scene) */
-.christmas-plates { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: clamp(8px, 1.6vw, 18px); margin: 0; padding: 0; list-style: none; }
-.christmas-plate { display: grid; width: clamp(78px, 9.5vw, 112px); justify-items: center; gap: 6px; text-align: center; }
-.christmas-plate-img { display: block; width: 100%; aspect-ratio: 1; overflow: hidden; border: 3px solid var(--xm-gold); border-radius: 50%; background: rgb(255 255 255 / 8%); box-shadow: 0 8px 20px rgb(0 0 0 / 35%); }
-.christmas-plate-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.christmas-page .christmas-plate b { color: var(--xm-cream); font: 400 16px/1.2 var(--serif); }
-.christmas-page .christmas-plate small { margin: 0; color: rgb(247 240 227 / 78%); font: 400 12px/1.3 var(--sans); }
-.christmas-table-scene .christmas-plate { opacity: .28; transform: scale(.82); filter: grayscale(1); transition: opacity .5s, transform .6s var(--xm-ease), filter .5s; }
-.christmas-table-scene .christmas-plate .christmas-plate-img { border-style: dashed; }
-.christmas-table-scene .christmas-plate.is-set { opacity: 1; transform: scale(1); filter: none; }
-.christmas-table-scene .christmas-plate.is-set .christmas-plate-img { border-style: solid; }
-.christmas-serve-stage { min-height: 170px; margin-top: 20px; padding: 18px; border: 1px solid rgb(214 173 104 / 40%); border-radius: 16px; background: linear-gradient(180deg, rgb(110 28 35 / 55%), rgb(60 14 20 / 70%)); }
-.christmas-serve-stage .christmas-plate[hidden] { display: none; }
-.christmas-serve-stage .christmas-plate.is-served { animation: christmas-serve .7s var(--xm-ease) both; animation-delay: calc(var(--i, 0) * .18s); }
-@keyframes christmas-serve { 0% { opacity: 0; transform: translateY(-26px) scale(.7); } 100% { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
-  .christmas-dawn-row li.is-lit svg, .christmas-serve-stage .christmas-plate.is-served { animation: none; }
-  .christmas-clock .clock-hand, .christmas-dawn-sun, .christmas-dawn-scene::before, .christmas-table-scene .christmas-plate { transition: none; }
 }
 @media (max-width: 620px) {
-  .christmas-table-scene { grid-template-columns: 1fr; justify-items: center; }
-  .christmas-dawn-scene { height: 170px; }
 }
+
+/* Noche Buena: an SVG Christmas Eve table (plays by itself) */
+.christmas-nb { position: relative; overflow: hidden; aspect-ratio: 2 / 1; max-height: 360px; border: 1px solid rgb(214 173 104 / 40%); border-radius: 16px; background: radial-gradient(ellipse at 50% 30%, #6e1c23, #3a0f18 70%, #2a0a10); }
+.christmas-nb-svg { display: block; width: 100%; height: 100%; }
+.christmas-nb-svg .nb-garland { fill: none; stroke: rgb(255 226 160 / 55%); stroke-width: 1.5; }
+.christmas-nb-svg .nb-parol { fill: #f6cf7a; stroke: #8a5a1c; stroke-width: .7; stroke-linejoin: round; filter: drop-shadow(0 0 8px rgb(246 207 122 / 95%)); }
+.christmas-nb-svg .nb-parol-tail { fill: none; stroke: #f6cf7a; stroke-width: 1.6; stroke-linecap: round; }
+.christmas-nb-svg .clock-face { fill: #fbf3df; stroke: #d6ad68; stroke-width: 3; transition: fill .6s; }
+.christmas-nb-svg .clock-ticks line { stroke: #6e1c23; stroke-width: 2; stroke-linecap: round; }
+.christmas-nb-svg .clock-hand { stroke: #a52d35; stroke-width: 3.5; stroke-linecap: round; transition: transform .8s var(--xm-ease); }
+.christmas-nb-svg .clock-pin { fill: #a52d35; }
+.christmas-nb.is-midnight .clock-face { fill: #fff0bf; filter: drop-shadow(0 0 12px rgb(246 207 122 / 95%)); }
+.christmas-nb-svg .nb-msg { fill: #ffe2a0; font: italic 400 28px var(--serif); opacity: 0; transition: opacity .8s; paint-order: stroke; stroke: rgb(58 15 24 / 70%); stroke-width: 4px; }
+.christmas-nb.is-midnight .nb-msg { opacity: 1; }
+.christmas-nb-svg .nb-fw { opacity: 0; fill: none; stroke-width: 2.4; stroke-linecap: round; }
+.christmas-nb.is-midnight .nb-fw { opacity: .9; }
+.christmas-nb-svg .nb-flame { fill: #ffd36b; filter: drop-shadow(0 0 5px rgb(255 211 107 / 95%)); }
+.christmas-nb-svg .nb-label { fill: #6e1c23; font: 700 12px var(--sans); }
+.christmas-nb-svg .nb-dish { opacity: 0; transform: translateY(-34px); transform-box: fill-box; transform-origin: 50% 100%; transition: opacity .5s, transform .6s var(--xm-ease); }
+.christmas-nb-svg .nb-dish.is-set { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .christmas-nb-svg .nb-bulb { animation: christmas-twinkle 1.8s ease-in-out infinite; animation-delay: var(--d, 0s); }
+  .christmas-nb-svg .nb-flame { transform-box: fill-box; transform-origin: 50% 100%; animation: nb-flicker .9s ease-in-out infinite alternate; }
+  .christmas-nb.is-midnight .nb-fw { animation: nb-burst 1.8s ease-out infinite; animation-delay: var(--d, 0s); transform-box: fill-box; transform-origin: 50% 50%; }
+}
+@keyframes nb-flicker { from { transform: scale(1, 1); } to { transform: scale(.85, 1.15); } }
+@keyframes nb-burst { 0% { transform: scale(.2); opacity: 1; } 70% { opacity: .9; } 100% { transform: scale(1.35); opacity: 0; } }
+
+/* Delicacies: an SVG dawn stall and Noche Buena table (plays by itself) */
+.christmas-dl { position: relative; overflow: hidden; aspect-ratio: 2 / 1; max-height: 360px; border: 1px solid rgb(214 173 104 / 40%); border-radius: 16px; background: #2a0a10; }
+.christmas-dl-svg { display: block; width: 100%; height: 100%; }
+.christmas-dl-svg .dl-scene { transition: opacity .9s ease; }
+.christmas-dl-svg .dl-scene { opacity: 0; }
+.christmas-dl.is-mass .dl-mass, .christmas-dl.is-pbb .dl-pbb, .christmas-dl.is-noche .dl-noche { opacity: 1; }
+.christmas-dl-svg .dl-parol { fill: #f6cf7a; stroke: #8a5a1c; stroke-width: .7; stroke-linejoin: round; filter: drop-shadow(0 0 8px rgb(246 207 122 / 95%)); }
+.christmas-dl-svg .dl-parol-tail { fill: none; stroke: #f6cf7a; stroke-width: 1.6; stroke-linecap: round; }
+.christmas-dl-svg .dl-garland { fill: none; stroke: rgb(255 226 160 / 55%); stroke-width: 1.5; }
+.christmas-dl-svg .dl-coal { filter: drop-shadow(0 0 6px rgb(255 138 61 / 95%)); }
+.christmas-dl-svg .dl-steam { fill: none; stroke: rgb(255 255 255 / 70%); stroke-width: 3; stroke-linecap: round; opacity: .55; }
+.christmas-dl-svg .dl-flame { fill: #ffd36b; filter: drop-shadow(0 0 5px rgb(255 211 107 / 95%)); }
+.christmas-dl-svg .dl-label { fill: #fbf3df; font: 700 12px var(--sans); paint-order: stroke; stroke: rgb(40 20 10 / 75%); stroke-width: 3px; }
+.christmas-dl-svg .dl-noche .dl-label { fill: #6e1c23; stroke: none; }
+.christmas-dl-svg .dl-dish { opacity: 0; transform: translateY(-34px); transform-box: fill-box; transform-origin: 50% 100%; transition: opacity .5s, transform .6s var(--xm-ease); }
+.christmas-dl-svg .dl-dish.is-served { opacity: 1; transform: none; transition-delay: calc(var(--i, 0) * .45s); }
+@media (prefers-reduced-motion: no-preference) {
+  .christmas-dl-svg .dl-bulb { animation: christmas-twinkle 1.8s ease-in-out infinite; animation-delay: var(--d, 0s); }
+  .christmas-dl-svg .dl-flame { transform-box: fill-box; transform-origin: 50% 100%; animation: nb-flicker .9s ease-in-out infinite alternate; }
+  .christmas-dl-svg .dl-coal { animation: christmas-twinkle 1.2s ease-in-out infinite; }
+  .christmas-dl-svg .dl-steam { animation: dl-steam 3s ease-out infinite; animation-delay: var(--d, 0s); transform-box: fill-box; }
+}
+@media (prefers-reduced-motion: reduce) { .christmas-dl-svg .dl-dish, .christmas-dl-svg .dl-scene { transition: none; } }
+@keyframes dl-steam { 0% { transform: translateY(8px); opacity: 0; } 30% { opacity: .6; } 100% { transform: translateY(-14px); opacity: 0; } }
+
+/* ===== Delicacies polish ===== */
+.christmas-vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.christmas-menu-title { margin: 12px 0 4px; color: var(--xm-green); font: 400 clamp(28px, 3.2vw, 38px)/1.15 var(--serif); }
+.christmas-menu-title::after { display: block; width: 90px; height: 3px; margin-top: 12px; border-radius: 3px; content: ''; background: linear-gradient(90deg, var(--xm-red) 0 33%, var(--xm-gold) 33% 66%, #2f7a57 66%); }
+.christmas-page .christmas-menu-sub { margin: 12px 0 0; color: var(--xm-muted); font: italic 400 18px/1.5 var(--serif); }
+/* Photo credit strip */
+.christmas-delicacy-photo figcaption { padding: 6px 14px; color: var(--xm-muted); font: 400 12px/1.4 var(--sans); background: color-mix(in srgb, var(--xm-gold) 12%, var(--xm-panel)); }
+.christmas-delicacy-photo figcaption a { color: var(--xm-red); text-underline-offset: 2px; }
+/* Season pills */
+.christmas-page .christmas-delicacy > small.christmas-served { display: inline-flex; align-items: center; gap: 7px; margin-top: 12px; padding: 6px 13px 6px 10px; border: 1px solid transparent; border-radius: 999px; font: 700 12px/1 var(--sans); letter-spacing: .03em; }
+.christmas-served svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.christmas-served.is-dawn { color: #7a3a0e; border-color: rgb(224 128 90 / 55%); background: linear-gradient(100deg, rgb(246 192 103 / 40%), rgb(224 128 90 / 22%)); }
+.christmas-served.is-night { color: #fbf3df; background: linear-gradient(100deg, var(--xm-red-deep), var(--xm-red)); }
+.christmas-served.is-festive { color: #5a3d0a; border-color: rgb(214 173 104 / 80%); background: linear-gradient(100deg, rgb(246 207 122 / 55%), rgb(214 173 104 / 25%)); }
+/* Cards lift on hover */
+.christmas-delicacy { transition: transform .35s var(--xm-ease), box-shadow .35s; }
+.christmas-delicacy:hover { transform: translateY(-5px); box-shadow: 0 18px 36px color-mix(in srgb, var(--ink) 16%, transparent); }
+/* At-a-glance card (sidebar) */
+.christmas-page .christmas-glance { position: relative; overflow: hidden; margin-bottom: 14px; padding: 18px 20px 20px; border: 1px solid var(--xm-gold); border-radius: 18px; color: var(--xm-cream); background: var(--xm-capiz), linear-gradient(140deg, var(--xm-green), var(--xm-green-deep)); box-shadow: 0 10px 26px color-mix(in srgb, var(--ink) 16%, transparent); }
+.christmas-glance-kicker { color: var(--xm-gold); font: 700 12px/1 var(--sans); letter-spacing: .14em; }
+.christmas-page .christmas-glance h3 { margin: 8px 0 14px; color: var(--xm-cream); font: 400 24px/1.2 var(--serif); }
+.christmas-glance-row { display: grid; gap: 4px; margin-top: 10px; padding: 10px 12px; border-left: 3px solid var(--xm-gold); border-radius: 0 12px 12px 0; background: rgb(0 0 0 / 22%); }
+.christmas-glance-row.is-dawn { border-left-color: #e0805a; }
+.christmas-glance-row.is-night { border-left-color: #d4565d; }
+.christmas-glance-row b { display: inline-flex; align-items: center; gap: 7px; color: var(--xm-gold); font: 700 12px/1.3 var(--sans); letter-spacing: .08em; text-transform: uppercase; }
+.christmas-glance-row svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.christmas-glance-row span { color: var(--xm-cream); font: 400 16px/1.5 var(--serif); }
+@media (prefers-reduced-motion: reduce) { .christmas-delicacy { transition: none; } .christmas-delicacy:hover { transform: none; } }
+.christmas-dl-svg .dl-sign text { fill: #6e1c23; font: italic 400 17px var(--serif); }
+
+/* Delicacies: cooking-game view of the bibingka */
+.christmas-dl-svg .ck-tag { fill: #fff5d8; font: 700 11px var(--sans); paint-order: stroke; stroke: rgb(40 20 10 / 80%); stroke-width: 3px; }
+.christmas-dl-svg .ck-title { fill: #fff5d8; font: italic 400 24px var(--serif); paint-order: stroke; stroke: rgb(40 20 10 / 85%); stroke-width: 5px; }
+.christmas-dl-svg .cook-el { opacity: 0; transform: scale(.85); transform-box: fill-box; transform-origin: 50% 50%; transition: opacity .45s ease, transform .5s var(--xm-ease); }
+.christmas-dl-svg .cook-el.is-on { opacity: 1; transform: none; }
+.christmas-dl-svg .cook-el .cook-lid { transform: translateY(-40px); transition: transform .6s var(--xm-ease); }
+.christmas-dl-svg .cook-el.is-on .cook-lid { transform: none; }
+.christmas-dl-svg .cook-embers { opacity: .45; }
+.christmas-dl-svg .cook-embers circle { filter: blur(1px); }
+.christmas-dl-svg .ck-hotcoals circle { filter: drop-shadow(0 0 7px rgb(255 138 61 / 95%)); }
+.christmas-dl-svg .ck-baga { filter: drop-shadow(0 0 8px rgb(255 138 61 / 95%)); }
+.christmas-dl-svg .ck-steam { fill: none; stroke: rgb(255 255 255 / 75%); stroke-width: 3.4; stroke-linecap: round; opacity: .6; }
+.christmas-dl-svg .ck-spark { fill: #fff3b0; stroke: #e0a63e; stroke-width: .8; filter: drop-shadow(0 0 6px rgb(255 226 140 / 95%)); }
+.christmas-dl-svg .ck-stream { stroke-dasharray: 60; stroke-dashoffset: 0; }
+.christmas-cook-steps { display: flex; gap: 8px; margin: 14px 0 0; padding: 0; list-style: none; }
+.christmas-cook-steps li { display: grid; width: 30px; height: 30px; place-items: center; border: 2px solid rgb(214 173 104 / 55%); border-radius: 50%; color: rgb(247 240 227 / 70%); font: 700 13px var(--sans); transition: background .3s, color .3s, border-color .3s; }
+.christmas-cook-steps li.is-done { color: #2b1d09; border-color: var(--xm-gold); background: var(--xm-gold); }
+.christmas-cook-steps[hidden] { display: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .christmas-dl-svg .ck-baga { animation: christmas-twinkle 1.1s ease-in-out infinite; animation-delay: var(--d, 0s); }
+  .christmas-dl-svg .ck-hotcoals circle { animation: christmas-twinkle 1.3s ease-in-out infinite; }
+  .christmas-dl-svg .ck-steam { animation: dl-steam 2.6s ease-out infinite; animation-delay: var(--d, 0s); transform-box: fill-box; }
+  .christmas-dl-svg .ck-spark { animation: christmas-twinkle 1.2s ease-in-out infinite; }
+  .christmas-dl-svg .ck-stream { animation: ck-pour .9s ease-in-out infinite alternate; }
+}
+@keyframes ck-pour { from { stroke-dashoffset: 18; } to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .christmas-dl-svg .cook-el, .christmas-dl-svg .cook-el .cook-lid { transition: none; } }
+
+/* Story pages without a sidebar use the full width */
+.christmas-page .superstition-story-grid:not(:has(.superstition-story-aside)) { grid-template-columns: minmax(0, 1fr); }
+.christmas-page .superstition-story-grid:not(:has(.superstition-story-aside)) .superstition-story-main { max-width: none; }
+.christmas-page .superstition-story-grid:not(:has(.superstition-story-aside)) .superstition-lead { max-width: none; font-size: clamp(23px, 2.3vw, 30px); }
+.christmas-page .superstition-story-grid:not(:has(.superstition-story-aside)) .superstition-detail-block > p { max-width: none; font-size: 17px; }
+.christmas-page .superstition-story-grid:not(:has(.superstition-story-aside)) .christmas-facts { gap: 18px; }
+/* Full-width pages: the scenes grow with the column instead of leaving empty space */
+.christmas-page .superstition-story-grid:not(:has(.superstition-story-aside)) .christmas-play > p { max-width: 760px; }
+/* Scenes fit the screen: about a third of the viewport tall, so the whole box (title, scene, buttons, message) fits one screen, centered, so the whole scene and its buttons show at 100% zoom */
+.christmas-page :is(.christmas-nb, .christmas-dl, .christmas-dawn-scene) { width: min(100%, 68vh); max-height: 34vh; margin-inline: auto; aspect-ratio: 2 / 1; }
+@media (max-width: 720px) { .christmas-page :is(.christmas-nb, .christmas-dl, .christmas-dawn-scene) { width: 100%; max-height: none; } }
+.christmas-page .christmas-play { max-width: 820px; }
+
+/* Previous / next tradition cards */
+.christmas-pager-wrap { max-width: 1200px; margin: 48px auto 0; padding: 0 clamp(16px, 4vw, 40px); }
+.christmas-pager-wrap > .eyebrow { margin-bottom: 14px; color: var(--xm-red); }
+.christmas-pager-wrap .social-etiquette-practice-pagination > a small { color: var(--xm-red); }
+.christmas-pager-wrap .social-etiquette-practice-pagination > a strong { color: var(--xm-green); }
+.christmas-pager-wrap .social-etiquette-practice-pagination > a { border-color: var(--xm-line); background: var(--xm-panel); }
+.christmas-pager-wrap .social-etiquette-practice-pagination > a:hover { border-color: var(--xm-gold) !important; }
+/* Full-width pages: photo cards in three columns so they stay a comfortable size at 100% zoom */
+.christmas-page .superstition-story-grid:not(:has(.superstition-story-aside)) .christmas-delicacy-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.christmas-page .superstition-story-grid:not(:has(.superstition-story-aside)) .christmas-delicacy:last-child:nth-child(odd) { grid-column: auto; }
+.christmas-page .superstition-story-grid:not(:has(.superstition-story-aside)) .christmas-delicacy:last-child:nth-child(odd) .christmas-delicacy-photo img { aspect-ratio: 4 / 3; }
+.christmas-page .superstition-story-grid:not(:has(.superstition-story-aside)) .christmas-delicacy-photo img { max-height: 260px; }
+@media (max-width: 900px) { .christmas-page .superstition-story-grid:not(:has(.superstition-story-aside)) .christmas-delicacy-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .christmas-page .superstition-story-grid:not(:has(.superstition-story-aside)) .christmas-delicacy-list { grid-template-columns: 1fr; } }
+/* With a sidebar (Delicacies) the cards are a bit shorter too */
+.christmas-delicacy-photo img { max-height: 280px; }
+/* Delicacies: glance card sits in the main column; five photo cards fill the row (3 + 2) */
+.christmas-page .superstition-story-main > .christmas-glance { max-width: 560px; margin: 0 0 22px; }
+.christmas-page .superstition-story-grid:not(:has(.superstition-story-aside)) .christmas-delicacies .christmas-delicacy-list { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.christmas-page .superstition-story-grid:not(:has(.superstition-story-aside)) .christmas-delicacies .christmas-delicacy { grid-column: span 2; }
+.christmas-page .superstition-story-grid:not(:has(.superstition-story-aside)) .christmas-delicacies .christmas-delicacy:nth-child(n+4) { grid-column: span 3; }
+@media (max-width: 900px) { .christmas-page .superstition-story-grid:not(:has(.superstition-story-aside)) .christmas-delicacies .christmas-delicacy, .christmas-page .superstition-story-grid:not(:has(.superstition-story-aside)) .christmas-delicacies .christmas-delicacy:nth-child(n+4) { grid-column: span 3; } }
+@media (max-width: 560px) { .christmas-page .superstition-story-grid:not(:has(.superstition-story-aside)) .christmas-delicacies .christmas-delicacy, .christmas-page .superstition-story-grid:not(:has(.superstition-story-aside)) .christmas-delicacies .christmas-delicacy:nth-child(n+4) { grid-column: 1 / -1; } }
+
+/* ===== Subpage layout fixes: alignment of hero, cards and info blocks ===== */
+/* Hero: copy and art share one centered row, no floating rule or dead space */
+.christmas-page .superstition-entry-hero { min-height: 0; align-items: center; gap: clamp(28px, 5%, 64px); padding: 36px 0 56px; }
+.christmas-page .superstition-entry-hero .superstition-hero-copy { max-width: 560px; padding: 0 0 0 2%; border-top: 0; }
+.christmas-page .superstition-entry-hero .superstition-hero-copy::after { display: none; }
+.christmas-page .superstition-entry-hero .superstition-back { margin-bottom: 26px; }
+.christmas-page .christmas-hero-art { min-height: 0; aspect-ratio: 4 / 3; max-height: 560px; margin: 0; }
+.christmas-page .christmas-hero-art:has(> img)::after { inset: 55% 0 0; background: linear-gradient(transparent, color-mix(in srgb, var(--xm-green-deep) 92%, transparent)); }
+.christmas-page .christmas-hero-art .superstition-hero-caption, .christmas-page .christmas-hero-art .superstition-hero-figure { bottom: 24px; }
+
+/* Story: info blocks line up on one left edge */
+.christmas-page .superstition-story-main { display: grid; gap: 22px; }
+.christmas-page .superstition-story-main > * { margin-top: 0; margin-bottom: 0; }
+.christmas-page .superstition-story-main > .christmas-glance { max-width: none; }
+.christmas-glance-row-wrap, .christmas-page .christmas-glance { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; align-items: stretch; }
+.christmas-page .christmas-glance > .christmas-glance-kicker, .christmas-page .christmas-glance > h3 { grid-column: 1 / -1; margin: 0; }
+.christmas-page .christmas-glance > h3 { margin-bottom: 2px; }
+.christmas-page .christmas-glance-row { margin-top: 0; align-content: start; }
+
+/* Interactive scene box centered in the column */
+.christmas-page .christmas-play { width: 100%; max-width: 880px; margin: 8px auto; }
+.christmas-page .christmas-play .christmas-play-controls { justify-content: center; }
+.christmas-page .christmas-cook-steps { justify-content: center; }
+.christmas-page .christmas-play > p, .christmas-page .christmas-play .christmas-play-message { max-width: none; }
+
+/* Photo card rows: equal heights, content pinned to the card bottom */
+.christmas-delicacy-list { align-items: stretch; }
+.christmas-delicacy { display: flex; flex-direction: column; }
+.christmas-delicacy > small:last-child { margin-top: auto; padding-top: 11px; }
+.christmas-delicacy-photo img { height: 240px; max-height: none; }
+.christmas-page .christmas-delicacy:last-child:nth-child(odd) .christmas-delicacy-photo img { height: 240px; }
+
+/* Pager aligned with the story column */
+.christmas-pager-wrap { width: min(1280px, calc(100% - 112px)); max-width: none; padding: 0; }
+
+@media (max-width: 900px) {
+  .christmas-page .superstition-entry-hero { padding: 28px 0 40px; }
+  .christmas-page .superstition-entry-hero .superstition-hero-copy { padding-left: 0; max-width: none; }
+  .christmas-page .christmas-hero-art { max-height: none; }
+  .christmas-pager-wrap { width: min(100% - 48px, 760px); }
+}
+@media (max-width: 620px) {
+  .christmas-page .christmas-glance { grid-template-columns: 1fr; }
+  .christmas-pager-wrap { width: calc(100% - 36px); }
+  .christmas-delicacy-photo img, .christmas-page .christmas-delicacy:last-child:nth-child(odd) .christmas-delicacy-photo img { height: auto; aspect-ratio: 4 / 3; }
+}
+.christmas-page .christmas-delicacy > small.christmas-served { align-self: flex-start; margin-left: 18px; }
+
+/* Story ends cleanly after the last block; pager follows with even spacing */
+.christmas-page .superstition-story { padding-bottom: clamp(28px, 4vw, 48px); }
+.christmas-pager-wrap { margin: clamp(32px, 4vw, 56px) auto 0; }
+.christmas-pager-wrap > .eyebrow { margin-bottom: 16px; }
