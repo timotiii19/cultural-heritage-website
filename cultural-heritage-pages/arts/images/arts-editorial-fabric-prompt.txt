@@ -1,0 +1,6 @@
+Created with the built-in image_gen tool for the Pamana Arts website.
+
+Prompt:
+Use case: photorealistic-natural. Asset type: premium editorial textile photograph for a Filipino cultural arts website hero, landscape composition. Create a highly art-directed close-up of warm ivory piña-like sheer fabric with delicate off-white floral embroidery, arranged into one sculptural sweeping diagonal fold. The fabric is the entire subject, no shirt silhouette, no collar, no hanger, no room. Large beautifully controlled negative space on the left half, embroidered fold rising across the right half, fine visible threads, translucent woven texture and natural shadows that create depth. Museum-quality contemporary fashion editorial photography, sophisticated tactile realism, directional soft daylight, restrained palette of ecru, ivory, warm white, stone, and deep neutral shadows. Clean graceful composition with a dramatic flowing silhouette. No lettering, no signs, no logos, no watermarks, no rags, no circular objects, no Christmas colors, no gold ornaments, no borders or fake UI.
+
+This image is editorial artwork, not documentary photography of a specific heritage textile.

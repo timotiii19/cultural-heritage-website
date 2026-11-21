@@ -175,6 +175,16 @@ function setPalette(id) {
   const palette = palettes[id];
   if (!palette || !shell) return;
   shell.dataset.palette = id;
+  const themeColor = palette.colors[0];
+  shell.style.setProperty('--arts-theme', themeColor);
+  // Set directly on target elements — border-left is the clearest visible indicator
+  document.querySelectorAll('.arts-details').forEach(el => {
+    el.style.borderLeftColor = themeColor;
+    el.style.setProperty('--arts-theme', themeColor);
+  });
+  document.querySelectorAll('.exhibit-story').forEach(el => {
+    el.style.setProperty('--arts-theme', themeColor);
+  });
   localStorage.setItem(paletteKey, id);
   if (paletteButton) {
     paletteButton.querySelector('.palette-button-icon')?.replaceChildren(
