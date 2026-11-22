@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" fill="none">
+  <defs>
+    <g id="vein-leaf">
+      <path d="M0 0C-34-18-48-50-35-79 2-69 17-39 0 0Z" fill="#9b8261" fill-opacity=".52" stroke="#d0b782" stroke-opacity=".72" stroke-width="1.5"/>
+      <path d="M-2-4-31-68m16 33-13-7m24-10-12-8" stroke="#e0c995" stroke-opacity=".68" stroke-width="1.2"/>
+    </g>
+    <g id="mourning-flower">
+      <g fill="#c8b184" fill-opacity=".62" stroke="#e0c995" stroke-opacity=".72" stroke-width="1.5">
+        <path d="M0 0C-19-24-20-62 0-92 20-62 19-24 0 0Z" transform="rotate(0)"/>
+        <path d="M0 0C-19-24-20-62 0-92 20-62 19-24 0 0Z" transform="rotate(30)"/>
+        <path d="M0 0C-19-24-20-62 0-92 20-62 19-24 0 0Z" transform="rotate(60)"/>
+        <path d="M0 0C-19-24-20-62 0-92 20-62 19-24 0 0Z" transform="rotate(90)"/>
+        <path d="M0 0C-19-24-20-62 0-92 20-62 19-24 0 0Z" transform="rotate(120)"/>
+        <path d="M0 0C-19-24-20-62 0-92 20-62 19-24 0 0Z" transform="rotate(150)"/>
+        <path d="M0 0C-19-24-20-62 0-92 20-62 19-24 0 0Z" transform="rotate(180)"/>
+        <path d="M0 0C-19-24-20-62 0-92 20-62 19-24 0 0Z" transform="rotate(210)"/>
+        <path d="M0 0C-19-24-20-62 0-92 20-62 19-24 0 0Z" transform="rotate(240)"/>
+        <path d="M0 0C-19-24-20-62 0-92 20-62 19-24 0 0Z" transform="rotate(270)"/>
+        <path d="M0 0C-19-24-20-62 0-92 20-62 19-24 0 0Z" transform="rotate(300)"/>
+        <path d="M0 0C-19-24-20-62 0-92 20-62 19-24 0 0Z" transform="rotate(330)"/>
+      </g>
+      <circle r="26" fill="#74443b" fill-opacity=".9" stroke="#d8b474" stroke-width="2"/>
+      <circle r="14" stroke="#e6d3ad" stroke-opacity=".76" stroke-dasharray="2 5" stroke-width="2"/>
+      <circle r="5" fill="#d8b474"/>
+    </g>
+  </defs>
+
+  <g stroke="#c6a974" stroke-opacity=".5" stroke-width="2.2" stroke-linecap="round">
+    <path d="M598-45C475 72 735 116 605 224S444 361 602 465 740 619 594 717 475 842 609 955"/>
+    <path d="M-35 316C115 388 184 269 271 239s161 64 244 47"/>
+    <path d="M628 257c138-26 174-125 278-123s158 76 331 36"/>
+    <path d="M598 470c-137-48-194-9-288 58S151 615-30 566"/>
+    <path d="M634 510c134 43 192 155 304 152s165-82 292-59"/>
+    <path d="M-20 810c171-51 250-5 366-92s166-129 249-103"/>
+  </g>
+  <g stroke="#b87760" stroke-opacity=".58" stroke-width="1.3" stroke-dasharray="3 8">
+    <path d="M600-20c-56 120 96 177 6 288s-102 146 5 249 80 165-9 268-63 146 8 212"/>
+    <path d="M0 324c137 64 213-60 302-51m327-10c144-18 180-125 286-130"/>
+    <path d="M598 481c-147-52-208 4-305 68m347-27c136 55 193 159 307 157"/>
+  </g>
+
+  <g>
+    <use href="#vein-leaf" transform="translate(561 76) rotate(-35) scale(.8)"/>
+    <use href="#vein-leaf" transform="translate(661 135) rotate(145)"/>
+    <use href="#vein-leaf" transform="translate(534 285) rotate(-50) scale(1.05)"/>
+    <use href="#vein-leaf" transform="translate(672 376) rotate(142) scale(.9)"/>
+    <use href="#vein-leaf" transform="translate(535 530) rotate(-40)"/>
+    <use href="#vein-leaf" transform="translate(661 623) rotate(148) scale(1.1)"/>
+    <use href="#vein-leaf" transform="translate(551 774) rotate(-52)"/>
+    <use href="#vein-leaf" transform="translate(689 858) rotate(145) scale(.8)"/>
+    <use href="#vein-leaf" transform="translate(190 290) rotate(28) scale(.75)"/>
+    <use href="#vein-leaf" transform="translate(354 278) rotate(155) scale(.82)"/>
+    <use href="#vein-leaf" transform="translate(920 141) rotate(-24)"/>
+    <use href="#vein-leaf" transform="translate(1025 190) rotate(155) scale(.8)"/>
+    <use href="#vein-leaf" transform="translate(390 567) rotate(-34)"/>
+    <use href="#vein-leaf" transform="translate(194 611) rotate(155) scale(.9)"/>
+    <use href="#vein-leaf" transform="translate(930 662) rotate(-25)"/>
+    <use href="#vein-leaf" transform="translate(1095 644) rotate(150) scale(.88)"/>
+    <use href="#vein-leaf" transform="translate(288 727) rotate(-35) scale(.9)"/>
+    <use href="#vein-leaf" transform="translate(444 687) rotate(148) scale(.75)"/>
+  </g>
+
+  <g opacity=".88">
+    <use href="#mourning-flower" transform="translate(258 230) scale(1.02)"/>
+    <use href="#mourning-flower" transform="translate(910 142) scale(.72)"/>
+    <use href="#mourning-flower" transform="translate(886 670) scale(.94)"/>
+    <use href="#mourning-flower" transform="translate(288 760) scale(.66)"/>
+  </g>
+
+  <g stroke="#d4b77a" stroke-opacity=".54">
+    <circle cx="426" cy="370" r="37"/>
+    <circle cx="426" cy="370" r="48" stroke-dasharray="2 8"/>
+    <path d="M426 310v20m0 80v20m-60-60h20m80 0h20"/>
+    <circle cx="1080" cy="397" r="5" fill="#b87760"/>
+    <circle cx="84" cy="698" r="4" fill="#b87760"/>
+    <circle cx="746" cy="822" r="4" fill="#b87760"/>
+  </g>
+  <path d="M1092 300a30 30 0 1 0 30 49 36 36 0 1 1-30-49Z" fill="#d9c292" fill-opacity=".72"/>
+</svg>
