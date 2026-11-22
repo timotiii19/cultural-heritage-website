@@ -3115,3 +3115,19 @@ body { background: var(--paper); }
   border-radius: 0 14px 14px 0;
   background: color-mix(in srgb, var(--practice-accent) 7%, transparent);
 }
+/* ===== UI/UX pass (social etiquette only): readable sizes and 44px touch targets ===== */
+.social-etiquette-page .social-etiquette-hero-foot, .social-etiquette-page .social-etiquette-hero-index span,
+.social-etiquette-page .social-etiquette-next-topics > div a span,
+.social-etiquette-detail-page .social-etiquette-detail-index a { font-size: 12px; }
+.social-etiquette-page .inline-link, .social-etiquette-page .social-etiquette-hero-link, .social-etiquette-page .button-text,
+.social-etiquette-detail-page .inline-link, .social-etiquette-detail-page .button-text { min-height: 44px; display: inline-flex; align-items: center; }
+.social-etiquette-detail-page .social-etiquette-detail-index a { min-height: 44px; }
+.social-etiquette-page a:focus-visible, .social-etiquette-detail-page a:focus-visible { outline: 3px solid var(--forest); outline-offset: 3px; }
+
+/* ===== UI/UX pass (Discover + Traditions index only): readable sizes and 44px touch targets ===== */
+.collection-card-bottom > span, .collection-card-bottom b,
+.tradition-category-action, .tradition-category-card > p, .tradition-field-number { font-size: 12px; }
+.hero-actions a, .button-primary, .button-secondary, .button-text,
+.tradition-category-action { min-height: 44px; }
+.collection-card:focus-visible, .tradition-category-card:focus-visible,
+.button-primary:focus-visible, .button-secondary:focus-visible { outline: 3px solid var(--forest); outline-offset: 3px; }

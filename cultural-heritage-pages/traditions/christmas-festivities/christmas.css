@@ -688,3 +688,7 @@
   opacity: .4;
 }
 .superstition-page.christmas-page .superstition-shell.xm-hero-inner::before { display: none; }
+
+/* ===== UI/UX pass: readable sizes and focus ===== */
+.christmas-church .ch-day, .christmas-novena-list span { font-size: 12px; }
+.christmas-page .superstition-story-card:focus-visible { outline: 3px solid var(--sp-gold, #f6b800); outline-offset: 4px; }

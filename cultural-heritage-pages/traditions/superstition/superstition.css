@@ -1742,3 +1742,11 @@
 @media (prefers-reduced-motion: reduce) {
   .sp-omen { animation: none; }
 }
+
+/* ===== UI/UX pass: readable sizes and 44px touch targets ===== */
+.sp-story-pagination span { font-size: 12px; }
+.sp-route-scene .sp-place > b { font-size: 12px; }
+.superstition-back, .superstition-hero-link, .sp-story-references { min-height: 44px; }
+.superstition-back, .sp-story-references { display: inline-flex; align-items: center; }
+.superstition-hero-link { font-size: 13px; }
+.superstition-page a:focus-visible, .superstition-page button:focus-visible { outline: 3px solid var(--sp-gold); outline-offset: 3px; }
