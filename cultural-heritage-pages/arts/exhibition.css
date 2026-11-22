@@ -14,7 +14,8 @@
  color: var(--arts-ink);
 }
 /* --arts-theme is set exclusively via JS inline style in setPalette() */
-.arts-gallery:after, .arts-gallery .pointer-glow { display: none; }
+.arts-gallery:after { display: none; }
+.arts-gallery .pointer-glow { background: radial-gradient(circle, color-mix(in srgb, var(--gold) 16%, transparent), transparent 72%); }
 .arts-gallery:before {
   display: block;
   position: fixed;
@@ -477,3 +478,6 @@ body:has(.exhibit-viewer[open]) { overflow: hidden; }
 }
 .motion-off .arts-page * { animation: none !important; transition: none !important; }
 @media (prefers-reduced-motion: reduce) { .arts-page * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+
+/* "Make it yours" button: 25% darker than the default paper tone */
+.arts-gallery .customize-button { background: color-mix(in srgb, var(--paper-bright) 75%, var(--forest-deep)); }

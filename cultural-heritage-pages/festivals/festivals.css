@@ -387,7 +387,7 @@
 .festival-page .festival-fact:nth-child(even)::before { background: repeating-linear-gradient(90deg, var(--fs-blue) 0 24px, var(--fs-gold) 24px 48px, var(--fs-red) 48px 72px, var(--fs-green) 72px 96px); }
 .festival-page .superstition-meaning { background: radial-gradient(circle at 92% 12%, rgb(246 184 0 / 55%), transparent 42%), linear-gradient(120deg, #8e0b22, var(--fs-red) 60%, #e03a2a); border-bottom: 4px solid var(--fs-gold); }
 .festival-page .superstition-close { position: relative; overflow: hidden; border-radius: 20px; }
-.festival-page .superstition-close::before { position: absolute; top: 0; right: 0; left: 0; height: 8px; background: repeating-linear-gradient(90deg, var(--fs-red) 0 32px, var(--fs-gold) 32px 64px, var(--fs-blue) 64px 96px, var(--fs-green) 96px 128px); }
+.festival-page .superstition-close::before { position: absolute; z-index: 0; top: 0; right: 0; bottom: auto; left: 0; height: 8px; font-size: 0; transform: none; background: repeating-linear-gradient(90deg, var(--fs-red) 0 32px, var(--fs-gold) 32px 64px, var(--fs-blue) 64px 96px, var(--fs-green) 96px 128px); }
 .festival-page .superstition-close::after { display: none; }
 /* Santo Niño crown flourish on the title */
 .festival-page .superstition-entry-hero h1::before { display: block; width: 54px; height: 30px; margin-bottom: 6px; content: ''; background: var(--fs-gold); clip-path: polygon(0 100%, 0 30%, 25% 60%, 50% 0, 75% 60%, 100% 30%, 100% 100%); filter: drop-shadow(0 2px 0 var(--fs-red)); }
@@ -444,3 +444,6 @@
     opacity: .16;
   }
 }
+
+/* Mouse glow: soft gold, slightly stronger than the default */
+.festival-site-shell .pointer-glow { background: radial-gradient(circle, color-mix(in srgb, var(--gold) 16%, transparent), transparent 72%); }

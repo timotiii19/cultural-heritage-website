@@ -380,7 +380,7 @@
 .christmas-page .superstition-story { background: radial-gradient(circle at 8% 0%, rgb(165 45 53 / 7%), transparent 34%), radial-gradient(circle at 96% 12%, rgb(31 94 70 / 8%), transparent 32%), radial-gradient(circle, rgb(214 173 104 / 30%) 0 1.5px, transparent 2.5px) 0 0 / 64px 64px, radial-gradient(circle, rgb(214 173 104 / 18%) 0 1px, transparent 2px) 32px 32px / 64px 64px; border-radius: 28px; }
 /* Candy-cane rule under the title */
 .christmas-page .superstition-story-head { padding-bottom: 26px; }
-.christmas-page .superstition-story-head::after { display: block; width: min(320px, 60%); height: 6px; margin-top: 22px; border-radius: 6px; content: ''; background: repeating-linear-gradient(-45deg, var(--xm-red) 0 10px, #fdf8ee 10px 20px); box-shadow: 0 0 0 1px rgb(165 45 53 / 25%); }
+.christmas-page .superstition-story-head::after { position: static; top: auto; right: auto; display: block; width: min(320px, 60%); opacity: 1; transform: none; text-shadow: none; font-size: 0; height: 6px; margin-top: 22px; border-radius: 6px; content: ''; background: repeating-linear-gradient(-45deg, var(--xm-red) 0 10px, #fdf8ee 10px 20px); box-shadow: 0 0 0 1px rgb(165 45 53 / 25%); }
 /* Fact cards: red and green like ribbon wrap */
 .christmas-page .superstition-fact:nth-child(odd) { border-left-color: var(--xm-red); }
 .christmas-page .superstition-fact:nth-child(even) { border-left-color: #2f7a57; }
