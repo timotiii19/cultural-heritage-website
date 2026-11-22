@@ -21,7 +21,7 @@
     radial-gradient(circle at 88% 8%, rgb(242 176 30 / 28%), transparent 30rem),
     radial-gradient(circle at 4% 34%, rgb(194 24 91 / 12%), transparent 32rem),
     radial-gradient(circle at 96% 70%, rgb(31 95 191 / 12%), transparent 30rem),
-    var(--paper);
+    transparent;
 }
 .festival-page h1, .festival-page h2 { color: var(--fs-ink); }
 .festival-page .superstition-hero h1 em, .festival-page .superstition-close h2 em {
@@ -41,7 +41,7 @@
 
 /* Confetti */
 .festival-confetti { position: absolute; z-index: 0; top: 0; right: -56px; left: -56px; height: 860px; overflow: hidden; pointer-events: none; }
-.confetti { position: absolute; top: -20px; width: 9px; height: 14px; border-radius: 2px; opacity: .85; animation: fs-fall linear infinite; }
+.confetti { position: absolute; top: -20px; width: 9px; height: 14px; border-radius: 2px; opacity: .48; animation: fs-fall linear infinite; }
 .confetti.s-1 { width: 11px; height: 11px; border-radius: 50%; } .confetti.s-2 { width: 16px; height: 6px; }
 .c-red { background: var(--fs-red); } .c-gold { background: var(--fs-gold); } .c-blue { background: var(--fs-blue); }
 .c-green { background: var(--fs-green); } .c-magenta { background: var(--fs-magenta); }
@@ -366,14 +366,8 @@
 @media (prefers-reduced-motion: reduce) { .fs-marquee-track { animation: none; } }
 @media (max-width: 620px) { .fs-marquee { transform: none; } }
 
-/* ===== Sinulog style: Santo Niño crimson and gold, woven trim, sunburst, flowing "sulog" water ===== */
-.superstition-page.festival-page { --fs-red: #c8102e; --fs-gold: #f6b800; --fs-blue: #17469e; --sn-weave:
-  conic-gradient(from 45deg at 50% 50%, var(--fs-red) 0 25%, var(--fs-gold) 0 50%, var(--fs-blue) 0 75%, #fff7e0 0) 0 0 / 22px 22px; }
-/* Woven costume trim (diamond pattern) */
-.fs-weave, .fs-marquee::before, .fs-marquee::after, .festival-page .superstition-close::before { content: ''; display: block; height: 14px; background:
-  linear-gradient(135deg, transparent 6px, var(--fs-gold) 6px 8px, transparent 8px) 0 0 / 14px 14px,
-  linear-gradient(45deg, transparent 6px, var(--fs-gold) 6px 8px, transparent 8px) 0 0 / 14px 14px,
-  var(--fs-red); }
+/* ===== Sinulog style: Santo Niño crimson and gold, sunburst, flowing "sulog" water ===== */
+.superstition-page.festival-page { --fs-red: #c8102e; --fs-gold: #f6b800; --fs-blue: #17469e; }
 .fs-marquee { padding: 0; background: var(--fs-blue); box-shadow: 0 10px 0 var(--fs-gold); }
 .fs-marquee::before, .fs-marquee::after { position: relative; }
 .fs-marquee-track { padding: 12px 0; }
@@ -388,16 +382,12 @@
 .festival-gallery, .festival-details { position: relative; }
 .festival-details::before { display: block; height: 28px; margin-bottom: 24px; content: ''; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 28'%3E%3Cpath d='M0 14 Q20 0 40 14 T80 14' fill='none' stroke='%2317469e' stroke-width='3'/%3E%3Cpath d='M0 22 Q20 8 40 22 T80 22' fill='none' stroke='%23f6b800' stroke-width='3'/%3E%3C/svg%3E") 0 0 / 80px 28px repeat-x; animation: fs-flow 6s linear infinite; }
 @keyframes fs-flow { to { background-position-x: 80px; } }
-/* Fact cards and callouts wear the woven trim */
-.festival-page .festival-fact::before { height: 14px; margin: -1px -1px 14px; background:
-  linear-gradient(135deg, transparent 6px, var(--fs-gold) 6px 8px, transparent 8px) 0 0 / 14px 14px,
-  linear-gradient(45deg, transparent 6px, var(--fs-gold) 6px 8px, transparent 8px) 0 0 / 14px 14px, var(--fs-red); }
-.festival-page .festival-fact:nth-child(even)::before { background:
-  linear-gradient(135deg, transparent 6px, var(--fs-gold) 6px 8px, transparent 8px) 0 0 / 14px 14px,
-  linear-gradient(45deg, transparent 6px, var(--fs-gold) 6px 8px, transparent 8px) 0 0 / 14px 14px, var(--fs-blue); }
-.festival-page .superstition-meaning { background: radial-gradient(circle at 92% 12%, rgb(246 184 0 / 55%), transparent 42%), linear-gradient(120deg, #8e0b22, var(--fs-red) 60%, #e03a2a); border-bottom: 14px solid transparent; border-image: linear-gradient(135deg, transparent 6px, var(--fs-gold) 6px 8px, transparent 8px) 0 0 14 / 0 0 14px 0 / 0 round; }
+/* Fact cards and callouts use clean color-block accents. */
+.festival-page .festival-fact::before { height: 8px; margin: -1px -1px 14px; background: repeating-linear-gradient(90deg, var(--fs-red) 0 24px, var(--fs-gold) 24px 48px, var(--fs-blue) 48px 72px, var(--fs-green) 72px 96px); }
+.festival-page .festival-fact:nth-child(even)::before { background: repeating-linear-gradient(90deg, var(--fs-blue) 0 24px, var(--fs-gold) 24px 48px, var(--fs-red) 48px 72px, var(--fs-green) 72px 96px); }
+.festival-page .superstition-meaning { background: radial-gradient(circle at 92% 12%, rgb(246 184 0 / 55%), transparent 42%), linear-gradient(120deg, #8e0b22, var(--fs-red) 60%, #e03a2a); border-bottom: 4px solid var(--fs-gold); }
 .festival-page .superstition-close { position: relative; overflow: hidden; border-radius: 20px; }
-.festival-page .superstition-close::before { position: absolute; top: 0; right: 0; left: 0; }
+.festival-page .superstition-close::before { position: absolute; top: 0; right: 0; left: 0; height: 8px; background: repeating-linear-gradient(90deg, var(--fs-red) 0 32px, var(--fs-gold) 32px 64px, var(--fs-blue) 64px 96px, var(--fs-green) 96px 128px); }
 .festival-page .superstition-close::after { display: none; }
 /* Santo Niño crown flourish on the title */
 .festival-page .superstition-entry-hero h1::before { display: block; width: 54px; height: 30px; margin-bottom: 6px; content: ''; background: var(--fs-gold); clip-path: polygon(0 100%, 0 30%, 25% 60%, 50% 0, 75% 60%, 100% 30%, 100% 100%); filter: drop-shadow(0 2px 0 var(--fs-red)); }
@@ -410,3 +400,47 @@
 .fs-marquee::before, .fs-marquee::after { display: none; }
 .fs-marquee-track { padding: 10px 0; font-size: clamp(20px, 2.2vw, 28px); color: #fff7e0; }
 .fs-marquee i { color: var(--fs-gold); font-size: .7em; align-self: center; }
+
+/* Keep shared superstition-page flourishes exclusive to superstition pages. */
+.festival-page .superstition-shell::before,
+.festival-page::before,
+.festival-page::after,
+.festival-page .superstition-story-head::after {
+  display: none;
+}
+.site-shell.festival-site-shell {
+  position: relative;
+  isolation: isolate;
+}
+.site-shell.festival-site-shell::before {
+  position: absolute;
+  z-index: 0;
+  inset: var(--header-height) 0 0;
+  content: "";
+  background: url("/cultural-heritage-pages/festivals/images/sinulog-background.svg") left top / 100% 900px repeat-y;
+  opacity: .2;
+  pointer-events: none;
+}
+.site-shell.festival-site-shell .page-transition {
+  position: relative;
+  z-index: 1;
+}
+.festival-page .superstition-shell::before {
+  display: none;
+}
+.festival-page .superstition-story {
+  background: transparent;
+}
+.festival-page .superstition-detail-block > .superstition-eyebrow {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+.festival-page .superstition-close {
+  background: var(--paper-bright);
+}
+@media (max-width: 760px) {
+  .site-shell.festival-site-shell::before {
+    background-size: 100% 760px;
+    opacity: .16;
+  }
+}

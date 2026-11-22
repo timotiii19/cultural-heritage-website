@@ -19,7 +19,7 @@
   font-family: var(--serif);
 }
 .superstition-shell { position: relative; isolation: isolate; width: min(1280px, calc(100% - 112px)); margin: 0 auto; }
-.superstition-shell::before {
+.superstition-page:not(.festival-page) .superstition-shell::before {
   position: absolute;
   z-index: 0;
   inset: 0 -3vw;
@@ -793,8 +793,8 @@
 
 /* Gothic folklore motifs layered behind and around the superstition stories */
 .superstition-page { position: relative; }
-.superstition-page::before,
-.superstition-page::after {
+.superstition-page:not(.festival-page)::before,
+.superstition-page:not(.festival-page)::after {
   position: absolute;
   z-index: 0;
   color: color-mix(in srgb, var(--sp-gold) 18%, transparent);
@@ -802,14 +802,14 @@
   pointer-events: none;
   content: "†";
 }
-.superstition-page::before {
+.superstition-page:not(.festival-page)::before {
   top: 330px;
   right: 2.8%;
   font-size: clamp(48px, 7vw, 92px);
   transform: rotate(12deg);
   text-shadow: 0 0 28px color-mix(in srgb, var(--sp-gold) 12%, transparent);
 }
-.superstition-page::after {
+.superstition-page:not(.festival-page)::after {
   left: 1.4%;
   bottom: 190px;
   font-size: clamp(38px, 5vw, 68px);
@@ -1730,7 +1730,7 @@
     var(--sp-panel);
 }
 @media (max-width: 620px) {
-  .superstition-shell::before {
+  .superstition-page:not(.festival-page) .superstition-shell::before {
     inset: 0 -12px;
     background-size: 760px 570px;
     opacity: .24;
