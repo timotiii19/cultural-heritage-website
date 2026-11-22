@@ -5,6 +5,7 @@ const palettes = {
   orange: { name: 'Orange', colors: ['#b75d35', '#e49353', '#f0c967', '#fbf1e5', '#70412f'] },
   yellow: { name: 'Yellow', colors: ['#927629', '#c4a84e', '#e6bf55', '#f8f5e6', '#594c2c'] },
   purple: { name: 'Purple', colors: ['#72599d', '#ad8fc2', '#e5c16b', '#f4eff8', '#49385f'] },
+  heritage: { name: 'Heritage', colors: ['#A84624', '#79351F', '#E8DCC9', '#F7F2E8', '#171411'] },
 };
 
 const shell = document.querySelector('.site-shell');
@@ -171,7 +172,7 @@ function setMotion(enabled) {
   }
 }
 
-function setPalette(id) {
+function setPalette(id, persist = true) {
   const palette = palettes[id];
   if (!palette || !shell) return;
   shell.dataset.palette = id;
@@ -185,7 +186,7 @@ function setPalette(id) {
   document.querySelectorAll('.exhibit-story').forEach(el => {
     el.style.setProperty('--arts-theme', themeColor);
   });
-  localStorage.setItem(paletteKey, id);
+  if (persist) localStorage.setItem(paletteKey, id);
   if (paletteButton) {
     paletteButton.querySelector('.palette-button-icon')?.replaceChildren(
       ...palette.colors.map((color) => {
@@ -199,8 +200,13 @@ function setPalette(id) {
   if (panel && paletteControl) panel.replaceWith(renderPalettePanel(id));
 }
 
+// A page may declare its own starting palette (data-default-palette). Any palette other than the
+// stored 'green' (the old automatic default) counts as the visitor's own choice and wins.
 const savedPalette = localStorage.getItem(paletteKey);
-setPalette(Object.hasOwn(palettes, savedPalette) ? savedPalette : 'green');
+const hasChosenPalette = Object.hasOwn(palettes, savedPalette)
+  && (savedPalette !== 'green' || localStorage.getItem(`${paletteKey}-chosen`) === '1');
+const startPalette = hasChosenPalette ? savedPalette : (shell?.dataset.defaultPalette || 'green');
+setPalette(startPalette, hasChosenPalette);
 setMotion(localStorage.getItem(motionKey) !== 'off');
 
 paletteButton?.addEventListener('click', () => {
@@ -223,7 +229,10 @@ paletteControl?.addEventListener('click', (event) => {
     paletteButton.classList.remove('is-open');
   }
   const choice = event.target.closest('[data-palette-choice]');
-  if (choice) setPalette(choice.dataset.paletteChoice);
+  if (choice) {
+    localStorage.setItem(`${paletteKey}-chosen`, '1');
+    setPalette(choice.dataset.paletteChoice);
+  }
   if (event.target.closest('.motion-toggle')) {
     setMotion(document.querySelector('.motion-toggle').getAttribute('aria-pressed') !== 'true');
   }

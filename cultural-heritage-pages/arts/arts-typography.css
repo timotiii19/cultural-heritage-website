@@ -1,0 +1,101 @@
+/* =====================================================================
+   Typography, spacing and position pass (ui-ux-pro-max guidance)
+   Scale: 12 / 14 / 16 / 18 / 24 / 32 px. Body >= 16px, line-height 1.5-1.75,
+   nothing below 12px, fluid heading sizes, 8px+ gaps between tap targets.
+   ===================================================================== */
+
+/* Body copy and labels */
+.arts-page p { line-height: 1.7; }
+.arts-page .eyebrow, .arts-label { font-size: .875rem; letter-spacing: .1em; }
+.arts-heritage-copy > .eyebrow { font-size: .875rem; letter-spacing: .1em; }
+.arts-heritage-copy > p { max-width: 34rem; margin-bottom: 32px; font-size: 1.125rem; line-height: 1.7; }
+.arts-topic p { font-size: 1.0625rem; line-height: 1.6; }
+.arts-topic-body > .arts-label { font-size: .8125rem; letter-spacing: .08em; }
+.arts-topic-link { font-size: 1rem; }
+.arts-hero-footnote p { font-size: 1rem; line-height: 1.6; }
+.arts-restored-main-photo figcaption { font-size: .875rem; letter-spacing: .06em; }
+.arts-restored-inset-photo figcaption { font-size: 1.25rem; }
+.arts-restored-seal > span { font-size: .75rem; letter-spacing: .06em; }
+.arts-restored-vertical { font-size: .75rem; }
+.arts-collection-heading > p { width: auto; max-width: 30ch; font-size: 1.0625rem; line-height: 1.6; }
+.arts-night p { font-size: 1.125rem; line-height: 1.7; }
+
+/* Headings: fluid, never overflowing */
+.arts-heritage-copy h1 { margin: 28px 0 24px; font-size: clamp(2.75rem, 6.2vw, 5.5rem); line-height: 1.04; }
+.arts-page h2 { font-size: clamp(2rem, 4.2vw, 3.5rem); line-height: 1.12; }
+.arts-topic h3 { font-size: clamp(1.75rem, 2.6vw, 2.25rem); }
+.arts-restored-strip > span { font-size: clamp(1.125rem, 2vw, 1.5rem); line-height: 1.35; }
+
+/* Hero position: less dead space between the band and the headline, content vertically centred */
+.arts-heritage-hero { min-height: clamp(520px, 78svh, 680px); padding: 32px 0 48px; align-items: center; }
+.arts-heritage-copy { align-self: center; }
+.arts-restored-actions { gap: 12px 28px; }
+.arts-collection-cta { min-height: 52px; padding: 0 28px; font-size: 1rem; }
+.arts-restored-text-link { display: inline-flex; align-items: center; min-height: 44px; font-size: 1rem; }
+.arts-hero-footnote { margin-top: 36px; }
+
+/* Collection heading and grid rhythm */
+.arts-collection-heading { align-items: end; margin-bottom: 48px; }
+.arts-collection-heading h2 { margin-top: 12px; }
+.arts-topic-grid { gap: 56px 32px; }
+.arts-topic-body { padding-top: 24px; }
+.arts-topic h3 { margin: 12px 0 8px; }
+.arts-topic p { margin-bottom: 18px; }
+
+/* Closing band */
+.arts-night h2 { max-width: 18ch; }
+.arts-night-actions a:first-child { min-height: 52px; font-size: 1rem; }
+.arts-night-actions a:last-child { display: inline-flex; align-items: center; min-height: 44px; font-size: 1rem; }
+
+/* Footer: the global footer text is 8-10px, far too small to read */
+.arts-gallery .footer-inner > p { max-width: 30rem; font-size: 1rem; line-height: 1.6; }
+.arts-gallery .footer-links { flex-wrap: wrap; gap: 8px; }
+.arts-gallery .footer-links a { padding: 10px 14px; font-size: .9375rem; }
+.arts-gallery .footer-note { font-size: .8125rem; }
+.arts-gallery .footer-brand { font-size: 2rem; }
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .arts-restored-vertical { display: none; }
+  .arts-heritage-hero { min-height: 0; }
+}
+
+/* Mobile */
+@media (max-width: 650px) {
+  .arts-heritage-copy h1 { font-size: clamp(2.5rem, 11vw, 3.5rem); }
+  .arts-heritage-copy h1 em { white-space: normal; font-size: 1.04em; }
+  .arts-heritage-copy > p { font-size: 1.0625rem; }
+  .arts-collection-heading > p { max-width: none; }
+  .arts-topic-grid { gap: 40px; }
+  .arts-restored-seal { width: 84px; height: 84px; }
+  .arts-restored-seal > span { font-size: .75rem; }
+  .arts-restored-seal > strong { font-size: 2rem; }
+  .arts-restored-main-photo figcaption { font-size: .75rem; }
+  .arts-restored-inset-photo figcaption { font-size: 1.0625rem; }
+  .arts-gallery .footer-links a { padding: 10px 12px; font-size: .875rem; }
+}
+
+/* ---- Arts sub-pages ---- */
+.exhibit-breadcrumb { padding-top: 24px; font-size: .9375rem; }
+.exhibit-detail-hero { padding: 36px 0 56px; }
+.exhibit-detail-hero h1 { font-size: clamp(2.75rem, 5.6vw, 5rem); line-height: 1.04; }
+.exhibit-detail-hero h1 > span { margin-top: 18px; font-size: clamp(1.5rem, 2.4vw, 2.125rem); }
+.exhibit-detail-hero p { max-width: 34rem; font-size: 1.125rem; line-height: 1.7; }
+.arts-detail-composition figcaption { font-size: .875rem; }
+.arts-detail-composition figcaption > span:last-child { font-size: .75rem; }
+.exhibit-object-facts dt { font-size: .875rem; letter-spacing: .08em; }
+.exhibit-object-facts dd { font-size: clamp(1.125rem, 1.8vw, 1.375rem); }
+.exhibit-prose h2, .arts-craft-heading h2, .exhibit-gallery > h2 { font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.12; }
+.exhibit-prose p { font-size: 1.0625rem; line-height: 1.75; }
+.arts-story-photo figcaption { font-size: clamp(1.25rem, 2vw, 1.5rem); }
+.arts-story-photo figcaption span { font-size: .875rem; }
+.arts-details h3 { font-size: clamp(1.4rem, 2vw, 1.75rem); }
+.arts-details article p { font-size: 1.0625rem; line-height: 1.7; }
+.exhibit-gallery figcaption { font-size: 1rem; }
+.exhibit-gallery button > span { font-size: .875rem; }
+.exhibit-sources summary { font-size: 1.0625rem; min-height: 48px; }
+.exhibit-sources a { font-size: 1rem; }
+@media (max-width: 650px) {
+  .exhibit-detail-hero h1 { font-size: clamp(2.5rem, 11vw, 3.5rem); }
+  .exhibit-detail-hero p { font-size: 1.0625rem; }
+}

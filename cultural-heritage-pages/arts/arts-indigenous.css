@@ -1,0 +1,275 @@
+/* Arts page: Filipino indigenous-inspired geometric identity.
+   Palette: ivory var(--t-ivory) / terracotta var(--t-terra) / dark rust var(--t-rust) / black var(--t-black) / beige var(--t-beige).
+   Patterns are small tiling SVGs in /images (tribal-*.svg), reused here; never one large background. */
+
+/* Colours follow the active "Make it yours" palette. The default for this page is "heritage"
+   (ivory / terracotta / dark rust / black / beige); every other palette recolours the same designs. */
+.site-shell.arts-gallery {
+  --t-black: var(--forest-deep); --t-terra: var(--accent-ink); --t-rust: var(--forest);
+  --t-ivory: var(--paper); --t-ivory-hi: var(--paper-bright); --t-beige: var(--line);
+  --arts-glow: color-mix(in srgb, var(--accent) 55%, #fff); /* light accent for small text on dark */
+  /* Fallback tiles in heritage colours; arts-motion.js swaps in palette-coloured copies. */
+  --tribal-band: url('/cultural-heritage-pages/arts/images/tribal-band.svg');
+  --tribal-zigzag: url('/cultural-heritage-pages/arts/images/tribal-zigzag.svg');
+  --tribal-lozenge: url('/cultural-heritage-pages/arts/images/tribal-lozenge.svg');
+  --tribal-ornament: url('/cultural-heritage-pages/arts/images/tribal-ornament.svg');
+  --tribal-corner-bl: var(--tribal-corner-bl);
+  --tribal-corner-br: var(--tribal-corner-br);
+}
+.arts-gallery .brand-mark { color: var(--t-ivory-hi); background: var(--t-rust); }
+.arts-gallery .nav-links a.active { color: var(--t-black); background: var(--t-beige); }
+
+/* ---- Background accents: faint lozenge lattice, replaces the botanical tile ---- */
+.arts-gallery:before { background: var(--tribal-lozenge) center / 80px auto; opacity: .09; }
+.arts-heritage-hero:before { background: var(--tribal-lozenge) right top / 64px auto repeat; opacity: .16; mask-image: linear-gradient(90deg, transparent 15%, #000 80%); }
+.arts-heritage-hero:after { background: radial-gradient(circle, color-mix(in srgb, var(--t-terra) 18%, transparent), transparent 66%); }
+
+/* ---- Hero: patterned border across the top of the page content ---- */
+.arts-page.exhibition-home:before {
+  content: ''; display: block; height: 32px; margin-top: 18px;
+  background: var(--tribal-band) repeat-x center / auto 32px;
+}
+.arts-heritage-copy > .eyebrow:before { width: 64px; height: 14px; background: var(--tribal-ornament) no-repeat center / contain; }
+.arts-heritage-copy h1 em, .arts-page h1 em, .arts-page h2 em { color: var(--t-terra); }
+.arts-heritage-copy h1 em:after { background: var(--t-terra); opacity: .85; }
+
+/* Framing for the featured photographs */
+.arts-restored-main-photo { border: 8px solid var(--t-ivory-hi); outline: 2px solid var(--t-black); outline-offset: 5px; box-shadow: 0 0 0 7px var(--t-terra), 0 22px 45px color-mix(in srgb, var(--t-black) 13%, transparent); }
+.arts-restored-main-photo:after { background: linear-gradient(transparent, color-mix(in srgb, var(--t-black) 85%, transparent)); }
+.arts-restored-inset-photo { border: 1px solid var(--t-black); outline: 1px solid var(--t-terra); outline-offset: 4px; }
+.arts-restored-seal { background: var(--t-beige); color: var(--t-black); border: 2px solid var(--t-black); outline: 1px dashed var(--t-terra); }
+.arts-restored-seal > strong { color: var(--t-terra); }
+.arts-restored-orbit, .arts-restored-orbit:after { border-color: color-mix(in srgb, var(--t-terra) 38%, transparent); }
+.arts-collection-cta { background: var(--t-black); border-color: var(--t-black); color: var(--t-ivory); }
+.arts-collection-cta:hover { background: var(--t-rust); border-color: var(--t-rust); }
+.arts-restored-text-link { color: var(--t-rust); border-bottom-color: var(--t-terra); }
+
+/* ---- Section transition: tinted strip framed by a band above and a zigzag below ---- */
+.arts-restored-strip { position: relative; border-block: 0; padding: 48px 20px; background: linear-gradient(90deg, transparent, var(--t-beige) 15%, var(--t-beige) 85%, transparent); }
+.arts-restored-strip:before, .arts-restored-strip:after { content: ''; position: absolute; left: 0; right: 0; background-repeat: repeat-x; background-position: center; }
+.arts-restored-strip:before { top: 6px; height: 32px; background-image: var(--tribal-band); background-size: auto 32px; }
+.arts-restored-strip:after { bottom: 4px; height: 22px; background-image: var(--tribal-zigzag); background-size: auto 22px; }
+.arts-restored-strip > span + span:before { background: var(--tribal-lozenge) no-repeat center / contain; mask: none; top: 0; left: -30px; width: 28px; height: 28px; }
+
+/* ---- Section heading ornaments ---- */
+.arts-collection-heading .eyebrow { display: block; }
+.arts-collection-heading .eyebrow:before { content: ''; display: block; width: 64px; height: 14px; margin-bottom: 16px; background: var(--tribal-ornament) no-repeat left center / contain; }
+
+/* ---- Collection: top zigzag divider, softly patterned ground ---- */
+.arts-topics { padding-top: 96px; }
+.arts-topics:before { content: ''; position: absolute; top: 28px; left: 0; right: 0; height: 22px; background: var(--tribal-zigzag) repeat-x center / auto 22px; opacity: .9; }
+
+/* ---- Artwork cards: thin terracotta border and geometric corners ---- */
+.arts-card-visual { border: 1px solid var(--t-terra); border-radius: 4px; background: var(--t-ivory-hi); box-shadow: 0 14px 30px color-mix(in srgb, var(--t-black) 6%, transparent); }
+.arts-card-visual:after {
+  inset: 3px; border: 1px solid color-mix(in srgb, var(--t-terra) 40%, transparent); pointer-events: none; z-index: 1;
+  background:
+    var(--tribal-corner-bl) left bottom / 26px 26px no-repeat,
+    var(--tribal-corner-br) right bottom / 26px 26px no-repeat;
+}
+.arts-topic:nth-child(-n+2) .arts-card-visual:after { border-radius: 147px 147px 2px 2px; }
+.arts-topic:hover .arts-card-visual { border-color: var(--t-black); box-shadow: 0 22px 44px color-mix(in srgb, var(--t-black) 15%, transparent); }
+.arts-card-visual:before { z-index: 2; width: 36px; height: 36px; border: 1px solid var(--t-terra); border-radius: 0; color: var(--t-ivory-hi); background: var(--t-black); backdrop-filter: none; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); border: 0; font-size: .7rem; }
+.arts-topic-body > .arts-label { padding: 5px 20px; border: 0; border-radius: 0; color: var(--t-rust); background: color-mix(in srgb, var(--t-terra) 16%, transparent); clip-path: polygon(9px 0, calc(100% - 9px) 0, 100% 50%, calc(100% - 9px) 100%, 9px 100%, 0 50%); }
+.arts-topic-link:before { background: linear-gradient(90deg, var(--t-black), var(--t-terra)); }
+.arts-topic h3 { color: var(--t-black); }
+
+/* ---- Closing band: black ground, band along the top, zigzag along the bottom ---- */
+.arts-night { margin-top: 28px; padding: 96px 7% 84px; background: radial-gradient(circle at 92% 8%, color-mix(in srgb, var(--t-terra) 38%, transparent), transparent 46%), var(--t-black); border-radius: 0; }
+.arts-night:before { inset: 46px 12px 34px; border: 1px solid color-mix(in srgb, var(--t-terra) 60%, transparent); border-radius: 0; }
+.arts-night:after { content: ''; position: absolute; z-index: 0; left: 0; right: 0; top: 0; height: 32px; background: var(--t-ivory) var(--tribal-band) repeat-x center / auto 32px; }
+.arts-night-flower { background: var(--t-terra); opacity: .22; }
+.arts-page .arts-night h2 { color: var(--t-ivory); }
+.arts-page .arts-night .eyebrow, .arts-page .arts-night h2 em { color: var(--arts-glow); }
+.arts-page .arts-night p { color: var(--t-beige); }
+.arts-night > div:first-of-type { position: relative; z-index: 1; }
+.arts-night-actions { position: relative; z-index: 1; }
+.arts-night-actions a:first-child { background: var(--t-terra); color: var(--t-ivory-hi); }
+.arts-night-actions a:first-child:hover { background: color-mix(in srgb, var(--t-terra) 85%, #fff); }
+.arts-night-actions a:last-child:hover { border-color: var(--arts-glow); }
+.arts-page .arts-night a:focus-visible { outline-color: var(--arts-glow); }
+
+/* ---- Footer: elaborate patterned border ---- */
+.arts-gallery .site-footer { position: relative; margin-top: 0; padding-top: 74px; border: 0; border-radius: 0; background: var(--t-black); color: var(--t-beige); }
+.arts-gallery .site-footer:before {
+  /* reset the global decorative circle that shares this pseudo-element */
+  z-index: 0; width: auto; aspect-ratio: auto; border: 0; border-radius: 0; box-shadow: none;
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 66px;
+  background:
+    var(--tribal-band) repeat-x center 6px / auto 32px,
+    var(--tribal-zigzag) repeat-x center 42px / auto 22px,
+    var(--t-ivory);
+  border-bottom: 3px solid var(--t-terra);
+}
+.arts-gallery .site-footer:after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 10px;
+  background: repeating-linear-gradient(90deg, var(--t-terra) 0 14px, var(--t-rust) 14px 28px, var(--t-black) 28px 42px, var(--t-beige) 42px 56px);
+}
+.arts-gallery .footer-inner { padding-bottom: 52px; }
+.arts-gallery .footer-brand { color: var(--t-ivory); }
+.arts-gallery .footer-brand span { color: var(--arts-glow); }
+.arts-gallery .site-footer p, .arts-gallery .footer-links a { color: var(--t-beige); }
+.arts-gallery .footer-links a:hover, .arts-gallery .footer-links a.active { color: var(--arts-glow); }
+
+/* ---- Tablet / mobile ---- */
+@media (max-width: 1050px) {
+  .arts-night { padding-left: 6%; padding-right: 6%; }
+}
+@media (max-width: 760px) {
+  .arts-page.exhibition-home:before { height: 24px; background-size: auto 24px; margin-top: 10px; }
+  .arts-restored-strip { padding: 42px 14px; }
+  .arts-restored-strip:before { height: 24px; background-size: auto 24px; }
+  .arts-restored-strip:after { height: 16px; background-size: auto 16px; }
+  .arts-restored-strip > span + span:before { display: none; }
+  .arts-topics { padding-top: 78px; }
+  .arts-topics:before { height: 16px; background-size: auto 16px; }
+  .arts-restored-main-photo { box-shadow: 0 0 0 5px var(--t-terra), 0 16px 30px color-mix(in srgb, var(--t-black) 13%, transparent); outline-offset: 3px; }
+  .arts-night { padding: 84px 26px 64px; }
+  .arts-night:after { height: 24px; background-size: auto 24px; }
+  .arts-night:before { inset: 36px 10px 20px; }
+  .arts-gallery .site-footer { padding-top: 62px; }
+  .arts-gallery .site-footer:before { height: 54px; background-position: center 4px, center 34px; background-size: auto 26px, auto 16px, auto; }
+}
+
+/* ---- Calm background: pattern scrolls with the page, no cursor-following glow ---- */
+.site-shell.arts-gallery { position: relative; }
+.arts-gallery .pointer-glow { display: none; }
+.arts-gallery:before { position: absolute; z-index: 0; inset: 0; }
+/* Hero lattice fades out on all sides instead of ending in a hard edge */
+.arts-heritage-hero:before { mask-image: radial-gradient(ellipse at 78% 38%, #000 18%, transparent 72%); }
+/* The strip already has its own zigzag; drop the second one above the collection */
+.arts-topics:before { display: none; }
+.arts-topics { padding-top: 70px; }
+@media (max-width: 760px) { .arts-topics { padding-top: 54px; } }
+
+/* ---- Keep it still and geometric: no rings, no floating or spinning ornaments ---- */
+.arts-restored-orbit { display: none; }
+.arts-restored-seal { animation: none; }
+.arts-night-flower { animation: none; display: none; }
+
+/* ---- Plain ivory ground: no background lattice anywhere on the page ---- */
+.arts-gallery:before, .arts-gallery:after, .arts-heritage-hero:before { display: none; }
+
+/* ---- Original barong embroidery pattern restored, scrolling with the page ---- */
+.arts-gallery:before {
+  display: block; position: absolute; z-index: 0; inset: 0; content: ''; pointer-events: none;
+  background: url('/cultural-heritage-pages/arts/images/barong-embroidery-bg.svg') center top / 480px auto repeat;
+  opacity: .22;
+}
+
+/* ---- Diamond lattice background. Absolute (not fixed), so it scrolls with the page and never appears to move. ---- */
+.site-shell.arts-gallery { position: relative; }
+.arts-gallery:before {
+  display: block; position: absolute; z-index: 0; inset: 0; content: ''; pointer-events: none;
+  background: var(--tribal-lozenge) center top / 96px auto repeat;
+  opacity: .12;
+}
+
+/* ---- Full-page lattice. This pseudo-element is shared with the site's blurred drifting circle
+   (global.css .site-shell::before), so its circle, blur, sizing and animation are reset here. ---- */
+.site-shell.arts-gallery:before {
+  position: absolute; inset: 0; z-index: 0; width: auto; height: auto;
+  border-radius: 0; filter: none; animation: none; transform: none; will-change: auto;
+  background: var(--tribal-lozenge) center top / 96px auto repeat; opacity: .12;
+}
+
+/* =====================================================================
+   Arts sub-pages (kalesa, jeepney, barong, baro't saya, bahay kubo):
+   same indigenous geometric identity as the Arts landing page.
+   ===================================================================== */
+
+/* Patterned border across the top, like the landing page hero */
+.arts-page.exhibition-detail:before {
+  content: ''; display: block; height: 32px; margin-top: 18px;
+  background: var(--tribal-band) repeat-x center / auto 32px;
+}
+
+/* Hero: plain ground, framed photo, no floral flourishes or tilted rings */
+.exhibit-detail-hero:before, .arts-detail-composition:before, .arts-flourish { display: none; }
+.exhibit-detail-hero .eyebrow:before { content: ''; display: block; width: 64px; height: 14px; margin-bottom: 16px; background: var(--tribal-ornament) no-repeat left center / contain; }
+.exhibit-detail-hero h1 > span { color: var(--t-terra); }
+.arts-detail-composition figure {
+  border: 1px solid var(--t-terra); background: var(--t-ivory-hi);
+  outline: 2px solid var(--t-black); outline-offset: 5px;
+  box-shadow: 0 0 0 7px var(--t-terra), 0 22px 45px color-mix(in srgb, var(--t-black) 13%, transparent);
+}
+.arts-detail-composition figcaption { color: var(--t-rust); }
+
+/* Facts: tinted strip framed by a band above and a zigzag below (same as the landing strip) */
+.exhibit-object-facts {
+  position: relative; border-block: 0; padding: 52px 32px 46px;
+  background: linear-gradient(90deg, transparent, var(--t-beige) 12%, var(--t-beige) 88%, transparent);
+}
+.exhibit-object-facts:before, .exhibit-object-facts:after { content: ''; position: absolute; left: 0; right: 0; background-repeat: repeat-x; background-position: center; }
+.exhibit-object-facts:before { top: 6px; height: 32px; background-image: var(--tribal-band); background-size: auto 32px; }
+.exhibit-object-facts:after { bottom: 4px; height: 22px; background-image: var(--tribal-zigzag); background-size: auto 22px; }
+.exhibit-object-facts > div { border-right-color: color-mix(in srgb, var(--t-terra) 35%, transparent); }
+
+/* Story block: thin terracotta frame, zigzag along the top */
+.exhibit-story { border: 1px solid var(--t-terra); border-radius: 4px; padding-top: 74px; background: var(--t-ivory-hi); }
+.exhibit-story::before { display: none; }
+.exhibit-story::after { height: 22px; opacity: 1; background: var(--tribal-zigzag) repeat-x center / auto 22px; }
+.arts-story-photo img { border: 1px solid var(--t-terra); border-radius: 4px; box-shadow: 0 0 0 5px var(--t-ivory-hi), 0 0 0 6px var(--t-black); margin: 6px; width: calc(100% - 12px); }
+.arts-story-photo figcaption { color: var(--t-terra); }
+
+/* Craft details: plain tint, double thin frame, geometric corners */
+.arts-details { background: var(--t-ivory-hi); border: 1px solid var(--t-terra); border-left: 4px solid var(--t-black); border-radius: 4px; }
+.arts-details::before { display: none; }
+.arts-details::after {
+  inset: 8px; border: 1px solid color-mix(in srgb, var(--t-terra) 45%, transparent); border-radius: 0; opacity: 1; z-index: 0;
+  background: var(--tribal-corner-bl) left bottom / 26px 26px no-repeat, var(--tribal-corner-br) right bottom / 26px 26px no-repeat;
+}
+.arts-details article { border-right-color: color-mix(in srgb, var(--t-terra) 35%, transparent); }
+
+/* Gallery thumbnails */
+.exhibit-gallery button { border: 1px solid var(--t-terra); border-radius: 4px; background: var(--t-ivory-hi); }
+.exhibit-gallery button:after {
+  content: ''; position: absolute; inset: 11px; pointer-events: none; z-index: 1;
+  background: var(--tribal-corner-bl) left bottom / 24px 24px no-repeat, var(--tribal-corner-br) right bottom / 24px 24px no-repeat;
+}
+.exhibit-gallery button > span { z-index: 2; border-radius: 0; background: var(--t-ivory-hi); border: 1px solid var(--t-terra); }
+.exhibit-sources { border-block: 1px solid var(--t-terra); }
+
+@media (max-width: 650px) {
+  .arts-page.exhibition-detail:before { height: 24px; background-size: auto 24px; margin-top: 10px; }
+  .exhibit-object-facts { padding: 44px 18px 38px; }
+  .exhibit-object-facts:before { height: 24px; background-size: auto 24px; }
+  .exhibit-object-facts:after { height: 16px; background-size: auto 16px; }
+  .exhibit-story { padding-top: 62px; }
+  .arts-detail-composition figure { box-shadow: 0 0 0 5px var(--t-terra), 0 16px 30px color-mix(in srgb, var(--t-black) 13%, transparent); outline-offset: 3px; }
+}
+
+/* ---- Previous / next art form (end of each sub-page) ---- */
+.arts-pager { margin: 8px 0 12px; padding-top: 8px; }
+.arts-pager .eyebrow { display: block; margin-bottom: 18px; }
+.arts-pager .eyebrow:before { content: ''; display: block; width: 64px; height: 14px; margin-bottom: 14px; background: var(--tribal-ornament) no-repeat left center / contain; }
+.arts-pager-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.arts-pager-grid > a {
+  position: relative; display: grid; align-items: center; gap: 18px; min-height: 112px; padding: 12px; min-width: 0;
+  border: 1px solid var(--t-terra); border-radius: 4px; background: var(--t-ivory-hi); color: var(--t-black);
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+}
+.arts-pager-grid > a:after {
+  content: ''; position: absolute; inset: 4px; pointer-events: none;
+  background: var(--tribal-corner-bl) left bottom / 22px 22px no-repeat, var(--tribal-corner-br) right bottom / 22px 22px no-repeat;
+}
+.arts-pager-grid > a:hover { transform: translateY(-3px); border-color: var(--t-black); box-shadow: 0 16px 32px color-mix(in srgb, var(--t-black) 14%, transparent); }
+.arts-pager-grid > a:focus-visible { outline: 3px solid var(--t-terra); outline-offset: 4px; }
+.arts-pager-prev { grid-template-columns: 88px minmax(0, 1fr); }
+.arts-pager-next { grid-template-columns: minmax(0, 1fr) 88px; text-align: right; }
+.arts-pager-grid img { width: 88px; height: 88px; object-fit: cover; border: 1px solid var(--t-terra); border-radius: 2px; }
+.arts-pager-grid a > span { display: grid; gap: 8px; min-width: 0; }
+.arts-pager-grid small { display: flex; align-items: center; gap: 8px; color: var(--t-terra); font: 500 .875rem/1.4 var(--sans); letter-spacing: .1em; }
+.arts-pager-next small { justify-content: flex-end; }
+.arts-pager-grid strong { font: 400 clamp(1.375rem, 2.2vw, 1.75rem)/1.15 var(--serif); letter-spacing: -.02em; }
+.arts-pager-arrow { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .25s; }
+.arts-pager-prev:hover .arts-pager-arrow { transform: translateX(-4px); }
+.arts-pager-next:hover .arts-pager-arrow { transform: translateX(4px); }
+@media (max-width: 650px) {
+  .arts-pager-grid { grid-template-columns: 1fr; gap: 12px; }
+  .arts-pager-grid > a { min-height: 96px; gap: 14px; }
+  .arts-pager-prev { grid-template-columns: 72px minmax(0, 1fr); }
+  .arts-pager-next { grid-template-columns: minmax(0, 1fr) 72px; }
+  .arts-pager-grid img { width: 72px; height: 72px; }
+}
+@media (prefers-reduced-motion: reduce) { .arts-pager-grid > a, .arts-pager-arrow { transition: none; } }

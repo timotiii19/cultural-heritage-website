@@ -99,7 +99,7 @@
 .arts-topic:nth-child(-n+2) .arts-card-visual { border-radius: 150px 150px 4px 4px; }
 .arts-topic:nth-child(-n+2) .arts-card-visual > img { height: 350px; border-radius: 143px 143px 0 0; }
 .arts-topic:nth-child(2) img { object-position: center 65%; }
-.arts-topic:nth-child(4) img { object-fit: contain; background: var(--arts-night); }
+.arts-topic:nth-child(4) img { object-fit: cover; object-position: center 18%; background: var(--arts-night); }
 .arts-topic:hover .arts-card-visual { border-color: var(--arts-accent); transform: translateY(-4px); }
 .arts-topic:hover .arts-card-visual > img { filter: saturate(1.08); }
 .arts-topic-body { position: relative; padding: 23px 2px 0; }
@@ -133,7 +133,7 @@
 .arts-detail-composition figure { margin: 0; padding: 8px; border: 1px solid var(--arts-thread); border-radius: 240px 240px 4px 4px; background: var(--arts-surface); box-shadow: var(--arts-shadow); }
 .arts-detail-composition figure > img { width: 100%; height: 455px; object-fit: cover; border-radius: 230px 230px 0 0; }
 .exhibit-kalesa .arts-detail-composition img { object-position: 66% center; }
-.exhibit-barot-saya .arts-detail-composition img { object-fit: contain; background: var(--arts-night); }
+.exhibit-barot-saya .arts-detail-composition img { object-fit: cover; object-position: center 14%; background: var(--arts-night); }
 .arts-detail-composition figcaption { display: flex; justify-content: space-between; gap: 10px; padding: 14px 10px 7px; color: var(--arts-muted); font: .75rem/1.6 var(--sans); }
 .arts-detail-composition figcaption > span:last-child { text-align: right; font-size: .6875rem; letter-spacing: .04em; }
 .exhibit-object-facts { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 30px; margin: 0 0 50px; padding: 25px 32px; border-block: 1px solid var(--arts-thread); background: color-mix(in srgb, var(--arts-tint) 42%, transparent); }
@@ -231,7 +231,7 @@
 .exhibit-gallery button:hover img { filter: saturate(1.15); }
 .exhibit-gallery button > span { position: absolute; bottom: 18px; right: 18px; padding: 7px 10px; color: var(--arts-ink); background: color-mix(in srgb, var(--arts-surface) 91%, transparent); border-radius: 3px; font: .8125rem/1.5 var(--sans); }
 .exhibit-gallery figcaption { padding-top: 13px; color: var(--arts-muted); font: .875rem/1.6 var(--sans); }
-.exhibit-barot-saya .exhibit-gallery img { object-fit: contain; background: var(--arts-night); }
+.exhibit-barot-saya .exhibit-gallery img { object-fit: cover; object-position: center 20%; background: var(--arts-night); }
 .exhibit-sources { width: min(800px,100%); margin: 10px auto 0; border-block: 1px solid var(--arts-thread); }
 .exhibit-sources summary { padding: 20px 0; color: var(--arts-ink); cursor: pointer; font: 1rem/1.6 var(--sans); }
 .exhibit-sources ul { list-style: none; padding: 0 0 12px; margin: 0; }
