@@ -8,7 +8,7 @@
 <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/css/global.css">
 <link rel="stylesheet" href="/cultural-heritage-pages/traditions/superstition/superstition.css">
-<link rel="stylesheet" href="/cultural-heritage-pages/festivals/festivals.css?v=7">
+<link rel="stylesheet" href="/cultural-heritage-pages/festivals/festivals.css?v=8">
 <title>Sinulog Festival - Pamana</title>
 </head>
 <body>
@@ -125,8 +125,11 @@
 </section>
 <article id="sinulog" class="superstition-story festival-story">
 <section class="festival-gallery" aria-label="Sinulog photo gallery">
+<div class="festival-gallery-head">
 <span class="superstition-eyebrow"><i></i> SINULOG IN PICTURES</span>
-<div class="festival-carousel" tabindex="0" aria-label="Sinulog photos, scrolling automatically. Hover or focus to pause.">
+<button class="festival-carousel-toggle" type="button" aria-pressed="false" aria-controls="festival-carousel" aria-label="Pause photo carousel"><span class="fct-pause" aria-hidden="true">❚❚ Pause</span><span class="fct-play" aria-hidden="true">▶ Play</span></button>
+</div>
+<div id="festival-carousel" class="festival-carousel" tabindex="0" aria-label="Sinulog photos, scrolling automatically. Hover or focus to pause.">
 <div class="festival-carousel-track">
 <figure class="superstition-image">
 <img src="/cultural-heritage-pages/festivals/images/fun-in-the-philippines.webp" width="2040" height="1252" alt="A dancer in a red and gold costume holding up an image of the Santo Niño during the Sinulog parade" loading="lazy"/>
@@ -272,6 +275,18 @@
 </div>
 </footer>
 </div>
+<script>
+(function () {
+  var btn = document.querySelector('.festival-carousel-toggle');
+  var car = document.getElementById('festival-carousel');
+  if (!btn || !car) return;
+  btn.addEventListener('click', function () {
+    var paused = car.classList.toggle('is-paused');
+    btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+    btn.setAttribute('aria-label', paused ? 'Play photo carousel' : 'Pause photo carousel');
+  });
+})();
+</script>
 <script src="/assets/js/main.js" defer></script>
 </body>
 </html>

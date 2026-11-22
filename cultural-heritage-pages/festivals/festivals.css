@@ -447,3 +447,32 @@
 
 /* Mouse glow: soft gold, slightly stronger than the default */
 .festival-site-shell .pointer-glow { background: radial-gradient(circle, color-mix(in srgb, var(--gold) 16%, transparent), transparent 72%); }
+
+/* ===== UI/UX pass: motion control, calmer motion, readable sizes, 44px targets ===== */
+/* Carousel play/pause (auto-moving content needs a stop control) */
+.festival-page .festival-gallery-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.festival-page .festival-carousel-toggle { min-height: 44px; padding: 0 18px; border: 1px solid color-mix(in srgb, var(--fs-ink) 25%, transparent); border-radius: 999px; background: var(--paper-bright); color: var(--fs-ink); font: 700 13px var(--sans); letter-spacing: .04em; cursor: pointer; transition: background .2s, border-color .2s; }
+.festival-page .festival-carousel-toggle:hover { border-color: var(--fs-red); background: color-mix(in srgb, var(--fs-gold) 14%, var(--paper-bright)); }
+.festival-page .festival-carousel-toggle:focus-visible { outline: 3px solid var(--fs-blue); outline-offset: 3px; }
+.festival-page .festival-carousel-toggle .fct-play, .festival-page .festival-carousel-toggle[aria-pressed="true"] .fct-pause { display: none; }
+.festival-page .festival-carousel-toggle[aria-pressed="true"] .fct-play { display: inline; }
+.festival-page .festival-carousel.is-paused .festival-carousel-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .festival-page .festival-carousel-toggle { display: none; } }
+
+/* Fewer simultaneous motions: keep bunting, confetti, chant ribbon and carousel; stop the rest */
+.festival-page .superstition-hero-art { animation: none; }
+.festival-page .superstition-hero::after { animation: none; }
+.festival-page .superstition-eyebrow i { animation: none; }
+.festival-details::before { animation: none; }
+
+/* Minimum readable sizes (12px floor) */
+.festival-page .sample-banner-tag, .festival-page .superstition-story-foot > span,
+.festival-page .superstition-story-foot a, .festival-page .superstition-hero-figure { font-size: 12px; }
+.festival-page .sample-banner p { font-size: 15px; }
+
+/* 44px touch targets */
+.festival-page .superstition-back, .festival-page .superstition-hero-link, .festival-page .inline-link,
+.festival-page .superstition-story-foot a { display: inline-flex; align-items: center; min-height: 44px; }
+.festival-page .superstition-story-navigation a { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; }
+.festival-page .festival-carousel figcaption a { display: inline-flex; align-items: center; min-height: 44px; }
+.festival-page a:focus-visible, .festival-page button:focus-visible { outline-offset: 3px; }
