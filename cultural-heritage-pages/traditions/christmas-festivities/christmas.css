@@ -681,3 +681,10 @@
 .christmas-page .superstition-story { padding-bottom: clamp(28px, 4vw, 48px); }
 .christmas-pager-wrap { margin: clamp(32px, 4vw, 56px) auto 0; }
 .christmas-pager-wrap > .eyebrow { margin-bottom: 16px; }
+
+/* Christmas background pattern (parols, poinsettias, holly) */
+.superstition-page.christmas-page .superstition-shell:not(.xm-hero-inner)::before {
+  background-image: url("/cultural-heritage-pages/traditions/christmas-festivities/images/christmas-background.svg");
+  opacity: .4;
+}
+.superstition-page.christmas-page .superstition-shell.xm-hero-inner::before { display: none; }

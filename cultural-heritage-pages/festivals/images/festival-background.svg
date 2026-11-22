@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" fill="none">
+  <defs>
+    <!-- banderitas: alternating pennants in the Sinulog colors -->
+    <pattern id="flags" width="320" height="64" patternUnits="userSpaceOnUse">
+      <path d="M8 0H72L40 56Z" fill="#d6283b" fill-opacity=".62"/>
+      <path d="M88 0H152L120 56Z" fill="#f2b01e" fill-opacity=".75"/>
+      <path d="M168 0H232L200 56Z" fill="#1f5fbf" fill-opacity=".6"/>
+      <path d="M248 0H312L280 56Z" fill="#148a4d" fill-opacity=".62"/>
+      <path d="M40 14V32M120 14V32M200 14V32M280 14V32" stroke="#fff" stroke-opacity=".7" stroke-width="2" stroke-linecap="round"/>
+    </pattern>
+
+    <!-- tambol drum: head, ring, rope lacing, crossed sticks -->
+    <g id="drum">
+      <circle r="52" fill="#fffdf2" fill-opacity=".55" stroke="currentColor" stroke-opacity=".85" stroke-width="5"/>
+      <circle r="38" stroke="currentColor" stroke-opacity=".6" stroke-width="2.5"/>
+      <circle r="24" fill="currentColor" fill-opacity=".22" stroke="currentColor" stroke-opacity=".6" stroke-width="2" stroke-dasharray="3 6"/>
+      <circle r="6" fill="currentColor" fill-opacity=".8"/>
+      <path d="M-60-30 60 30M-60 30 60-30" stroke="#f2b01e" stroke-opacity=".9" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="-60" cy="-30" r="6" fill="#f2b01e"/><circle cx="60" cy="30" r="6" fill="#f2b01e"/>
+      <circle cx="-60" cy="30" r="6" fill="#f2b01e"/><circle cx="60" cy="-30" r="6" fill="#f2b01e"/>
+    </g>
+
+    <g id="star4"><path d="M0-16 4-4 16 0 4 4 0 16-4 4-16 0-4-4Z"/></g>
+    <rect id="chip" x="-7" y="-3" width="14" height="6" rx="1.5"/>
+  </defs>
+
+  <!-- flowing ribbons, like the Sinulog dance current -->
+  <g stroke-linecap="round" fill="none">
+    <path d="M-60 90C180-30 330 220 580 130S930-60 1260 110" stroke="#d6283b" stroke-opacity=".5" stroke-width="12"/>
+    <path d="M-60 90C180-30 330 220 580 130S930-60 1260 110" stroke="#fff" stroke-opacity=".7" stroke-width="3" stroke-dasharray="2 12"/>
+    <path d="M-60 650C200 530 360 770 620 700S960 550 1260 710" stroke="#1f5fbf" stroke-opacity=".48" stroke-width="12"/>
+    <path d="M-60 650C200 530 360 770 620 700S960 550 1260 710" stroke="#fff" stroke-opacity=".7" stroke-width="3" stroke-dasharray="2 12"/>
+    <path d="M-60 860C240 790 400 930 680 855S1020 780 1260 850" stroke="#c2185b" stroke-opacity=".38" stroke-width="14"/>
+    <path d="M-60 300C140 360 300 260 520 310" stroke="#148a4d" stroke-opacity=".4" stroke-width="10"/>
+    <path d="M700 460C860 400 1020 500 1260 430" stroke="#f2b01e" stroke-opacity=".55" stroke-width="12"/>
+  </g>
+
+  <!-- banderitas strung across -->
+  <g transform="translate(0 400) rotate(-3.5)">
+    <path d="M-100 -4H1300" stroke="#2b1238" stroke-opacity=".45" stroke-width="2"/>
+    <rect x="-100" y="-2" width="1400" height="64" fill="url(#flags)"/>
+  </g>
+
+  <!-- drums -->
+  <g opacity=".95">
+    <use href="#drum" transform="translate(190 560) scale(1.05)" color="#d6283b"/>
+    <use href="#drum" transform="translate(1010 250) scale(.8)" color="#1f5fbf"/>
+    <use href="#drum" transform="translate(880 790) scale(.7)" color="#148a4d"/>
+    <use href="#drum" transform="translate(330 220) scale(.55)" color="#c2185b"/>
+  </g>
+
+  <!-- stars -->
+  <g fill="#f2b01e" fill-opacity=".9">
+    <use href="#star4" transform="translate(560 270) scale(1.2)"/>
+    <use href="#star4" transform="translate(90 190)"/>
+    <use href="#star4" transform="translate(1130 560) scale(1.1)"/>
+    <use href="#star4" transform="translate(470 580) scale(.8)"/>
+    <use href="#star4" transform="translate(720 640) scale(.7)"/>
+    <use href="#star4" transform="translate(120 810) scale(.9)"/>
+    <use href="#star4" transform="translate(620 60) scale(.8)"/>
+  </g>
+
+  <!-- confetti -->
+  <g fill="#d6283b" fill-opacity=".8">
+    <use href="#chip" transform="translate(420 60) rotate(30)"/>
+    <use href="#chip" transform="translate(860 330) rotate(-40)"/>
+    <use href="#chip" transform="translate(60 450) rotate(70)"/>
+    <use href="#chip" transform="translate(740 550) rotate(15)"/>
+    <use href="#chip" transform="translate(1160 840) rotate(-20)"/>
+  </g>
+  <g fill="#1f5fbf" fill-opacity=".75">
+    <use href="#chip" transform="translate(280 380) rotate(-25)"/>
+    <use href="#chip" transform="translate(960 40) rotate(50)"/>
+    <use href="#chip" transform="translate(610 530) rotate(-60)"/>
+    <use href="#chip" transform="translate(1100 700) rotate(35)"/>
+    <use href="#chip" transform="translate(400 880) rotate(10)"/>
+  </g>
+  <g fill="#148a4d" fill-opacity=".75">
+    <use href="#chip" transform="translate(130 70) rotate(-35)"/>
+    <use href="#chip" transform="translate(780 190) rotate(65)"/>
+    <use href="#chip" transform="translate(500 450) rotate(20)"/>
+    <use href="#chip" transform="translate(30 640) rotate(-55)"/>
+    <use href="#chip" transform="translate(1190 300) rotate(40)"/>
+  </g>
+  <g fill="#c2185b" fill-opacity=".7">
+    <circle cx="250" cy="130" r="5"/><circle cx="940" cy="600" r="5"/>
+    <circle cx="560" cy="810" r="5"/><circle cx="1150" cy="170" r="5"/>
+    <circle cx="340" cy="680" r="4"/><circle cx="820" cy="30" r="4"/>
+  </g>
+  <g fill="#f2b01e" fill-opacity=".85">
+    <circle cx="660" cy="350" r="4"/><circle cx="200" cy="380" r="4"/>
+    <circle cx="1050" cy="880" r="4"/><circle cx="30" cy="560" r="4"/>
+  </g>
+</svg>
