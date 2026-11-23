@@ -1,0 +1,29 @@
+/* Pamana — Discover page closing banner ("Heritage isn't something we leave behind"). */
+.hg-closing {
+  --hg-ivory: #f8f2e5;
+  --hg-burgundy: #6b1f2a;
+  --hg-burgundy-deep: #471320;
+  --hg-gold: #b8924a;
+  --hg-gold-soft: #d9bd82;
+  position: relative; padding: clamp(80px, 11vw, 160px) 0; overflow: hidden; color: var(--hg-ivory);
+  background: var(--hg-burgundy); text-align: center; isolation: isolate;
+  font-family: 'DM Sans', sans-serif;
+}
+.hg-closing *, .hg-closing *::before, .hg-closing *::after { box-sizing: border-box; }
+.hg-wrap { width: min(1240px, calc(100% - 64px)); margin-inline: auto; }
+.hg-closing-bg { position: absolute; inset: 0; z-index: -2; display: block; width: 100%; height: 100%; object-fit: cover; opacity: .2; mix-blend-mode: luminosity; }
+.hg-closing::before { position: absolute; inset: 0; z-index: -1; content: ''; background: radial-gradient(ellipse at center, transparent 20%, var(--hg-burgundy-deep) 100%); }
+.hg-kicker { display: inline-flex; align-items: center; gap: 12px; margin: 0 0 22px; color: var(--hg-gold-soft); font: 600 12px/1 'DM Sans', sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+.hg-kicker::before { width: 34px; height: 1px; content: ''; background: var(--hg-gold-soft); }
+.hg-closing h2 { max-width: 920px; margin: 0 auto; color: var(--hg-ivory); font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: clamp(36px, 5.6vw, 82px); line-height: 1.04; letter-spacing: -.01em; }
+.hg-closing h2 em { font-family: inherit; font-size: inherit; font-style: italic; color: var(--hg-gold-soft); }
+.hg-closing p:not(.hg-kicker) { max-width: 520px; margin: 28px auto 40px; color: #e7d3cf; font-size: 17px; line-height: 1.75; }
+.hg-btn { display: inline-flex; align-items: center; gap: 12px; padding: 16px 28px; border: 1px solid var(--hg-gold-soft); border-radius: 999px; color: var(--hg-burgundy-deep); background: var(--hg-gold-soft); font: 600 15px/1 'DM Sans', sans-serif; letter-spacing: .02em; text-decoration: none; transition: background .25s, gap .25s; }
+.hg-btn:hover { gap: 18px; background: var(--hg-ivory); }
+.hg-btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+@media (max-width: 720px) { .hg-wrap { width: calc(100% - 36px); } .hg-btn { padding: 15px 24px; } }
+@media (prefers-reduced-motion: reduce) { .hg-btn { transition: none; } }
+
+/* Discover: spacing around the green ribbon (intro box -> ribbon -> collection heading) */
+.intro-band + .heritage-marquee { margin-top: clamp(36px, 5vw, 64px); }
+.heritage-marquee + .collection-section { padding-top: clamp(48px, 6vw, 72px); }

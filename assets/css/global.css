@@ -3131,3 +3131,140 @@ body { background: var(--paper); }
 .tradition-category-action { min-height: 44px; }
 .collection-card:focus-visible, .tradition-category-card:focus-visible,
 .button-primary:focus-visible, .button-secondary:focus-visible { outline: 3px solid var(--forest); outline-offset: 3px; }
+
+/* ===== Social Etiquette: bilao herringbone weave background, tinted by the active palette ===== */
+.social-etiquette-page::before,
+.social-etiquette-detail-page::before {
+  background-color: color-mix(in srgb, var(--palette-wash) 62%, var(--paper));
+  background-image:
+    /* braided rattan rims on both sides of the content "tray" */
+    repeating-linear-gradient(45deg, var(--social-gold-display, var(--gold)) 0 5px, color-mix(in srgb, var(--social-gold-display, var(--gold)) 40%, #fff) 5px 10px),
+    repeating-linear-gradient(45deg, var(--social-gold-display, var(--gold)) 0 5px, color-mix(in srgb, var(--social-gold-display, var(--gold)) 40%, #fff) 5px 10px),
+    /* soft inner shading along the rims */
+    linear-gradient(90deg, transparent 7.5vw, color-mix(in srgb, var(--forest-deep) 16%, transparent) 7.5vw, transparent calc(7.5vw + 36px), transparent calc(92.5vw - 36px), color-mix(in srgb, var(--forest-deep) 16%, transparent) 92.5vw, transparent 92.5vw),
+    /* tray surface: a washed weave, still visible through a light palette tint */
+    linear-gradient(90deg, transparent 7.5vw, color-mix(in srgb, var(--paper-bright) 84%, transparent) 7.5vw, color-mix(in srgb, var(--paper) 82%, transparent) 50%, color-mix(in srgb, var(--paper-bright) 84%, transparent) 92.5vw, transparent 92.5vw),
+    linear-gradient(180deg, color-mix(in srgb, var(--paper-bright) 42%, transparent), color-mix(in srgb, var(--paper) 30%, transparent) 60%, color-mix(in srgb, var(--paper-bright) 38%, transparent)),
+    url("../images/bilao-weave.svg");
+  background-size: 14px 100%, 14px 100%, auto, auto, auto, 400px 400px;
+  background-position: calc(7.5vw - 14px) 0, 92.5vw 0, 0 0, 0 0, 0 0, 0 0;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+  background-blend-mode: normal, normal, normal, normal, normal, multiply;
+  transition: background-color .4s ease;
+}
+
+/* ===== Social Etiquette: readable text over the woven background (follows palette) ===== */
+.social-etiquette-page,
+.social-etiquette-detail-page {
+  --social-gold-ink: color-mix(in srgb, var(--gold) 36%, var(--ink));      /* small text, >= 4.5:1 */
+  --social-gold-display: color-mix(in srgb, var(--gold) 55%, var(--ink));  /* large display text, >= 3:1 */
+}
+.social-etiquette-page .inline-link,
+.social-etiquette-detail-page .inline-link,
+.social-etiquette-hero-copy > .eyebrow,
+.social-etiquette-detail-copy > .eyebrow,
+.social-etiquette-next-topics > .eyebrow,
+.social-etiquette-hero-link,
+.social-etiquette-hero-index b,
+.social-etiquette-detail-scroll,
+.social-etiquette-detail-notes article > span,
+.social-etiquette-practice-pagination > a small,
+.social-etiquette-context-note > span { color: var(--social-gold-ink); }
+.social-etiquette-hero-copy h1 em,
+.social-etiquette-detail-copy h1 em,
+.social-etiquette-editorial-copy h2 em,
+.social-etiquette-editorial-mark,
+.social-etiquette-hero-thread { color: var(--social-gold-display); }
+.social-etiquette-hero-copy > p { color: var(--ink); }
+.social-etiquette-hero-link span { border-color: var(--social-gold-ink); }
+/* hero footer labels: solid strip so they never sit directly on the weave */
+.social-etiquette-hero-foot {
+  color: var(--ink);
+  font-weight: 500;
+  padding: 12px 16px;
+  background: color-mix(in srgb, var(--paper-bright) 86%, transparent);
+  border: 1px solid color-mix(in srgb, var(--social-gold-ink) 35%, transparent);
+  border-radius: 999px;
+}
+/* scrolling word ribbon: dark bold text on a cream band */
+.se-ribbon { background: color-mix(in srgb, var(--paper-bright) 88%, transparent); border-color: color-mix(in srgb, var(--social-gold-ink) 35%, transparent); }
+.se-ribbon-track span { color: var(--forest-deep); font-weight: 600; }
+.se-ribbon-track span::after { color: var(--social-gold-display); }
+/* keep the dark values panel on the light gold */
+.social-etiquette-values h2 em,
+.social-etiquette-values-list article > span,
+.social-etiquette-values-heading .eyebrow { color: var(--gold); }
+
+/* ===== Social Etiquette cards: bilao-woven details (colors follow each card's palette accent) ===== */
+.social-etiquette-practice-card {
+  --weave-a: var(--story-wash, var(--gold));
+  --weave-b: color-mix(in srgb, var(--story-wash, var(--gold)) 42%, #fff);
+}
+/* 1. faint woven texture inside the copy panel, tinted by the card accent */
+.social-etiquette-practice-copy {
+  background-color: color-mix(in srgb, var(--paper-bright) 90%, var(--story-wash, var(--gold)));
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--paper-bright) 80%, transparent), color-mix(in srgb, var(--paper-bright) 80%, transparent)),
+    url("../images/bilao-weave.svg");
+  background-size: auto, 240px 240px;
+  background-blend-mode: normal, multiply;
+}
+/* 2. stitched inner frame, like the rim stitching on a bilao */
+.social-etiquette-practice-copy::before {
+  position: absolute;
+  z-index: 0;
+  inset: 10px;
+  content: '';
+  border: 1.5px dashed color-mix(in srgb, var(--story-wash, var(--gold)) 45%, transparent);
+  border-radius: 3px;
+  pointer-events: none;
+  transition: border-color .25s ease;
+}
+.social-etiquette-practice-card:hover .social-etiquette-practice-copy::before { border-color: color-mix(in srgb, var(--story-wash, var(--gold)) 80%, transparent); }
+/* 3. braided strip where the photo meets the text */
+.social-etiquette-practice-image::before {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 14px;
+  content: '';
+  background: repeating-linear-gradient(45deg, var(--weave-a) 0 5px, var(--weave-b) 5px 10px);
+  box-shadow: inset 1px 0 0 #0003, inset -1px 0 0 #0003;
+  transition: width .25s ease;
+  pointer-events: none;
+}
+.social-etiquette-practice-card:nth-child(even) .social-etiquette-practice-image::before { right: auto; left: 0; }
+.social-etiquette-practice-card:hover .social-etiquette-practice-image::before { width: 20px; }
+@media (max-width: 760px) {
+  .social-etiquette-practice-image::before,
+  .social-etiquette-practice-card:nth-child(even) .social-etiquette-practice-image::before { top: auto; right: 0; bottom: 0; left: 0; width: auto; height: 12px; box-shadow: inset 0 1px 0 #0003, inset 0 -1px 0 #0003; }
+  .social-etiquette-practice-card:hover .social-etiquette-practice-image::before { width: auto; height: 16px; }
+}
+/* 4. detail-page example cards: braided top trim */
+.social-etiquette-example-grid article {
+  background-image: repeating-linear-gradient(45deg, var(--social-gold-display, var(--gold)) 0 5px, color-mix(in srgb, var(--social-gold-display, var(--gold)) 45%, #fff) 5px 10px);
+  background-size: 100% 6px;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+@media (prefers-reduced-motion: reduce) {
+  .social-etiquette-practice-copy::before, .social-etiquette-practice-image::before { transition: none; }
+}
+
+/* ===== Social Etiquette: quiet bilao weave, same calm feel as the Arts page ===== */
+.social-etiquette-page::before,
+.social-etiquette-detail-page::before {
+  background-color: color-mix(in srgb, var(--palette-wash) 40%, var(--paper));
+  background-image: url("../images/bilao-weave.svg");
+  background-size: 420px 420px;
+  background-position: 0 0;
+  background-repeat: repeat;
+  background-blend-mode: multiply;
+  opacity: .2;
+  transition: background-color .4s ease;
+}
+/* extend the weave up behind the floating header so no plain strip shows at the top */
+.social-etiquette-page::before,
+.social-etiquette-detail-page::before { top: -200px; }
