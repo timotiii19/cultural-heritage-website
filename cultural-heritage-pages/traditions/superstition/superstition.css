@@ -1751,20 +1751,20 @@
 .superstition-hero-link { font-size: 13px; }
 .superstition-page a:focus-visible, .superstition-page button:focus-visible { outline: 3px solid var(--sp-gold); outline-offset: 3px; }
 
-.superstition-page-transition::after {
+.superstition-page-transition::after,
+.superstition-site-shell > .page-transition::after {
   position: absolute;
   z-index: 0;
   right: 0;
-  bottom: -180px;
+  bottom: -128px;
   left: 0;
-  height: 180px;
+  height: 128px;
   content: '';
   pointer-events: none;
   background:
     repeating-linear-gradient(135deg,transparent 0 23px,#ffffff05 24px 25px),
     color-mix(in srgb,var(--forest-deep) 10%,#101113);
 }
-
 .superstition-overviews { padding: 82px 2% 20px; }
 .superstition-overviews-heading { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 8px 26px; margin-bottom: 48px; }
 .superstition-overviews-heading .superstition-eyebrow { grid-column: 1 / -1; }
