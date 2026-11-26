@@ -170,7 +170,7 @@
 .site-shell.arts-gallery:before {
   position: absolute; inset: 0; z-index: 0; width: auto; height: auto;
   border-radius: 0; filter: none; animation: none; transform: none; will-change: auto;
-  background: var(--tribal-lozenge) center top / 96px auto repeat; opacity: .12;
+  background: var(--tribal-lozenge) center top / 96px auto repeat; opacity: 0.05;
 }
 
 /* =====================================================================
