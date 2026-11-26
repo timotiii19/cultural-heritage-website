@@ -1750,3 +1750,64 @@
 .superstition-back, .sp-story-references { display: inline-flex; align-items: center; }
 .superstition-hero-link { font-size: 13px; }
 .superstition-page a:focus-visible, .superstition-page button:focus-visible { outline: 3px solid var(--sp-gold); outline-offset: 3px; }
+
+.superstition-page-transition::after {
+  position: absolute;
+  z-index: 0;
+  right: 0;
+  bottom: -180px;
+  left: 0;
+  height: 180px;
+  content: '';
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(135deg,transparent 0 23px,#ffffff05 24px 25px),
+    color-mix(in srgb,var(--forest-deep) 10%,#101113);
+}
+
+.superstition-overviews { padding: 82px 2% 20px; }
+.superstition-overviews-heading { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 8px 26px; margin-bottom: 48px; }
+.superstition-overviews-heading .superstition-eyebrow { grid-column: 1 / -1; }
+.superstition-overviews-heading h2 { margin: 8px 0 0; font: 400 clamp(38px, 4.7vw, 58px)/1.02 var(--serif); letter-spacing: -.04em; }
+.superstition-overviews-heading h2 em { color: var(--sp-gold); }
+.superstition-overviews-heading > p { max-width: 310px; margin: 0 0 5px; color: var(--sp-muted); font: 14px/1.8 'DM Sans',sans-serif; }
+.superstition-overview { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr); align-items: center; gap: clamp(34px,6vw,82px); margin-top: 100px; }
+.superstition-overview:first-of-type { margin-top: 0; }
+.superstition-overview.is-reversed .superstition-overview-image { order: 2; }
+.superstition-overview-image { position: relative; isolation: isolate; margin: 0; }
+.superstition-overview-image::before { position: absolute; z-index: -1; inset: -13px 13px 38px -13px; content: ''; border: 1px solid color-mix(in srgb,var(--sp-gold) 75%,transparent); border-radius: 26px; }
+.superstition-overview-image img { display: block; width: 100%; aspect-ratio: 5 / 4; border: 1px solid var(--sp-line); border-radius: 22px; object-fit: cover; filter: brightness(.78) saturate(.76); box-shadow: 0 22px 54px #0005; transition: transform .7s cubic-bezier(.2,.8,.2,1),filter .4s; }
+.superstition-overview:hover .superstition-overview-image img { transform: scale(1.02); filter: brightness(.92) saturate(.9); }
+.superstition-overview-image::after { position: absolute; inset: 45% 0 0; content: ''; border-radius: 0 0 22px 22px; background: linear-gradient(transparent,color-mix(in srgb,var(--sp-bg) 85%,transparent)); pointer-events: none; }
+.superstition-overview-image figcaption { position: absolute; z-index: 1; right: 18px; bottom: 17px; left: 19px; color: #ffffffdc; font: 11px var(--sans); letter-spacing: .12em; }
+.superstition-overview-image figcaption span { margin-right: 10px; color: var(--sp-gold); font-size: 15px; }
+.superstition-overview-content .superstition-eyebrow { font-size: 10px; }
+.superstition-overview-content h3 { margin: 13px 0 0; font: 400 clamp(37px,4.4vw,56px)/1.02 var(--serif); letter-spacing: -.04em; }
+.superstition-overview-lead { margin: 13px 0 0; color: var(--sp-gold); font: italic 22px/1.45 var(--serif); }
+.superstition-overview-content > p:not(.superstition-overview-lead) { max-width: 520px; margin: 14px 0 0; color: var(--sp-muted); font: 14px/1.85 'DM Sans',sans-serif; }
+.superstition-overview-link { display: inline-flex; min-height: 44px; align-items: center; gap: 18px; margin-top: 18px; padding: 0 0 5px; border-bottom: 1px solid color-mix(in srgb,var(--sp-gold) 65%,transparent); color: var(--sp-gold) !important; font: 11px var(--sans); letter-spacing: .08em; text-transform: uppercase; }
+.superstition-overview-link span { font-size: 17px; transition: transform .2s; }
+.superstition-overview-link:hover span { transform: translateX(4px); }
+.superstition-reflection { position: relative; z-index: 1; max-width: 830px; margin: 22px 0 14px; padding: 17px 22px; border-left: 3px solid var(--sp-gold); background: color-mix(in srgb,var(--sp-gold) 8%,transparent); }
+.superstition-reflection p { margin: 0; color: var(--sp-text); font: italic 400 clamp(22px,2.7vw,31px)/1.45 var(--serif); }
+.superstition-reflection cite { display: block; margin-top: 12px; color: var(--sp-muted); font: 11px var(--sans); font-style: normal; letter-spacing: .09em; text-transform: uppercase; }
+@media (max-width: 900px) {
+  .superstition-overviews { padding: 64px 0 14px; }
+  .superstition-overview { gap: 30px; margin-top: 76px; }
+  .superstition-overview-content h3 { font-size: clamp(34px,5vw,46px); }
+  .superstition-overview-lead { font-size: 19px; }
+}
+@media (max-width: 620px) {
+  .superstition-overviews { padding: 46px 0 8px; }
+  .superstition-overviews-heading { grid-template-columns: 1fr; gap: 8px; margin-bottom: 32px; }
+  .superstition-overviews-heading h2 { font-size: 37px; }
+  .superstition-overviews-heading > p { max-width: unset; }
+  .superstition-overview { grid-template-columns: 1fr; gap: 24px; margin-top: 58px; }
+  .superstition-overview.is-reversed .superstition-overview-image { order: 0; }
+  .superstition-overview-image::before { inset: -9px 9px 25px -9px; }
+  .superstition-overview-image img { aspect-ratio: 4 / 3; border-radius: 16px; }
+  .superstition-overview-image::after { border-radius: 0 0 16px 16px; }
+  .superstition-overview-content h3 { font-size: 39px; }
+  .superstition-overview-lead { font-size: 20px; }
+  .superstition-reflection { margin: 18px 0 12px; padding: 15px 16px; }
+}

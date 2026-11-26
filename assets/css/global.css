@@ -311,7 +311,13 @@ h1 em, h2 em { font-family: var(--accent-serif); font-size: 1.08em; font-style: 
 @keyframes dance-one { to { transform: translateY(-16px) rotate(25deg) scale(1.12); } }@keyframes dance-two { to { transform: translateY(13px) rotate(-23deg) scale(.88); } }
 .preview-play { position: absolute; z-index: 3; width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid #ffffffa1; border-radius: 50%; color: white; background: #ffffff1b; backdrop-filter: blur(5px); cursor: pointer; transition: transform .2s, background .2s; }.preview-play::before { width: 0; height: 0; margin-left: 3px; content: ''; border-top: 7px solid transparent; border-bottom: 7px solid transparent; border-left: 10px solid currentColor; }.preview-play.is-playing::before { width: 10px; height: 13px; margin-left: 0; border: 0; background: linear-gradient(90deg,currentColor 0 35%,transparent 35% 65%,currentColor 65% 100%); }.preview-play:hover { transform: scale(1.1); background: #ffffff37; }.festival-motion:not(.preview-playing) .preview-dancer { animation-play-state: paused; }
 
-.team-page { width: min(1200px, calc(100% - 72px)); margin: 0 auto; }
+.team-page { position: relative; isolation: isolate; width: min(1200px, calc(100% - 72px)); margin: 0 auto; }
+.team-page::before {
+  position: absolute; z-index: -1; top: 0; bottom: 0; left: 50%; width: 100vw;
+  content: ''; transform: translateX(-50%); pointer-events: none;
+  background: url('/assets/images/bilao-weave.svg') center top / 240px auto repeat;
+  opacity: .2;
+}
 .team-hero { min-height: 465px; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 8%; padding: 57px 3% 58px; }
 .team-hero h1 { font-size: clamp(48px, 5.8vw, 72px); }.team-note { display: flex; align-items: center; gap: 9px; margin-top: 23px; color: var(--muted); font-size: 13px; }.team-note i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
 .team-hero-art { position: relative; min-height: 315px; display: grid; place-items: center; overflow: hidden; background: var(--forest); }.team-hero-sun { position: absolute; width: 210px; height: 210px; border-radius: 50%; background: var(--gold); }.team-orbit { position: absolute; width: 130%; height: 65%; border: 1px solid #fff8; border-radius: 50%; transform: rotate(-27deg); box-shadow: 0 0 0 20px #ffffff0a,0 0 0 40px #ffffff0a; }.team-hero-word { z-index: 1; color: white; font: 32px/.95 var(--sans); letter-spacing: -.09em; transform: rotate(-7deg); }.team-hero-word em { color: var(--forest); font-style: normal; }.team-hero-stamp { position: absolute; z-index: 2; right: 15px; bottom: 14px; color: #ffffffc2; font: 11px/1.5 var(--sans); text-align: right; letter-spacing: .08em; }
@@ -329,7 +335,7 @@ h1 em, h2 em { font-family: var(--accent-serif); font-size: 1.08em; font-style: 
 .heritage-marquee-copy { flex: 0 0 auto; font: 15px var(--sans); letter-spacing: .13em; white-space: nowrap; }
 .heritage-marquee-copy i { padding: 0 20px; color: var(--accent-ink); font-style: normal; }
 @keyframes heritage-drift { to { transform: translateX(-50%); } }
-.team-showcase { position: relative; width: min(1440px, 100%); overflow: hidden; margin: 66px auto 0; padding: 97px max(7.5%, calc((100% - 1160px)/2)) 35px; color: white; background: linear-gradient(128deg, color-mix(in srgb, var(--forest) 96%, #102b24), var(--forest-deep)); isolation: isolate; }
+.team-showcase { position: relative; width: min(1440px, 100%); overflow: hidden; margin: 66px auto 0; padding: 97px max(7.5%, calc((100% - 1160px)/2)) 35px; color: white; background: linear-gradient(128deg, color-mix(in srgb, var(--forest) 96%, var(--forest-deep)), var(--forest-deep)); isolation: isolate; }
 .team-showcase::before { position: absolute; z-index: -1; inset: -20%; content: ''; opacity: .46; background: radial-gradient(ellipse at 18% 72%, color-mix(in srgb, var(--accent) 25%, transparent), transparent 25%), radial-gradient(ellipse at 87% 14%, color-mix(in srgb, var(--gold) 18%, transparent), transparent 28%), repeating-linear-gradient(123deg,transparent 0 53px,#ffffff0b 54px 55px); background-size: 150% 150%; animation: canvas-drift 22s ease-in-out infinite alternate; }
 .team-showcase::after { position: absolute; z-index: -1; top: -165px; right: -120px; width: 490px; height: 490px; content: ''; border: 1px solid #ffffff2c; border-radius: 50%; box-shadow: 0 0 0 28px #ffffff08,0 0 0 58px #ffffff08,0 0 0 93px #ffffff07; }
 @keyframes canvas-drift { to { background-position: 100% 80%; } }

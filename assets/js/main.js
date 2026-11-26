@@ -205,7 +205,7 @@ function setPalette(id, persist = true) {
 const savedPalette = localStorage.getItem(paletteKey);
 const hasChosenPalette = Object.hasOwn(palettes, savedPalette)
   && (savedPalette !== 'green' || localStorage.getItem(`${paletteKey}-chosen`) === '1');
-const startPalette = hasChosenPalette ? savedPalette : (shell?.dataset.defaultPalette || 'green');
+const startPalette = hasChosenPalette ? savedPalette : (shell?.dataset.defaultPalette || 'heritage');
 setPalette(startPalette, hasChosenPalette);
 setMotion(localStorage.getItem(motionKey) !== 'off');
 
