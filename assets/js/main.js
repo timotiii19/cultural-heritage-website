@@ -42,7 +42,7 @@ if (backgroundAudioSource) {
   const savedVolume = savedVolumeValue === null ? Number.NaN : Number(savedVolumeValue);
   const initialVolume = Number.isFinite(savedVolume) && savedVolume >= 0 && savedVolume <= 1
     ? savedVolume
-    : 0.25;
+    : 0.10;
   const audio = document.createElement('audio');
   audio.src = backgroundAudioSource;
   audio.loop = true;
