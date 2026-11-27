@@ -224,6 +224,56 @@
   padding: clamp(18px, 2.2vw, 28px);
 }
 
+.team-page .team-feature-panel.has-selection .team-feature-topline {
+  padding: 0 24px;
+}
+
+.team-page .team-feature-panel.has-selection .team-feature-image {
+  width: min(calc(100% - 36px), 270px);
+  max-width: 270px;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 1;
+  justify-self: center;
+  align-self: center;
+  margin: 18px;
+  border-radius: 16px;
+}
+
+.team-page .team-feature-panel.has-selection .team-feature-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 3vw, 38px) clamp(24px, 3.2vw, 40px);
+  text-align: center;
+}
+
+.team-page .team-feature-copy h3 {
+  width: 100%;
+  margin: 14px 0 10px;
+}
+
+.team-page .team-profile-bio {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.team-page .team-feature-meta {
+  width: 100%;
+  text-align: center;
+  align-items: center;
+}
+
+.team-page .team-feature-socials {
+  width: 100%;
+  max-width: 360px;
+  margin: 14px auto 0;
+  text-align: left;
+}
+
 .team-page .team-profile-role {
   display: inline-flex;
   padding: 6px 10px;
@@ -304,6 +354,16 @@
   .team-page .team-picker-name { min-height: 74px; }
   .team-page .team-feature-copy { padding: 20px; }
   .team-page .team-profile-bio { font-size: 14px; }
+  .team-page .team-feature-panel.has-selection .team-feature-image {
+    width: min(calc(100% - 24px), 330px);
+    height: auto;
+    min-height: 0;
+    margin: 12px;
+    aspect-ratio: 1;
+  }
+  .team-page .team-feature-panel.has-selection .team-feature-copy {
+    padding: 24px 20px 22px;
+  }
 }
 
 @media (max-width: 490px) {
